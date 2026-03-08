@@ -6,7 +6,5 @@
   "scripts": {
     "check": "node scripts/check-and-notify.mjs"
   },
-  "dependencies": {
-    "tar": "^7.4.3"
-  }
+  "dependencies": {}
 }

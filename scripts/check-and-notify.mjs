@@ -1,106 +1,57 @@
 /**
  * Claude Code Changelog Checker
  *
- * npm registry から @anthropic-ai/claude-code の最新バージョンを取得し、
- * 新バージョンがあれば CHANGELOG を日本語訳して Discord に通知する。
+ * GitHub Releases API から @anthropic-ai/claude-code の最新リリースを取得し、
+ * 新バージョンがあれば リリースノートを日本語訳して Discord に通知する。
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
-import * as tar from 'tar';
-import * as os from 'os';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 const STATE_FILE = path.join(ROOT_DIR, 'state', 'last-version.txt');
-const NPM_REGISTRY_URL = 'https://registry.npmjs.org/@anthropic-ai/claude-code';
+const GITHUB_RELEASES_URL = 'https://api.github.com/repos/anthropics/claude-code/releases';
 const MAX_TRANSLATE_CHARS = 12000;
 
 // ---------------------------------------------------------------------------
-// npm registry
+// GitHub Releases API
 // ---------------------------------------------------------------------------
 
-async function fetchNpmData() {
-  const res = await fetch(NPM_REGISTRY_URL);
-  if (!res.ok) throw new Error(`npm registry fetch failed: ${res.status}`);
-  return res.json();
-}
-
-// ---------------------------------------------------------------------------
-// tarball / CHANGELOG
-// ---------------------------------------------------------------------------
-
-async function fetchChangelog(tarballUrl) {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ccc-'));
-  try {
-    const tarPath = path.join(tmpDir, 'pkg.tgz');
-    const res = await fetch(tarballUrl);
-    if (!res.ok) throw new Error(`tarball fetch failed: ${res.status}`);
-    fs.writeFileSync(tarPath, Buffer.from(await res.arrayBuffer()));
-
-    await tar.extract({
-      file: tarPath,
-      cwd: tmpDir,
-      filter: (p) => /CHANGELOG/i.test(path.basename(p)),
-    });
-
-    const files = findFiles(tmpDir, (name) => /CHANGELOG/i.test(name));
-    if (files.length === 0) return null;
-    return fs.readFileSync(files[0], 'utf8');
-  } finally {
-    fs.rmSync(tmpDir, { recursive: true, force: true });
+function githubHeaders() {
+  const headers = { Accept: 'application/vnd.github+json' };
+  if (process.env.GITHUB_TOKEN) {
+    headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
+  return headers;
 }
 
-function findFiles(dir, predicate) {
-  const results = [];
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      results.push(...findFiles(fullPath, predicate));
-    } else if (predicate(entry.name)) {
-      results.push(fullPath);
-    }
-  }
-  return results;
+async function fetchLatestVersion() {
+  const res = await fetch(`${GITHUB_RELEASES_URL}/latest`, { headers: githubHeaders() });
+  if (!res.ok) throw new Error(`GitHub releases API failed: ${res.status}`);
+  const release = await res.json();
+  return release.tag_name.replace(/^v/, '');
 }
-
-// ---------------------------------------------------------------------------
-// changelog parsing
-// ---------------------------------------------------------------------------
 
 /**
- * sinceVersion より新しいバージョンのセクションをまとめて返す。
- * sinceVersion が "0.0.0"（初回実行）の場合は latestVersion のみ返す。
+ * lastVersion より新しいリリースを返す。
+ * lastVersion が "0.0.0"（初回）の場合は最新リリースのみ返す。
  */
-function extractEntriesSince(changelog, sinceVersion, latestVersion) {
-  if (!changelog) return null;
+async function fetchReleasesSince(lastVersion) {
+  const res = await fetch(`${GITHUB_RELEASES_URL}?per_page=20`, { headers: githubHeaders() });
+  if (!res.ok) throw new Error(`GitHub releases API failed: ${res.status}`);
+  const releases = await res.json();
+  if (!Array.isArray(releases) || releases.length === 0) throw new Error('リリースが見つかりません');
 
-  const sections = changelog.split(/^(?=#{1,3} (?:v|\[)?\d+\.\d+)/m);
-  const versionRe = /^#{1,3} (?:v|\[)?(\d+\.\d+\.\d+[^\s\]]*)/;
+  if (lastVersion === '0.0.0') return [releases[0]];
 
-  if (sinceVersion === '0.0.0') {
-    // 初回: 最新バージョンのエントリのみ
-    for (const section of sections) {
-      const match = section.match(versionRe);
-      if (match && match[1] === latestVersion) return section.trim();
-    }
-    // exact match がなければ最初のセクションを返す
-    const first = sections.find((s) => versionRe.test(s));
-    return first ? first.trim() : null;
-  }
-
-  const newSections = [];
-  for (const section of sections) {
-    const match = section.match(versionRe);
-    if (!match) continue;
-    if (isNewerThan(match[1], sinceVersion)) {
-      newSections.push(section.trim());
-    }
-  }
-  return newSections.length > 0 ? newSections.join('\n\n') : null;
+  return releases.filter((r) => isNewerThan(r.tag_name.replace(/^v/, ''), lastVersion));
 }
+
+// ---------------------------------------------------------------------------
+// semver 比較
+// ---------------------------------------------------------------------------
 
 /** semver 比較（プレリリースタグは無視） */
 function isNewerThan(version, since) {
@@ -138,7 +89,7 @@ async function translateToJapanese(text, version) {
       messages: [
         {
           role: 'user',
-          content: `以下は Claude Code v${version} の Changelog（英語）です。日本語に翻訳してください。
+          content: `以下は Claude Code v${version} のリリースノート（英語）です。日本語に翻訳してください。
 技術用語・コマンド・固有名詞はそのまま残し、自然な日本語にしてください。
 Markdown の構造（見出し・箇条書き・コードブロックなど）は保持してください。
 
@@ -231,9 +182,8 @@ function writeLastVersion(version) {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  const npmData = await fetchNpmData();
-  const latestVersion = npmData['dist-tags'].latest;
   const lastVersion = readLastVersion();
+  const latestVersion = await fetchLatestVersion();
 
   if (latestVersion === lastVersion) {
     console.log(`最新バージョンに変化なし: ${latestVersion}`);
@@ -242,23 +192,15 @@ async function main() {
 
   console.log(`新バージョン検出: ${latestVersion} (前回: ${lastVersion})`);
 
-  const versionData = npmData.versions[latestVersion];
-  if (!versionData) throw new Error(`バージョン ${latestVersion} の情報が取得できません`);
+  const newReleases = await fetchReleasesSince(lastVersion);
+  const entries = newReleases
+    .map((r) => `## ${r.tag_name}\n\n${r.body || '（リリースノートなし）'}`)
+    .join('\n\n---\n\n');
 
-  const changelog = await fetchChangelog(versionData.dist.tarball);
-  const entries = extractEntriesSince(changelog, lastVersion, latestVersion);
+  console.log('リリースノートを翻訳中...');
+  const translated = await translateToJapanese(entries, latestVersion);
 
-  let notifyContent;
-  if (entries) {
-    console.log('Changelog を翻訳中...');
-    notifyContent = await translateToJapanese(entries, latestVersion);
-  } else {
-    notifyContent = changelog
-      ? 'このバージョンに対応する Changelog エントリが見つかりませんでした。'
-      : 'パッケージに CHANGELOG が含まれていませんでした。';
-  }
-
-  await postToDiscord(notifyContent, latestVersion, lastVersion);
+  await postToDiscord(translated, latestVersion, lastVersion);
   console.log('Discord への通知が完了しました');
 
   writeLastVersion(latestVersion);
