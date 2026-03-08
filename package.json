@@ -1,0 +1,12 @@
+{
+  "name": "claude-code-changelog-checker",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "check": "node scripts/check-and-notify.mjs"
+  },
+  "dependencies": {
+    "tar": "^7.4.3"
+  }
+}

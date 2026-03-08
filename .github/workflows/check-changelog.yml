@@ -1,0 +1,54 @@
+name: Check Claude Code Changelog
+
+on:
+  schedule:
+    # 毎日 JST AM 8:00 に実行（UTC 23:00）
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+    inputs:
+      force_notify:
+        description: '前回バージョンを無視して強制通知する'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  check-changelog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Force reset last version (manual trigger with force_notify)
+        if: ${{ github.event.inputs.force_notify == 'true' }}
+        run: echo "0.0.0" > state/last-version.txt
+
+      - name: Check changelog and notify
+        env:
+          # GITHUB_TOKEN は Actions で自動発行されるため Secret 登録不要
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: node scripts/check-and-notify.mjs
+
+      - name: Commit updated state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add state/last-version.txt
+          git diff --staged --quiet && echo "状態に変更なし" || (
+            git commit -m "chore: update last-seen version" &&
+            git pull --rebase origin main &&
+            git push
+          )
