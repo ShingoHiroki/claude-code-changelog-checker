@@ -47,6 +47,6 @@ state/last-version.txt        - 最後に確認したバージョンの記録
 |-----------|------|
 | `DISCORD_WEBHOOK_URL` | Discord チャンネルの Webhook URL |
 
-`GITHUB_TOKEN` は GitHub Actions が自動発行するため、Secret 登録不要のだ。
+`GITHUB_TOKEN` は GitHub Actions が自動発行するため、Secret 登録不要。
 
 `workflow_dispatch` で手動実行可能。`force_notify: true` を指定すると前回バージョンをリセットして強制通知できる。
