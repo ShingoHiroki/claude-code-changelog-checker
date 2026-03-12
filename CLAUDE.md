@@ -16,6 +16,7 @@ npm run check        # ローカルでの動作確認（環境変数が必要）
 ローカル実行時は以下の環境変数を設定すること:
 - `GITHUB_TOKEN` - GitHub Personal Access Token（GitHub Models 利用権限が必要）
 - `DISCORD_WEBHOOK_URL` - Discord Webhook URL
+- `SLACK_WEBHOOK_URL` - Slack Webhook URL（省略可。設定時のみ通知）
 
 ## アーキテクチャ
 
@@ -32,7 +33,7 @@ state/last-version.txt        - 最後に確認したバージョンの記録
 3. 新バージョンがある場合、npm tarball をダウンロードして `CHANGELOG.md` を抽出
 4. `extractEntriesSince()` で前回バージョン以降のエントリを抽出
 5. GitHub Models API (`gpt-4o-mini`) で日本語翻訳（`GITHUB_TOKEN` を使用、追加費用なし）
-6. Discord Webhook に投稿（2000 文字制限により複数チャンクに分割）
+6. Discord Webhook に投稿（2000 文字制限により複数チャンクに分割）、`SLACK_WEBHOOK_URL` が設定されていれば Slack にも投稿（3000 文字で分割）
 7. `state/last-version.txt` を更新し git commit/push
 
 ### 状態管理
@@ -46,13 +47,14 @@ state/last-version.txt        - 最後に確認したバージョンの記録
 | Secret 名 | 内容 |
 |-----------|------|
 | `DISCORD_WEBHOOK_URL` | Discord チャンネルの Webhook URL |
+| `SLACK_WEBHOOK_URL` | Slack チャンネルの Webhook URL（省略可） |
 
 `GITHUB_TOKEN` は GitHub Actions が自動発行するため、Secret 登録不要。
 
 `workflow_dispatch` で手動実行可能。`force_notify: true` を指定すると前回バージョンをリセットして強制通知できる。
 
 ## CLAUDE.md修正方針
-- 他ファイルに修正が入った時に、CLAUDE.mdにも反映が必要かをチェックして必要なら反映してください。
+- 他ファイルに修正が入った時に、CLAUDE.mdとREADMEにも反映が必要かをチェックして必要なら反映してください。
 
 ## Gitのルール
 - コミットの際は日本語でわかりやすく簡潔に記載してください。

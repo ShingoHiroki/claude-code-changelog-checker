@@ -109,7 +109,7 @@ ${truncated}`,
 }
 
 // ---------------------------------------------------------------------------
-// Discord
+// Discord / Slack 共通ユーティリティ
 // ---------------------------------------------------------------------------
 
 function markdownToDiscord(text) {
@@ -164,6 +164,40 @@ async function postToDiscord(content, latestVersion, lastVersion) {
 }
 
 // ---------------------------------------------------------------------------
+// Slack
+// ---------------------------------------------------------------------------
+
+async function postToSlack(content, latestVersion, lastVersion) {
+  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
+  if (!webhookUrl) return false; // 未設定の場合はスキップ
+
+  const prefix =
+    lastVersion === '0.0.0'
+      ? `*Claude Code v${latestVersion} - 初回チェック*\n\n`
+      : `*Claude Code v${latestVersion} リリース* (前回: v${lastVersion})\n\n`;
+
+  const text = prefix + content;
+  // Slack は 1 メッセージあたり 40,000 文字まで対応しているが、安全のため 3000 文字で分割
+  const chunks = splitMessage(text, 3000);
+
+  for (let i = 0; i < chunks.length; i++) {
+    const res = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: chunks[i] }),
+    });
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(`Slack webhook error: ${res.status} ${err}`);
+    }
+    if (i < chunks.length - 1) {
+      await new Promise((r) => setTimeout(r, 1000));
+    }
+  }
+  return true;
+}
+
+// ---------------------------------------------------------------------------
 // state
 // ---------------------------------------------------------------------------
 
@@ -202,6 +236,13 @@ async function main() {
 
   await postToDiscord(translated, latestVersion, lastVersion);
   console.log('Discord への通知が完了しました');
+
+  const slackSent = await postToSlack(translated, latestVersion, lastVersion);
+  if (slackSent) {
+    console.log('Slack への通知が完了しました');
+  } else {
+    console.log('SLACK_WEBHOOK_URL が未設定のため Slack 通知をスキップしました');
+  }
 
   writeLastVersion(latestVersion);
   console.log(`状態を ${latestVersion} に更新しました`);
