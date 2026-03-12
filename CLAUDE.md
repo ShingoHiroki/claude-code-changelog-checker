@@ -22,7 +22,7 @@ npm run check        # ローカルでの動作確認（環境変数が必要）
 ```
 scripts/check-and-notify.mjs  - メイン処理スクリプト（ESM）
 state/last-version.txt        - 最後に確認したバージョンの記録
-.github/workflows/check-changelog.yml  - 6時間ごとに自動実行
+.github/workflows/check-changelog.yml  - 毎日 JST 8:00 / 12:00 / 18:00 に自動実行
 ```
 
 ### 処理フロー
@@ -47,6 +47,12 @@ state/last-version.txt        - 最後に確認したバージョンの記録
 |-----------|------|
 | `DISCORD_WEBHOOK_URL` | Discord チャンネルの Webhook URL |
 
-`GITHUB_TOKEN` は GitHub Actions が自動発行するため、Secret 登録不要のだ。
+`GITHUB_TOKEN` は GitHub Actions が自動発行するため、Secret 登録不要。
 
 `workflow_dispatch` で手動実行可能。`force_notify: true` を指定すると前回バージョンをリセットして強制通知できる。
+
+## CLAUDE.md修正方針
+- 他ファイルに修正が入った時に、CLAUDE.mdにも反映が必要かをチェックして必要なら反映してください。
+
+## Gitのルール
+- コミットの際は日本語でわかりやすく簡潔に記載してください。
