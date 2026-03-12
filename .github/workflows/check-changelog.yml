@@ -45,6 +45,7 @@ jobs:
           # GITHUB_TOKEN は Actions で自動発行されるため Secret 登録不要
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: node scripts/check-and-notify.mjs
 
       - name: Commit updated state
