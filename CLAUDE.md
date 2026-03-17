@@ -13,10 +13,11 @@ npm install          # 依存関係インストール
 npm run check        # ローカルでの動作確認（環境変数が必要）
 ```
 
-ローカル実行時は以下の環境変数を設定すること:
+ローカル実行時は `.env.example` をコピーして `.env` を作成し、値を記入すること:
 - `GITHUB_TOKEN` - GitHub Personal Access Token（GitHub Models 利用権限が必要）
 - `DISCORD_WEBHOOK_URL` - Discord Webhook URL
 - `SLACK_WEBHOOK_URL` - Slack Webhook URL（省略可。設定時のみ通知）
+- `DRY_RUN` - `true` にすると Discord/Slack に投稿せず stdout に出力（省略可）
 
 ## アーキテクチャ
 
@@ -28,13 +29,14 @@ state/last-version.txt        - 最後に確認したバージョンの記録
 
 ### 処理フロー
 
-1. `https://registry.npmjs.org/@anthropic-ai/claude-code` から最新バージョンを取得
+1. GitHub Releases API から最新バージョンを取得
 2. `state/last-version.txt` と比較して差分があるか確認
-3. 新バージョンがある場合、npm tarball をダウンロードして `CHANGELOG.md` を抽出
-4. `extractEntriesSince()` で前回バージョン以降のエントリを抽出
-5. GitHub Models API (`gpt-4o-mini`) で日本語翻訳（`GITHUB_TOKEN` を使用、追加費用なし）
-6. Discord Webhook に投稿（2000 文字制限により複数チャンクに分割）、`SLACK_WEBHOOK_URL` が設定されていれば Slack にも投稿（3000 文字で分割）
-7. `state/last-version.txt` を更新し git commit/push
+3. 新バージョンがある場合、リリースノート（`body`）を取得
+4. `categorizeAndGroup()` で箇条書きを 新機能/改善/その他/バグ修正 に分類
+5. `buildGroupedText()` でカテゴリ別に整形した英語テキストを生成
+6. GitHub Models API (`gpt-4o-mini`) で日本語翻訳（`GITHUB_TOKEN` を使用、追加費用なし）
+7. サマリー行（件数）+ 翻訳済み本文を Discord/Slack に投稿
+8. `state/last-version.txt` を更新し git commit/push
 
 ### 状態管理
 

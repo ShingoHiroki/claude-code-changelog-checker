@@ -12,6 +12,20 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 const STATE_FILE = path.join(ROOT_DIR, 'state', 'last-version.txt');
+
+// .env ファイルが存在する場合は環境変数に読み込む（ローカル開発用）
+const envPath = path.join(ROOT_DIR, '.env');
+if (fs.existsSync(envPath)) {
+  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const eqIdx = trimmed.indexOf('=');
+    if (eqIdx === -1) continue;
+    const key = trimmed.slice(0, eqIdx).trim();
+    const val = trimmed.slice(eqIdx + 1).trim();
+    if (key && !(key in process.env)) process.env[key] = val;
+  }
+}
 const GITHUB_RELEASES_URL = 'https://api.github.com/repos/anthropics/claude-code/releases';
 const MAX_TRANSLATE_CHARS = 12000;
 
@@ -61,6 +75,50 @@ function isNewerThan(version, since) {
   if (ma !== sb) return ma > sb;
   if (mi !== si) return mi > si;
   return pa > sp;
+}
+
+// ---------------------------------------------------------------------------
+// カテゴリ分類・グルーピング
+// ---------------------------------------------------------------------------
+
+const CATEGORY_ORDER = ['新機能', '改善', 'その他', 'バグ修正'];
+const CATEGORY_EMOJI = { 新機能: '🆕', 改善: '⚡', その他: '➡️', バグ修正: '🐛' };
+
+function categorizeAndGroup(text) {
+  const groups = { 新機能: [], 改善: [], その他: [], バグ修正: [] };
+  const bulletRe = /^[-*]\s+(.+)$/gm;
+  let m;
+  while ((m = bulletRe.exec(text)) !== null) {
+    const line = m[1];
+    if (/^(Added|Add)\b/i.test(line))
+      groups['新機能'].push(line);
+    else if (/^(Fixed|Fix)\b/i.test(line))
+      groups['バグ修正'].push(line);
+    else if (/^(Improved?|Faster|Better|Updated?|Performance|Optimized?)\b/i.test(line))
+      groups['改善'].push(line);
+    else
+      groups['その他'].push(line);
+  }
+  return groups;
+}
+
+function buildGroupedText(groups) {
+  const sections = [];
+  for (const cat of CATEGORY_ORDER) {
+    const items = groups[cat];
+    if (items.length === 0) continue;
+    const header = `${CATEGORY_EMOJI[cat]} ${cat} (${items.length}件)`;
+    const body = items.map((l) => `- ${l}`).join('\n');
+    sections.push(`${header}\n${body}`);
+  }
+  return sections.join('\n\n');
+}
+
+function buildSummaryLine(groups) {
+  const parts = CATEGORY_ORDER
+    .filter((cat) => groups[cat].length > 0)
+    .map((cat) => `${CATEGORY_EMOJI[cat]} ${cat}: ${groups[cat].length}件`);
+  return parts.join(' / ');
 }
 
 // ---------------------------------------------------------------------------
@@ -231,21 +289,32 @@ async function main() {
     .map((r) => `## ${r.tag_name}\n\n${r.body || '（リリースノートなし）'}`)
     .join('\n\n---\n\n');
 
+  const groups = categorizeAndGroup(entries);
+  const summaryLine = buildSummaryLine(groups);
+  const groupedEnglish = buildGroupedText(groups);
+
   console.log('リリースノートを翻訳中...');
-  const translated = await translateToJapanese(entries, latestVersion);
+  const translated = await translateToJapanese(groupedEnglish, latestVersion);
+  const notificationBody = summaryLine + '\n\n' + translated;
 
-  await postToDiscord(translated, latestVersion, lastVersion);
-  console.log('Discord への通知が完了しました');
-
-  const slackSent = await postToSlack(translated, latestVersion, lastVersion);
-  if (slackSent) {
-    console.log('Slack への通知が完了しました');
+  if (process.env.DRY_RUN === 'true') {
+    console.log('--- 通知プレビュー ---');
+    console.log(notificationBody);
+    console.log('--- プレビュー終了 ---');
   } else {
-    console.log('SLACK_WEBHOOK_URL が未設定のため Slack 通知をスキップしました');
-  }
+    await postToDiscord(notificationBody, latestVersion, lastVersion);
+    console.log('Discord への通知が完了しました');
 
-  writeLastVersion(latestVersion);
-  console.log(`状態を ${latestVersion} に更新しました`);
+    const slackSent = await postToSlack(notificationBody, latestVersion, lastVersion);
+    if (slackSent) {
+      console.log('Slack への通知が完了しました');
+    } else {
+      console.log('SLACK_WEBHOOK_URL が未設定のため Slack 通知をスキップしました');
+    }
+
+    writeLastVersion(latestVersion);
+    console.log(`状態を ${latestVersion} に更新しました`);
+  }
 }
 
 main().catch((err) => {
