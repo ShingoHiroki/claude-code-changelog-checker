@@ -677,8 +677,14 @@ async function main() {
   const lastVersion = readLastVersion();
   const latestVersion = await fetchLatestVersion();
 
-  if (latestVersion === lastVersion) {
-    console.log(`最新バージョンに変化なし: ${latestVersion}`);
+  if (!isNewerThan(latestVersion, lastVersion)) {
+    if (latestVersion === lastVersion) {
+      console.log(`最新バージョンに変化なし: ${latestVersion}`);
+    } else {
+      console.log(
+        `取得バージョンが記録より古いためスキップ: ${latestVersion}（記録: ${lastVersion}）`,
+      );
+    }
     return;
   }
 
