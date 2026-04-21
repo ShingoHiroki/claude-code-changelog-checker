@@ -8,9 +8,12 @@ Claude Code (`@anthropic-ai/claude-code`) の新バージョンを自動検知�
 
 - 毎日 JST 8:00 / 12:00 / 18:00 に最新バージョンを自動チェック
 - 新バージョン検出時、GitHub Releases のリリースノートを取得
-- GitHub Models API（gpt-4o-mini）で日本語翻訳
-- Discord Webhook へ通知（2000 文字制限に対応した自動分割）
-- Slack Webhook へも通知（`SLACK_WEBHOOK_URL` を設定した場合のみ）
+- GitHub Models API（gpt-4o-mini）でカテゴリ別本文を日本語翻訳
+- 英語ソースから分類した **件数サマリー**（例: `⚡ 改善: 1件 / ➡️ その他: 11件 / 🐛 バグ修正: 12件`）を Embed / Slack の冒頭に表示
+- Discord Webhook へ **Embed** で通知（件数サマリー・カテゴリ別フィールド・破壊的変更時は赤色・Release リンク）。失敗時はプレーンテキストにフォールバック
+- Slack Webhook へ **Block Kit** で通知（header / 件数サマリー / カテゴリ別 section）。未設定時はスキップ。失敗時はプレーンテキストにフォールバック
+- カテゴリ別の変更内容は**全件**掲載（Discord / Slack の1メッセージ上限に応じて field 分割・複数 Embed / 複数投稿）
+- 複数バージョンを一度に検知した場合は **古い順** にバージョンごと個別通知
 
 ## セットアップ
 
@@ -68,7 +71,7 @@ DRY_RUN=true npm run check
 `DRY_RUN=true`（`.env` に書くか環境変数で指定）にすると:
 - Discord/Slack への実投稿をスキップ
 - `state/last-version.txt` を更新しない
-- 整形済みの通知内容を stdout に出力
+- 検知した各バージョンについて、**Discord Embed / Slack Block Kit 用の JSON ペイロード**を stdout に出力（Webhook に送る内容の確認用）
 
 `GITHUB_TOKEN` には **GitHub Models** の利用権限が必要（通常の Personal Access Token で利用可能）。
 
@@ -81,11 +84,11 @@ state/last-version.txt と比較
        ↓ 新バージョンあり
 リリースノート取得
        ↓
-GitHub Models API（gpt-4o-mini）で日本語翻訳
+GitHub Models API（gpt-4o-mini）でカテゴリ別本文を日本語翻訳（件数サマリーは英語分類から算出）
        ↓
-Discord Webhook へ通知
+Discord Webhook へ Embed で通知（失敗時はプレーンテキスト）
        ↓（SLACK_WEBHOOK_URL が設定されていれば）
-Slack Webhook へ通知
+Slack Webhook へ Block Kit で通知（失敗時はプレーンテキスト）
        ↓
 state/last-version.txt を更新・コミット
 ```
