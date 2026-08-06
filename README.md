@@ -2,13 +2,13 @@
 
 Claude Code (`@anthropic-ai/claude-code`) の新バージョンを自動検知し、リリースノートを日本語訳して Discord / Slack に通知する GitHub Actions ツール。
 
-**Anthropic API キー不要。** GitHub の無料機能だけで動作する。
+**Anthropic API キー不要。** 翻訳には「さくらのAI Engine」（さくらインターネットの OpenAI 互換 API）を利用する。
 
 ## 機能
 
 - 毎日 JST 8:00 / 12:00 / 18:00 に最新バージョンを自動チェック
 - 新バージョン検出時、GitHub Releases のリリースノートを取得
-- GitHub Models API（gpt-4o-mini）でカテゴリ別本文を日本語翻訳
+- さくらのAI Engine（gpt-oss-120b）でカテゴリ別本文を日本語翻訳
 - 英語ソースから分類した **件数サマリー**（例: `⚡ 改善: 1件 / ➡️ その他: 11件 / 🐛 バグ修正: 12件`）を Embed / Slack の冒頭に表示
 - Discord Webhook へ **Embed** で通知（件数サマリー・カテゴリ別フィールド・破壊的変更時は赤色・Release リンク）。失敗時はプレーンテキストにフォールバック
 - Slack Webhook へ **Block Kit** で通知（header / 件数サマリー / カテゴリ別 section）。未設定時はスキップ。失敗時はプレーンテキストにフォールバック
@@ -37,10 +37,13 @@ Claude Code (`@anthropic-ai/claude-code`) の新バージョンを自動検知�
 
 | Secret 名 | 値 | 必須 |
 |---|---|---|
+| `SAKURA_AI_TOKEN` | さくらのAI Engine のアカウントトークン（翻訳用） | 必須 |
 | `DISCORD_WEBHOOK_URL` | Discord の Webhook URL | 必須 |
 | `SLACK_WEBHOOK_URL` | Slack の Webhook URL | 任意 |
 
-`GITHUB_TOKEN` は GitHub Actions が自動発行するため、登録不要。
+`GITHUB_TOKEN` は GitHub Actions が自動発行するため、登録不要（GitHub Releases API のレート制限緩和用）。
+
+`SAKURA_AI_TOKEN` はさくらのクラウドのコントロールパネルで発行する。さくらのAI Engine には無料枠（Chat Completions 月3,000リクエスト）があり、この用途であれば無料枠内で運用できる。
 
 ### 4. GitHub Actions を有効化
 
@@ -59,7 +62,7 @@ Claude Code (`@anthropic-ai/claude-code`) の新バージョンを自動検知�
 ```bash
 # 1. .env.example をコピーして値を設定
 cp .env.example .env
-# .env を開いて GITHUB_TOKEN などを記入
+# .env を開いて SAKURA_AI_TOKEN などを記入
 
 # 2. バージョンをリセット（強制通知）
 echo "0.0.0" > state/last-version.txt
@@ -73,7 +76,7 @@ DRY_RUN=true npm run check
 - `state/last-version.txt` を更新しない
 - 検知した各バージョンについて、**Discord Embed / Slack Block Kit 用の JSON ペイロード**を stdout に出力（Webhook に送る内容の確認用）
 
-`GITHUB_TOKEN` には **GitHub Models** の利用権限が必要（通常の Personal Access Token で利用可能）。
+`SAKURA_AI_TOKEN`（さくらのAI Engine のアカウントトークン）は必須。`GITHUB_TOKEN` は GitHub Releases API のレート制限緩和用で、ローカル実行時は省略可。
 
 ## しくみ
 
@@ -84,7 +87,7 @@ state/last-version.txt と比較
        ↓ 新バージョンあり
 リリースノート取得
        ↓
-GitHub Models API（gpt-4o-mini）でカテゴリ別本文を日本語翻訳（件数サマリーは英語分類から算出）
+さくらのAI Engine（gpt-oss-120b）でカテゴリ別本文を日本語翻訳（件数サマリーは英語分類から算出）
        ↓
 Discord Webhook へ Embed で通知（失敗時はプレーンテキスト）
        ↓（SLACK_WEBHOOK_URL が設定されていれば）
