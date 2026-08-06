@@ -153,27 +153,28 @@ function hasBreakingChanges(groups) {
 }
 
 // ---------------------------------------------------------------------------
-// translation（GitHub Models API - GITHUB_TOKEN で無料利用可能）
+// translation（さくらのAI Engine - OpenAI 互換 Chat Completions API）
 // ---------------------------------------------------------------------------
 
 async function translateToJapanese(text, version) {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) throw new Error('GITHUB_TOKEN is not set');
+  const token = process.env.SAKURA_AI_TOKEN;
+  if (!token) throw new Error('SAKURA_AI_TOKEN is not set');
 
   const truncated =
     text.length > MAX_TRANSLATE_CHARS
       ? text.slice(0, MAX_TRANSLATE_CHARS) + '\n\n...(以下省略)'
       : text;
 
-  const res = await fetch('https://models.inference.ai.azure.com/chat/completions', {
+  const res = await fetch('https://api.ai.sakura.ad.jp/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      max_tokens: 4096,
+      model: 'gpt-oss-120b',
+      // 推論モデルのため思考分のトークンも見込んで多めに確保
+      max_tokens: 8192,
       messages: [
         {
           role: 'user',
@@ -196,7 +197,7 @@ ${truncated}`,
 
   if (!res.ok) {
     const err = await res.text();
-    throw new Error(`GitHub Models API error: ${res.status} ${err}`);
+    throw new Error(`さくらのAI Engine API error: ${res.status} ${err}`);
   }
 
   const data = await res.json();
