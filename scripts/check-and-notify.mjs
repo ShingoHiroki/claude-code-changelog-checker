@@ -46,7 +46,6 @@ const DISCORD_MAX_EMBEDS_PER_MESSAGE = 10;
 /** Slack Block Kit */
 const SLACK_SECTION_MRKDWN_MAX = 3000;
 const SLACK_HEADER_PLAIN_MAX = 150;
-const SLACK_MAX_BLOCKS_PER_MESSAGE = 50;
 
 function truncateStr(s, max) {
   if (s.length <= max) return s;
@@ -320,75 +319,16 @@ async function postToDiscordRich(args) {
   }
 }
 
-function packSlackCategoryChunks(prefixBlocks, categoryBlocks, notifyVersion) {
-  if (prefixBlocks.length + categoryBlocks.length <= SLACK_MAX_BLOCKS_PER_MESSAGE) {
-    return [[...prefixBlocks, ...categoryBlocks]];
-  }
-
-  const cont = {
-    type: 'context',
-    elements: [{ type: 'mrkdwn', text: `_続き v${notifyVersion}_` }],
-  };
-
-  const payloads = [];
-  let i = 0;
-  while (i < categoryBlocks.length) {
-    const isFirst = payloads.length === 0;
-    const prefixLen = isFirst ? prefixBlocks.length : 1;
-    const remaining = categoryBlocks.length - i;
-    const slots = SLACK_MAX_BLOCKS_PER_MESSAGE - prefixLen;
-
-    const take = remaining <= slots ? remaining : Math.min(remaining, slots);
-    const slice = categoryBlocks.slice(i, i + take);
-    i += take;
-
-    const blocks = isFirst ? [...prefixBlocks, ...slice] : [cont, ...slice];
-    payloads.push(blocks);
-  }
-  return payloads;
-}
-
-function buildSlackCategorySectionBlocks(sections) {
-  const categoryBlocks = [];
-  const secs = sections.length ? sections : [];
-
-  for (const { header, items } of secs) {
-    if (!items.length) continue;
-    const baseTitle = normalizeCategoryHeader(header, items.length);
-    const worstHeaderText = `*${truncateStr(`${baseTitle} (10/10)`, 400)}*\n`;
-    const maxChunk = SLACK_SECTION_MRKDWN_MAX - worstHeaderText.length;
-    const bodyChunks = chunkBulletLines(items, '•', maxChunk);
-    for (let i = 0; i < bodyChunks.length; i++) {
-      const headerLineRaw =
-        bodyChunks.length === 1 ? baseTitle : `${baseTitle} (${i + 1}/${bodyChunks.length})`;
-      const md = `*${truncateStr(headerLineRaw, 400)}*\n${bodyChunks[i]}`;
-      categoryBlocks.push({
-        type: 'section',
-        text: { type: 'mrkdwn', text: truncateStr(md, SLACK_SECTION_MRKDWN_MAX) },
-      });
-    }
-  }
-
-  if (categoryBlocks.length === 0) {
-    categoryBlocks.push({
-      type: 'section',
-      text: {
-        type: 'mrkdwn',
-        text: '（カテゴリ別の箇条書きを解析できませんでした）',
-      },
-    });
-  }
-
-  return categoryBlocks;
-}
-
-/** @returns {{ text: string, blocks: object[] }[]} */
+/**
+ * コンパクトな Slack 通知（header / 前回・公開 context / 件数サマリー / サイトリンク）を構築する。
+ * カテゴリ別詳細は載せず、詳細は GitHub Pages サイトで見る運用（#19）。
+ * @returns {{ text: string, blocks: object[] }[]}
+ */
 function buildSlackBlocksPayloadList({
   release,
   notifyVersion,
   lastVersion,
   summaryLine,
-  sections,
   releaseUrl,
 }) {
   const headerText = truncateStr(
@@ -430,21 +370,12 @@ function buildSlackBlocksPayloadList({
     });
   }
 
-  prefixBlocks.push({ type: 'divider' });
-
-  const categoryBlocks = buildSlackCategorySectionBlocks(sections);
-
-  const blockRuns = packSlackCategoryChunks(prefixBlocks, categoryBlocks, notifyVersion);
-
   const fallbackBase = truncateStr(
     `${headerText}\n${summaryLine || 'リリース通知'}\n${releaseUrl}${siteUrl ? `\n${siteUrl}` : ''}`,
     3000,
   );
 
-  return blockRuns.map((blocks, idx) => ({
-    text: idx === 0 ? fallbackBase : truncateStr(`続き v${notifyVersion}: ${releaseUrl}`, 3000),
-    blocks,
-  }));
+  return [{ text: fallbackBase, blocks: prefixBlocks }];
 }
 
 async function postSlackPayload(webhookUrl, payload) {
@@ -463,7 +394,7 @@ async function postToSlackRich(args) {
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
   if (!webhookUrl) return false;
 
-  const { release, notifyVersion, lastVersion, body, summaryLine, sections } = args;
+  const { release, notifyVersion, lastVersion, summaryLine } = args;
   const releaseUrl = release.html_url || releaseTagUrl(release.tag_name);
 
   const payloads = buildSlackBlocksPayloadList({
@@ -471,7 +402,6 @@ async function postToSlackRich(args) {
     notifyVersion,
     lastVersion,
     summaryLine,
-    sections: sections.length ? sections : parseBodyIntoSections(body),
     releaseUrl,
   });
 
@@ -482,17 +412,8 @@ async function postToSlackRich(args) {
     }
   } catch (e) {
     console.warn('Slack blocks 送信に失敗、プレーンテキストにフォールバック:', e.message);
-    const plain =
-      (lastVersion === '0.0.0'
-        ? `*Claude Code v${notifyVersion} - 初回チェック*\n\n`
-        : `*Claude Code v${notifyVersion} リリース* (前回: v${lastVersion})\n\n`) +
-      (summaryLine ? `${summaryLine}\n\n` : '') +
-      (body || '（本文なし）');
-    const chunks = splitMessage(plain, 3000);
-    for (let i = 0; i < chunks.length; i++) {
-      await postSlackPayload(webhookUrl, { text: chunks[i] });
-      if (i < chunks.length - 1) await sleep(1000);
-    }
+    // コンパクト方針に合わせ、フォールバックもサマリー＋リンクのみの短文（payload の text と同一）
+    await postSlackPayload(webhookUrl, { text: payloads[0].text });
   }
   return true;
 }
@@ -590,7 +511,6 @@ async function main() {
             notifyVersion,
             lastVersion,
             summaryLine,
-            sections,
             releaseUrl,
           }),
           null,

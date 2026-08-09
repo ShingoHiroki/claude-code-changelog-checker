@@ -43,8 +43,8 @@ docs/data/                    - 翻訳済みリリースデータ（versions.jso
 4. `categorizeAndGroup()` で箇条書きを 破壊的変更/新機能/改善/その他/バグ修正 に分類
 5. `buildGroupedText()` でカテゴリ別に整形した英語テキストを生成
 6. さくらのAI Engine (`gpt-oss-120b`) でカテゴリ別本文を日本語翻訳（英語分類から算出した **件数サマリー** `⚡ 改善: 1件 / …` を通知の説明欄に表示）
-7. カテゴリ別の箇条書きを**全件**通知（Discord は field / 複数 Embed に分割、Slack は section 分割・50 ブロック超は複数投稿）
-8. **Discord** は Embed（件数サマリー・カテゴリ別フィールド・色分け・リンク）、**Slack** は Block Kit（header / 件数サマリー section / divider / カテゴリ）。送信失敗時は従来のプレーンテキストにフォールバック。いずれも**公開サイトの該当バージョンページへのリンク**を含む（URL は `SITE_URL` → `GITHUB_REPOSITORY` の順で導出。導出不能時はリンク省略）
+7. **Discord** はカテゴリ別の箇条書きを**全件**通知（field / 複数 Embed に分割）。**Slack** はコンパクト通知（header / 前回・公開日時 / 件数サマリー / サイトリンクのみ。カテゴリ別詳細は載せず公開サイトで見る運用）
+8. **Discord** は Embed（件数サマリー・カテゴリ別フィールド・色分け・リンク）、**Slack** は Block Kit。送信失敗時はプレーンテキストにフォールバック（Slack のフォールバックもサマリー＋リンクのみの短文）。いずれも**公開サイトの該当バージョンページへのリンク**を含む（URL は `SITE_URL` → `GITHUB_REPOSITORY` の順で導出。導出不能時はリンク省略）
 9. 通知成功後、サイト用に**構造化翻訳**（各項目を `title`/`description` に分けた JSON 出力）を追加で1リクエスト実行し、`docs/data/<version>.json` を書き出し。全リリース処理後に `docs/data/versions.json`（一覧インデックス）を再生成
 10. `DRY_RUN=true` のときは Webhook 送信・state 更新・サイトデータ書き出しを行わず、Discord/Slack 用 JSON ペイロードを stdout に出力
 11. 全リリースの通知が成功した後、`state/last-version.txt` と `docs/data/` を更新し git commit/push → GitHub Pages に自動反映
