@@ -1,0 +1,190 @@
+:root {
+  --bg: #f5f4f2;
+  --text: #1c1c1e;
+  --text-secondary: #66666c;
+  --text-tertiary: #9c9ca3;
+  --accent: #d97757;
+  --link: #b85c3e;
+  --code-bg: rgba(28, 28, 30, 0.07);
+  --code-text: #45453f;
+  --divider: rgba(28, 28, 30, 0.08);
+  --glass: rgba(255, 255, 255, 0.62);
+  --glass-strong: rgba(255, 255, 255, 0.78);
+  --glass-edge: rgba(255, 255, 255, 0.55);
+  --blob-a: rgba(217, 119, 87, 0.16);
+  --blob-b: rgba(91, 91, 214, 0.10);
+  --blob-c: rgba(48, 164, 108, 0.08);
+  --icon-new-bg: rgba(91, 91, 214, 0.14);   --icon-new-fg: #4f4fc9;
+  --icon-fix-bg: rgba(229, 72, 77, 0.13);   --icon-fix-fg: #d13438;
+  --icon-improve-bg: rgba(48, 164, 108, 0.14); --icon-improve-fg: #1f8a58;
+  --icon-breaking-bg: rgba(229, 72, 77, 0.18); --icon-breaking-fg: #c22a2e;
+  --icon-other-bg: rgba(28, 28, 30, 0.08);  --icon-other-fg: #66666c;
+  --shadow-panel: 0 1px 2px rgba(28,28,30,0.04), 0 12px 32px rgba(28,28,30,0.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131315;
+    --text: #f2f2f4;
+    --text-secondary: #a0a0a8;
+    --text-tertiary: #6b6b72;
+    --accent: #e88a68;
+    --link: #ef9a7c;
+    --code-bg: rgba(242, 242, 244, 0.1);
+    --code-text: #dbdbd6;
+    --divider: rgba(242, 242, 244, 0.08);
+    --glass: rgba(30, 30, 34, 0.55);
+    --glass-strong: rgba(34, 34, 38, 0.72);
+    --glass-edge: rgba(255, 255, 255, 0.08);
+    --blob-a: rgba(217, 119, 87, 0.14);
+    --blob-b: rgba(122, 122, 245, 0.10);
+    --blob-c: rgba(61, 214, 140, 0.06);
+    --icon-new-bg: rgba(138, 138, 245, 0.16);   --icon-new-fg: #a3a3f7;
+    --icon-fix-bg: rgba(255, 99, 105, 0.14);    --icon-fix-fg: #ff8a8e;
+    --icon-improve-bg: rgba(61, 214, 140, 0.14); --icon-improve-fg: #5fdf9e;
+    --icon-breaking-bg: rgba(255, 99, 105, 0.2); --icon-breaking-fg: #ff7a7f;
+    --icon-other-bg: rgba(242, 242, 244, 0.1);  --icon-other-fg: #a0a0a8;
+    --shadow-panel: 0 1px 2px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.35);
+  }
+}
+
+* { box-sizing: border-box; }
+html { font: 100%/1.65 system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.85em;
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 0.1em 0.42em;
+  border-radius: 6px;
+}
+
+/* ---- アンビエントグラデーション背景（固定・ごく淡く。前庭刺激を避けるため動かさない） ---- */
+.ambient {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(560px 420px at 12% -5%, var(--blob-a), transparent 70%),
+    radial-gradient(640px 480px at 95% 12%, var(--blob-b), transparent 70%),
+    radial-gradient(700px 520px at 55% 110%, var(--blob-c), transparent 70%);
+}
+
+.app { display: grid; grid-template-columns: 248px minmax(0, 760px); justify-content: center; gap: 2rem; min-height: 100dvh; padding: 2rem; }
+
+/* ---- Sidebar: フローティングのガラスパネル ---- */
+.sidebar {
+  position: sticky; top: 2rem;
+  height: calc(100dvh - 4rem);
+  overflow-y: auto;
+  padding: 1.25rem 0.875rem;
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid var(--glass-edge);
+  border-radius: 20px;
+  box-shadow: var(--shadow-panel);
+}
+.sidebar-brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; font-size: 0.9375rem; letter-spacing: -0.01em; padding: 0.25rem 0.625rem 1rem; }
+.sidebar-brand img { width: 1.375rem; height: 1.375rem; flex-shrink: 0; }
+.version-list { list-style: none; margin: 0; padding: 0; }
+.version-list a {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem;
+  padding: 0.45rem 0.625rem;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  transition: background 100ms ease-out, color 100ms ease-out;
+}
+.version-list a:hover { background: var(--code-bg); color: var(--text); text-decoration: none; }
+.version-list a:active { transform: scale(0.98); }
+.version-list a[aria-current="page"] { background: var(--glass-strong); color: var(--text); font-weight: 600; box-shadow: 0 1px 3px rgba(28,28,30,0.08); }
+.version-list .date { font-size: 0.71875rem; color: var(--text-tertiary); letter-spacing: 0.01em; }
+.breaking-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--icon-breaking-fg); margin-left: 0.35em; vertical-align: 0.2em; }
+
+/* ---- Content ---- */
+.content { padding: 1.5rem 0 4rem; }
+.content-inner { animation: rise-in 340ms cubic-bezier(0.2, 0.9, 0.3, 1); }
+@keyframes rise-in { from { opacity: 0; transform: translateY(8px) scale(0.995); } to { opacity: 1; transform: none; } }
+
+/* ヒーロー: ガラスの大パネル */
+.hero {
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid var(--glass-edge);
+  border-radius: 24px;
+  box-shadow: var(--shadow-panel);
+  padding: 2.25rem 2.5rem;
+  display: flex; align-items: center; gap: 1.25rem;
+}
+.hero .logo { width: 3.25rem; height: 3.25rem; flex-shrink: 0; }
+.release-title { margin: 0; font-size: clamp(1.875rem, 4.5vw, 2.75rem); line-height: 1.08; letter-spacing: -0.022em; font-weight: 800; }
+.release-title .ver { color: var(--accent); }
+.release-meta { margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary); display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* ---- カテゴリパネル: ガラスパネルの中に行リスト ---- */
+.category {
+  margin-top: 1.5rem;
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid var(--glass-edge);
+  border-radius: 20px;
+  box-shadow: var(--shadow-panel);
+  padding: 0.5rem 0;
+  overflow: hidden;
+}
+.category-header { display: flex; align-items: center; gap: 0.625rem; padding: 1rem 1.5rem 0.625rem; }
+.category-name { margin: 0; font-size: 1.125rem; font-weight: 700; letter-spacing: -0.012em; flex: 1; }
+.category-count { font-size: 0.8125rem; font-weight: 600; color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+
+.item { display: flex; gap: 1rem; padding: 1rem 1.5rem; }
+.item + .item { border-top: 1px solid var(--divider); }
+.item-icon {
+  display: grid; place-items: center;
+  width: 2rem; height: 2rem;
+  border-radius: 10px;
+  font-size: 0.9375rem; font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.icon-new { background: var(--icon-new-bg); color: var(--icon-new-fg); }
+.icon-fix { background: var(--icon-fix-bg); color: var(--icon-fix-fg); }
+.icon-improve { background: var(--icon-improve-bg); color: var(--icon-improve-fg); }
+.icon-breaking { background: var(--icon-breaking-bg); color: var(--icon-breaking-fg); }
+.icon-other { background: var(--icon-other-bg); color: var(--icon-other-fg); }
+.item h3 { margin: 0; font-size: 0.9688rem; font-weight: 650; letter-spacing: -0.008em; line-height: 1.45; }
+.item p { margin: 0.2rem 0 0; font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; }
+
+.site-footer { margin-top: 2rem; font-size: 0.8125rem; color: var(--text-tertiary); text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .content-inner { animation: fade-in 200ms ease; }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  .version-list a:active { transform: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .sidebar, .hero, .category { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .ambient { display: none; }
+}
+
+.mobile-nav { display: none; }
+@media (max-width: 760px) {
+  .app { grid-template-columns: 1fr; padding: 0 1rem 2rem; gap: 0; }
+  .sidebar { display: none; }
+  .content { padding-top: 1rem; }
+  .hero { padding: 1.5rem 1.375rem; }
+  .mobile-nav {
+    display: block; position: sticky; top: 0; z-index: 10;
+    margin: 0 -1rem 1rem; padding: 0.5rem 1.25rem;
+    background: var(--glass-strong);
+    backdrop-filter: blur(20px) saturate(170%);
+    -webkit-backdrop-filter: blur(20px) saturate(170%);
+    border-bottom: 1px solid var(--glass-edge);
+  }
+  .mobile-nav summary { cursor: pointer; font-weight: 600; padding: 0.5rem 0; list-style: none; }
+  .mobile-nav summary::after { content: " ▾"; color: var(--text-secondary); }
+  .mobile-nav .version-list { max-height: 50dvh; overflow-y: auto; margin-bottom: 0.75rem; }
+}

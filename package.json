@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "check": "node scripts/check-and-notify.mjs"
+    "check": "node scripts/check-and-notify.mjs",
+    "backfill": "node scripts/backfill-site-data.mjs"
   },
   "dependencies": {}
 }

@@ -8,26 +8,32 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import {
+  fetchLatestVersion,
+  fetchReleasesSince,
+  isNewerThan,
+  sleep,
+  categorizeAndGroup,
+  buildGroupedText,
+  buildSummaryLine,
+  hasBreakingChanges,
+  translateToJapanese,
+  translateToStructuredJapanese,
+  normalizeTranslatedBody,
+  parseBodyIntoSections,
+  releaseTagUrl,
+  loadDotEnv,
+  writeVersionSiteData,
+  rebuildVersionsIndex,
+} from './lib/changelog-core.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 const STATE_FILE = path.join(ROOT_DIR, 'state', 'last-version.txt');
+const DATA_DIR = path.join(ROOT_DIR, 'docs', 'data');
 
 // .env ファイルが存在する場合は環境変数に読み込む（ローカル開発用）
-const envPath = path.join(ROOT_DIR, '.env');
-if (fs.existsSync(envPath)) {
-  for (const line of fs.readFileSync(envPath, 'utf8').split('\n')) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#')) continue;
-    const eqIdx = trimmed.indexOf('=');
-    if (eqIdx === -1) continue;
-    const key = trimmed.slice(0, eqIdx).trim();
-    const val = trimmed.slice(eqIdx + 1).trim();
-    if (key && !(key in process.env)) process.env[key] = val;
-  }
-}
-const GITHUB_RELEASES_URL = 'https://api.github.com/repos/anthropics/claude-code/releases';
-const MAX_TRANSLATE_CHARS = 12000;
+loadDotEnv(ROOT_DIR);
 
 /** Discord embed */
 const DISCORD_FIELD_VALUE_MAX = 1024;
@@ -41,200 +47,6 @@ const DISCORD_MAX_EMBEDS_PER_MESSAGE = 10;
 const SLACK_SECTION_MRKDWN_MAX = 3000;
 const SLACK_HEADER_PLAIN_MAX = 150;
 const SLACK_MAX_BLOCKS_PER_MESSAGE = 50;
-
-// ---------------------------------------------------------------------------
-// GitHub Releases API
-// ---------------------------------------------------------------------------
-
-function githubHeaders() {
-  const headers = { Accept: 'application/vnd.github+json' };
-  if (process.env.GITHUB_TOKEN) {
-    headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
-  }
-  return headers;
-}
-
-async function fetchLatestVersion() {
-  const res = await fetch(`${GITHUB_RELEASES_URL}/latest`, { headers: githubHeaders() });
-  if (!res.ok) throw new Error(`GitHub releases API failed: ${res.status}`);
-  const release = await res.json();
-  return release.tag_name.replace(/^v/, '');
-}
-
-/**
- * lastVersion より新しいリリースを返す（新しい順）。
- * lastVersion が "0.0.0"（初回）の場合は最新リリースのみ返す。
- */
-async function fetchReleasesSince(lastVersion) {
-  const res = await fetch(`${GITHUB_RELEASES_URL}?per_page=20`, { headers: githubHeaders() });
-  if (!res.ok) throw new Error(`GitHub releases API failed: ${res.status}`);
-  const releases = await res.json();
-  if (!Array.isArray(releases) || releases.length === 0) throw new Error('リリースが見つかりません');
-
-  if (lastVersion === '0.0.0') return [releases[0]];
-
-  return releases.filter((r) => isNewerThan(r.tag_name.replace(/^v/, ''), lastVersion));
-}
-
-// ---------------------------------------------------------------------------
-// semver 比較
-// ---------------------------------------------------------------------------
-
-/** semver 比較（プレリリースタグは無視） */
-function isNewerThan(version, since) {
-  const parse = (v) => v.replace(/[^.\d]/g, '').split('.').map(Number);
-  const [ma, mi, pa] = parse(version);
-  const [sb, si, sp] = parse(since);
-  if (ma !== sb) return ma > sb;
-  if (mi !== si) return mi > si;
-  return pa > sp;
-}
-
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms));
-}
-
-// ---------------------------------------------------------------------------
-// カテゴリ分類・グルーピング
-// ---------------------------------------------------------------------------
-
-const CATEGORY_ORDER = ['破壊的変更', '新機能', '改善', 'その他', 'バグ修正'];
-const CATEGORY_EMOJI = {
-  破壊的変更: '🚨',
-  新機能: '🆕',
-  改善: '⚡',
-  その他: '➡️',
-  バグ修正: '🐛',
-};
-
-function categorizeAndGroup(text) {
-  const groups = {
-    破壊的変更: [],
-    新機能: [],
-    改善: [],
-    その他: [],
-    バグ修正: [],
-  };
-  const bulletRe = /^[-*]\s+(.+)$/gm;
-  let m;
-  while ((m = bulletRe.exec(text)) !== null) {
-    const line = m[1];
-    if (/^(Breaking|BREAKING|Removed|Deprecated)\b/i.test(line)) groups['破壊的変更'].push(line);
-    else if (/^(Added|Add)\b/i.test(line)) groups['新機能'].push(line);
-    else if (/^(Fixed|Fix)\b/i.test(line)) groups['バグ修正'].push(line);
-    else if (/^(Improved?|Faster|Better|Updated?|Performance|Optimized?)\b/i.test(line))
-      groups['改善'].push(line);
-    else groups['その他'].push(line);
-  }
-  return groups;
-}
-
-function buildGroupedText(groups) {
-  const sections = [];
-  for (const cat of CATEGORY_ORDER) {
-    const items = groups[cat];
-    if (items.length === 0) continue;
-    const header = `${CATEGORY_EMOJI[cat]} ${cat} (${items.length}件)`;
-    const body = items.map((l) => `- ${l}`).join('\n');
-    sections.push(`${header}\n${body}`);
-  }
-  return sections.join('\n\n');
-}
-
-function buildSummaryLine(groups) {
-  const parts = CATEGORY_ORDER.filter((cat) => groups[cat].length > 0).map(
-    (cat) => `${CATEGORY_EMOJI[cat]} ${cat}: ${groups[cat].length}件`,
-  );
-  return parts.join(' / ');
-}
-
-function hasBreakingChanges(groups) {
-  return groups['破壊的変更'].length > 0;
-}
-
-// ---------------------------------------------------------------------------
-// translation（さくらのAI Engine - OpenAI 互換 Chat Completions API）
-// ---------------------------------------------------------------------------
-
-async function translateToJapanese(text, version) {
-  const token = process.env.SAKURA_AI_TOKEN;
-  if (!token) throw new Error('SAKURA_AI_TOKEN is not set');
-
-  const truncated =
-    text.length > MAX_TRANSLATE_CHARS
-      ? text.slice(0, MAX_TRANSLATE_CHARS) + '\n\n...(以下省略)'
-      : text;
-
-  const res = await fetch('https://api.ai.sakura.ad.jp/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      model: 'gpt-oss-120b',
-      // 推論モデルのため思考分のトークンも見込んで多めに確保
-      max_tokens: 8192,
-      messages: [
-        {
-          role: 'user',
-          content: `以下は Claude Code v${version} のリリースノート（英語の箇条書きをカテゴリ別にまとめたもの）です。
-日本語に翻訳した結果だけを出力してください（余計な前置きや見出しは付けない）。
-
-ルール:
-- 入力と同じカテゴリ見出し・件数・空行区切りのブロック構造を保つ
-- 各箇条書きの本文のみ日本語にし、技術用語・コマンド・固有名詞はそのまま残す
-- カテゴリ行の絵文字・「○○ (N件)」形式は維持する
-- 箇条書きは各行先頭の \`- \` を維持する
-
-入力:
-
-${truncated}`,
-        },
-      ],
-    }),
-  });
-
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`さくらのAI Engine API error: ${res.status} ${err}`);
-  }
-
-  const data = await res.json();
-  return data.choices[0].message.content;
-}
-
-/** モデルが付けた ## TL;DR / ## 本文 などを取り除き、カテゴリ本文だけにする */
-function normalizeTranslatedBody(raw) {
-  let t = typeof raw === 'string' ? raw.trim() : '';
-  if (!t) return '';
-  t = t.replace(/^##\s*TL;DR\s*[\s\S]*?(?=\n##\s|$)/im, '').trim();
-  t = t.replace(/^##\s*本文\s*\n?/im, '').trim();
-  return t;
-}
-
-/**
- * 本文をカテゴリブロックに分割（1行目=見出し、以降=箇条書き）
- */
-function parseBodyIntoSections(body) {
-  const sections = [];
-  const parts = body.split(/\n\n+/);
-  for (const part of parts) {
-    const lines = part
-      .split('\n')
-      .map((l) => l.trim())
-      .filter(Boolean);
-    if (lines.length === 0) continue;
-    const header = lines[0];
-    const items = [];
-    for (let i = 1; i < lines.length; i++) {
-      const l = lines[i];
-      if (/^[-*]\s+/.test(l)) items.push(l.replace(/^[-*]\s+/, ''));
-    }
-    if (items.length > 0) sections.push({ header, items });
-  }
-  return sections;
-}
 
 function truncateStr(s, max) {
   if (s.length <= max) return s;
@@ -289,11 +101,6 @@ function buildDiscordFieldsForCategory(header, items) {
     value: truncateStr(chunk, DISCORD_FIELD_VALUE_MAX),
     inline: false,
   }));
-}
-
-function releaseTagUrl(tagName) {
-  const enc = encodeURIComponent(tagName);
-  return `https://github.com/anthropics/claude-code/releases/tag/${enc}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -767,6 +574,15 @@ async function main() {
       } else {
         console.log('SLACK_WEBHOOK_URL が未設定のため Slack 通知をスキップしました');
       }
+
+      const structured = await translateToStructuredJapanese(groups, notifyVersion);
+      writeVersionSiteData(DATA_DIR, {
+        release,
+        version: notifyVersion,
+        groups,
+        sections: structured.sections,
+      });
+      console.log(`サイトデータを書き出しました (v${notifyVersion})`);
     }
 
     if (i < newReleases.length - 1) await sleep(1000);
@@ -775,12 +591,16 @@ async function main() {
   if (!dryRun) {
     writeLastVersion(latestVersion);
     console.log(`状態を ${latestVersion} に更新しました`);
+    rebuildVersionsIndex(DATA_DIR);
+    console.log('サイトのバージョン一覧 (versions.json) を再生成しました');
   } else {
     console.log('DRY_RUN: state/last-version.txt は更新していません');
   }
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
