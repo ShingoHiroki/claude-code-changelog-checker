@@ -1,0 +1,157 @@
+{
+  "version": "2.1.169",
+  "tagName": "v2.1.169",
+  "publishedAt": "2026-06-08T21:57:18Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.169",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 3,
+    "その他": 9,
+    "バグ修正": 14
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`--safe-mode` フラグの追加",
+          "description": "`--safe-mode` フラグと環境変数 `CLAUDE_CODE_SAFE_MODE` を追加し、CLAUDE.md、プラグイン、スキル、フック、MCPサーバーなどすべてのカスタマイズを無効化した状態で Claude Code を起動できるようにした。"
+        },
+        {
+          "title": "`/cd` コマンドの追加",
+          "description": "`/cd` コマンドを導入し、プロンプトキャッシュを破壊せずにセッション中に作業ディレクトリを新しい場所へ移動できるようにした。"
+        },
+        {
+          "title": "`disableBundledSkills` 設定と環境変数の追加",
+          "description": "`disableBundledSkills` 設定と環境変数 `CLAUDE_CODE_DISABLE_BUNDLED_SKILLS` を追加し、バンドルされたスキル、ワークフロー、組み込みスラッシュコマンドをモデル側から非表示にできるようにした。"
+        },
+        {
+          "title": "複数セッション時のヒント追加",
+          "description": "複数の同時セッションを実行する際に `claude agents` を使用することを提案するチップを追加した。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`TaskCreate` の信頼性向上",
+          "description": "不正な入力を自動修復し、ロードされていないツールに対するバリデーションエラーにスキーマ情報を含めることで `TaskCreate` の信頼性を向上させた。"
+        },
+        {
+          "title": "APIキー認証無効時のエラーメッセージ改善",
+          "description": "組織で API キー認証が無効化されている場合に表示されるエラーメッセージを改善し、アクティブな API キーの取得元に基づくガイダンスを提供するようにした。"
+        },
+        {
+          "title": "スキルタグのカラーコントラスト改善",
+          "description": "スラッシュコマンドメニュー内のスキルタグの色コントラストを向上させた。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/workflows` の即時起動",
+          "description": "ターンが進行中でも `/workflows` がすぐに開くようになった。"
+        },
+        {
+          "title": "CPU 使用率の削減",
+          "description": "レスポンスのストリーミング中およびスピナーヤニメーション中の CPU 使用率を低減した。"
+        },
+        {
+          "title": "Vertex/Foundry のアイドルタイムアウト復元",
+          "description": "Vertex/Foundry でデフォルトの 5 分アイドルタイムアウトを復元し、ストリームが停止した場合に無期限にハングしないようにした。オプトアウトするには `API_FORCE_IDLE_TIMEOUT=0` を設定する。"
+        },
+        {
+          "title": "リモート管理設定の部分適用とエラー報告",
+          "description": "無効なエントリを含むリモート管理設定は、残りの有効なポリシーを適用しつつ検証エラーを表面化するように変更し、ペイロード全体が黙って破棄されるのを防いだ。"
+        },
+        {
+          "title": "バックグラウンドセッションでフラグ保持強化",
+          "description": "`--ide`、`--chrome`、`--bare`、`--remote-control` などのフラグを retire→wake 間で保持し、再起動時の状態検証を強化した。"
+        },
+        {
+          "title": "共有チェックアウト編集のブロック通知",
+          "description": "バックグラウンドセッションで、作業ツリーに入るまで共有チェックアウト編集がブロックされる旨を通知し、`EnterWorktree` 前の無駄な拒否編集を防止した。"
+        },
+        {
+          "title": "`CLAUDE.md が長すぎる` 警告の閾値スケーリング",
+          "description": "`CLAUDE.md が長すぎる` 警告の閾値がモデルのコンテキストウィンドウに合わせてスケールするようになった。"
+        },
+        {
+          "title": "Windows 自動更新のリトライ停止",
+          "description": "Windows の自動更新が、`claude.exe` が他プロセスにロックされている場合、同一セッション内での再試行を停止するようにした。"
+        },
+        {
+          "title": "プロモクレジット取得時の支払い方法案内追加",
+          "description": "Apple/Google 課金のサブスクライバーで支払い方法が未設定の場合、プロモクレジットの請求時に支払い方法の追加場所を説明するようにした。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Up/Down 矢印の履歴ジャンプ修正",
+          "description": "長い入力行で折り返された行を超えてコマンド履歴にジャンプしていた Up/Down 矢印が、まず各ビジュアル行を移動し、履歴呼び出しは近辺で開始するよう修正した。"
+        },
+        {
+          "title": "エンタープライズ MCP ポリシーの適用不具合修正",
+          "description": "`allowedMcpServers`/`deniedMcpServers` が再接続時や IDE での設定、`--mcp-config` サーバー指定時、インストール直後の最初のセッション、リモート設定読み込み前に適用されない問題と、リモート設定がない組織でのコールドスタート遅延を修正した。"
+        },
+        {
+          "title": "macOS UI ストールの軽減",
+          "description": "macOS で claude.ai 資格情報でログインしたユーザーの各ターン開始時に発生していた約 30‑50ms の UI ストールを修正した。"
+        },
+        {
+          "title": "`claude -p` の Windows での遅延・ハング修正",
+          "description": "`claude -p` が Windows でスラッシュコマンド/スキルスキャン待ち中に遅くなる、またはハングしたように見える問題（2.1.161 のリグレッション）を修正した。"
+        },
+        {
+          "title": "Remote Control の再接続スタック修正",
+          "description": "セッション再開時に OAuth トークンのリフレッシュが同時に起きた場合、Remote Control が \"reconnecting\" で止まる問題を修正した。"
+        },
+        {
+          "title": "Git Credential Manager ポップアップの誤表示修正",
+          "description": "バックグラウンド Git コマンドがキャッシュされた資格情報なしで実行された際に、Windows 起動時に Git Credential Manager の \"Connect to GitHub\" ポップアップが表示される問題を修正した。"
+        },
+        {
+          "title": "フッター ヒント表示不具合修正",
+          "description": "カスタムステータスラインを使用しているユーザー向けに、フッターのヒント（例: \"esc to interrupt\"）が表示されない問題を修正した。"
+        },
+        {
+          "title": "権限・ダイアログ プロンプトの再表示修正",
+          "description": "リモートセッションでワーカーが死亡し、再アタッチ時に古い権限やダイアログのプロンプトが毎回再表示される問題を修正した。"
+        },
+        {
+          "title": "`claude agents --json` の出力修正",
+          "description": "`claude agents --json` がブロックされた背景セッションや即時ディスパッチされたものを省略していた問題を修正し、`--all` オプションで完了セッションも含められるようにし、`id` と `state` フィールドを新たに追加した。"
+        },
+        {
+          "title": "Agents ビューのフレーム残骸修正",
+          "description": "Windows Terminal 上の WSL でエージェントから戻った際に、agents view が古い/乱れたフレームを残す問題を修正した。"
+        },
+        {
+          "title": "バックグラウンドエージェントの env 設定無視修正",
+          "description": "バックグラウンドエージェントが、事前にウォームアップされたワーカー上でディスパッチされた場合にプロジェクトレベル設定 `env`（例: `ANTHROPIC_MODEL`）の値を無視していた問題を修正した。"
+        },
+        {
+          "title": "MCPB プラグインキャッシュの不当無効化修正",
+          "description": "Windows で MCPB プラグインキャッシュが誤って無効化され、不要な再抽出が発生していた問題を修正した。"
+        },
+        {
+          "title": "プラグイン `.in_use` ロックファイルの蓄積修正",
+          "description": "クラッシュしたセッションから残る `.in_use` PID ロックファイルが日次で掃除されるようにし、無制限に増加する問題を修正した。"
+        },
+        {
+          "title": "不信頼プロジェクト設定の OTEL 証明書パス設定防止",
+          "description": "信頼確認なしで OTEL client-certificate パスを設定できていた、信頼されていないプロジェクト設定の問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:29:01.133Z"
+}

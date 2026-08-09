@@ -1,0 +1,253 @@
+{
+  "version": "2.1.72",
+  "tagName": "v2.1.72",
+  "publishedAt": "2026-03-10T00:43:03Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.72",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 7,
+    "改善": 7,
+    "その他": 10,
+    "バグ修正": 30
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`w` キーを `/copy` に追加し、フォーカスされた選択を直接ファイルへ書き込み、クリップボードをバイパスできるようにしました（SSH 上で便利）",
+          "description": ""
+        },
+        {
+          "title": "`/plan` にオプションの description 引数を追加（例: `/plan fix the auth bug`）すると、プランモードに入りすぐに開始します",
+          "description": ""
+        },
+        {
+          "title": "`claude plugins` を `claude plugin` のエイリアスとして追加",
+          "description": ""
+        },
+        {
+          "title": "`ExitWorktree` ツールを追加し、`EnterWorktree` セッションを終了できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_DISABLE_CRON` 環境変数を追加し、セッション中にスケジュールされた cron ジョブを即座に停止できます",
+          "description": ""
+        },
+        {
+          "title": "`lsof`、`pgrep`、`tput`、`ss`、`fd`、`fdfind` を bash の自動承認許可リストに追加し、一般的な読み取り専用操作の権限プロンプトを減らしました",
+          "description": ""
+        },
+        {
+          "title": "`.git` サフィックスなしの marketplace git URL（Azure DevOps、AWS CodeCommit）への対応を追加",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/config` を改良 — Escape で変更をキャンセル、Enter で保存して閉じ、Space で設定を切替",
+          "description": ""
+        },
+        {
+          "title": "上矢印履歴を改良し、複数の同時セッション実行時に現在セッションのメッセージが先に表示されるように",
+          "description": ""
+        },
+        {
+          "title": "リポジトリ名や一般的な開発用語（regex、OAuth、JSON）に対する音声入力文字起こし精度を向上",
+          "description": ""
+        },
+        {
+          "title": "marketplace のクローン失敗メッセージを改良し、git が stderr を出さない場合でも診断情報を表示",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin validate` を改良し、`../` パスを拒否する際に marketplace.json のソースパスがリポジトリルートからの相対であることを説明",
+          "description": ""
+        },
+        {
+          "title": "bash コマンド解析をネイティブモジュールに切り替えて高速化とメモリリーク解消を実現",
+          "description": ""
+        },
+        {
+          "title": "長時間セッションでの CPU 使用率を改善",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "環境変数が設定されている場合、ツール検索がサードパーティプロキシゲートをバイパスするように変更（`CLAUDE_CODE_PROXY_SUPPORTS_TOOL_REFERENCE` は削除）",
+          "description": ""
+        },
+        {
+          "title": "Agent ツールの `model` パラメータを復活させ、呼び出しごとのモデル上書きを可能に",
+          "description": ""
+        },
+        {
+          "title": "努力度レベルを low/medium/high にシンプル化（max を削除）し、新しいシンボル（○ ◐ ●）と一時的な通知を使用。`/effort auto` でデフォルトにリセット",
+          "description": ""
+        },
+        {
+          "title": "誤検知の bash 権限プロンプトを削減 — tree‑sitter 解析が `find -exec`、変数代入、コマンド置換、その他多数のパターンを正しく処理。npm インストール版での tree‑sitter 読み込み不具合も修正",
+          "description": ""
+        },
+        {
+          "title": "バンドルサイズを約 510 KB 縮小",
+          "description": ""
+        },
+        {
+          "title": "CLAUDE.md の HTML コメント（`<!-- ... -->`）を自動挿入時に Claude から隠すよう変更。Read ツールで読むときはコメントが表示される",
+          "description": ""
+        },
+        {
+          "title": "VSCode: 統合ターミナルのスクロール速度をネイティブターミナルと一致させるよう修正",
+          "description": ""
+        },
+        {
+          "title": "VSCode: 古いキーバインドを使用しているユーザー向けに、Shift+Enter が改行ではなく入力送信になる問題を修正",
+          "description": ""
+        },
+        {
+          "title": "VSCode: 入力枠に努力度インジケータを追加",
+          "description": ""
+        },
+        {
+          "title": "VSCode: `vscode://anthropic.claude-code/open` URI ハンドラを追加し、`prompt` と `session` クエリパラメータをオプションで指定して新しい Claude Code タブをプログラムから開けるように",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "バックグラウンドタスクやフックが遅延応答した際の終了遅延を修正",
+          "description": ""
+        },
+        {
+          "title": "エージェントタスクの進捗が「Initializing…」で止まる問題を修正",
+          "description": ""
+        },
+        {
+          "title": "フック対応スキルがモデル呼び出し時にイベントごとに二回実行されるバグを修正",
+          "description": ""
+        },
+        {
+          "title": "音声モードのいくつかの問題を修正：入力遅延、プッシュ‑トゥ‑トーク解放後の誤った「No speech detected」エラー、送信後に古い文字起こしがプロンプトに再挿入される現象",
+          "description": ""
+        },
+        {
+          "title": "`--continue` が `--compact` 後に最新ポイントから再開しない問題を修正",
+          "description": ""
+        },
+        {
+          "title": "bash のセキュリティ解析のエッジケースを修正",
+          "description": ""
+        },
+        {
+          "title": "複数のプラグイン問題を修正：OneDrive フォルダ上で Windows のインストールが `EEXIST` エラーで失敗、プロジェクトスコープインストールがあるとユーザースコープインストールがブロックされる、`CLAUDE_CODE_PLUGIN_CACHE_DIR` が文字通りの `~` ディレクトリを作成、`plugin.json` の marketplace 専用フィールドがロード失敗",
+          "description": ""
+        },
+        {
+          "title": "長時間セッションでフィードバック調査が頻繁に表示される問題を修正",
+          "description": ""
+        },
+        {
+          "title": "`--effort` CLI フラグが起動時の無関係な設定書き込みでリセットされるバグを修正",
+          "description": ""
+        },
+        {
+          "title": "背景の Ctrl+B クエリがトランスクリプトを失ったり、`/clear` 後に新しい会話が破損する問題を修正",
+          "description": ""
+        },
+        {
+          "title": "`/clear` が背景のエージェント／bash タスクを終了していた問題を修正 — 前景タスクのみがクリア対象に",
+          "description": ""
+        },
+        {
+          "title": "worktree 分離の問題を修正：Task ツールの再開時に cwd が復元されない、背景タスク通知に `worktreePath` と `worktreeBranch` が欠如",
+          "description": ""
+        },
+        {
+          "title": "Claude が作業中に `/model` を実行しても結果が表示されないバグを修正",
+          "description": ""
+        },
+        {
+          "title": "プランモードの権限プロンプトで、数字キーがメニュー項目選択ではなくテキスト入力として機能するよう修正",
+          "description": ""
+        },
+        {
+          "title": "サンドボックス権限問題を修正：特定のファイル書き込みがプロンプト無しで許可されていたり、許可リストディレクトリ（例 `/tmp/claude/`）への出力リダイレクトが不要にプロンプトされるケースを解消",
+          "description": ""
+        },
+        {
+          "title": "SDK の `query()` 呼び出しでプロンプトキャッシュが正しく無効化されず、入力トークンコストが最大 12 倍増える問題を修正",
+          "description": ""
+        },
+        {
+          "title": "キャンセル後に Escape キーが反応しなくなるバグを修正",
+          "description": ""
+        },
+        {
+          "title": "背景エージェントやタスクが実行中でも、Ctrl+C を二回押すと終了しないバグを修正",
+          "description": ""
+        },
+        {
+          "title": "チームエージェントがリーダーのモデルを継承しない問題を修正",
+          "description": ""
+        },
+        {
+          "title": "「Always Allow」設定が保存された後、再度マッチしないバグを修正",
+          "description": ""
+        },
+        {
+          "title": "複数のフック問題を修正：再開／フォークセッションで `transcript_path` が誤ったディレクトリを指す、エージェントの `prompt` が settings.json の書き込み毎に黙って削除される、PostToolUse のブロック理由が二重表示、bash の `read -r` で非同期フックが stdin を受け取らない、バリデーションエラーメッセージに失敗する例が出る",
+          "description": ""
+        },
+        {
+          "title": "Desktop/SDK で Read が U+2028/U+2029 文字を含むファイルを返した際にセッションがクラッシュするバグを修正",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_DISABLE_TERMINAL_TITLE` が設定されていても、終了時に端末タイトルがクリアされてしまう問題を修正",
+          "description": ""
+        },
+        {
+          "title": "権限ルールのマッチング問題を多数修正：ワイルドカードルールがヒアドックや埋め込み改行、引数なしコマンドにマッチしない、`sandbox.excludedCommands` が環境変数プレフィックスで失敗、ネストされた CLI ツールに対して「always allow」が過度に広いプレフィックスを提案、deny ルールがすべてのコマンド形態に適用されない",
+          "description": ""
+        },
+        {
+          "title": "Bash のデータ URL 出力で画像が過大または切り捨てられる問題を修正",
+          "description": ""
+        },
+        {
+          "title": "Bedrock API エラーを含むセッションを再開したときのクラッシュを修正",
+          "description": ""
+        },
+        {
+          "title": "Edit、Bash、Grep ツール入力で「expected boolean, received string」バリデーションエラーが断続的に発生する問題を修正",
+          "description": ""
+        },
+        {
+          "title": "最初のメッセージに改行が含まれる会話からフォークした際の、マルチラインセッションタイトルのバグを修正",
+          "description": ""
+        },
+        {
+          "title": "キューされたメッセージに添付画像が表示されない、↑キーでキュー済みメッセージを編集すると画像が失われる問題を修正",
+          "description": ""
+        },
+        {
+          "title": "失敗した Read/WebFetch/Glob が兄弟ツール呼び出しをキャンセルしていた並列ツール呼び出しのバグを修正 — Bash エラーのみがカスケードするように変更",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:05:51.509Z"
+}

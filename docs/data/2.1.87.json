@@ -1,0 +1,26 @@
+{
+  "version": "2.1.87",
+  "tagName": "v2.1.87",
+  "publishedAt": "2026-03-29T02:17:02Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.87",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Cowork Dispatch のメッセージ配信不具合を修正",
+          "description": "Cowork Dispatch において、メッセージが配信されない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:09:58.821Z"
+}

@@ -1,0 +1,108 @@
+{
+  "version": "2.1.223",
+  "tagName": "v2.1.223",
+  "publishedAt": "2026-08-06T00:52:37Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.223",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 0,
+    "その他": 4,
+    "バグ修正": 12
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "オーナーワイルドカードエントリの追加",
+          "description": "GitHub組織以下のすべてのMarketplaceリポジトリを許可またはブロックできるよう、`strictKnownMarketplaces` と `blockedMarketplaces` の管理設定に `\"owner/*\"` エントリを追加しました。"
+        },
+        {
+          "title": "制限されたサブエージェントモデルへの警告",
+          "description": "ワークフローエージェント、フォークされたスキル、スラッシュコマンド、または再開されたバックグラウンドエージェントが要求したサブエージェントモデルが制限されている場合、親モデルが使用されることを警告として表示します。"
+        },
+        {
+          "title": "`/teleport` ヒントの追加",
+          "description": "クラウドセッションに `/teleport` ヒントを表示し、`claude --teleport <session id>` でローカルに続行できる方法を案内します。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_DISABLE_1M_CONTEXT` の対象拡大",
+          "description": "`CLAUDE_CODE_DISABLE_1M_CONTEXT` が、ネイティブ1Mウィンドウを持つすべてのClaudeモデルを自動圧縮で200Kに抑えるよう変更し、固定リストから外れました。圧縮が200Kに抑えられない場合は起動時に警告が表示されます。"
+        },
+        {
+          "title": "未認識モデルIDの自動圧縮挙動変更",
+          "description": "自動圧縮が未認識のモデルIDでも想定コンテキストウィンドウ内にセッションを保持するよう変更し、超過しないようにしました。以前の挙動に戻すには `CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1` を設定します。"
+        },
+        {
+          "title": "`/review` が `/code-review` のエイリアスに",
+          "description": "`/review` は `/code-review` のエイリアスとなり、現在の差分またはプルリクエスト（`/code-review <level> <pr#>`）をレビューします。深いクラウドレビューは `/code-review ultra` を使用してください。"
+        },
+        {
+          "title": "`/code-review` のデフォルトレベル保持",
+          "description": "`/code-review` 実行時に努力レベルを指定しない場合、前回入力したレベルを再利用します。レベルを変更するには `/code-review high` などと指定してください。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Bash 権限バイパスの修正",
+          "description": "細工したコマンドが自身の一部を権限チェックから隠すことができた Bash の権限バイパスを修正しました。"
+        },
+        {
+          "title": "権限プロンプトの文字パディング対策",
+          "description": "タブや見えない Unicode でパディングされたコマンドが承認ダイアログから一部隠すことができないよう、権限プロンプトを修正しました。"
+        },
+        {
+          "title": "Workflow スクリプトの `import()` 制限",
+          "description": "Workflow スクリプトが動的 `import()` を使用してサンドボックス外のコードを実行できる問題を修正しました。"
+        },
+        {
+          "title": "`bypassPermissions` モードの組織ポリシー無視の修正",
+          "description": "エージェント定義の `bypassPermissions` モードが組織の bypass-permissions 無効ポリシーを無視していた権限ギャップを修正しました。"
+        },
+        {
+          "title": "途中 `/cd` 後のセッション再開時の空戻り修正",
+          "description": "セッション途中で `/cd` を実行した後に再開すると空の結果が返っていた問題を修正しました。"
+        },
+        {
+          "title": "ゲートウェイモデル検出でのプロバイダー接頭辞IDの表示修正",
+          "description": "`vertex_ai/claude-*` や `bedrock/anthropic.claude-*` のようにプロバイダー接頭辞付きIDで登録された Claude モデルがゲートウェイモデル検出で隠れていた問題を修正しました。"
+        },
+        {
+          "title": "`modelOverrides` の不正キー処理修正",
+          "description": "Anthropic のモデルIDでない `modelOverrides` キーがセッションの正規モデルIDとして扱われていた問題を修正し、未知のキーはドキュメント通りに無視されます。"
+        },
+        {
+          "title": "管理設定の環境ブロック統合修正",
+          "description": "サーバー配信設定がマシンローカルの `managed-settings.json` や MDM プロファイルの env ブロックを無効にしなくなり、管理者 env がキー単位でマージされるように修正しました。"
+        },
+        {
+          "title": "Linux でのサンドボックスコマンド起動失敗修正",
+          "description": "`sandbox.filesystem.denyWrite` が作業ディレクトリを含む場合に、Linux でサンドボックス化コマンドが起動できない問題を修正しました。"
+        },
+        {
+          "title": "フォークバックグラウンドエージェントの再開ハング修正",
+          "description": "再開中にフォークの親プロンプトの再構築が失敗した際、フォークされたバックグラウンドエージェントが「already resuming」の状態でセッション全体で固まる問題を修正しました。"
+        },
+        {
+          "title": "復元セッションの診断添付不正時のクラッシュ修正",
+          "description": "履歴に不正な diagnostics 添付がある場合、復元されたセッションが毎ターン失敗したり、インタラクティブアプリが応答しないエラースクリーンに留まる問題を修正しました。"
+        },
+        {
+          "title": "異常な `git push` 出力解析時のハング修正",
+          "description": "異常な `git push` 出力を解析する際に稀に発生していたハングを修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:41:12.819Z"
+}

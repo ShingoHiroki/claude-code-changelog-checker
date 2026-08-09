@@ -1,0 +1,26 @@
+{
+  "version": "2.1.22",
+  "tagName": "v2.1.22",
+  "publishedAt": "2026-01-28T06:59:58Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.22",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "非対話モード（-p）での構造化出力の修正",
+          "description": "非対話モード（-p）で structured outputs が正しく動作するように修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:58:29.832Z"
+}

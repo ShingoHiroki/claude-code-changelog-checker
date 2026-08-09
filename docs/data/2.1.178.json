@@ -1,0 +1,125 @@
+{
+  "version": "2.1.178",
+  "tagName": "v2.1.178",
+  "publishedAt": "2026-06-15T21:35:55Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.178",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 4,
+    "その他": 5,
+    "バグ修正": 12
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Tool パラメータマッチ構文の追加",
+          "description": "権限ルールで `Tool(param:value)` 構文が使えるようになり、`*` ワイルドカードでツールの入力パラメータをマッチできる。例: `Agent(model:opus)` で Opus サブエージェントをブロック。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "自動モードの強化",
+          "description": "サブエージェントの生成が起動前に分類器で評価され、レビューなしでブロックされたアクションを要求できる抜け穴が解消された。"
+        },
+        {
+          "title": "`/doctor` の表示改善",
+          "description": "全セクションでフラットなツリーレイアウトを統一し、セクションステータスアイコンを明確化、コマンド名をハイライト表示した。"
+        },
+        {
+          "title": "スキル一覧の省略警告表示強化",
+          "description": "省略警告に影響を受けるスキル説明の数が表示されるようになった。"
+        },
+        {
+          "title": "Remote Control エラーメッセージの改善",
+          "description": "接続失敗時にフッターに永続的な赤い「/rc failed」インジケータが表示され、“not yet enabled” エラーはゲート、チェック失敗、権限の古さ、組織ポリシーのいずれかを説明するようになった。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "ネストされた `.claude/skills` のスキルロード",
+          "description": "ネストされた `.claude/skills` ディレクトリ内のスキルがそのディレクトリで作業中にロードされ、名前が衝突した場合は `<dir>:<name>` の形式で表示され、両方利用可能になる。"
+        },
+        {
+          "title": "ネストされた `.claude/` ディレクトリの優先順位",
+          "description": "エージェント、ワークフロー、出力スタイルは作業ディレクトリに最も近いものが名前衝突時に使用され、プロジェクトスコープのワークフロー保存は最も近い既存の `.claude/workflows/` を対象とするようになった。"
+        },
+        {
+          "title": "ワークフロープロンプトキーワードの変更",
+          "description": "ワークフローのプロンプトキーワードが紫の光沢ハイライトに変わり、`run a workflow` や `workflow:` など明示的なフレーズのみに反応し、単語の言及だけではトリガーしなくなった。"
+        },
+        {
+          "title": "`/bug` コマンドの送信要件変更",
+          "description": "`/bug` は送信前に説明文が必須となり、GitHub 課題のタイトルにモデル拒否テキストが使用されなくなった。"
+        },
+        {
+          "title": "VSCode での Esc キー不具合修正",
+          "description": "CJK IME 候補ウィンドウを Esc で閉じた際に実行中の Claude タスクがキャンセルされる問題を修正した。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "CLI の OOM クラッシュ修正",
+          "description": "親プロセスから継承された古い WebSocket/OAuth ファイルディスクリプタ環境変数が原因で発生していたメモリ不足クラッシュを修正した。"
+        },
+        {
+          "title": "Chrome での OAuth トークン不一致修正",
+          "description": "Claude が Chrome で、OAuth トークンが Claude Code ログインと別アカウントの場合に接続に失敗していた問題を修正した。"
+        },
+        {
+          "title": "`.claude/skills` の名前付きスキル権限プロンプトブロック修正",
+          "description": "ディレクトリ修飾名を持つネストされた `.claude/skills` スキルが非対話実行時に権限プロンプトでブロックされていた問題を修正した。"
+        },
+        {
+          "title": "サブエージェントの複数不具合修正",
+          "description": "サブエージェントのトランスクリプト表示でツール結果とライブ進捗が表示されるようにし、ターン終了中に送信されたメッセージがドロップされず、`ctrl+b` でバックグラウンド化した際に再起動しないようにした。"
+        },
+        {
+          "title": "`claude agents` ワーカーの認証エラー修正",
+          "description": "`ANTHROPIC_BASE_URL` と `ANTHROPIC_AUTH_TOKEN` を用いたカスタム API ゲートウェイでデーモン起動した際、`401 Invalid bearer token` が出ていた問題を修正した。"
+        },
+        {
+          "title": "コンパクション時のフォールバックモデル適用修正",
+          "description": "オーバーロードやモデル利用不可エラー時に `--fallback-model` が無視されていたのを、設定されたフォールバックモデルチェーンへ正しくフォールバックするように修正した。"
+        },
+        {
+          "title": "認証情報リフレッシュ後のモデルリクエストエラー修正",
+          "description": "セッション外で資格情報が更新された後に、古いキャッシュされたリクエスト設定が原因で認証エラーが継続していた問題を修正した。"
+        },
+        {
+          "title": "バックグラウンドセッションのステータス表示修正",
+          "description": "`/bg` または `←←` で作成されたバックグラウンドセッションがターン完了後もエージェント一覧で「Working」のままになっていた問題を修正した。"
+        },
+        {
+          "title": "Marketplace インストール失敗時の環境変数バグ修正",
+          "description": "`CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE=1` が新規 Marketplace インストールのクローンを妨げていた問題を修正した。"
+        },
+        {
+          "title": "サブエージェントの `disallowedTools` の MCP スペック無視修正",
+          "description": "`mcp__server`、`mcp__server__*`、`mcp__*` といったサーバーレベルの MCP 仕様がサブエージェントの `disallowedTools` で黙って無視されていた問題を修正した。"
+        },
+        {
+          "title": "Vim モードの Undo 動作修正",
+          "description": "`u` が NORMAL/VISUAL モードのコマンドを一括で元に戻すのではなく、1つずつステップバックするように修正した。"
+        },
+        {
+          "title": "ステータスラインのカスタム URI リンク不具合修正",
+          "description": "`vscode://` 等のカスタム URI スキームを含むステータスラインリンクが `claude agents` でクリックしても開かない問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:30:27.128Z"
+}

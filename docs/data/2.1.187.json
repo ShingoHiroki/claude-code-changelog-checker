@@ -1,0 +1,121 @@
+{
+  "version": "2.1.187",
+  "tagName": "v2.1.187",
+  "publishedAt": "2026-06-23T21:03:48Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.187",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 3,
+    "その他": 1,
+    "バグ修正": 14
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`sandbox.credentials` 設定の追加",
+          "description": "`sandbox.credentials` 設定を導入し、サンドボックス化されたコマンドが認証情報ファイルやシークレット環境変数を読み取ることをブロックできるようにしました。"
+        },
+        {
+          "title": "組織設定によるモデル制限の追加",
+          "description": "モデルピッカー、`--model`、`/model`、`ANTHROPIC_MODEL` に組織で設定されたモデル制限を導入し、制限されたモデルが選択された場合に \"restricted by your organization's settings\" というメッセージが表示されます。"
+        },
+        {
+          "title": "フルスクリーンモードでのマウスクリック選択サポート",
+          "description": "フルスクリーンモードにおいて、メニュー（権限プロンプト、`/model`、`/config` など）をマウスクリックで選択できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/install-github-app` のオプション化",
+          "description": "GitHub Actions ワークフローの設定が任意になり、GitHub App のみインストールしてワークフローやシークレットの手順を省略できるようにしました。"
+        },
+        {
+          "title": "`/btw` に矢印キー操作を追加",
+          "description": "`←/→` キーで以前の回答へ前後に移動できるようにし、`/btw` の操作性を向上させました。"
+        },
+        {
+          "title": "`/plugin` の未使用プラグイン表示機能強化",
+          "description": "最近使用していないプラグインを一覧に表示し、不要なプラグインの整理がしやすくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "大規模セッション再開時の VSCode 拡張の応答停止を修正",
+          "description": "大きなセッションを再開した際に VSCode 拡張が応答しなくなる問題を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`--resume` の \"No conversation found\" エラー修正",
+          "description": "元の `-p` 実行でモデルターンが無い場合に `--resume` が \"No conversation found\" で失敗する問題を修正しました。"
+        },
+        {
+          "title": "`--json-schema` と `agent({schema})` の構造化出力バグ修正",
+          "description": "成功した呼び出し後にモデルが `StructuredOutput` を無限に再呼び出すことを防止し、続くターンでも確実に構造化出力が返るようにしました。"
+        },
+        {
+          "title": "リモート MCP ツール呼び出しのハングアップ修正",
+          "description": "応答なしで5分間ハングするリモート MCP ツール呼び出しが、エラーで中止されるように変更し、`CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT` で上書き可能にしました。"
+        },
+        {
+          "title": "リモートセッション起動遅延の改善",
+          "description": "エージェントプロキシ CA のシステムトラストインストール追加後に、Claude Code Remote セッションの開始が約2.7秒遅くなる問題を修正しました。"
+        },
+        {
+          "title": "韓国語・CJK テキスト貼り付け時の文字化け修正",
+          "description": "バイト単位の拡張キーイベントで貼り付けられる端末で、韓国語や CJK テキストが文字化けする問題を修正しました。"
+        },
+        {
+          "title": "Remote Control の `/update` ハングアップ修正",
+          "description": "起動時の信頼ダイアログが表示される場合に、Remote Control での `/update` がハングする問題を修正しました。"
+        },
+        {
+          "title": "エージェントビューのバックグラウンドジョブ止まり修正",
+          "description": "エージェントが構造化出力を生成せずにターンを終了した際、エージェントビューのバックグラウンドジョブが「working」のまま無期限に止まる問題を修正しました。"
+        },
+        {
+          "title": "エージェントビュー遷移後のチャンネル切断修正",
+          "description": "エージェントビューへの遷移と戻り、さらに `/bg`、`/tui`、`/update` 後にチャンネル接続が切れる問題を修正しました。"
+        },
+        {
+          "title": "エージェント停止通知の属性と文言修正",
+          "description": "エージェント停止通知で停止者が正しく表示されない問題を修正し、文言を「finished」/「stopped」に変更しました。"
+        },
+        {
+          "title": "サブエージェントの深さ追跡バグ修正",
+          "description": "再開されたサブエージェントが元の生成深さを復元し、フォークされたサブエージェントが深さ上限にカウントされるように修正しました。"
+        },
+        {
+          "title": "エージェントの worktree リーク修正",
+          "description": "終了したエージェントから残ったロックされた `.git/worktrees/` エントリが自動的にクリーンアップされるようにしました。"
+        },
+        {
+          "title": "Ghostty macOS フルスクリーンでの Cmd+click URL 開封修正",
+          "description": "macOS の Ghostty でフルスクリーンモード時に Cmd+click で URL が開かない問題を修正しました。"
+        },
+        {
+          "title": "`claude --help` に `--bg`/`--background` が表示されない問題修正",
+          "description": "`claude --help` が `--bg`/`--background` フラグを表示しない問題を修正しました。"
+        },
+        {
+          "title": "`/share` アップロード中の Esc/Ctrl-C/Ctrl-D 動作不具合修正",
+          "description": "`/share` のアップロード中に Esc、Ctrl-C、Ctrl-D が機能しない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:32:01.001Z"
+}

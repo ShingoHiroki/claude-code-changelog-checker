@@ -1,0 +1,265 @@
+{
+  "version": "2.1.98",
+  "tagName": "v2.1.98",
+  "publishedAt": "2026-04-09T19:18:28Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.98",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 7,
+    "改善": 10,
+    "その他": 3,
+    "バグ修正": 37
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Google Vertex AI 設定ウィザードの追加",
+          "description": "ログイン画面で \"3rd-party platform\" を選択すると表示される、Google Vertex AI 用の対話型セットアップウィザードを追加。GCP 認証、プロジェクトとリージョンの構成、資格情報の検証、モデルの固定までを案内する。"
+        },
+        {
+          "title": "`CLAUDE_CODE_PERFORCE_MODE` 環境変数の追加",
+          "description": "`CLAUDE_CODE_PERFORCE_MODE` を設定すると、読み取り専用ファイルへの Edit/Write/NotebookEdit が失敗し、`p4 edit` のヒントが表示され、無音で上書きされなくなる。"
+        },
+        {
+          "title": "モニター ツールの追加",
+          "description": "バックグラウンドスクリプトからのイベントをストリーミング表示できる Monitor ツールを追加。"
+        },
+        {
+          "title": "Linux のサブプロセスサンドボックス（PID 名前空間）",
+          "description": "`CLAUDE_CODE_SUBPROCESS_ENV_SCRUB` が設定された場合に、Linux 上で PID 名前空間によるサンドボックス化を行い、`CLAUDE_CODE_SCRIPT_CAPS` 環境変数でセッションごとのスクリプト呼び出し回数を制限できるようにした。"
+        },
+        {
+          "title": "`--exclude-dynamic-system-prompt-sections` フラグの追加",
+          "description": "プリントモードで `--exclude-dynamic-system-prompt-sections` フラグを使用すると、クロスユーザーのプロンプトキャッシュが改善される。"
+        },
+        {
+          "title": "`workspace.git_worktree` のステータスライン JSON への追加",
+          "description": "現在のディレクトリがリンクされた git worktree 内にある場合、ステータスライン JSON の入力に `workspace.git_worktree` が設定されるようにした。"
+        },
+        {
+          "title": "`TRACEPARENT` 環境変数の追加（OTEL トレーシング）",
+          "description": "OTEL トレーシングが有効な場合、Bash ツールのサブプロセスに W3C `TRACEPARENT` 環境変数を渡し、子プロセスのスパンが Claude Code のトレースツリーに正しく紐づくようにした。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/resume` フィルタヒントラベルの改良",
+          "description": "`/resume` のフィルターヒントラベルを改善し、フィルタインジケーターにプロジェクト・ワークツリー・ブランチ名を表示するようにした。"
+        },
+        {
+          "title": "フッターインジケーターのレイアウト改善",
+          "description": "フォーカスや通知などのフッターインジケーターが狭い端末幅で折り返されず、モードインジケーター行に固定されるようにした。"
+        },
+        {
+          "title": "`/agents` のタブレイアウト導入",
+          "description": "`/agents` にタブレイアウトを追加し、Running タブでライブサブエージェントを表示、Library タブでエージェントの実行と実行中インスタンスの表示アクションを提供するようにした。"
+        },
+        {
+          "title": "`/reload-plugins` が再起動不要でプラグインスキルを取得",
+          "description": "`/reload-plugins` 実行時に、プラグインが提供するスキルを再起動せずに自動で取得できるようにした。"
+        },
+        {
+          "title": "Accept Edits モードで安全な env var やラッパーのコマンドを自動承認",
+          "description": "Accept Edits モードが、安全と判定した環境変数プレフィックスやプロセスラッパーで始まるファイルシステムコマンドを自動的に承認するようにした。"
+        },
+        {
+          "title": "Vim モードで `j`/`k` が履歴移動とフッターピル選択に",
+          "description": "Vim の NORMAL モードで `j`/`k` が履歴のナビゲートに加え、入力境界にあるフッターピルの選択にも機能するようにした。"
+        },
+        {
+          "title": "トランスクリプトのフックエラーに stderr の最初の行を表示",
+          "description": "トランスクリプト内のフックエラーに、`--debug` を付けなくても stderr の最初の行が含まれるようにし、自己診断を容易にした。"
+        },
+        {
+          "title": "OTEL トレーシングの改善（インタラクションスパンの正しいラップ）",
+          "description": "OTEL トレーシングで、インタラクションスパンが同時実行 SDK 呼び出し下でもフルターンを正しくラップし、ヘッドレスターンはターン単位でスパンを終了するようにした。"
+        },
+        {
+          "title": "トランスクリプトエントリが最終トークン使用量を保持",
+          "description": "ストリーミング中のプレースホルダーではなく、トランスクリプトエントリが最終的なトークン使用量を保持するようにした。"
+        },
+        {
+          "title": "`/claude-api` スキルを Managed Agents に対応",
+          "description": "`/claude-api` スキルを更新し、Claude API に加えて Managed Agents もカバーできるようにした。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "LSP で `clientInfo` により Claude Code を識別",
+          "description": "LSP の initialize リクエストで `clientInfo` を送信し、Claude Code が言語サーバーに自身を識別できるようにした。"
+        },
+        {
+          "title": "VSCode の Windows での誤検知「requires git-bash」修正",
+          "description": "`CLAUDE_CODE_GIT_BASH_PATH` が設定されているか、Git がデフォルト位置にインストールされている場合に、Windows で「requires git-bash」の偽陽性エラーが出る問題を修正した。"
+        },
+        {
+          "title": "`DISABLE_COMPACT` 時に `/compact` ヒントを削除",
+          "description": "`DISABLE_COMPACT` が設定されているとき、`/compact` ヒントが表示されないように削除した。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "バックスラッシュエスケープされたフラグによる Bash ツール権限バイパスを修正",
+          "description": "バックスラッシュでエスケープされたフラグが読み取り専用として自動許可され、任意コード実行につながる Bash ツールの権限バイパスを修正した。"
+        },
+        {
+          "title": "複合 Bash コマンドが権限プロンプトを回避するバグを修正",
+          "description": "複数コマンドを連結した Bash コマンドが、強制権限プロンプトや安全チェック、明示的な許可要求をバイパスする問題を修正した。"
+        },
+        {
+          "title": "安全な env var プレフィックス付き読み取り専用コマンドがプロンプトしない問題を修正",
+          "description": "`LANG`、`TZ`、`NO_COLOR` など安全と判定された env var プレフィックス付きの読み取り専用コマンドが、プロンプトを表示せずに実行されていた問題を修正した。"
+        },
+        {
+          "title": "`/dev/tcp/` `/dev/udp/` リダイレクトがプロンプトしない問題を修正",
+          "description": "`/dev/tcp/...` や `/dev/udp/...` へのリダイレクトが権限プロンプトを表示せずに自動許可されていたバグを修正した。"
+        },
+        {
+          "title": "ストリーミング応答のタイムアウトが非ストリーミングにフォールバックしないバグを修正",
+          "description": "ストリーミング応答が停止した際にタイムアウトになる代わりに、非ストリーミングモードへフォールバックするように修正した。"
+        },
+        {
+          "title": "HTTP 429 再試行で全試行が消費される問題を修正（指数バックオフ適用）",
+          "description": "サーバーが短い `Retry-After` を返したときに約 13 秒で全試行が消費された問題を修正し、最小でも指数バックオフを適用するようにした。"
+        },
+        {
+          "title": "MCP OAuth の `oauth.authServerMetadataUrl` がトークンリフレッシュ時に無視される問題を修正",
+          "description": "MCP OAuth 設定で `oauth.authServerMetadataUrl` が再起動後のトークンリフレッシュ時に適用されず、ADFS などの IdP が正しく機能しなかった問題を修正した。"
+        },
+        {
+          "title": "kitty キーボードプロトコル使用時に xterm/VS Code 統合ターミナルで大文字が小文字になるバグを修正",
+          "description": "kitty キーボードプロトコルが有効なとき、xterm および VS Code の統合ターミナルで大文字入力が小文字に変換されていた問題を修正した。"
+        },
+        {
+          "title": "macOS のテキスト置換がトリガー語を削除する問題を修正",
+          "description": "macOS のテキスト置換機能が、置換対象のトリガー語を削除してしまうバグを修正した。"
+        },
+        {
+          "title": "`--dangerously-skip-permissions` が受け入れ編集モードに黙ってダウングレードされる問題を修正",
+          "description": "`--dangerously-skip-permissions` 使用後、保護されたパスへの書き込みが Bash で承認された際に、モードが自動的に Accept Edits に降格していた問題を修正した。"
+        },
+        {
+          "title": "管理設定の許可ルールが管理者削除後もプロセス再起動まで残る問題を修正",
+          "description": "管理者が削除した allow ルールが、プロセス再起動まで有効なままであった問題を修正した。"
+        },
+        {
+          "title": "`permissions.additionalDirectories` の変更がセッション中に反映されない問題を修正",
+          "description": "`permissions.additionalDirectories` の追加・削除がセッション中に即時反映されず、削除したディレクトリがアクセスでき続けたり、追加したディレクトリが再起動なしで有効にならなかった問題を修正した。"
+        },
+        {
+          "title": "`additionalDirectories` から削除したディレクトリが `--add-dir` で追加されたもののアクセスを失う問題を修正",
+          "description": "`additionalDirectories` からディレクトリを除外した際に、同じディレクトリを `--add-dir` で指定していた場合でもアクセスが失われていた問題を修正した。"
+        },
+        {
+          "title": "`Bash(cmd:*)` と `Bash(git commit *)` のワイルドカードルールが余分な空白やタブにマッチしない問題を修正",
+          "description": "`Bash(cmd:*)` および `Bash(git commit *)` のワイルドカード許可ルールが、コマンドに余分なスペースやタブが含まれるとマッチしなかったバグを修正した。"
+        },
+        {
+          "title": "`Bash(...)` の拒否ルールが `cd` と他コマンドを混在させたパイプでプロンプトに降格する問題を修正",
+          "description": "`Bash(...)` の deny ルールが、`cd` と他のコマンドをパイプで混在させた場合にプロンプトへ降格していた問題を修正した。"
+        },
+        {
+          "title": "特定コマンドや `%` を含むファイル名で誤った Bash 権限プロンプトが出る問題を修正",
+          "description": "`cut -d /`、`paste -d /`、`column -s /`、`awk '{print $1}' file`、および `%` を含むファイル名に対して、不要な Bash 権限プロンプトが表示されていた問題を修正した。"
+        },
+        {
+          "title": "JavaScript プロトタイププロパティ名と同じ権限ルール名が `settings.json` を無視する問題を修正",
+          "description": "`toString` など JavaScript のプロトタイププロパティ名と一致する権限ルール名が、`settings.json` 全体を黙って無視していた問題を修正した。"
+        },
+        {
+          "title": "`--dangerously-skip-permissions` 使用時にエージェントチームメンバーがリーダーの権限モードを継承しない問題を修正",
+          "description": "`--dangerously-skip-permissions` を使用した際に、チームメンバーがリーダーの権限モードを継承せずデフォルトに戻っていた問題を修正した。"
+        },
+        {
+          "title": "フルスクリーンモードで MCP ツール結果にホバーした際のクラッシュを修正",
+          "description": "フルスクリーンモードで MCP ツールの結果にマウスオーバーしたときに発生していたクラッシュを修正した。"
+        },
+        {
+          "title": "フルスクリーンモードで折り返し URL をコピーすると改行にスペースが入る問題を修正",
+          "description": "フルスクリーンモードで改行で折り返された URL をコピーした際、行間に余分なスペースが挿入されていた問題を修正した。"
+        },
+        {
+          "title": "`--resume` 時に 10KB 超の編集ファイルの diff が UI から消える問題を修正",
+          "description": "`--resume` 使用時に、編集対象ファイルが 10KB を超えると UI 上で diff が消えてしまう問題を修正した。"
+        },
+        {
+          "title": "`/resume` ピッカーの複数不具合を修正",
+          "description": "`/resume` ピッカーで `--resume <name>` が編集不可になる、フィルタ再読込で検索状態が消える、空リストで矢印キーが効かない、プロジェクト跨ぎで情報が古くなる、タスクステータス文言が会話サマリを上書きするなどの問題を総合的に修正した。"
+        },
+        {
+          "title": "`/export` が絶対パスや `~` を無視し拡張子を `.txt` に書き換える問題を修正",
+          "description": "`/export` コマンドが絶対パスやホームディレクトリ記号 `~` を正しく解釈せず、またユーザー指定の拡張子を無視して `.txt` に書き換えていた問題を修正した。"
+        },
+        {
+          "title": "`/effort max` が未知または将来のモデル ID で拒否される問題を修正",
+          "description": "`/effort max` が、存在しないまたは将来リリース予定のモデル ID を指定したときに不適切に拒否されていた問題を修正した。"
+        },
+        {
+          "title": "プラグイン frontmatter の `name` が YAML ブール値の場合にスラッシュコマンドピッカーが壊れる問題を修正",
+          "description": "プラグインの frontmatter `name` が `true` や `false` など YAML のブールキーワードである場合、スラッシュコマンドピッカーが正しく表示されなくなる問題を修正した。"
+        },
+        {
+          "title": "レートリミットアップセルテキストがメッセージ再マウント後に隠れる問題を修正",
+          "description": "レートリミット時に表示されるアップセルテキストが、メッセージが再マウントされた後に非表示になるバグを修正した。"
+        },
+        {
+          "title": "`_meta[\"anthropic/maxResultSizeChars\"]` を持つ MCP ツールがトークンベース永続層をバイパスしない問題を修正",
+          "description": "MCP ツールで `_meta[\"anthropic/maxResultSizeChars\"]` が設定されている場合に、トークンベースの永続層をバイパスできていなかった問題を修正した。"
+        },
+        {
+          "title": "音声モードでプッシュ・トゥ・トークキーを再保持した際に余分な空白が入力に漏れる問題を修正",
+          "description": "音声モードで、前回のトランスクリプトがまだ処理中の状態でプッシュ・トゥ・トークキーを再度保持すると、入力に多数のスペース文字が漏れ出すバグを修正した。"
+        },
+        {
+          "title": "`DISABLE_AUTOUPDATER` が npm レジストリのバージョンチェックとシンボリックリンク変更を完全に抑制しない問題を修正",
+          "description": "npm ベースのインストール時に `DISABLE_AUTOUPDATER` を設定しても、npm レジストリのバージョンチェックやシンボリックリンクの修正が行われていた問題を修正した。"
+        },
+        {
+          "title": "Remote Control の権限ハンドラエントリがセッション全体で保持されるメモリリークを修正",
+          "description": "Remote Control の権限ハンドラエントリがセッションの存続期間中に解放されず、メモリリークを引き起こしていた問題を修正した。"
+        },
+        {
+          "title": "エラーで失敗したバックグラウンドサブエージェントが親エージェントに部分進捗を報告しない問題を修正",
+          "description": "バックグラウンドサブエージェントがエラーで終了した場合でも、取得した部分的な進捗情報を親エージェントに正しく報告するように修正した。"
+        },
+        {
+          "title": "長時間セッションで Prompt-type Stop/SubagentStop フックが失敗し、API エラーが実際のメッセージではなく \"JSON validation failed\" と表示される問題を修正",
+          "description": "長時間のセッションで Prompt-type Stop および SubagentStop フックが正しく動作せず、フック評価 API のエラーメッセージが本来の内容ではなく \"JSON validation failed\" と表示されていた問題を修正した。"
+        },
+        {
+          "title": "フィードバック調査が閉じたときのレンダリング不具合を修正",
+          "description": "ユーザーがフィードバック調査を閉じた後に、調査ウィンドウのレンダリングが崩れるバグを修正した。"
+        },
+        {
+          "title": "作業ディレクトリ外のパターンファイルを読む `grep -f`/`rg -f` がプロンプトしない問題を修正",
+          "description": "作業ディレクトリ外にあるパターンファイルを指定して `grep -f FILE` や `rg -f FILE` を実行した際、権限プロンプトが表示されずに実行されていた問題を修正した。"
+        },
+        {
+          "title": "未追跡ファイルを含むサブエージェントの作業ツリーが誤ってクリーンアップされる問題を修正",
+          "description": "サブエージェントの作業ツリーに未追跡ファイルが存在する場合でも、古いサブエージェントのクリーンアップ処理でそれらが削除されてしまうバグを修正した。"
+        },
+        {
+          "title": "`sandbox.network.allowMachLookup` が macOS で機能しない問題を修正",
+          "description": "macOS 上で `sandbox.network.allowMachLookup` 設定が適用されず、Mach ポート検索が許可されなかった問題を修正した。"
+        },
+        {
+          "title": "`CLAUDE_CODE_MAX_CONTEXT_TOKENS` が `DISABLE_COMPACT` 設定を尊重しない問題を修正",
+          "description": "`CLAUDE_CODE_MAX_CONTEXT_TOKENS` が `DISABLE_COMPACT` が有効な場合でもコンパクトモードを無視していた問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:12:42.440Z"
+}

@@ -1,0 +1,174 @@
+{
+  "version": "2.1.157",
+  "tagName": "v2.1.157",
+  "publishedAt": "2026-05-29T20:20:38Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.157",
+  "counts": {
+    "破壊的変更": 2,
+    "新機能": 3,
+    "改善": 1,
+    "その他": 12,
+    "バグ修正": 15
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "起動バナーの削除",
+          "description": "\"bash commands will be sandboxed\" の起動バナーを削除したが、サンドボックス状態は `/status` とコマンドがブロックされた時に表示される"
+        },
+        {
+          "title": "起動ヒントトーストの削除",
+          "description": "\"/ide for …\" の起動ヒントトーストを削除した"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "プラグイン初期化コマンド追加",
+          "description": "`claude plugin init <name>` を追加し、`.claude/skills` に新しいプラグインの雛形を作成できるようにした"
+        },
+        {
+          "title": "/plugin 引数の自動補完",
+          "description": "`/plugin` のサブコマンド、インストール済みプラグイン名、既知のマーケットプレイスからのプラグイン名に対する自動補完を追加した"
+        },
+        {
+          "title": "ワークフロートリガー設定追加",
+          "description": "/config に \"Workflow keyword trigger\" 設定を追加し、プロンプト中の単語 \"workflow\" が動的ワークフローを起動しないようにできるようにした"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "長時間・再開会話の性能向上",
+          "description": "冗長なメッセージ描画の再計算を排除し、長時間や再開した会話のパフォーマンスを改善した"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": ".claude/skills の自動読み込み",
+          "description": "`.claude/skills` ディレクトリ内のプラグインはマーケットプレイス不要で自動的にロードされるようになった"
+        },
+        {
+          "title": "agents の設定でエージェント指定が有効化",
+          "description": "`claude agents` で `settings.json` の `agent` フィールドがディスパッチセッションに適用され、`--agent <name>` で上書き可能になった"
+        },
+        {
+          "title": "EnterWorktree の中間切替",
+          "description": "`EnterWorktree` が Claude 管理のワークツリー間をセッション中に切り替えられるようになった"
+        },
+        {
+          "title": "tool_decision テレメトリに詳細追加",
+          "description": "`tool_decision` テレメトリイベントに `tool_parameters`（bash コマンド、MCP/skill 名）が `OTEL_LOG_TOOL_DETAILS=1` 時に含まれるようになった"
+        },
+        {
+          "title": "エージェント完了時のワークツリー解除",
+          "description": "Claude が管理するワークツリーはエージェント終了時にロックが解除され、`git worktree remove`/`prune` でクリーンアップ可能になった"
+        },
+        {
+          "title": "WSL の画像貼り付け修正とドラッグ対応",
+          "description": "WSL で画像貼り付け（`alt+v` キーバインド）と Windows 11 のスクリーンショット貼り付けを修正し、Windows Explorer からの画像ドラッグをサポートした"
+        },
+        {
+          "title": "/terminal-setup の GPU 無効化",
+          "description": "VS Code/Cursor/Windsurf 統合ターミナルで文字化け防止のため、`/terminal-setup` が GPU 加速を無効化するようにした"
+        },
+        {
+          "title": "Feature of the Week 通知位置変更",
+          "description": "Feature of the Week のクレジット取得状況がプロンプト上部ではなくステータス領域の通知として表示されるようになった"
+        },
+        {
+          "title": "agents のスラッシュコマンド自動補完改善",
+          "description": "`claude agents` のディスパッチ入力でスラッシュコマンドの自動補完が部分文字列にマッチするようになった"
+        },
+        {
+          "title": "IDE の停止ボタンバグ修正",
+          "description": "[IDE] 背景サブエージェント実行中に Stop をクリックしても停止しなかった問題を修正した"
+        },
+        {
+          "title": "VSCode の高速モード表示修正",
+          "description": "[VSCode] Opus 4.8 で高速モードインジケータが表示されない問題を修正した"
+        },
+        {
+          "title": "ワークフローキーワード直後のバックスペース動作変更",
+          "description": "ワークフロー起動キーワード直後にバックスペースを押すと、文字削除ではなくワークフロー要求を解除（alt+w と同等）するようにした"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "画像処理エラーの修正",
+          "description": "貼り付け、MCP、ダイアログで添付されたゼロバイトや破損画像がクラッシュせず、テキストプレースホルダーになるよう修正した"
+        },
+        {
+          "title": "サンドボックスネットワーク許可プロンプトの誤表示修正",
+          "description": "デスクトップアプリ、IDE 拡張、SDK 使用時に自動モードやバイパス許可モードでサンドボックスネットワーク許可プロンプトが表示される問題を修正した"
+        },
+        {
+          "title": "agents の完了セッションのリタイア不具合修正",
+          "description": "アイドル状態のサブエージェントが駐車中またはバックグラウンドシェルが漏れているときに `claude agents` の完了セッションがリタイアしない問題を修正した"
+        },
+        {
+          "title": "Esc キーでの開放待ちキャンセル不具合修正",
+          "description": "`claude agents` で Esc を押しても遅い \"opening…\" がキャンセルされず、リストが応答しなくなる問題を修正した"
+        },
+        {
+          "title": "バックグラウンドエージェントワークツリーの孤立修正",
+          "description": "`.claude/worktrees/` 配下のバックグラウンドエージェントワークツリーが 30 日ジョブ保持掃除後に孤立する問題を修正した"
+        },
+        {
+          "title": "スリープ/ウェイク後の日付情報修正",
+          "description": "スリープ/ウェイク後に再接続したバックグラウンドセッションがモデルに正しい日付を伝えない問題を修正した"
+        },
+        {
+          "title": "tmux 内コピーオンセレクトの修正",
+          "description": "`claude agents` で `set-clipboard on` の tmux 環境下でコピーオンセレクトがシステムクリップボードに届かない問題（2.1.153 での回帰）を修正した"
+        },
+        {
+          "title": "--resume のバックグラウンドサブエージェント表示修正",
+          "description": "`--resume` 時に前回の Claude Code プロセスが終了した際に実行中だったバックグラウンドサブエージェントが報告されなかった問題を修正した"
+        },
+        {
+          "title": "フルスクリーンモードでのセッションピッカー残留修正",
+          "description": "フルスクリーンモードで `--resume` セッションピッカーが終了後も端末に内容が残っていた問題を修正した"
+        },
+        {
+          "title": "--worktree オプションのルート復帰修正",
+          "description": "`--worktree` および `--worktree --tmux` が現在リンクされたワークツリーではなく、正規リポジトリルートに戻ってしまう問題を修正した"
+        },
+        {
+          "title": "/model ピッカーのバージョンヒント修正",
+          "description": "選択モデルが同一ファミリの最新であるにも関わらず \"Newer version available\" と表示される誤りを修正し、固定モデル行はモデル説明を表示するようにした"
+        },
+        {
+          "title": "フルスクリーンモードでのマークダウン記号表示修正",
+          "description": "フルスクリーンモードで進行中メッセージテキストにリテラルバックティックやアスタリスクが表示される問題を修正した"
+        },
+        {
+          "title": "起動時の管理設定セキュリティダイアログ後のフリーズ修正",
+          "description": "起動時に管理設定セキュリティダイアログを承認した後、ターミナルがフリーズする問題を修正した"
+        },
+        {
+          "title": "スクロールバックの重複行表示修正",
+          "description": "ターミナル UI 再描画後にスクロールバックで稀に重複行が出現する問題を修正した"
+        },
+        {
+          "title": "VS Code 等統合ターミナルでの右クリック貼り付け重複修正",
+          "description": "VS Code、Cursor、Windsurf 統合ターミナルで右クリック貼り付け時にクリップボード内容が重複する問題を修正した"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:26:58.500Z"
+}

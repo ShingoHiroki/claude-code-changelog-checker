@@ -1,0 +1,62 @@
+{
+  "version": "2.1.69",
+  "tagName": "v2.1.69",
+  "publishedAt": "2026-03-05T00:26:21Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.69",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 20,
+    "改善": 13,
+    "その他": 13,
+    "バグ修正": 57
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/claude-api` スキルを追加し、Claude API と Anthropic SDK を用いたアプリケーション構築を可能にしました",
+          "description": ""
+        },
+        {
+          "title": "空の bash プロンプト (`!`) で Ctrl+U を追加し、bash モードを終了できるようにしました。`escape` と `backspace` と同様の挙動です",
+          "description": ""
+        },
+        {
+          "title": "Claude のインタビュー質問でオプション選択時にテンキーのサポートを追加しました（従来は QWERTY 上部の数字列のみ使用可能でした）",
+          "description": ""
+        },
+        {
+          "title": "`/remote-control` と `claude remote-control` にオプションの name 引数を追加（例: `/remote-control My Project` または `--name \"My Project\"`）し、claude.ai/code で表示されるセッションタイトルをカスタマイズできるようにしました",
+          "description": ""
+        },
+        {
+          "title": "音声 STT のサポート言語を 10 追加（合計 20 言語）し、ロシア語、ポーランド語、トルコ語、オランダ語、ウクライナ語、ギリシャ語、チェコ語、デンマーク語、スウェーデン語、ノルウェー語に対応しました",
+          "description": ""
+        },
+        {
+          "title": "ロゴとスピナーに effort レベル表示（例: \"with low effort\"）を追加し、現在の effort 設定が一目で分かるようにしました",
+          "description": ""
+        },
+        {
+          "title": "`claude --agent` 使用時に端末タイトルにエージェント名を表示するようにしました",
+          "description": ""
+        },
+        {
+          "title": "`sandbox.enableWeakerNetworkIsolation` 設定（macOS のみ）を追加し、`httpProxyPort` とカスタム MITM プロキシを使用する際に `gh`、`gcloud`、`terraform` などの Go プログラムが TLS 証明書を検証できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "`includeGitInstructions` 設定（および `CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` 環境変数）を追加し、Claude のシステムプロンプトから組み込みのコミット・PR ワークフロー指示を除外できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "保留中のプラグイン変更を再",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:04:23.644Z"
+}

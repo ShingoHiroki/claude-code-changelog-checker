@@ -1,0 +1,141 @@
+{
+  "version": "2.1.78",
+  "tagName": "v2.1.78",
+  "publishedAt": "2026-03-17T23:42:55Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.78",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 1,
+    "その他": 5,
+    "バグ修正": 16
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`StopFailure` フックイベント追加",
+          "description": "ターンが API エラー（レートリミット、認証失敗など）で終了したときに発火する `StopFailure` フックイベントを追加しました。"
+        },
+        {
+          "title": "`${CLAUDE_PLUGIN_DATA}` 変数追加",
+          "description": "プラグインの永続状態を保持し、プラグイン更新後も残る `${CLAUDE_PLUGIN_DATA}` 変数を追加しました。`/plugin uninstall` は削除前に確認を促します。"
+        },
+        {
+          "title": "`effort`, `maxTurns`, `disallowedTools` フロントマターサポート",
+          "description": "プラグイン提供エージェント向けに `effort`、`maxTurns`、`disallowedTools` のフロントマターサポートを追加しました。"
+        },
+        {
+          "title": "`ANTHROPIC_CUSTOM_MODEL_OPTION` 環境変数追加",
+          "description": "`/model` ピッカーにカスタム項目を追加できる `ANTHROPIC_CUSTOM_MODEL_OPTION` 環境変数を導入しました。表示名や説明はオプションで `_NAME` と `_DESCRIPTION` のサフィックス変数で設定可能です。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "メモリ使用量と起動時間の改善",
+          "description": "大規模セッションの再開時におけるメモリ使用量と起動時間が改善されました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "tmux 内でのターミナル通知が外側へ届くように",
+          "description": "`set -g allow-passthrough on` を使用すると、tmux 内で iTerm2/Kitty/Ghostty のポップアップやプログレスバーなどの端末通知が外部端末に伝わります。"
+        },
+        {
+          "title": "レスポンステキストが行単位でストリーム",
+          "description": "生成中のレスポンステキストがリアルタイムで行ごとにストリーミングされるようになりました。"
+        },
+        {
+          "title": "**Security:** サンドボックス無効化の警告表示",
+          "description": "`sandbox.enabled: true` が設定されているのに依存関係が欠如している場合、サンドボックスが無音で無効になる不具合を修正し、起動時に可視的な警告を表示するようになりました。"
+        },
+        {
+          "title": "VSCode: ログイン画面のフラッシュ修正",
+          "description": "サイドバーを開いたときに既に認証済みでもログイン画面が一瞬表示される問題を修正しました。"
+        },
+        {
+          "title": "VSCode: Opus 選択時のレートリミットエラー修正",
+          "description": "Opus を選択した際に \"API Error: Rate limit reached\" が出る問題を修正し、プラン階層が不明な購読者に 1M コンテキストバリアントが表示されなくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`git log HEAD` のエラー修正",
+          "description": "Linux のサンドボックス化された Bash 内で `git log HEAD` が \"ambiguous argument\" エラーになる問題と、スタブファイルが作業ディレクトリの `git status` に混入する問題を修正しました。"
+        },
+        {
+          "title": "`cc log` と `--resume` の履歴切り捨て修正",
+          "description": "5 MB 超の大規模セッションでサブエージェントを使用した場合、`cc log` と `--resume` が会話履歴を無音で切り捨てていた問題を修正しました。"
+        },
+        {
+          "title": "API エラー時の無限ループ修正",
+          "description": "API エラーが発生しストップフックが再度ブロッキングエラーをモデルに渡すことで起こる無限ループを修正しました。"
+        },
+        {
+          "title": "`deny` ルールでの MCP ツール除外不具合修正",
+          "description": "`deny: [\"mcp__servername\"]` の権限ルールが MCP サーバーツールをモデルに送信する前に除外せず、ブロックされたツールを見えてしまう問題を修正しました。"
+        },
+        {
+          "title": "`sandbox.filesystem.allowWrite` の絶対パス対応",
+          "description": "絶対パスで `sandbox.filesystem.allowWrite` が機能しない問題を修正し、`//` プレフィックスは不要になりました。"
+        },
+        {
+          "title": "`/sandbox` 依存情報タブの OS 表示修正",
+          "description": "macOS で `/sandbox` の Dependencies タブが Linux の前提条件を表示していた問題を、macOS 固有情報に修正しました。"
+        },
+        {
+          "title": "保護ディレクトリの書き込み許可バグ修正",
+          "description": "`bypassPermissions` モードで `.git`、`.claude` など保護ディレクトリがプロンプトなしで書き込み可能になる問題を修正しました。"
+        },
+        {
+          "title": "Normal モードの ctrl+u 動作修正",
+          "description": "Normal モードで ctrl+u がスクロールせず readline の kill-line として機能するようにし、ctrl+u/ctrl+d の半ページスクロールは transcript モードのみに移動させました。"
+        },
+        {
+          "title": "音声モードのプッシュトークキー修正",
+          "description": "音声モードで修飾キー＋コンボ（例: ctrl+k）によるプッシュトークがホールドが必要だった問題を、即座に発動するよう修正しました。"
+        },
+        {
+          "title": "WSL2+WSLg での音声モード不具合修正",
+          "description": "WSL2 上の WSLg（Windows 11）で音声モードが動作しなかった問題を修正し、WSL1/Win10 ユーザーには明確なエラーを表示します。"
+        },
+        {
+          "title": "`--worktree` フラッグでのスキル・フック読み込み修正",
+          "description": "`--worktree` フラッグ使用時に作業ツリーディレクトリからスキルとフックが読み込まれない問題を修正しました。"
+        },
+        {
+          "title": "Git ステータス表示抑制設定修正",
+          "description": "`CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS` と `includeGitInstructions` 設定がシステムプロンプトの git status セクションを抑制しなかった問題を修正しました。"
+        },
+        {
+          "title": "VS Code 起動時の Homebrew 検出不具合修正",
+          "description": "VS Code を Dock や Spotlight から起動した際、Bash ツールが Homebrew やその他 PATH 依存バイナリを見つけられなかった問題を修正しました。"
+        },
+        {
+          "title": "端末の Claude オレンジ色表示修正",
+          "description": "VS Code、Cursor、code-server 端末で truecolor が広告されていない場合に起こる Claude オレンジ色の薄れを修正しました。"
+        },
+        {
+          "title": "`ANTHROPIC_BETAS` 環境変数の無視バグ修正",
+          "description": "Haiku モデル使用時に `ANTHROPIC_BETAS` 環境変数が無音で無視されていた問題を修正しました。"
+        },
+        {
+          "title": "キュー済みプロンプトの改行欠如修正",
+          "description": "キューに入れたプロンプトが改行セパレータなしで連結されていた問題を修正し、各プロンプト間に改行が入るようにしました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:07:24.898Z"
+}

@@ -1,0 +1,137 @@
+{
+  "version": "2.1.50",
+  "tagName": "v2.1.50",
+  "publishedAt": "2026-02-20T23:48:57Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.50",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 5,
+    "改善": 3,
+    "その他": 4,
+    "バグ修正": 13
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`startupTimeout` 設定のサポート",
+          "description": "`startupTimeout` 設定を LSP サーバーで使用できるようにしました。"
+        },
+        {
+          "title": "`WorktreeCreate` と `WorktreeRemove` フックイベントの追加",
+          "description": "エージェントの作業ツリー分離で作成・削除される worktree に対し、カスタム VCS のセットアップとクリーンアップを行えるよう `WorktreeCreate` と `WorktreeRemove` フックイベントを追加しました。"
+        },
+        {
+          "title": "`isolation: worktree` のエージェント定義サポート",
+          "description": "エージェント定義で `isolation: worktree` を指定できるようになり、エージェントを宣言的に分離された git worktree で実行できます。"
+        },
+        {
+          "title": "`claude agents` CLI コマンドの追加",
+          "description": "設定済みのすべてのエージェントを一覧表示できる `claude agents` CLI コマンドを追加しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_DISABLE_1M_CONTEXT` 環境変数の追加",
+          "description": "`CLAUDE_CODE_DISABLE_1M_CONTEXT` 環境変数により、1M コンテキストウィンドウのサポートを無効にできるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "コンパクション後の内部キャッシュクリアでメモリ使用量改善",
+          "description": "長時間セッション中にコンパクション後に内部キャッシュをクリアし、メモリ使用量を改善しました。"
+        },
+        {
+          "title": "大規模ツール結果の処理後クリアでメモリ使用量改善",
+          "description": "長時間セッション中に大きなツール結果を処理後にクリアし、メモリ使用量を改善しました。"
+        },
+        {
+          "title": "ヘッドレスモード (`-p` フラグ) の起動性能向上",
+          "description": "`-p` フラグでのヘッドレスモード起動時に Yoga WASM と UI コンポーネントのインポートを遅延させ、起動性能を向上させました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "glibc 2.30 未満でのネイティブモジュールロード不具合修正 (Linux)",
+          "description": "glibc が 2.30 未満（例: RHEL 8）であるシステムで、ネイティブモジュールが読み込めない問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_SIMPLE` モードで MCP ツール等も無効化",
+          "description": "`CLAUDE_CODE_SIMPLE` モードが MCP ツール、添付ファイル、フック、`CLAUDE.md` ファイルの読み込みも無効にし、完全にミニマルな体験を提供します。"
+        },
+        {
+          "title": "Opus 4.6（高速モード）で 1M コンテキストウィンドウを完全サポート",
+          "description": "Opus 4.6 の高速モードで、フル 1M コンテキストウィンドウが使用可能になりました。"
+        },
+        {
+          "title": "VS Code セッションで `/extra-usage` コマンドを追加",
+          "description": "VS Code セッションで `/extra-usage` コマンドのサポートを追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "シンボリックリンク絡みの再開セッション不可視と SSH 切断時データ損失の修正",
+          "description": "作業ディレクトリにシンボリックリンクが含まれると再開セッションが見えなくなるバグと、SSH 切断時にフックと分析の前にセッションデータをフラッシュせずデータが失われる問題を修正しました。"
+        },
+        {
+          "title": "エージェントチームで完了タスクが GC されないメモリリーク修正",
+          "description": "エージェントチームにおいて完了したチームメンバータスクがセッション状態からガーベジコレクションされずメモリリークしていた問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_SIMPLE` の機能削除徹底修正",
+          "description": "`CLAUDE_CODE_SIMPLE` がスキル、セッションメモリ、カスタムエージェント、`CLAUDE.md` のトークンカウントを完全に除去できるよう修正しました。"
+        },
+        {
+          "title": "存在しないサーバ名で `/mcp reconnect` が CLI をフリーズする問題を修正",
+          "description": "存在しないサーバ名が指定された際に `/mcp reconnect` が CLI をフリーズしていたバグを修正しました。"
+        },
+        {
+          "title": "完了タスク状態オブジェクトが AppState から削除されないメモリリーク修正",
+          "description": "完了したタスクの状態オブジェクトが `AppState` から削除されずメモリリークしていた問題を修正しました。"
+        },
+        {
+          "title": "ツール検索有効時にプロンプト引数で MCP ツールが検出されないバグ修正",
+          "description": "ツール検索が有効で起動引数としてプロンプトが渡された際に、MCP ツールが検出されないバグを修正しました。"
+        },
+        {
+          "title": "LSP 診断データの未クリアによるメモリリーク修正",
+          "description": "LSP 診断データが配信後にクリアされず、長時間セッションでメモリが無制限に増加していた問題を修正しました。"
+        },
+        {
+          "title": "完了タスク出力が解放されないメモリリーク修正",
+          "description": "完了タスクの出力がメモリから解放されず、タスクが多数ある長時間セッションでのメモリ使用量が増加していた問題を修正しました。"
+        },
+        {
+          "title": "プロンプト提案キャッシュのヒット率低下回帰を修正",
+          "description": "プロンプト提案キャッシュの回帰によりヒット率が低下していた問題を修正しました。"
+        },
+        {
+          "title": "ファイル履歴スナップショット上限で長時間セッションのメモリ増加を抑制",
+          "description": "長時間セッションでファイル履歴スナップショットが無制限に増えるのを防ぐため、上限を設定してメモリ増加を抑制しました。"
+        },
+        {
+          "title": "TaskOutput がクリーンアップ後も行を保持していたメモリリーク修正",
+          "description": "`TaskOutput` がクリーンアップ後に最近の行を保持し続けメモリリークしていた問題を修正しました。"
+        },
+        {
+          "title": "CircularBuffer のクリア後アイテムが保持されるメモリリーク修正",
+          "description": "`CircularBuffer` でクリアされたアイテムが内部配列に残りメモリリークしていた問題を修正しました。"
+        },
+        {
+          "title": "シェルコマンド実行時の ChildProcess と AbortController の参照保持によるメモリリーク修正",
+          "description": "シェルコマンド実行後に `ChildProcess` と `AbortController` の参照が残りメモリリークしていた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:02:12.434Z"
+}

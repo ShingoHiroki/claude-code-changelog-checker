@@ -1,0 +1,26 @@
+{
+  "version": "2.1.204",
+  "tagName": "v2.1.204",
+  "publishedAt": "2026-07-08T00:27:50Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.204",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "ヘッドレスセッションでのフックイベントストリーミング不具合を修正",
+          "description": "ヘッドレスセッションの `SessionStart` フック中にフックイベントがストリーミングされず、リモートワーカーがフックの途中でアイドル状態として削除される可能性があった問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:35:02.005Z"
+}

@@ -1,0 +1,30 @@
+{
+  "version": "2.1.173",
+  "tagName": "v2.1.173",
+  "publishedAt": "2026-06-11T05:41:54Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.173",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 2
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Fable 5 の `[1m]` サフィックスが正規化されない問題を修正",
+          "description": "Fable 5 のモデル名に付く `[1m]` サフィックスが正規化されていなかった問題を修正しました。Fable 5 はデフォルトで 1M コンテキストを含むため、サフィックスは自動的に除去されます。"
+        },
+        {
+          "title": "Windows でサンドボックス有効時の誤警告を修正",
+          "description": "設定でサンドボックスが有効になっている場合に、Windows 起動時に表示されていた不正な \"sandbox dependencies missing\" 警告を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:29:36.475Z"
+}

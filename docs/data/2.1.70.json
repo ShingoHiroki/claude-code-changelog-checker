@@ -1,0 +1,148 @@
+{
+  "version": "2.1.70",
+  "tagName": "v2.1.70",
+  "publishedAt": "2026-03-06T01:20:02Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.70",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 3,
+    "その他": 6,
+    "バグ修正": 20
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "マイクが無音を検知した際のエラーメッセージ改善",
+          "description": "マイクが沈黙を捕捉したときに、'no speech detected' と区別できるようエラーメッセージを改善しました。"
+        },
+        {
+          "title": "サマライザ要求で画像を保持するコンパクション改善",
+          "description": "サマライザリクエスト内の画像を保持できるようコンパクションを改善し、プロンプトキャッシュの再利用が可能になり、コンパクションが高速かつ低コストになりました。"
+        },
+        {
+          "title": "`/rename` コマンドの処理中使用改善",
+          "description": "Claude が処理中でも `/rename` が機能するように改善し、以前はサイレントにキューイングされていた問題を解消しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "ターン中のプロンプト入力再描画を約74%削減",
+          "description": "ターンの間にプロンプト入力の再描画回数が約74%減少しました。"
+        },
+        {
+          "title": "カスタムCA証明書未使用ユーザーの起動メモリを約426KB削減",
+          "description": "カスタムCA証明書を設定していないユーザーの起動時メモリ使用量が約426KB削減されました。"
+        },
+        {
+          "title": "リモートコントロール `/poll` 率を10分に1回に削減",
+          "description": "接続中のリモートコントロール `/poll` の頻度を 1–2 秒から 10 分に1回に減らし、サーバーロードを約300倍削減しました。再接続時はすぐに高速ポーリングに戻ります。"
+        },
+        {
+          "title": "[VSCode] アクティビティバーにスパークアイコンを追加し、Claude Code セッションを一覧表示",
+          "description": "VS Code のアクティビティバーにスパークアイコンを追加し、すべての Claude Code セッションを一覧表示、セッションはフルエディタとして開くようにしました。"
+        },
+        {
+          "title": "[VSCode] 計画用のフル Markdown ドキュメントビューとコメント機能を追加",
+          "description": "VS Code で計画をフル Markdown ドキュメントとして表示できるようにし、コメントを追加してフィードバックを提供する機能をサポートしました。"
+        },
+        {
+          "title": "[VSCode] ネイティブ MCP サーバー管理ダイアログを追加",
+          "description": "チャットパネルで `/mcp` を使用してサーバーの有効化/無効化、再接続、OAuth 認証管理ができるネイティブ MCP サーバー管理ダイアログを追加し、ターミナルに切り替える必要がなくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`ANTHROPIC_BASE_URL` 使用時の API 400 エラー修正",
+          "description": "`ANTHROPIC_BASE_URL` をサードパーティゲートウェイと併用した際の API 400 エラーを修正し、ツール検索がプロキシエンドポイントを正しく検出して `tool_reference` ブロックを無効化するようになりました。"
+        },
+        {
+          "title": "カスタム Bedrock 推論プロファイル使用時の effort パラメータエラー修正",
+          "description": "標準 Claude 名称パターンと合致しないカスタム Bedrock 推論プロファイルや他のモデル識別子使用時に発生していた `API Error: 400 This model does not support the effort parameter` を修正しました。"
+        },
+        {
+          "title": "`ToolSearch` 後の空レスポンスバグ修正",
+          "description": "`ToolSearch` 後に空のモデルレスポンスが返っていた問題を修正しました。サーバーがプロンプト末尾にシステムプロンプトスタイルのタグでツールスキーマを描画していたため、モデルが早期に停止していました。"
+        },
+        {
+          "title": "`instructions` を持つ MCP サーバー接続時のプロンプトキャッシュ破棄修正",
+          "description": "最初のターン以降に `instructions` を持つ MCP サーバーが接続した際にプロンプトキャッシュが破棄される問題を修正しました。"
+        },
+        {
+          "title": "遅い SSH 接続時の Enter キー動作修正",
+          "description": "遅い SSH 接続で入力中に Enter を押すと改行が挿入されて送信されなかった問題を修正し、Enter で送信できるようにしました。"
+        },
+        {
+          "title": "Windows/WSL でのクリップボード非ASCII文字破損修正",
+          "description": "PowerShell の `Set-Clipboard` を使用することで、Windows/WSL 上でクリップボードが CJK や絵文字などの非ASCIIテキストを破損していた問題を修正しました。"
+        },
+        {
+          "title": "Windows で VS Code 統合ターミナルから起動時に余分なウィンドウが開くバグ修正",
+          "description": "VS Code 統合ターミナルから起動した際に、Windows で余分な VS Code ウィンドウが起動時に開く問題を修正しました。"
+        },
+        {
+          "title": "Windows ネイティブバイナリの音声モードエラー修正",
+          "description": "\"native audio module could not be loaded\" エラーで Windows ネイティブバイナリの音声モードが失敗していた問題を修正しました。"
+        },
+        {
+          "title": "`voiceEnabled: true` 設定時のプッシュ・トゥ・トーク起動不具合修正",
+          "description": "設定で `voiceEnabled: true` が有効になっていると、セッション開始時にプッシュ・トゥ・トークが起動しなかった問題を修正しました。"
+        },
+        {
+          "title": "`#NNN` を含む Markdown リンクの誤参照修正",
+          "description": "`#NNN` 参照を含む Markdown リンクがリンク先 URL ではなく現在のリポジトリを指していた問題を修正しました。"
+        },
+        {
+          "title": "レガシー Opus モデル文字列ピン留め時の重複通知修正",
+          "description": "プロジェクトの `.claude/settings.json` にレガシー Opus モデル文字列が固定されていると、\"Model updated to Opus 4.6\" 通知が繰り返し表示される問題を修正しました。"
+        },
+        {
+          "title": "`/plugin` でプラグインのインストール状態誤表示修正",
+          "description": "`/plugin` コマンドでプラグインが正しくインストールされていないと誤って表示されていた問題を修正しました。"
+        },
+        {
+          "title": "起動時のプラグイン marketplace エラー自動リフレッシュ修正",
+          "description": "新規起動時にプラグインが \"not found in marketplace\" エラーを示す問題を、Marketplace インストール後に自動リフレッシュすることで修正しました。"
+        },
+        {
+          "title": "古い git での `/security-review` コマンドオプションエラー修正",
+          "description": "古い git バージョンで `/security-review` 実行時に `unknown option merge-base` が出る問題を修正しました。"
+        },
+        {
+          "title": "`/color` コマンドのリセット機能追加",
+          "description": "`/color` コマンドでデフォルト色に戻す方法がなかった問題を修正し、`/color default`、`/color gray`、`/color reset`、`/color none` がデフォルトに復元できるようにしました。"
+        },
+        {
+          "title": "`AskUserQuestion` プレビューのパフォーマンス回帰修正",
+          "description": "ノート入力時に毎キー入力で Markdown レンダリングが再実行されていた `AskUserQuestion` プレビューダイアログのパフォーマンス低下を修正しました。"
+        },
+        {
+          "title": "起動初期の機能フラグキャッシュ更新不具合修正",
+          "description": "起動初期に読み込まれる機能フラグがディスクキャッシュを更新せず、セッション間で古い値が残っていた問題を修正しました。"
+        },
+        {
+          "title": "`permissions.defaultMode` の不正適用修正",
+          "description": "`permissions.defaultMode` 設定で `acceptEdits` または `plan` 以外の値が Claude Code Remote 環境に適用されていた問題を修正し、現在は無視されます。"
+        },
+        {
+          "title": "`--resume` 時のスキルリスト再注入バグ修正",
+          "description": "`--resume` を実行するたびにスキルリストが再注入されていた問題を修正し、約600 トークンの節約が可能になりました。"
+        },
+        {
+          "title": "VS Code テレポートセッションでのテレポートマーカー未描画修正",
+          "description": "VS Code のテレポートセッションでテレポートマーカーが描画されない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:04:46.932Z"
+}

@@ -1,0 +1,26 @@
+{
+  "version": "2.1.197",
+  "tagName": "v2.1.197",
+  "publishedAt": "2026-06-30T17:56:37Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.197",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 1,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Claude Sonnet 5 の導入",
+          "description": "Claude Sonnet 5 がデフォルトモデルとして追加され、ネイティブの 1M トークン コンテキストウィンドウを持ち、8 月 31 日まで $2/$10 per Mtok のプロモーション価格が適用されます。バージョン 2.1.197 に更新すると利用可能です。 https://www.anthropic.com/news/claude-sonnet-5"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:33:08.954Z"
+}

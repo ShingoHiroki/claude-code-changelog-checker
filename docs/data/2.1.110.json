@@ -1,0 +1,169 @@
+{
+  "version": "2.1.110",
+  "tagName": "v2.1.110",
+  "publishedAt": "2026-04-15T22:07:18Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.110",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 2,
+    "その他": 8,
+    "バグ修正": 19
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/tui` コマンドと `tui` 設定を追加",
+          "description": "`/tui fullscreen` を実行すると、同じ会話内でちらつきのないレンダリングに切り替わります。"
+        },
+        {
+          "title": "プッシュ通知ツールを追加",
+          "description": "Remote Control と \"Push when Claude decides\" 設定が有効な場合、Claude がモバイルプッシュ通知を送信できます。"
+        },
+        {
+          "title": "`autoScrollEnabled` 設定を追加",
+          "description": "フルスクリーンモードで会話の自動スクロールを無効にするための `autoScrollEnabled` 設定です。"
+        },
+        {
+          "title": "`Ctrl+G` 外部エディタでのコメント付きコンテキスト表示オプションを追加",
+          "description": "`/config` で有効化すると、Claude の直前の応答をコメントとして `Ctrl+G` の外部エディタに表示できます。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/plugin` の Installed タブを改善",
+          "description": "注目が必要な項目とお気に入りが上位に表示され、無効項目は折りたたみの背後に隠れ、`f` で選択項目をお気に入りにできます。"
+        },
+        {
+          "title": "`/doctor` を改善し MCP サーバーの重複定義を警告",
+          "description": "異なるエンドポイントで複数の config スコープに同じ MCP サーバーが定義されている場合に警告を出します。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`Ctrl+O` の動作を変更",
+          "description": "`Ctrl+O` が通常と冗長なトランスクリプトの切替のみになるよう変更し、フォーカスビューは新しい `/focus` コマンドで別途切替えられます。"
+        },
+        {
+          "title": "`--resume`/`--continue` が未期限のスケジュールタスクを復元",
+          "description": "期限が切れていないスケジュールされたタスクを、`--resume` または `--continue` で再開できるようになりました。"
+        },
+        {
+          "title": "リモートコントロールクライアントからのコマンド対応",
+          "description": "`/autocompact`、`/context`、`/exit`、`/reload-plugins` がモバイル/ウェブの Remote Control クライアントでも使用可能です。"
+        },
+        {
+          "title": "Write ツールが IDE Diff 編集をモデルに通知",
+          "description": "提案されたコンテンツを IDE の diff で編集したことを、受諾前にモデルに伝えるようになりました。"
+        },
+        {
+          "title": "Bash ツールが最大タイムアウトを強制",
+          "description": "Bash ツールは任意に大きな値を受け入れるのではなく、ドキュメントで定義された最大タイムアウトを適用します。"
+        },
+        {
+          "title": "SDK/ヘッドレスセッションが分散トレース情報を取得",
+          "description": "環境変数 `TRACEPARENT` と `TRACESTATE` を読み取り、分散トレースの連携を行います。"
+        },
+        {
+          "title": "テレメトリ無効ユーザーでもセッション要約を有効化",
+          "description": "Bedrock、Vertex、Foundry、`DISABLE_TELEMETRY` 環境下でもセッション要約が有効です。`/config` または `CLAUDE_CODE_ENABLE_AWAY_SUMMARY=0` でオプトアウトできます。"
+        },
+        {
+          "title": "\"Open in editor\" のコマンドインジェクション防御を強化",
+          "description": "信頼できないファイル名からのコマンドインジェクションに対して、\"Open in editor\" アクションを堅牢化しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "MCP ツール呼び出しのハングアップを修正",
+          "description": "SSE/HTTP 通信でサーバ接続が応答途中に切れた場合に、MCP ツール呼び出しが無期限にハングする問題を修正しました。"
+        },
+        {
+          "title": "非ストリーミングフォールバックのリトライハングを修正",
+          "description": "API が到達不能なとき、非ストリーミングのフォールバックリトライが数分間ハングする問題を修正しました。"
+        },
+        {
+          "title": "フォーカスモードでのステータス表示欠如を修正",
+          "description": "フォーカスモードでセッション要約、ローカルスラッシュコマンド出力、その他システムステータス行が表示されない問題を修正しました。"
+        },
+        {
+          "title": "ツール実行中のテキスト選択での高 CPU 使用を修正",
+          "description": "フルスクリーンでツールが実行中にテキストを選択すると CPU 使用率が上がる問題を修正しました。"
+        },
+        {
+          "title": "プラグインインストールの依存関係処理を修正",
+          "description": "マーケットプレイスのエントリが依存関係を省略しても、`plugin.json` の宣言を尊重し、`/plugin` インストール時に自動インストールされた依存関係を一覧表示するようにしました。"
+        },
+        {
+          "title": "`disable-model-invocation:true` スキルの途中呼び出し失敗を修正",
+          "description": "`/<skill>` でメッセージ途中に呼び出した際、`disable-model-invocation: true` が設定されたスキルが失敗する問題を修正しました。"
+        },
+        {
+          "title": "`--resume` がセッション名を誤表示する問題を修正",
+          "description": "実行中または不整合に終了したセッションで、`--resume` が最初のプロンプトを表示し `/rename` 名が表示されないことがある問題を修正しました。"
+        },
+        {
+          "title": "キューイングメッセージの二重表示を修正",
+          "description": "複数ツール呼び出しターンで、キューに入ったメッセージが短時間に二回表示される問題を修正しました。"
+        },
+        {
+          "title": "セッションクリーンアップでディレクトリ残存を修正",
+          "description": "セッションのクリーンアップ時に、サブエージェントのトランスクリプトを含む全セッションディレクトリが削除されない問題を修正しました。"
+        },
+        {
+          "title": "CLI 再起動後のキー入力ドロップを修正",
+          "description": "`/tui` やプロバイダー設定ウィザードなど、CLI 再起動後にキー入力が失われる問題を修正しました。"
+        },
+        {
+          "title": "macOS Terminal.app での起動時文字化けを修正",
+          "description": "同期出力をサポートしないターミナル（macOS Terminal.app など）での起動時描画が乱れる問題を修正しました。"
+        },
+        {
+          "title": "`PermissionRequest` フックの権限再確認を修正",
+          "description": "`PermissionRequest` フックが `updatedInput` を返す際、`permissions.deny` ルールで再確認されない問題と、`setMode:'bypassPermissions'` の更新が `disableBypassPermissionsMode` を無視する問題を修正しました。"
+        },
+        {
+          "title": "`PreToolUse` フックの `additionalContext` 欠落を修正",
+          "description": "ツール呼び出しが失敗した際に、`PreToolUse` フックの `additionalContext` が失われる問題を修正しました。"
+        },
+        {
+          "title": "stdout に非JSON出力する stdio MCP サーバの切断を修正",
+          "description": "予期しない非JSON行を stdout に出力する stdio MCP サーバが、最初の余計な行で切断される問題（2.1.105 のリグレッション）を修正しました。"
+        },
+        {
+          "title": "ヘッドレス/SDK セッションの自動タイトルで余計な Haiku リクエストが発生する問題を修正",
+          "description": "`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` または `CLAUDE_CODE_DISABLE_TERMINAL_TITLE` が設定されていると、ヘッドレス/SDK セッションの自動タイトルが余分な Haiku リクエストを送る問題を修正しました。"
+        },
+        {
+          "title": "パイプされた Ink 出力の大幅メモリ割当を修正",
+          "description": "パイプ（非TTY）された Ink 出力が幅の極端に広い単一行を含む場合に、過剰なメモリ割り当てが発生する可能性がある問題を修正しました。"
+        },
+        {
+          "title": "`/skills` メニューのスクロール不具合を修正",
+          "description": "フルスクリーンモードでモーダルがオーバーフローした際、`/skills` メニューがスクロールしない問題を修正しました。"
+        },
+        {
+          "title": "古い Remote Control セッションでの再ログイン促進エラーを修正",
+          "description": "セッションが古くなったときに、一般エラーを表示して再ログインを促さない問題を修正し、適切に再ログインを求めるようにしました。"
+        },
+        {
+          "title": "Remote Control セッション名変更がローカルに反映されない問題を修正",
+          "description": "claude.ai からの Remote Control セッション名変更が、ローカル CLI セッションのタイトルに保存されない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:14:04.662Z"
+}

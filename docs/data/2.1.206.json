@@ -1,0 +1,145 @@
+{
+  "version": "2.1.206",
+  "tagName": "v2.1.206",
+  "publishedAt": "2026-07-10T01:45:26Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.206",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 2,
+    "その他": 6,
+    "バグ修正": 17
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/cd` にディレクトリパス候補を追加",
+          "description": "`/cd` コマンドでディレクトリパスのサジェッションを提供し、`/add-dir` と同様の動作を実装しました。"
+        },
+        {
+          "title": "`/doctor` が `CLAUDE.md` の不要部分削除を提案",
+          "description": "`/doctor` チェックに、コードベースから Claude が取得できる内容を削除することで、チェックイン済み `CLAUDE.md` ファイルを短縮する提案を追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/code-review` の結果品質を向上",
+          "description": "claude-opus-4-8 で、全ての effort レベルにおける `/code-review` のフィンドング品質を改善しました。"
+        },
+        {
+          "title": "エージェントビューのステータス列が全幅表示に",
+          "description": "エージェントビューでステータス列が 64 文字で切られるのをやめ、端末幅全体を使って表示するように改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/commit-push-pr` がデフォルトプッシュリモートを自動許可",
+          "description": "`/commit-push-pr` が `origin` に加えて、リポジトリ設定のプッシュ先リモート（`remote.pushDefault` もしくは唯一のリモート）への `git push` を自動的に許可するようになりました。"
+        },
+        {
+          "title": "Gateway の `/login` が Anthropic 公開ゲートウェイを対応",
+          "description": "Gateway において、`/login` が Anthropic が運営するパブリックゲートウェイエンドポイントをサポートするようになりました。"
+        },
+        {
+          "title": "`EnterWorktree` が外部ワークツリーへ入る前に確認",
+          "description": "`EnterWorktree` は、プロジェクトの `.claude/worktrees/` ディレクトリ外の git worktree に入る際、確認プロンプトを表示するようになりました。"
+        },
+        {
+          "title": "バックグラウンドエージェントが即時自動アップグレード",
+          "description": "Claude Code の更新直後に、バックグラウンドエージェントが新バージョンへ即座にバックグラウンドアップグレードされ、接続時の遅いセッション更新が不要になりました。"
+        },
+        {
+          "title": "Bedrock の起動ハングアップを修正",
+          "description": "ネットワークの外部送信が制限された環境で `awsCredentialExport` ヘルパーを使用した際に、数分間起動が停止していた問題を修正しました。"
+        },
+        {
+          "title": "エージェントビューで Ctrl+X がセッションを完全削除",
+          "description": "エージェントビューで Ctrl+X が完了セッションを完全に削除し、セッションが二重表示されなくなり、削除されたバックグラウンドジョブは保持されたままになります。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "期限切れログインで誤ったエラーが表示される問題を修正",
+          "description": "期限切れのログインにより全モデルが失敗し、`/login` の実行を促す代わりに誤解を招く \"There's an issue with the selected model\" エラーが出ていた問題を修正しました。"
+        },
+        {
+          "title": "`claude --resume`/`--continue` が起動時に入力無視していた不具合を修正",
+          "description": "`claude --resume` および `--continue` が起動時にキーボード入力に応答しない問題を修正しました。"
+        },
+        {
+          "title": "MCP サーバーの `request_timeout_ms` が無視される不具合を修正",
+          "description": "`--mcp-config` や `.mcp.json` で設定した MCP サーバーがサーバー別の `request_timeout_ms` を無視し、長時間の MCP ツール呼び出しが新規セッションで 60 秒のデフォルトでタイムアウトしていた問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_EXTRA_BODY` が無視されていた問題を修正",
+          "description": "`claude agents` / `--bg` のバックグラウンドワーカーで `CLAUDE_CODE_EXTRA_BODY` が黙って無視されていた点を修正し、シェルでエクスポートした上書きがディスパッチセッションに適用されるようにしました。"
+        },
+        {
+          "title": "OAuth MCP サーバーのトークンリフレッシュ失敗後に手動再認証が必要な問題を修正",
+          "description": "OAuth MCP サーバーでトークンのリフレッシュが一度失敗すると手動で再認証が必要だった問題を修正しました。"
+        },
+        {
+          "title": "`--permission-prompt-tool` が MCP サーバー未接続時にクラッシュする不具合を修正",
+          "description": "`--permission-prompt-tool` が MCP サーバーを指す際、サーバー接続完了前のコールドスタートで \"MCP tool not found\" エラーでクラッシュしていた問題を修正しました。"
+        },
+        {
+          "title": "`/model` ピッカーで価格表示が誤っていた問題を修正",
+          "description": "`/model` ピッカーの行が名前と異なるモデルの価格を表示していたバグを修正し、料金を請求しないプロバイダーのファーストパーティ価格の引用も停止しました。"
+        },
+        {
+          "title": "権限制限で `/model` ピッカーのサーバーモデル行がずれる問題を修正",
+          "description": "エンタイトルメントや許可リストの制限により行が除外された際、サーバー提供モデルの行が `/model` ピッカーで不適切に配置されていた問題を修正しました。"
+        },
+        {
+          "title": "デスクトップセッションが中途のスラッシュコマンド後に \"running\" のまま止まる不具合を修正",
+          "description": "ターン途中でスラッシュコマンドを送信した後、デスクトップセッションが \"running\" 表示のまま停止していた問題を修正しました。"
+        },
+        {
+          "title": "Windows で設定プロンプト後の `claude --resume` が入力無視する問題を修正",
+          "description": "Windows 環境で設定プロンプトが表示された後、`claude --resume` がエージェントビューでキーボード入力を無視していた問題を修正しました。"
+        },
+        {
+          "title": "`claude rm` がデーモンのロスターにジョブを残す不具合を修正",
+          "description": "`claude rm` 実行後、削除されたジョブがデーモンロスターに残り `claude agents` で再表示されていた問題を修正しました。"
+        },
+        {
+          "title": "`/remote-control` が未ログイン時に \"Unknown command\" と表示する問題を修正",
+          "description": "ログアウト状態で `/remote-control` が \"Unknown command\" を表示していたのを、サインイン方法を案内するように修正しました。"
+        },
+        {
+          "title": "ワークフロー詳細ビューで左矢印がフェーズやエージェントから戻らない問題を修正",
+          "description": "ワークフロー詳細ビューにおいて、左矢印キーがフェーズまたはエージェントから戻れなかった問題を修正しました。"
+        },
+        {
+          "title": "`/status` の破損インストール警告が重複表示される問題を修正",
+          "description": "`/status` が同じ broken-install 警告を二回表示していた問題を修正しました。"
+        },
+        {
+          "title": "LSP プラグインの誤った \"disused\" ヒントとテレメトリを修正",
+          "description": "LSP プラグインに対して誤った \"disused plugin\" のヒント表示と、使用されていない統計情報が歪んでいた問題を修正しました。"
+        },
+        {
+          "title": "`/doctor` の Homebrew アップデートチェックを修正",
+          "description": "`/doctor` が Homebrew インストールを設定チャンネルではなく、対応する cask のチャンネルと比較してチェックしていた問題を修正しました。"
+        },
+        {
+          "title": "全画面モードのジャンプ‑ボトム表示が macOS で誤案内していた問題を修正",
+          "description": "全画面モードで最下部へジャンプするボタンが macOS で Ctrl+End を示唆し、リバウンドコードが表示されず、トランスクリプト上で折り返しが起きていた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:35:43.437Z"
+}

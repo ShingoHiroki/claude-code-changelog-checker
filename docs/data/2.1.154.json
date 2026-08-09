@@ -1,0 +1,218 @@
+{
+  "version": "2.1.154",
+  "tagName": "v2.1.154",
+  "publishedAt": "2026-05-28T18:00:55Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.154",
+  "counts": {
+    "破壊的変更": 2,
+    "新機能": 1,
+    "改善": 1,
+    "その他": 19,
+    "バグ修正": 21
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE` は非推奨になりました（06/01 に削除予定）。Opus 4.6 で高速モードを使用するには、`/model claude-opus-4-6[1m]` に切り替えてから `/fast on` を実行してください",
+          "description": ""
+        },
+        {
+          "title": "ショートカットヘルプパネルから古くなった “& for background” ヒントを削除しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/claude-api` スキルに Claude Opus 4.8 のサポートと、4.7 → 4.8 への移行ガイダンスを追加しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "オートモード分類器のデータ流出検出能力を向上させました。特にリポジトリ全体の大量転送を検知できるようになりました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Opus 4.8 が登場しました！デフォルトでハイエフォートになり、最も難しいタスクには `/effort xhigh` を使用します",
+          "description": ""
+        },
+        {
+          "title": "ダイナミックワークフローを導入しました。Claude にワークフロー作成を依頼すると、バックグラウンドで数十〜数百のエージェントに作業を割り当ててくれるので、より大規模で複雑なタスクに取り組めます。`/workflows` で実行状況を確認してください",
+          "description": ""
+        },
+        {
+          "title": "Opus 4.8 の高速モードが、従来より大幅に安価になりました。速度が 2.5 倍になる代わりに標準料金の 2 倍です",
+          "description": ""
+        },
+        {
+          "title": "リーンシステムプロンプトが、Haiku、Sonnet、Opus 4.7 以前を除くすべてのモデルのデフォルトになりました",
+          "description": ""
+        },
+        {
+          "title": "Claude は、十分なコンテキストがあるにもかかわらず尋ねるのではなく、本当に自力で判断できない決定に対してのみ複数選択肢プロンプトを使用するようになりました",
+          "description": ""
+        },
+        {
+          "title": "`/simplify` は、完全な `/code-review --fix` バグハンティングレビューを実行する代わりに、クリーンアップ専用のレビュー（再利用、単純化、効率、altitude）を実行し、修正を適用します",
+          "description": ""
+        },
+        {
+          "title": "明確化のため、`/effort` スライダーのラベルを \"Speed\"/\"Intelligence\" からそれぞれ \"Faster\"/\"Smarter\" に変更しました",
+          "description": ""
+        },
+        {
+          "title": "`claude agents`：`! <command>` と入力すると、バックグラウンドセッションとしてシェルコマンドを実行でき、セッションへのアタッチ・デタッチが可能です。`claude --bg --exec '<command>'` でも同様に実行できます",
+          "description": ""
+        },
+        {
+          "title": "`claude agents`：`/logout` はバックグラウンドセッションに送られるのではなく、サインアウトするようになりました",
+          "description": ""
+        },
+        {
+          "title": "エージェントビューを開く `←←` が、Bedrock、Vertex、Foundry、そしてテレメトリが無効な状態でも動作するようになりました",
+          "description": ""
+        },
+        {
+          "title": "Chrome で Claude を使用する場合、`/chrome` → \"Select browser…\" で使用する接続済みブラウザを選択でき、複数のブラウザが接続されているときはチャット内でも選択できます",
+          "description": ""
+        },
+        {
+          "title": "プラグインは `plugin.json` またはマーケットプレイスエントリで `defaultEnabled: false` を宣言でき、`/plugin` や `claude plugin enable`で有効化できます。有効化されたプラグインの依存関係は自動的に有効化されます",
+          "description": ""
+        },
+        {
+          "title": "`/plugin` の Discover タブは、現在のディレクトリと関連性があるプラグインを「suggested for this directory」という注釈で固定表示します",
+          "description": ""
+        },
+        {
+          "title": "ストリーミングツール実行が常に有効になり、テレメトリが無効な場合や Bedrock/Vertex/Foundry 上でも利用可能です（以前は機能フラグで制御されていました）",
+          "description": ""
+        },
+        {
+          "title": "Stdio MCP サーバーのサブプロセスは、環境変数として `CLAUDE_CODE_SESSION_ID` と `CLAUDECODE=1` を受け取るようになりました",
+          "description": ""
+        },
+        {
+          "title": "`claude mcp list`/`get` は、未承認の `.mcp.json` サーバーを自動承認して接続するのではなく、`⏸ Pending approval` と表示します（出力がパイプされた場合）",
+          "description": ""
+        },
+        {
+          "title": "`/remote-control` のオートコンプリートは、リモートコントロールが既に有効な場合に \"Disconnect Remote Control\" を表示します",
+          "description": ""
+        },
+        {
+          "title": "Windows：`claude.exe` 使用中に発生していた更新失敗が、他のセッションを閉じて再試行するよう指示せずに汎用エラーを表示していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] オートモードは、mode picker に bypass-permissions 設定が表示される必要がなくなり、新規セッション画面に表示される閉じられる通知で、初回アクティブ時にオートモードを説明します",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`HOME` が末尾スラッシュ付きの場合に危険なパスとして `rm -rf $HOME` がブロックされなかった問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "同一セッション内でサンドボックス化された Bash コマンドとされていない Bash コマンドで `$TMPDIR` が異なるディレクトリに解決されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Claude Code のテーマが端末の背景と合わない場合に `claude agents` のハイライト行テキストが読めない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "バックグラウンドエージェントの完了通知が、一部の 1M コンテキストモデルで早期に「コンテキスト外」動作を引き起こす問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "スケジュールされた `/command` が実行された際に、バックグラウンドセッション分類器がユーザーのゴールを失う問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Claude Code のアップデート後、ピン留めされたバックグラウンドセッションが毎分再生成され、エージェント開始通知が繰り返されアイドル時にプロセスが churn する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "\"blocked\"、\"running\"、\"working\" のいずれかで停止したバックグラウンドセッションが、アイドル猶予期間後に自動終了しない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "バックグラウンドセッション内のサブエージェントが worktree 隔離ガードを回避して共有チェックアウトに書き込んでいた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "macOS でデーモンが終了した後に、孤児化した `claude --bg-pty-host` プロセスが CPU 100% で回転し続ける問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "オプションダイアログで区切り線以下に表示される項目に対して、数字キーショートカットが機能しなかった問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "サブエージェントを生成する際や、リンクされた worktree 内から `EnterWorktree` を呼び出す際に、`worktree.baseRef: \"head\"` が現在の worktree の HEAD ではなくメインチェックアウトの HEAD に解決されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "前行が端末幅ちょうどで終了した場合に、折り返し行の先頭に余計なスペースが入る問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "VS Code における間欠的な端末描画の破損を、思考スピナーが生成する色数を上限にすることで修正しました",
+          "description": ""
+        },
+        {
+          "title": "計画モードプロンプトが貼り付け画像やテキストから開始されたときに、プランファイル名に `[Image #N]` / `[Pasted text #N]` プレースホルダーが含まれる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "カラーツール出力で、画面に収まる短い ANSI カラー行に対して表示されていた「ctrl+o to expand」ヒントが誤って出る問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "管理設定内の単一の無効な `allowedMcpServers`/`deniedMcpServers` エントリが、全ての管理設定ポリシーを破棄していた問題を修正しました。問題のエントリは `claude doctor` の警告と共に除外されます",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_ALWAYS_ENABLE_EFFORT` が設定されているときに、effort パラメータをサポートしないモデルで発生していた API 400 エラーを修正しました",
+          "description": ""
+        },
+        {
+          "title": "プロンプト下のタスクパネルが、ワークフローのみ実行中の場合に選択不可の余計な \"main\" 行を表示していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "MCP サーバーに長いまたは複数行のツール名や長い説明がある場合に、/mcp ツールリストとツール詳細の描画が正しく行われない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "高速モードが有効な際、API（従量課金）ユーザー向けの Default オプションで高速モードの価格が表示されない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "安全性分類器が推論中に出力トークンを使い切った際に、auto mode が \"could not evaluate this action\" と誤ってアクションをブロックしていた問題を修正しました",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:26:36.486Z"
+}

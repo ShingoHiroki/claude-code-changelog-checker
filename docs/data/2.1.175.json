@@ -1,0 +1,26 @@
+{
+  "version": "2.1.175",
+  "tagName": "v2.1.175",
+  "publishedAt": "2026-06-12T04:23:51Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.175",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Added `enforceAvailableModels` managed setting — when enabled, the `availableModels` allowlist also constrains the Default model (a Default that would resolve to a disallowed model now falls back to the first allowed model), and user or project settings can no longer widen a managed `availableModels` list",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:29:51.629Z"
+}

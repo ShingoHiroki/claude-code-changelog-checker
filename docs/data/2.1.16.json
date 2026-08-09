@@ -1,0 +1,60 @@
+{
+  "version": "2.1.16",
+  "tagName": "v2.1.16",
+  "publishedAt": "2026-01-22T20:09:21Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.16",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 0,
+    "その他": 3,
+    "バグ修正": 3
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "新しいタスク管理システムの追加",
+          "description": "新しいタスク管理システムを導入し、依存関係トラッキングなどの新機能を提供します"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "VSCode のネイティブプラグイン管理サポート追加",
+          "description": "[VSCode] ネイティブプラグイン管理機能を追加しました"
+        },
+        {
+          "title": "OAuth ユーザー向けリモート Claude セッションの閲覧と再開機能追加",
+          "description": "[VSCode] OAuth ユーザーが Sessions ダイアログからリモート Claude セッションを閲覧・再開できるようにしました"
+        },
+        {
+          "title": "Windows におけるサイドバー表示レースコンディション修正",
+          "description": "[IDE] Windows で Claude Code サイドバーのビューコンテナが起動時に表示されないレースコンディションを修正しました"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "サブエージェント使用時のメモリ不足クラッシュ修正",
+          "description": "サブエージェントを大量に使用したセッション再開時に発生していたメモリ不足クラッシュを修正しました"
+        },
+        {
+          "title": "`/compact` 実行後の \"context remaining\" 警告が非表示にならない問題を修正",
+          "description": "`/compact` 実行後に \"context remaining\" 警告が隠れない問題を修正しました"
+        },
+        {
+          "title": "再開画面のセッションタイトルが言語設定を無視する問題を修正",
+          "description": "再開画面でセッションタイトルがユーザーの言語設定を考慮しない問題を修正しました"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:57:48.363Z"
+}

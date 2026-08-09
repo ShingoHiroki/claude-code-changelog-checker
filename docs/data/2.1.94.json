@@ -1,0 +1,137 @@
+{
+  "version": "2.1.94",
+  "tagName": "v2.1.94",
+  "publishedAt": "2026-04-07T21:18:51Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.94",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 1,
+    "その他": 5,
+    "バグ修正": 15
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Amazon Bedrock（Mantle）サポート追加",
+          "description": "Amazon BedrockをMantleで利用可能になり、環境変数 `CLAUDE_CODE_USE_MANTLE=1` を設定してください。"
+        },
+        {
+          "title": "`Slacked #channel` ヘッダーのコンパクト化",
+          "description": "`Slacked #channel` ヘッダーがコンパクトになり、クリック可能なチャンネルリンクがSlack MCPのsend‑messageツール呼び出しで提供されます。"
+        },
+        {
+          "title": "`keep-coding-instructions` フロントマター対応",
+          "description": "プラグイン出力スタイルで `keep-coding-instructions` フロントマター項目がサポートされました。"
+        },
+        {
+          "title": "`hookSpecificOutput.sessionTitle` 追加",
+          "description": "`UserPromptSubmit` フックに `hookSpecificOutput.sessionTitle` が追加され、セッションタイトルを設定できるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`--resume` の改善",
+          "description": "`--resume` が同一リポジトリの別ワークツリーから直接セッションを再開できるようになり、`cd` コマンドを表示しなくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "デフォルトの effort レベルを高に変更",
+          "description": "APIキー、Bedrock/Vertex/Foundry、Team、Enterprise ユーザーのデフォルト effort レベルを medium から high に変更しました。`/effort` で制御可能です。"
+        },
+        {
+          "title": "プラグインスキル名の安定化",
+          "description": "`\"skills\": [\"./\"]` で宣言されたプラグインスキルは、ディレクトリ名ではなくフロントマターの `name` を呼び出し名として使用するようになり、インストール方法に依存しない安定した名前が得られます。"
+        },
+        {
+          "title": "[VSCode] セッション開始時のサブプロセス負荷軽減",
+          "description": "VSCode でセッション開始時のコールドオープン時のサブプロセス作業が削減されました。"
+        },
+        {
+          "title": "[VSCode] ドロップダウンメニュー選択バグ修正",
+          "description": "入力中や矢印キー使用中にマウスがリスト上にあると誤った項目が選択されるドロップダウンメニューの問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] 設定ファイル解析失敗時の警告バナー追加",
+          "description": "`settings.json` の解析に失敗した際に警告バナーを表示し、権限ルールが適用されていないことをユーザーに知らせます。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "429 レートリミット後のエージェント停止バグ修正",
+          "description": "長い `Retry-After` ヘッダーを伴う 429 レートリミット応答後にエージェントが停止していた問題を修正し、エラーが即座に表示されるようにしました。"
+        },
+        {
+          "title": "macOS コンソールログイン失敗バグ修正",
+          "description": "macOS でキーチェーンがロックまたはパスワード不一致の際に「Not logged in」で静かに失敗していたコンソールログイン問題を修正し、エラーが表示され `claude doctor` が対策を診断します。"
+        },
+        {
+          "title": "YAML フロントマターのプラグインフック無視バグ修正",
+          "description": "YAML フロントマターで定義されたプラグインスキルフックが無視されていた問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_PLUGIN_ROOT` 未設定時のプラグインフックエラー修正",
+          "description": "`CLAUDE_PLUGIN_ROOT` が未設定でも「No such file or directory」エラーで失敗していたプラグインフックを修正しました。"
+        },
+        {
+          "title": "ローカルマーケットプレイスプラグインのパス解決バグ修正",
+          "description": "起動時にローカルマーケットプレイスプラグインの `${CLAUDE_PLUGIN_ROOT}` がインストールキャッシュではなくマーケットプレイスソースディレクトリに解決される問題を修正しました。"
+        },
+        {
+          "title": "スクロールバックの重複 diff と空ページバグ修正",
+          "description": "長時間セッションでスクロールバックに同じ diff が繰り返し表示され、空白ページが出る問題を修正しました。"
+        },
+        {
+          "title": "マルチラインプロンプトのインデント修正",
+          "description": "トランスクリプトでマルチラインユーザープロンプトが折り返し行を `❯` カレット下にインデントしていた問題を修正し、テキスト下に正しくインデントされます。"
+        },
+        {
+          "title": "Shift+Space が文字列 \"space\" を入力するバグ修正",
+          "description": "検索入力で Shift+Space が文字列 `space` を挿入していた問題を修正し、スペース文字が正しく入力されます。"
+        },
+        {
+          "title": "tmux 内でリンクが二重タブ開くバグ修正",
+          "description": "xterm.js ベース端末（VS Code、Hyper、Tabby）で tmux 内のハイパーリンクをクリックした際にブラウザタブが2つ開く問題を修正しました。"
+        },
+        {
+          "title": "alt-screen スクロール時のゴーストラインバグ修正",
+          "description": "スクロール途中でコンテンツ高さが変化すると重複したゴースト行が残る alt-screen 描画バグを修正しました。"
+        },
+        {
+          "title": "`FORCE_HYPERLINK` が `settings.json` の env で無視されるバグ修正",
+          "description": "`settings.json` の `env` で設定した `FORCE_HYPERLINK` 環境変数が無視されていた問題を修正しました。"
+        },
+        {
+          "title": "ネイティブターミナルのカーソルタブ追従バグ修正",
+          "description": "ダイアログで選択タブにカーソルが追従しない問題を修正し、スクリーンリーダーや拡大鏡がタブナビゲーションを追えるようにしました。"
+        },
+        {
+          "title": "Bedrock で Sonnet 3.5 v2 呼び出し修正",
+          "description": "`us.` 推論プロファイル ID を使用して Bedrock から Sonnet 3.5 v2 を正しく呼び出すように修正しました。"
+        },
+        {
+          "title": "SDK/print モードの途中応答保存バグ修正",
+          "description": "ストリーム途中で中断された場合に SDK/print モードが会話履歴に部分的なアシスタント応答を保持しない問題を修正しました。"
+        },
+        {
+          "title": "ストリーム JSON のマルチバイト文字破損バグ修正",
+          "description": "UTF-8 シーケンスがチャンク境界で分割された際に、CJK などのマルチバイトテキストが `U+FFFD` で汚染される問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:11:33.254Z"
+}

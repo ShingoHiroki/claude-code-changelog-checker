@@ -1,0 +1,89 @@
+{
+  "version": "2.0.74",
+  "tagName": "v2.0.74",
+  "publishedAt": "2025-12-19T22:13:25Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.0.74",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 5,
+    "改善": 1,
+    "その他": 2,
+    "バグ修正": 5
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "LSP ツールの追加",
+          "description": "コードインテリジェンス機能（定義へジャンプ、参照検索、ホバーでのドキュメント表示）を提供する LSP (Language Server Protocol) ツールを追加しました。"
+        },
+        {
+          "title": "`/terminal-setup` のサポート追加",
+          "description": "Kitty、Alacritty、Zed、Warp ターミナル向けに `/terminal-setup` コマンドのサポートを追加しました。"
+        },
+        {
+          "title": "`/theme` での Ctrl+T ショートカット追加",
+          "description": "`/theme` 内で ctrl+t を押すと構文ハイライトのオン/オフを切り替えられるショートカットを追加しました。"
+        },
+        {
+          "title": "テーマピッカーに構文ハイライト情報を追加",
+          "description": "テーマ選択画面に構文ハイライトの情報を表示する機能を追加しました。"
+        },
+        {
+          "title": "macOS ユーザー向け Alt ショートカット失敗時の案内追加",
+          "description": "端末設定により Alt ショートカットが機能しない場合の対処法を macOS ユーザー向けに提供しました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/context` コマンドの可視化改善",
+          "description": "スキルとエージェントをソース別、スラッシュコマンド別にグループ化し、トークン数でソートして `/context` コマンドの表示を改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "[Windows] レンダリング不具合の修正",
+          "description": "Windows 環境での不適切なレンダリング問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] 年末プロモーションメッセージにギフトタグピクトグラムを追加",
+          "description": "VSCode 用に年末プロモーションメッセージにギフトタグのピクトグラムを追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`allowed-tools` スキルの適用不具合修正",
+          "description": "スキルが呼び出すツールに対して `allowed-tools` が適用されていなかった問題を修正しました。"
+        },
+        {
+          "title": "Opus 4.5 ヒント表示の誤り修正",
+          "description": "ユーザーがすでに Opus を使用中でも Opus 4.5 のティップが誤って表示されていた問題を修正しました。"
+        },
+        {
+          "title": "構文ハイライト未初期化時のクラッシュ潜在バグ修正",
+          "description": "構文ハイライトが正しく初期化されていない場合に発生する可能性のあるクラッシュを修正しました。"
+        },
+        {
+          "title": "`/plugins discover` のリスト選択インジケータ表示バグ修正",
+          "description": "検索ボックスにフォーカスがある間にリスト選択インジケータが表示されていた視覚的バグを修正しました。"
+        },
+        {
+          "title": "macOS キーボードショートカット表記を 'opt' に修正",
+          "description": "macOS のキーボードショートカット表示が 'alt' となっていたのを 'opt' に変更しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:54:41.481Z"
+}

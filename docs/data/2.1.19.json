@@ -1,0 +1,88 @@
+{
+  "version": "2.1.19",
+  "tagName": "v2.1.19",
+  "publishedAt": "2026-01-23T21:56:32Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.19",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 0,
+    "その他": 4,
+    "バグ修正": 8
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "環境変数 `CLAUDE_CODE_ENABLE_TASKS` の追加",
+          "description": "`CLAUDE_CODE_ENABLE_TASKS` 環境変数を追加し、`false` に設定すると一時的に旧システムを維持できる。"
+        },
+        {
+          "title": "カスタムコマンド用引数の省略形追加",
+          "description": "カスタムコマンドで個々の引数にアクセスするために `$0`、`$1` などの省略形を追加した。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "追加権限不要のスキルの自動許可",
+          "description": "追加の権限やフックが不要なスキルは、承認を要求せずに許可されるよう変更した。"
+        },
+        {
+          "title": "インデックス引数構文の変更",
+          "description": "インデックス引数の構文を `$ARGUMENTS.0` から `$ARGUMENTS[0]`（ブラケット表記）へ変更した。"
+        },
+        {
+          "title": "[SDK] `queued_command` 添付メッセージのリプレイ追加",
+          "description": "`replayUserMessages` が有効な場合、`queued_command` の添付メッセージを `SDKUserMessageReplay` イベントとしてリプレイできるようにした。"
+        },
+        {
+          "title": "[VSCode] セッション分岐とリワインド機能の全ユーザー向け有効化",
+          "description": "VSCode で全ユーザーがセッションのフォーキングとリワインド機能を利用できるようにした。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "AVX非対応CPUでのクラッシュ修正",
+          "description": "AVX命令をサポートしないプロセッサ上で発生していたクラッシュを修正した。"
+        },
+        {
+          "title": "端末閉鎖時のClaude Codeプロセス残留修正",
+          "description": "端末が閉じられた際、`process.exit()` の EIO エラーを捕捉し、フォールバックで SIGKILL を使用することで残留プロセスを防止した。"
+        },
+        {
+          "title": "`/rename` と `/tag` のセッション更新不具合修正",
+          "description": "異なるディレクトリ（例: git worktree）から再開した際に、`/rename` と `/tag` が正しいセッションを更新しなかった問題を修正した。"
+        },
+        {
+          "title": "カスタムタイトルでのセッション再開不具合修正",
+          "description": "別ディレクトリから実行したときに、カスタムタイトルでのセッション再開が機能しない問題を修正した。"
+        },
+        {
+          "title": "プロンプトスタッシュ時の貼り付けテキスト消失修正",
+          "description": "Ctrl+S でプロンプトを保存し、復元した際に貼り付けたテキスト内容が失われる問題を修正した。"
+        },
+        {
+          "title": "エージェント一覧のデフォルト表示修正",
+          "description": "明示的なモデル設定がないエージェントで、\"Inherit (default)\" の代わりに \"Sonnet (default)\" と表示されていた問題を修正した。"
+        },
+        {
+          "title": "バックグラウンドフックコマンドの早期終了不具合修正",
+          "description": "バックグラウンドで実行されたフックコマンドが早期に戻らず、意図的にバックグラウンド化されたプロセスの完了をセッションが待つ可能性があった問題を修正した。"
+        },
+        {
+          "title": "ファイル書き込みプレビューで空行が省略される不具合修正",
+          "description": "ファイル書き込みプレビュー時に空行が省略されていた問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:58:01.474Z"
+}

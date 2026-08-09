@@ -1,0 +1,166 @@
+{
+  "version": "2.1.224",
+  "tagName": "v2.1.224",
+  "publishedAt": "2026-08-07T04:00:59Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.224",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 7,
+    "改善": 3,
+    "その他": 7,
+    "バグ修正": 13
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "200サブエージェント上限の削除",
+          "description": "1セッションあたり200サブエージェントの生成上限を撤廃し、長時間実行中のセッションでも新しいエージェントが拒否されなくなります（同時実行数と深さの制限は引き続き適用されます）"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "セルフホスト環境の追加",
+          "description": "`claude self-hosted-runner` を使用して、Team および Enterprise プランで、独自のマシンやコンテナを Claude Code のウェブ、モバイル、デスクトップセッションの実行環境として利用できるようになりました"
+        },
+        {
+          "title": "`archive` プラグインソースの追加",
+          "description": "git や npm を使用せず、HTTPS 経由で zip ファイルからプラグインをインストールできる `archive` ソースを追加し、オプションで SHA-256 ピンニングが可能になりました"
+        },
+        {
+          "title": "利用不可ペースト削除時のキャンセル確認ステップ追加",
+          "description": "利用できないペーストを削除するときに、コマンドテキストが変更されることを確認するキャンセル・確認手順が追加されました"
+        },
+        {
+          "title": "`ANTHROPIC_BEDROCK_REGION_PREFIX` 環境変数の追加",
+          "description": "Bedrock が `AWS_REGION` から導出されたプロファイルではなく、特定のクロスリージョン推論プロファイルを優先できるようにする環境変数 `ANTHROPIC_BEDROCK_REGION_PREFIX` を追加しました"
+        },
+        {
+          "title": "`crossSessionInbound` と `dialogExpiry` 設定の追加",
+          "description": "権限バイパスで実行中のセッションに送信されたクロスセッションメッセージを承認待ちにし、他セッションへのメッセージは自動配信する `crossSessionInbound` と `dialogExpiry` の設定を追加しました"
+        },
+        {
+          "title": "サンドボックスの認証情報マスキングオプション追加",
+          "description": "`extract` と `onExtractNoMatch`（構造化環境変数用）、`decode: \"jwt\"` と `maskClaims`（JWT 対応マスキング）、`awsPairs`/`sigv4`（AWS SigV4 再署名）といったサンドボックス認証情報マスキングオプションを追加しました。これらは `network.tlsTerminate` が必要で、ユーザー、マネージド、または `--settings` からのみ有効です"
+        },
+        {
+          "title": "クロスセッション `SendMessage` の追加",
+          "description": "Claude Code セッション間でメッセージを送受信できるクロスセッション `SendMessage` を追加し、`ListAgents` でマシン上のセッションを検出できるようになりました（macOS と Linux 対応）"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "全画面モードの改善",
+          "description": "繰り返しコンパクションが行われても、最新区間だけでなく、コンパクション前の全履歴をスクロールバックに保持するよう全画面モードを改善しました"
+        },
+        {
+          "title": "Remote Control の改善（コンパクション表示）",
+          "description": "接続されたウェブ・モバイルクライアントがサイレントな停止ではなくコンパクション進行状況とコンパクション後の境界を表示し、`/clear` リセットがクライアントに伝播するように Remote Control を改善しました"
+        },
+        {
+          "title": "Remote Control の改善（接続失敗表示）",
+          "description": "接続失敗時に詳細情報と再接続ショートカットを伴う永続的な失敗インジケータを表示し、8 秒のトーストだけではなくなるよう Remote Control を改善しました"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "マネージド設定の変更",
+          "description": "組織設定が変更されていない場合、再ログインや組織切替後に承認プロンプトが再表示されなくなりました"
+        },
+        {
+          "title": "フィードバック調査のトランスクリプト共有変更",
+          "description": "同意がある場合、最後のリクエストのモデル設定（`CLAUDE.md` の指示を含むシステムプロンプト、ツール定義、モデルパラメータ）もアップロードされるようになりました。シークレットは従来通り除外され、サイズが大きい場合はこれらのフィールドが優先的に削除されます"
+        },
+        {
+          "title": "Bash ツール説明の変更",
+          "description": "コマンド出力がモデルに表示され、ユーザーに必ずしも正確に表示されないことを常に記載するよう Bash ツールの説明を変更しました"
+        },
+        {
+          "title": "呼び出し済みペーストのプレースホルダー番号変更",
+          "description": "入力に受け入れられた際、呼び出し済みペーストのプレースホルダー番号が再番号付けされるよう変更しました"
+        },
+        {
+          "title": "Remote Control のセッション管理変更",
+          "description": "コンパクションや `/resume` 後に新しいセッションが作成された際、古いサーバーセッションを一覧に残すのではなくアーカイブするよう Remote Control を変更しました"
+        },
+        {
+          "title": "[VSCode] 接続失敗後も接続中と表示されるバグ修正",
+          "description": "接続が失敗した後も Remote Control が接続中と表示されていた VSCode 拡張の問題を修正しました"
+        },
+        {
+          "title": "[VSCode] `remoteControlAtStartup` が無視される問題の修正",
+          "description": "`remoteControlAtStartup` を明示的に有効にした際にセッションがそれを尊重しない VSCode の問題を修正しました"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "長いプロジェクトパスの解決バグ修正",
+          "description": "200文字超のプロジェクトパスが共有サニタイズプレフィックス下で別プロジェクトのセッションディレクトリに解決されていた問題を修正し、セッション一覧、名前変更、フォーク、削除、`/resume` がプロジェクト間で交差しなくなりました"
+        },
+        {
+          "title": "`SendMessage` の送信失敗報告修正",
+          "description": "同僚のインボックスへの書き込みが失敗しているにもかかわらず「Message sent」と表示されていた `SendMessage` を修正し、失敗時はエラーとして報告されるようにしました"
+        },
+        {
+          "title": "サンドボックスファイルシステム deny エントリのスラッシュ問題修正",
+          "description": "末尾スラッシュ付きの deny エントリ（例: `denyRead: \"~/.aws/\"`）が Linux と macOS で無視されていた問題を修正しました"
+        },
+        {
+          "title": "Bash ツールでのサンドボックス違反詳細表示修正",
+          "description": "サンドボックス違反の詳細が Bash ツール結果に表示されず、Claude がどのファイル・ネットワークアクセスが拒否されたか分からなかった問題を修正し、違反理由が表示されるようになりました"
+        },
+        {
+          "title": "MCP ツールの名前通知遅延バグ修正",
+          "description": "ターン途中で接続する MCP ツールがツール検索で遅延され、モデルに名前が通知されない問題を修正しました"
+        },
+        {
+          "title": "プラグインインストール記録の破損バグ修正",
+          "description": "同一プラグインを複数プロジェクトにインストールした際、インストール記録が無音で破損する問題を修正しました"
+        },
+        {
+          "title": "呼び出し/復元ペーストのデータ不整合修正",
+          "description": "期限切れやプレースホルダー番号の衝突により、呼び出しまたは復元されたペースト内容が誤ったデータを添付したりテキストが失われる問題を修正しました"
+        },
+        {
+          "title": "Wayland のコピーオンセレクトバグ修正",
+          "description": "Wayland でコピーオンセレクトがクリップボードに届かないことがあり、2つの選択書き込みが競合していた問題を修正しました"
+        },
+        {
+          "title": "フィードバック調査の長時間セッション共有失敗修正",
+          "description": "長時間セッションでフィードバック調査のトランスクリプト共有が無音で失敗していた問題を修正し、失敗時にエラーメッセージが表示されるようにしました"
+        },
+        {
+          "title": "Remote Control 自動開始時の認証取得失敗バグ修正",
+          "description": "古いログイントークンでのコールドスタート時に「Remote credentials fetch failed」と表示される Remote Control の自動開始失敗を間欠的に起きる問題を修正しました"
+        },
+        {
+          "title": "Remote Control と SDK の空メッセージ表示修正",
+          "description": "`/clear` や出力なしコマンド実行後に Remote Control と SDK クライアントが空の \"(no content)\" メッセージを表示していた問題を修正しました"
+        },
+        {
+          "title": "期限切れサーバーセッション再作成時の履歴アップロードバグ修正",
+          "description": "サーバーセッションが期限切れ後に再作成された Remote Control セッションが、以前のローカル会話履歴を新セッションにアップロードしていた問題を修正しました"
+        },
+        {
+          "title": "セッション再開時の Remote Control 再接続バグ修正",
+          "description": "ユーザーが Remote Control をオフにした状態で（`--resume`、SDK ホスト、VS Code 拡張）セッションを再開すると、Remote Control が無音で再接続されていた問題を修正しました"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:41:35.862Z"
+}

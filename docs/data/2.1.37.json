@@ -1,0 +1,26 @@
+{
+  "version": "2.1.37",
+  "tagName": "v2.1.37",
+  "publishedAt": "2026-02-07T19:10:10Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.37",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "/fast が /extra-usage 有効化後にすぐ利用できない問題を修正",
+          "description": "`/fast` が `/extra-usage` を有効化した直後に即座に利用できない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:59:55.595Z"
+}

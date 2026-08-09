@@ -1,0 +1,65 @@
+{
+  "version": "2.1.59",
+  "tagName": "v2.1.59",
+  "publishedAt": "2026-02-26T00:59:24Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.59",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 3,
+    "その他": 1,
+    "バグ修正": 2
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/copy` コマンド追加",
+          "description": "コードブロックがある場合にインタラクティブピッカーを表示し、個々のコードブロックまたは応答全体を選択できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "複合 Bash コマンドのプレフィックス提案を改善",
+          "description": "複合 Bash コマンド（例: `cd /tmp && git fetch && git push`）の「always allow」プレフィックス提案を改善し、コマンド全体を一つとして扱うのではなく、サブコマンドごとに賢いプレフィックスを算出できるようにしました。"
+        },
+        {
+          "title": "短タスクリストの順序を改善",
+          "description": "短いタスクリストの並び順を改善しました。"
+        },
+        {
+          "title": "マルチエージェントセッションのメモリ使用量を改善",
+          "description": "完了したサブエージェントのタスク状態を解放することで、マルチエージェントセッションにおけるメモリ使用量を改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "自動メモリへのコンテキスト自動保存",
+          "description": "Claude が有用なコンテキストを自動的に auto-memory に保存します。/memory コマンドで管理できます。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "MCP OAuth トークン更新の競合を修正",
+          "description": "複数の Claude Code インスタンスを同時に実行した際の MCP OAuth トークンリフレッシュ競合問題を修正しました。"
+        },
+        {
+          "title": "作業ディレクトリ削除時のシェルコマンドエラーメッセージを修正",
+          "description": "作業ディレクトリが削除された場合にシェルコマンドが明確なエラーメッセージを表示しない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:02:49.762Z"
+}

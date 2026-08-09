@@ -1,0 +1,39 @@
+{
+  "version": "2.1.68",
+  "tagName": "v2.1.68",
+  "publishedAt": "2026-03-04T10:11:14Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.68",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 2,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "Opus 4 と 4.1 を削除",
+          "description": "Claude Code のファーストパーティ API から Opus 4 と 4.1 を削除しました。これらのモデルを固定していたユーザーは自動的に Opus 4.6 に移行されます。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Opus 4.6 のデフォルト努力レベルを medium に変更",
+          "description": "Max と Team サブスクライバー向けに、Opus 4.6 のデフォルトが `medium` effort に設定されました。`medium` effort は速度と徹底度のバランスが最適で、ほとんどのタスクに適しています。設定は `/model` コマンドでいつでも変更可能です。"
+        },
+        {
+          "title": "`ultrathink` キーワードを再導入",
+          "description": "`ultrathink` キーワードを再導入し、次のターンで high effort を有効化できるようにしました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:03:19.833Z"
+}

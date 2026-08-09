@@ -1,0 +1,100 @@
+{
+  "version": "2.1.74",
+  "tagName": "v2.1.74",
+  "publishedAt": "2026-03-12T00:34:23Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.74",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 0,
+    "その他": 3,
+    "バグ修正": 12
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "/context コマンドに実用的提案を追加",
+          "description": "/context コマンドがコンテキストが重いツール、メモリ肥大、容量警告を検出し、具体的な最適化手順を提示するようになりました。"
+        },
+        {
+          "title": "`autoMemoryDirectory` 設定を追加",
+          "description": "`autoMemoryDirectory` 設定で自動メモリ保存用のカスタムディレクトリを指定できるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`--plugin-dir` の動作変更",
+          "description": "`--plugin-dir` を変更し、ローカル開発用コピーが同名のマーケットプレイスプラグインを上書きするようになりました（ただし、管理設定で強制有効化されているプラグインは除く）。"
+        },
+        {
+          "title": "[VSCode] Untitled セッションの削除ボタン不具合修正",
+          "description": "Untitled セッションで削除ボタンが機能しなかった問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] 統合ターミナルのスクロールホイール応答性改善",
+          "description": "ターミナルの状態を認識した加速機能により、統合ターミナルでのスクロールホイールの応答性が向上しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "ストリーミング API のメモリリーク修正",
+          "description": "ジェネレータが早期に終了された場合にストリーミング API のレスポンスバッファが解放されず、Node.js/npm のコードパスで RSS が無制限に増加する問題を修正しました。"
+        },
+        {
+          "title": "管理ポリシー `ask` ルールのバイパス修正",
+          "description": "ユーザーの `allow` ルールやスキルの `allowed-tools` により、管理されたポリシーの `ask` ルールが回避されていた問題を修正しました。"
+        },
+        {
+          "title": "エージェントでのフルモデル ID の認識修正",
+          "description": "エージェントフロントマター `model:` フィールドや `--agents` JSON 設定で、`claude-opus-4-5` のようなフルモデル ID が無視されていた問題を修正し、`--model` と同じモデル値を受け入れるようにしました。"
+        },
+        {
+          "title": "MCP OAuth 認証のハングアップ修正",
+          "description": "コールバックポートが既に使用中の場合に MCP OAuth 認証がハングする問題を修正しました。"
+        },
+        {
+          "title": "MCP OAuth リフレッシュの再認証プロンプト未表示修正",
+          "description": "リフレッシュトークンが失効した際、HTTP 200 エラーを返す OAuth サーバー（例: Slack）で再認証のプロンプトが表示されなかった問題を修正しました。"
+        },
+        {
+          "title": "macOS ネイティブバイナリの音声モード失敗修正",
+          "description": "端末がマイク許可を一度も取得していないユーザーで、macOS ネイティブバイナリの音声モードが黙って失敗していた問題を修正し、`audio-input` エンタイトルメントを追加して macOS が正しくプロンプトを表示するようにしました。"
+        },
+        {
+          "title": "`SessionEnd` フックのタイムアウト設定修正",
+          "description": "`SessionEnd` フックが `hook.timeout` に関わらず 1.5 秒で終了していた問題を修正し、`CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS` 環境変数で設定可能にしました。"
+        },
+        {
+          "title": "REPL 内での `/plugin install` 失敗修正",
+          "description": "ローカルソースを持つマーケットプレイスプラグインを REPL でインストールしようとした際に失敗していた問題を修正しました。"
+        },
+        {
+          "title": "マーケットプレイス更新時の git サブモジュール同期修正",
+          "description": "マーケットプレイスの更新で git サブモジュールが同期されず、サブモジュール内のプラグインソースが更新後に壊れる問題を修正しました。"
+        },
+        {
+          "title": "不明なスラッシュコマンドでの入力ドロップ修正",
+          "description": "引数付きの不明なスラッシュコマンドが入力を黙って破棄していた問題を修正し、警告として入力内容を表示するようにしました。"
+        },
+        {
+          "title": "RTL テキスト表示不具合修正",
+          "description": "Windows Terminal、conhost、VS Code 統合ターミナルでヘブライ語、アラビア語など右から左へ書くテキストが正しく表示されなかった問題を修正しました。"
+        },
+        {
+          "title": "Windows の LSP サーバー動作不良修正",
+          "description": "ファイル URI が不正な形式だったために Windows で LSP サーバーが機能しなかった問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:06:22.290Z"
+}

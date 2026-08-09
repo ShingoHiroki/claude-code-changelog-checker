@@ -1,0 +1,92 @@
+{
+  "version": "2.1.41",
+  "tagName": "v2.1.41",
+  "publishedAt": "2026-02-13T06:08:49Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.41",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 2,
+    "その他": 0,
+    "バグ修正": 11
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`claude auth` CLIサブコマンド追加",
+          "description": "Added `claude auth login`, `claude auth status`, and `claude auth logout` CLI subcommands"
+        },
+        {
+          "title": "Windows ARM64 ネイティブバイナリ対応",
+          "description": "Added Windows ARM64 (win32-arm64) native binary support"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "/rename の自動セッション名生成",
+          "description": "Improved `/rename` to auto-generate session name from conversation context when called without arguments"
+        },
+        {
+          "title": "プロンプトフッターの狭い端末レイアウト改善",
+          "description": "Improved narrow terminal layout for prompt footer"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "AWS 認証リフレッシュのハングアップ修正",
+          "description": "Fixed AWS auth refresh hanging indefinitely by adding a 3-minute timeout"
+        },
+        {
+          "title": "@メンションのアンカーフラグメント解決修正",
+          "description": "Fixed file resolution failing for @-mentions with anchor fragments (e.g., `@README.md#installation`) "
+        },
+        {
+          "title": "FileReadTool の FIFO・`/dev/stdin`・大ファイルでのブロッキング修正",
+          "description": "Fixed FileReadTool blocking the process on FIFOs, `/dev/stdin`, and large files"
+        },
+        {
+          "title": "ストリーミング Agent SDK モードでのバックグラウンドタスク通知修正",
+          "description": "Fixed background task notifications not being delivered in streaming Agent SDK mode"
+        },
+        {
+          "title": "分類子ルール入力でカーソルが末尾にジャンプするバグ修正",
+          "description": "Fixed cursor jumping to end on each keystroke in classifier rule input"
+        },
+        {
+          "title": "Markdown リンクの表示テキストが欠落する問題修正",
+          "description": "Fixed markdown link display text being dropped for raw URL"
+        },
+        {
+          "title": "自動コンパクト失敗エラー通知表示修正",
+          "description": "Fixed auto-compact failure error notifications being shown to users"
+        },
+        {
+          "title": "サブエージェント経過時間表示に許可待ち時間が含まれる問題修正",
+          "description": "Fixed permission wait time being included in subagent elapsed time display"
+        },
+        {
+          "title": "プロアクティブティックがプランモードで発火するバグ修正",
+          "description": "Fixed proactive ticks firing while in plan mode"
+        },
+        {
+          "title": "設定がディスク上で変更された際の古い許可ルールクリア修正",
+          "description": "Fixed clear stale permission rules when settings change on disk"
+        },
+        {
+          "title": "フックブロッキングエラーで UI に stderr 内容が表示される問題修正",
+          "description": "Fixed hook blocking errors showing stderr content in UI"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:00:13.723Z"
+}

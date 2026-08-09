@@ -1,0 +1,101 @@
+{
+  "version": "2.1.33",
+  "tagName": "v2.1.33",
+  "publishedAt": "2026-02-06T01:47:21Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.33",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 1,
+    "その他": 4,
+    "バグ修正": 7
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`TeammateIdle` と `TaskCompleted` フックイベントを追加",
+          "description": "マルチエージェントワークフロー向けに `TeammateIdle` と `TaskCompleted` フックイベントが追加されました。"
+        },
+        {
+          "title": "`Task(agent_type)` で生成できるサブエージェントを制限する機能を追加",
+          "description": "エージェントの `tools` フロントマターで `Task(agent_type)` 構文を使用し、生成可能なサブエージェントを限定できるようになりました。"
+        },
+        {
+          "title": "エージェントの `memory` フロントマターで永続メモリをサポート",
+          "description": "`memory` フロントマター項目がエージェントで使用できるようになり、`user`、`project`、`local` スコープの永続メモリが可能になりました。"
+        },
+        {
+          "title": "スキル説明と `/skills` メニューにプラグイン名を追加",
+          "description": "スキルの説明と `/skills` メニューにプラグイン名が表示され、発見しやすくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "API 接続失敗時のエラーメッセージを改善",
+          "description": "API 接続失敗時に具体的な原因（例: ECONNREFUSED、SSL エラー）が表示され、汎用的な \"Connection error\" ではなくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "無効な管理設定エラーが表示されるようになった",
+          "description": "無効な managed settings からのエラーが表面化（表示）されるようになりました。"
+        },
+        {
+          "title": "VSCode: リモートセッションをサポートし、OAuth ユーザーが claude.ai から閲覧・再開可能に",
+          "description": "VSCode にリモートセッションのサポートが追加され、OAuth ユーザーが claude.ai 上のセッションを閲覧および再開できるようになりました。"
+        },
+        {
+          "title": "VSCode: セッションピッカーに git ブランチとメッセージ数を表示、ブランチ名検索に対応",
+          "description": "VSCode のセッションピッカーに git ブランチ名とメッセージ数が表示され、ブランチ名で検索できるようになりました。"
+        },
+        {
+          "title": "VSCode: 初期セッション読み込みと切替時のスクロール不足を修正",
+          "description": "VSCode でセッションの初回読み込みや切替時にスクロールが底まで届かない問題を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "tmux 内のエージェント仲間セッションでメッセージ送受信を修正",
+          "description": "tmux 環境でエージェント teammate セッションがメッセージを送受信できるように修正しました。"
+        },
+        {
+          "title": "現在のプランで利用できないエージェントチームの警告を修正",
+          "description": "`agent teams` が現在のプランで利用できないという警告が表示される問題を修正しました。"
+        },
+        {
+          "title": "拡張思考中に新メッセージ送信で思考が中断される問題を修正",
+          "description": "モデルが extended thinking 状態のときに新しいメッセージを送信すると思考フェーズが中断される問題を修正しました。"
+        },
+        {
+          "title": "ストリーム中止時の API エラー（空白テキスト＋thinkingブロック）を修正",
+          "description": "ストリーム途中で中止した際、空白テキストと `thinking` ブロックが組み合わさり正規化を回避して無効なリクエストになる可能性がある API エラーを修正しました。"
+        },
+        {
+          "title": "ストリーミングエンドポイントでの 404 エラーがフォールバックしない問題を修正",
+          "description": "API プロキシの互換性問題で、ストリーミングエンドポイントで 404 エラーが発生した際に非ストリーミングへのフォールバックが行われない問題を修正しました。"
+        },
+        {
+          "title": "`settings.json` のプロキシ設定が Node.js ビルドの WebFetch 等に適用されない問題を修正",
+          "description": "`settings.json` で環境変数として設定したプロキシ設定が、Node.js ビルドの WebFetch やその他 HTTP リクエストに適用されていなかった問題を修正しました。"
+        },
+        {
+          "title": "`/resume` セッションピッカーがスラッシュコマンドで開始したセッションのタイトルを XML 表示する問題を修正",
+          "description": "`/resume` のセッションピッカーがスラッシュコマンドで開始したセッションのタイトルをクリーンに表示せず、生の XML マークアップを表示していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:59:45.108Z"
+}

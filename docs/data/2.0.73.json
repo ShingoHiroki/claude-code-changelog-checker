@@ -1,0 +1,73 @@
+{
+  "version": "2.0.73",
+  "tagName": "v2.0.73",
+  "publishedAt": "2025-12-19T00:59:32Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.0.73",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 3,
+    "その他": 1,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "クリック可能な `[Image #N]` リンクを追加",
+          "description": "添付画像をデフォルトビューアで開くクリック可能な `[Image #N]` リンクを追加しました。"
+        },
+        {
+          "title": "`alt-y` (yank-pop) でキルリング履歴をサイクル",
+          "description": "`alt-y` (yank-pop) を追加し、`ctrl-y` の yank 後にキルリング履歴を循環できるようにしました。"
+        },
+        {
+          "title": "プラグイン探索画面に検索フィルタを追加",
+          "description": "プラグイン発見画面に検索フィルタを導入し、名前、説明、またはマーケットプレイスでタイプして絞り込めるようにしました。"
+        },
+        {
+          "title": "カスタムセッションIDのサポートを追加",
+          "description": "`--session-id` と `--resume` または `--continue`、さらに `--fork-session` を組み合わせてセッションをフォークする際に、カスタムセッションIDを指定できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/theme` コマンドでテーマピッカーを直接開くよう改善",
+          "description": "`/theme` コマンドがテーマピッカーを直接開くように改善しました。"
+        },
+        {
+          "title": "テーマピッカー UI を改善",
+          "description": "テーマピッカーのユーザーインターフェースを改善しました。"
+        },
+        {
+          "title": "統一 SearchBox コンポーネントで検索 UX を改善",
+          "description": "再開セッション、権限、プラグイン画面全体で統一された SearchBox コンポーネントを使用し、検索ユーザーエクスペリエンスを向上させました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "[VSCode] タブアイコンバッジで保留中の権限と未読完了を表示",
+          "description": "タブアイコンにバッジを追加し、保留中の権限を青色、未読の完了をオレンジ色で示すようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "入力履歴サイクルの遅延とテキスト上書きレースコンディションを修正",
+          "description": "入力履歴のサイクルが遅い問題と、メッセージ送信後にテキストが上書きされる可能性があるレースコンディションを修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:54:32.114Z"
+}

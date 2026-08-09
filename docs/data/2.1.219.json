@@ -1,0 +1,150 @@
+{
+  "version": "2.1.219",
+  "tagName": "v2.1.219",
+  "publishedAt": "2026-07-24T17:14:23Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.219",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 9,
+    "改善": 3,
+    "その他": 4,
+    "バグ修正": 10
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "fastモードからOpus 4.7を除外",
+          "description": "Opus 4.7 が fast モードから削除され、`/fast` は Opus 5 と Opus 4.8 にのみ適用されます。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude Opus 5 をデフォルトに設定",
+          "description": "`claude-opus-5` を追加し、Claude Opus 5 がデフォルトの Opus モデルとなりました。コンテキストは 1M、fast モードは Mtok 当たり $10/$50 です。"
+        },
+        {
+          "title": "`sandbox.network.strictAllowlist` 設定の追加",
+          "description": "`sandbox.network.strictAllowlist` 設定を追加し、サンドボックスコマンドが許可リスト外のホストにアクセスしようとした場合、プロンプトなしで拒否します。"
+        },
+        {
+          "title": "`DirectoryAdded` フックの追加",
+          "description": "`DirectoryAdded` フックを追加しました。`/add-dir` または SDK の `register_repo_root` コントロールリクエストで新しい作業ディレクトリがセッション中に登録されると発火します。"
+        },
+        {
+          "title": "`mcp_server_errors` の導入",
+          "description": "headless の stream-json 初期化イベントに `mcp_server_errors` が追加され、`--mcp-config` エントリのうち設定検証でスキップされたものが一覧表示されます。端末実行時には起動警告が出力されます。"
+        },
+        {
+          "title": "`workflowSizeGuideline` 設定キーの追加",
+          "description": "`workflowSizeGuideline` 設定キーを追加し、任意の設定ファイルから動的ワークフローサイズの指針を設定できるようになりました。設定中は `/config` 行が非表示になります。"
+        },
+        {
+          "title": "入れ子サブエージェント転送の追加",
+          "description": "stream-json に入れ子サブエージェント転送を追加しました。深さ2以上で生成されたサブエージェントは `--forward-subagent-text` が設定されていると表示され、生成元エージェントの `tool_use` ID でキー付けされます。"
+        },
+        {
+          "title": "`claude mcp list` と `/mcp` にエラーレポートを追加",
+          "description": "サーバー接続に失敗した際、`claude mcp list` と `/mcp` に HTTP ステータスとエラーテキストが表示され、先頭または末尾に空白が隠れている MCP 設定値には警告が出ます。"
+        },
+        {
+          "title": "セルフホストランナー失敗の構造化カテゴリ化",
+          "description": "セルフホストランナーのスポーンやセッション失敗に構造化された失敗カテゴリが追加され、フックエラー、ランナークラッシュ、設定エラーを区別できるようになりました。"
+        },
+        {
+          "title": "ステータス行にデフォルトワークフローサイズを表示",
+          "description": "実行中ワークフローのステータス行に現在のデフォルトワークフローサイズが表示され、変更方法へのリンクとして `/config` が示されます。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Remote Control エラーメッセージの改善",
+          "description": "`Remote Control is only available via api.anthropic.com` エラーが、原因となった特定の設定名を示すようになりました。"
+        },
+        {
+          "title": "`claude --teleport` の出力改善",
+          "description": "`claude --teleport` が、現在のチェックアウトが指すリポジトリを表示し、セッションのリポジトリと一致しない場合に示します。"
+        },
+        {
+          "title": "claude-api スキルのデフォルトを Opus 5 に更新",
+          "description": "claude-api スキルがデフォルトで Claude Opus 5 を使用するようになり、Opus 4.8 からの移行パスが提供されます。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "動的ワークフローのサイズ指針を中程度に変更",
+          "description": "動的ワークフローのデフォルトサイズ指針が中程度（エージェント数 15 未満）に設定されました。別のサイズや無制限は `/config` の Dynamic workflow size で選択できます。"
+        },
+        {
+          "title": "MCP 許可リスト/拒否リストの変数解決方法変更",
+          "description": "管理された MCP の allowlist/denylist の `${VAR}` エントリが、設定ファイルの env ではなく起動時環境と managed-settings env から解決されるようになりました。"
+        },
+        {
+          "title": "`/model` ピッカーのハイライト変更",
+          "description": "`/model` ピッカーが最新モデルの名前のみハイライトするようになり、リスト内の任意のサブセットではなく新リリースが目立ちます。"
+        },
+        {
+          "title": "サブエージェントの入れ子深度をデフォルトで3に拡張",
+          "description": "サブエージェントはデフォルトで深さ3まで入れ子サブエージェントを生成できるようになり（以前は1）、入れ子を無効にするには `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1` を設定します。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`claude -p` の出力が途中の API エラーで回答を失う不具合修正",
+          "description": "`claude -p` で、途中のストリーム API エラーが発生した際にすでに生成された回答が出力から消える問題を修正しました。"
+        },
+        {
+          "title": "セルフホストランナー再起動中の許可が失われる不具合修正",
+          "description": "セルフホストランナーが再起動中に承認した権限が、セッション再開時に失われていた問題を修正し、承認されたアクションが正しく実行されます。"
+        },
+        {
+          "title": "Fable モデル行の誤表示修正",
+          "description": "プランに含まれるはずの Fable モデル行が、古いキャッシュにより「Requires usage credits」と表示されていた問題を修正しました。"
+        },
+        {
+          "title": "起動途中のランナーで SIGTERM が残存状態になる不具合修正",
+          "description": "セルフホストランナー起動時に SIGTERM が届くと、リースが期限切れになるまで古いアクティブ行が残っていた問題を修正し、クリーンに登録解除されます。"
+        },
+        {
+          "title": "`/model` ピッカーの Opus 表示修正",
+          "description": "`/model` ピッカーで統合された Opus 行が「Opus」だけで表示されていたのを「Opus (1M context)」と正しく表示するように修正しました。"
+        },
+        {
+          "title": "GNU screen のコピー時に Base64 が出力される不具合修正",
+          "description": "GNU screen 内で選択コピー時に、選択内容がコピーされずに Base64 が端末に印字されていた問題を修正しました。"
+        },
+        {
+          "title": "Remote Control クライアントの fast-mode 状態が残る不具合修正",
+          "description": "モデル切替、再接続、組織チェック失敗後に Remote Control クライアントが古い fast-mode 状態を保持していた問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_GIT_BASH_PATH` の Windows での扱い修正",
+          "description": "`CLAUDE_CODE_GIT_BASH_PATH` が Windows で bash/sh バイナリでない場合に終了または使用されていた問題を、警告を出して無視するように修正しました。"
+        },
+        {
+          "title": "Vim モードで空プロンプトの左キー挙動修正",
+          "description": "Vim モードで空のプロンプト中に左矢印キーを押すと、INSERT だけでなく NORMAL モードからエージェントビューに戻るように修正しました。"
+        },
+        {
+          "title": "スクリーンリーダーモードでの入力行書き換え不具合修正",
+          "description": "スクリーンリーダーモードが各キー入力ごとに入力行全体を書き換えていた問題を、入力文字のみエコーするように修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:40:01.098Z"
+}

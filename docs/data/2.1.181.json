@@ -1,0 +1,193 @@
+{
+  "version": "2.1.181",
+  "tagName": "v2.1.181",
+  "publishedAt": "2026-06-17T22:07:41Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.181",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 4,
+    "その他": 3,
+    "バグ修正": 29
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "/config キー=値 構文の追加",
+          "description": "`/config key=value` 構文を追加し、プロンプトから任意の設定を (例: `/config thinking=false`) 設定できるようにしました。インタラクティブモード、`-p` オプション、および Remote Control で動作します。"
+        },
+        {
+          "title": "`sandbox.allowAppleEvents` 設定の追加",
+          "description": "サンドボックス化されたコマンドが macOS で Apple Events を送信できるようにするオプトイン設定 `sandbox.allowAppleEvents` を追加しました。"
+        },
+        {
+          "title": "`CLAUDE_CLIENT_PRESENCE_FILE` 環境変数の追加",
+          "description": "`CLAUDE_CLIENT_PRESENCE_FILE` 環境変数を追加し、マシン上にいる間にモバイルプッシュ通知を抑制するためのマーカーファイルを指定できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "長文ストリーミングの改善",
+          "description": "長い段落のストリーミングが改善され、テキストが最初の改行を待つのではなく、行ごとに表示されるようになりました。"
+        },
+        {
+          "title": "自動リトライの改善",
+          "description": "API 接続が思考中に切断された場合、\"Connection closed while thinking\" を表示せずに自動的にリトライするようになりました。"
+        },
+        {
+          "title": "サブエージェントパネルの改善",
+          "description": "サブエージェントパネルが改善され、アイドル状態のサブエージェントは30秒後に自動で非表示になり、リストは5行で制限されスクロールヒントが表示され、キーボードヒントがフッターに表示されるようになりました。"
+        },
+        {
+          "title": "MCP OAuth ブラウザページの改善",
+          "description": "MCP OAuth ブラウザページが Claude Code のビジュアルスタイルに合わせて改善され、成功時に自動で閉じるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "バンドルされた Bun ランタイムを 1.4 にアップグレード",
+          "description": "同梱の Bun ランタイムをバージョン 1.4 にアップグレードしました。"
+        },
+        {
+          "title": "フルスクリーンモードでの URL 開封方法変更",
+          "description": "フルスクリーンモードでの URL 開封が、macOS では Cmd+クリック、Windows/Linux では Ctrl+クリックが必要になるよう変更し、ネイティブターミナルの動作と一致させました。"
+        },
+        {
+          "title": "`Improved N memories` 行の表示変更",
+          "description": "`Improved N memories` 行が、詳細モード以外では個別ファイルを列挙しないように変更しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`ANTHROPIC_BASE_URL` カスタム設定でのプロンプトキャッシュの修正",
+          "description": "カスタム `ANTHROPIC_BASE_URL` および Foundry で、リクエストごとの attest トークンが毎回変わるためにプロンプトキャッシュが読めなかった問題を修正しました。"
+        },
+        {
+          "title": "Write/Edit がネットワークドライブで 0 バイト/切り捨てファイルを作成していた問題の修正",
+          "description": "ネットワークドライブやクラウド同期フォルダ上で Write/Edit が 0 バイトまたは切り詰められたファイルを生成していた問題を修正しました。"
+        },
+        {
+          "title": "`open`、`osascript`、ブラウザ認証フローの macOS エラー -600 修正",
+          "description": "`open`、`osascript`、ブラウザベースの認証フローが macOS でエラー -600 になる問題を、Apple Events 権限を追加することで修正しました。"
+        },
+        {
+          "title": "起動時のレイテンシ回帰の修正",
+          "description": "2.1.169 で導入された起動時回帰（新規環境で約120ms の遅延）を修正し、MCP サーバーが未設定の場合でも最初のプロンプトが管理設定取得を待たずに開始できるようにしました。"
+        },
+        {
+          "title": "起動時のターミナルブロッキングの修正",
+          "description": "アカウント設定取得が遅い劣化ネットワーク環境で、起動時に空白ターミナルが最大15秒ブロックされる問題を修正しました。"
+        },
+        {
+          "title": ".claude.json の破損した null プロジェクトエントリでの起動クラッシュ修正",
+          "description": ".claude.json に null のプロジェクトエントリが含まれると `TypeError: Cannot read properties of null` が発生していた起動時クラッシュを修正しました。"
+        },
+        {
+          "title": "Spotlight 再インデックス時の macOS TUI フリーズ修正",
+          "description": "Spotlight が再インデックス中にセッション開始時、Ctrl+C が反応しない macOS TUI のフリーズ問題を修正しました。"
+        },
+        {
+          "title": "長時間アイドルセッションの履歴消失修正",
+          "description": "別の Claude Code プロセスが 30 日間のトランスクリプトクリーンアップを実行した際に、長時間アイドル状態のセッションが履歴を失う問題を修正しました。"
+        },
+        {
+          "title": "フォアグラウンドサブエージェントのネスト深さ制限修正",
+          "description": "フォアグラウンドサブエージェントが無制限にネストチェーンを生成していた問題を修正し、バックグラウンドサブエージェントと同様に最大5レベルの深さ制限を適用しました。"
+        },
+        {
+          "title": "`/recap` と会話フォークでのモデル切り替え後の旧モデル使用修正",
+          "description": "モデル切り替え直後に `/recap` と会話フォークが以前のモデルを使用していた問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントの思考時間表示修正",
+          "description": "サブエージェントの「Thinking」期間が親エージェントの経過時間を表示していた問題を修正し、サブエージェント自身の時間が正しく表示されるようにしました。"
+        },
+        {
+          "title": "ブロック中サブエージェントのパネル表示修正",
+          "description": "ネストされたエージェントでブロックされたサブエージェントが、エージェントパネルで「waiting」ではなく経過時間が進む表示になっていた問題を修正しました。"
+        },
+        {
+          "title": "API リトライインジケータの表示残留修正",
+          "description": "リトライ成功後も「Retrying in 0s · attempt N/10」インジケータが画面に残り続けていた問題を修正しました。"
+        },
+        {
+          "title": "AWS `awsCredentialExport` 資格情報のリフレッシュ問題修正",
+          "description": "残り有効期限が短い AWS `awsCredentialExport` 資格情報が毎分リフレッシュされる問題を修正し、`aws configure export-credentials` の JSON 形式も受け入れるようにしました。"
+        },
+        {
+          "title": "`claude mcp get/list` の接続状態表示修正",
+          "description": "`claude mcp get`/`list` が tools/list の取得に失敗しても `✓ Connected` と表示していた問題を修正し、エラー詳細とともに `! Connected · tools fetch failed` と表示されるようにしました。"
+        },
+        {
+          "title": "`/remote-control` のステータス行残留修正",
+          "description": "`/remote-control` 実行後に残っていた古い「connecting…」ラインを削除し、接続完了後にトランスクリプトに確認メッセージが表示されるようにしました。"
+        },
+        {
+          "title": "Windows での `ExitWorktree` のクリーン作業ツリー削除失敗修正",
+          "description": "Windows 環境で bare `git` が解決できない場合に、`ExitWorktree` が「Could not verify worktree state」と表示してクリーンな作業ツリーを削除できなかった問題を修正しました。"
+        },
+        {
+          "title": "設定変更時の ENOENT エラー修正",
+          "description": "`~/.claude/settings.json` が相対シンボリックリンクで、かつ `~/.claude` がシンボリックリンクの場合に、`/effort` や `/model` の変更が ENOENT で失敗していた問題を修正しました。"
+        },
+        {
+          "title": "IDE コンテキストリマインダーでの行番号ずれ修正",
+          "description": "IntelliJ と VS Code において、コンテキストリマインダーの選択行番号が1行ずれていた問題を修正しました。"
+        },
+        {
+          "title": "フルスクリーン時の Ctrl+C でクリップボード上書き修正",
+          "description": "ネイティブターミナルで修飾キー＋ドラッグ選択後にフルスクリーンで Ctrl+C を押すと、クリップボードがアプリの以前の選択内容で上書きされる問題を修正しました。"
+        },
+        {
+          "title": "フルスクリーン時の Ctrl+V の貼り付け表示修正",
+          "description": "クリップボードにテキストがある場合に、Ctrl+V が「No image found in clipboard」と表示して貼り付けが行われなかった問題を修正しました。"
+        },
+        {
+          "title": "エージェント作成時の EEXIST エラー修正",
+          "description": "エージェントディレクトリが既に存在する (Windows/OneDrive 環境) 場合に、エージェント作成が \"EEXIST: file already exists\" エラーで失敗していた問題を修正しました。"
+        },
+        {
+          "title": "AskUserQuestion プレビューの切れ端表示修正",
+          "description": "AskUserQuestion のプレビュー内容がダイアログの端で切れ、改行されずに表示されていた問題を、ワードラップで表示されるように修正しました。"
+        },
+        {
+          "title": "AskUserQuestion マルチセレクトの自由記入削除修正",
+          "description": "AskUserQuestion のマルチセレクト質問で、入力された \"Other\" の自由テキスト回答が送信時に黙って削除されていた問題を修正しました。"
+        },
+        {
+          "title": "`/stats` の日付表示ずれ修正",
+          "description": "`/stats` の「Most active day」および日次トークンチャートの日付が、UTC が負のタイムゾーンで1日早く表示されていた問題を修正しました。"
+        },
+        {
+          "title": "Linux の `/copy` とコピーオンセレクトでのクリップボードユーティリティ検出修正",
+          "description": "Claude Code 起動後にインストールされたクリップボードユーティリティを、Linux の `/copy` およびコピーオンセレクトが検出できない問題を修正しました。"
+        },
+        {
+          "title": "Write プレビューでのタブインデントコード表示修正",
+          "description": "Write (create-file) プレビューで、タブインデントされたコードが誤ったインデントで表示されていた問題を修正しました。"
+        },
+        {
+          "title": "途中キューされたユーザープロンプトのハイライト表示修正",
+          "description": "ターン途中でキューされたユーザープロンプトが、トランスクリプトで全幅の背景ハイライトが表示されない問題を修正しました。"
+        },
+        {
+          "title": "Ghostty でのアクティビティスピナーサイズずれ修正",
+          "description": "Ghostty でアクティビティスピナーのパルスが誤ったグリフサイズに留まっていた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:31:02.417Z"
+}

@@ -1,0 +1,26 @@
+{
+  "version": "2.1.168",
+  "tagName": "v2.1.168",
+  "publishedAt": "2026-06-06T23:41:53Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.168",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 1,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "バグ修正と信頼性向上",
+          "description": "バグの修正とシステムの信頼性向上が行われました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:28:39.199Z"
+}
