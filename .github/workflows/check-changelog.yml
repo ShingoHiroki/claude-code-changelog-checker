@@ -53,7 +53,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add state/last-version.txt
+          git add state/last-version.txt docs/data
           git diff --staged --quiet && echo "状態に変更なし" || (
             git commit -m "chore: update last-seen version" &&
             git pull --rebase origin main &&
