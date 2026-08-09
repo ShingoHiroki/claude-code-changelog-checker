@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code リリースノート</title>
+<link rel="icon" type="image/svg+xml" href="claudecode-color.svg">
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"></div>
+
+<div class="app">
+  <nav class="sidebar" aria-label="バージョン一覧">
+    <div class="sidebar-brand"><img src="claudecode-color.svg" alt="">リリースノート</div>
+    <ul class="version-list" id="version-list"></ul>
+  </nav>
+  <div>
+    <details class="mobile-nav">
+      <summary>バージョンを選択</summary>
+      <ul class="version-list" id="version-list-mobile"></ul>
+    </details>
+    <main class="content" id="content"></main>
+  </div>
+</div>
+</body>
+</html>
