@@ -18,6 +18,7 @@ npm run check        # ローカルでの動作確認（環境変数が必要）
 - `GITHUB_TOKEN` - GitHub Personal Access Token（GitHub Releases API のレート制限緩和用。省略可）
 - `DISCORD_WEBHOOK_URL` - Discord Webhook URL
 - `SLACK_WEBHOOK_URL` - Slack Webhook URL（省略可。設定時のみ通知）
+- `SITE_URL` - 通知に載せる公開サイトURL（省略可。Actions 上では `GITHUB_REPOSITORY` から自動導出されるためローカル実行時のみ意味を持つ）
 - `DRY_RUN` - `true` にすると Discord/Slack に投稿せず stdout に出力（省略可）
 
 ## アーキテクチャ
@@ -43,7 +44,7 @@ docs/data/                    - 翻訳済みリリースデータ（versions.jso
 5. `buildGroupedText()` でカテゴリ別に整形した英語テキストを生成
 6. さくらのAI Engine (`gpt-oss-120b`) でカテゴリ別本文を日本語翻訳（英語分類から算出した **件数サマリー** `⚡ 改善: 1件 / …` を通知の説明欄に表示）
 7. カテゴリ別の箇条書きを**全件**通知（Discord は field / 複数 Embed に分割、Slack は section 分割・50 ブロック超は複数投稿）
-8. **Discord** は Embed（件数サマリー・カテゴリ別フィールド・色分け・リンク）、**Slack** は Block Kit（header / 件数サマリー section / divider / カテゴリ）。送信失敗時は従来のプレーンテキストにフォールバック
+8. **Discord** は Embed（件数サマリー・カテゴリ別フィールド・色分け・リンク）、**Slack** は Block Kit（header / 件数サマリー section / divider / カテゴリ）。送信失敗時は従来のプレーンテキストにフォールバック。いずれも**公開サイトの該当バージョンページへのリンク**を含む（URL は `SITE_URL` → `GITHUB_REPOSITORY` の順で導出。導出不能時はリンク省略）
 9. 通知成功後、サイト用に**構造化翻訳**（各項目を `title`/`description` に分けた JSON 出力）を追加で1リクエスト実行し、`docs/data/<version>.json` を書き出し。全リリース処理後に `docs/data/versions.json`（一覧インデックス）を再生成
 10. `DRY_RUN=true` のときは Webhook 送信・state 更新・サイトデータ書き出しを行わず、Discord/Slack 用 JSON ペイロードを stdout に出力
 11. 全リリースの通知が成功した後、`state/last-version.txt` と `docs/data/` を更新し git commit/push → GitHub Pages に自動反映
