@@ -15,6 +15,7 @@ Claude Code (`@anthropic-ai/claude-code`) の新バージョンを自動検知�
 - カテゴリ別の変更内容は**全件**掲載（Discord / Slack の1メッセージ上限に応じて field 分割・複数 Embed / 複数投稿）
 - 複数バージョンを一度に検知した場合は **古い順** にバージョンごと個別通知
 - 翻訳済みリリースノートを **GitHub Pages で公開**（左メニューでバージョンを選んで閲覧。通知と同時に自動更新）
+- Discord / Slack の通知に**公開サイトの該当バージョンページへのリンク**を掲載（Actions 上では URL を自動導出。フォーク先でもそのまま動作）
 
 ## セットアップ
 
@@ -103,6 +104,8 @@ DRY_RUN=true npm run check
 - 検知した各バージョンについて、**Discord Embed / Slack Block Kit 用の JSON ペイロード**を stdout に出力（Webhook に送る内容の確認用）
 
 `SAKURA_AI_TOKEN`（さくらのAI Engine のアカウントトークン）は必須。`GITHUB_TOKEN` は GitHub Releases API のレート制限緩和用で、ローカル実行時は省略可。
+
+`SITE_URL`（省略可）を設定すると、通知に公開サイトへのリンクが含まれる。GitHub Actions 上では `GITHUB_REPOSITORY` から自動導出されるため設定不要（ローカル実行時のみ有効な設定）。
 
 ## しくみ
 

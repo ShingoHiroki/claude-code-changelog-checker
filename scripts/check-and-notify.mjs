@@ -107,6 +107,28 @@ function buildDiscordFieldsForCategory(header, items) {
 // Discord / Slack 共通ユーティリティ
 // ---------------------------------------------------------------------------
 
+/**
+ * GitHub Pages のサイトURLを導出する。
+ * SITE_URL があれば優先し、なければ GitHub Actions が自動設定する
+ * GITHUB_REPOSITORY（"owner/repo"）から組み立てる（フォーク先でも動作する）。
+ * どちらも無い場合は null（通知からサイトリンクを省略）。
+ */
+function getSiteUrl() {
+  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/+$/, '') + '/';
+  const repo = process.env.GITHUB_REPOSITORY;
+  if (repo && repo.includes('/')) {
+    const [owner, name] = repo.split('/');
+    return `https://${owner.toLowerCase()}.github.io/${name}/`;
+  }
+  return null;
+}
+
+/** 該当バージョンページへのディープリンク（サイトURL不明時は null） */
+function siteVersionUrl(version) {
+  const base = getSiteUrl();
+  return base ? `${base}#/${encodeURIComponent(version)}` : null;
+}
+
 function markdownToDiscord(text) {
   return text
     .replace(/^#{1,6} (.+)$/gm, '**$1**')
@@ -135,7 +157,9 @@ function buildPlainNotificationText({ body, summaryLine, notifyVersion, lastVers
     lastVersion === '0.0.0'
       ? `**Claude Code v${notifyVersion} - 初回チェック**\n\n`
       : `**Claude Code v${notifyVersion} リリース** (前回: v${lastVersion})\n\n`;
-  return prefix + (summaryLine ? `${summaryLine}\n\n` : '') + (body || '（本文なし）');
+  const siteUrl = siteVersionUrl(notifyVersion);
+  const siteLine = siteUrl ? `\n\n🌐 Webで見る: ${siteUrl}` : '';
+  return prefix + (summaryLine ? `${summaryLine}\n\n` : '') + (body || '（本文なし）') + siteLine;
 }
 
 function buildDiscordEmbedPayload({
@@ -158,6 +182,8 @@ function buildDiscordEmbedPayload({
 
   let description = summaryLine || summaryFromSections(sections);
   if (!description) description = '（カテゴリ件数なし）';
+  const siteUrl = siteVersionUrl(notifyVersion);
+  if (siteUrl) description += `\n\n🌐 [Webでリリースノートを見る](${siteUrl})`;
   description = truncateStr(description, DISCORD_EMBED_DESCRIPTION_MAX);
 
   const allFields = [];
@@ -396,6 +422,14 @@ function buildSlackBlocksPayloadList({
     });
   }
 
+  const siteUrl = siteVersionUrl(notifyVersion);
+  if (siteUrl) {
+    prefixBlocks.push({
+      type: 'context',
+      elements: [{ type: 'mrkdwn', text: `🌐 <${siteUrl}|Webでリリースノートを見る>` }],
+    });
+  }
+
   prefixBlocks.push({ type: 'divider' });
 
   const categoryBlocks = buildSlackCategorySectionBlocks(sections);
@@ -403,7 +437,7 @@ function buildSlackBlocksPayloadList({
   const blockRuns = packSlackCategoryChunks(prefixBlocks, categoryBlocks, notifyVersion);
 
   const fallbackBase = truncateStr(
-    `${headerText}\n${summaryLine || 'リリース通知'}\n${releaseUrl}`,
+    `${headerText}\n${summaryLine || 'リリース通知'}\n${releaseUrl}${siteUrl ? `\n${siteUrl}` : ''}`,
     3000,
   );
 
