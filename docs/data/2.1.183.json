@@ -1,0 +1,110 @@
+{
+  "version": "2.1.183",
+  "tagName": "v2.1.183",
+  "publishedAt": "2026-06-19T01:20:50Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.183",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 3,
+    "改善": 1,
+    "その他": 1,
+    "バグ修正": 11
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "起動時の「setup issues」行を削除",
+          "description": "ロゴ下に表示されていた起動時の “setup issues” 行を削除しました。代わりに `/doctor` を実行して設定問題を確認するか、`--debug` を使用してください。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "モデルの非推奨・自動更新時に警告を表示",
+          "description": "要求されたモデルが非推奨または自動的に新しいモデルへ更新された場合、print モード (`-p`) の標準エラー出力に警告を出すようにしました。エージェントの frontmatter で設定されたモデルにも適用されます。"
+        },
+        {
+          "title": "`attribution.sessionUrl` 設定を追加",
+          "description": "`attribution.sessionUrl` 設定により、Web および Remote Control セッションでのコミットや PR から claude.ai のセッションリンクを除外できるようになりました。"
+        },
+        {
+          "title": "`/config --help` を追加",
+          "description": "`/config --help` を実装し、`/config key=value` で使用できるすべてのショートカットキーを一覧表示できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "自動モードの安全性を向上",
+          "description": "破壊的な git コマンド（`git reset --hard`、`git checkout -- .`、`git clean -fd`、`git stash drop`）はローカル作業の破棄を指示していない場合にブロックされます。`git commit --amend` は当セッションのエージェントが作成したコミットでない場合にブロックされ、`terraform destroy`、`pulumi destroy`、`cdk destroy` は特定のスタックを指定したとき以外はブロックされます。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/config` トグル操作を変更",
+          "description": "`/config` のトグル動作を変更し、Enter と Space の両方で選択設定を切り替えられるようにしました。また、Esc キーは変更を元に戻すのではなく保存して閉じるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`thinking.disabled.display` の 400 エラーを修正",
+          "description": "サブエージェント起動時およびセッションタイトル生成時に、`thinking.disabled.display: Extra inputs are not permitted` が原因で発生していた 400 エラーを修正しました。"
+        },
+        {
+          "title": "サブエージェントでの WebSearch が空結果になる問題を修正",
+          "description": "サブエージェント内で WebSearch が空の結果を返していた問題を修正しました。"
+        },
+        {
+          "title": "vim モードで履歴操作後のカーソル位置不具合を修正",
+          "description": "ネイティブカーソル有効時に vim モードで履歴を移動すると、ターミナルカーソルがプロンプト上部に残る問題を修正しました。"
+        },
+        {
+          "title": "Windows Terminal のフルスクリーン TUI の破損を修正",
+          "description": "大量のネストされたサブエージェント負荷下で、Windows Terminal のフルスクリーン TUI がステータスラインが画面中央に出る、スピナー行が重複、テキストが結合するなどの破損を起こす問題を修正しました。"
+        },
+        {
+          "title": "思考ブロックのみ返すモデルでの無音ターン完了を修正",
+          "description": "モデルが思考ブロックだけを返した場合に、出力が表示されずにターンが静かに完了していた問題を修正し、Claude が一度再プロンプトするようになりました。"
+        },
+        {
+          "title": "スラッシュコマンド自動補完でスキルが重複表示される問題を修正",
+          "description": "複数プラグインが有効な場合に、ユーザーレベルのスキルがスラッシュコマンドの自動補完で複数回表示される問題を修正しました。"
+        },
+        {
+          "title": "MCP サーバー認証要件に伴う auth-stub ツール漏洩を修正",
+          "description": "ヘッドレス／SDK モードで MCP サーバーが認証を要求する際、auth‑stub ツールがモデルに露出していた問題を修正しました。"
+        },
+        {
+          "title": "tmux teammate ペイン起動失敗とキー入力漏れを修正",
+          "description": "シェルの rc ファイル初期化が遅い場合に tmux teammate ペインが起動できない問題と、エージェント生成中に入力したキーがリーダープロンプトではなく新しい tmux ペインに流れ込む問題を修正しました。"
+        },
+        {
+          "title": "teammate が終了時にバックグラウンドタスクが停止する問題を修正",
+          "description": "teammate がターンを終了した際に、 teammate が開始したバックグラウンドタスクが誤って kill されていた問題を修正しました。"
+        },
+        {
+          "title": "スケジュールタスクと webhook の配信がキーボード入力として扱われる問題を修正",
+          "description": "スケジュールタスクおよび webhook のトリガー配信がキーボード入力とみなされていた問題を修正し、タスク通知として分類され、auto モードで保留アクションの承認やセッションタイトル設定ができなくなりました。"
+        },
+        {
+          "title": "フォーカスモードでのタイミング行表示を修正",
+          "description": "フォーカスモードで各応答の下に “Ran N PostToolUse hooks” と表示されていたタイミング行の問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:31:17.718Z"
+}

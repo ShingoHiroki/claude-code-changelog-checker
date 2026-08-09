@@ -1,0 +1,144 @@
+{
+  "version": "2.1.132",
+  "tagName": "v2.1.132",
+  "publishedAt": "2026-05-06T22:08:13Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.132",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 2,
+    "その他": 0,
+    "バグ修正": 23
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_SESSION_ID` 環境変数を追加",
+          "description": "Bashツールのサブプロセス環境に `CLAUDE_CODE_SESSION_ID` 環境変数を追加し、hooks に渡される `session_id` と一致させました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1` 環境変数を追加",
+          "description": "フルスクリーンの代替スクリーンレンダラを無効化し、会話をターミナルの標準スクロールバックに保つために、`CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1` 環境変数を追加しました。"
+        },
+        {
+          "title": "画像貼り付け中に「Pasting…」フッターヒントを表示",
+          "description": "Ctrl+V で画像をクリップボードから読み取っている間、フッターに「Pasting…」というヒントを表示するようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "スラッシュコマンドダイアログと `/login` などの間隔を統一",
+          "description": "スラッシュコマンドのダイアログおよび `/login`、`/upgrade`、`/extra-usage` ダイアログの間隔を改善し、視覚的一貫性を向上させました。"
+        },
+        {
+          "title": "`/tui fullscreen` 起動バナーを更新",
+          "description": "`/tui fullscreen` の起動バナーを更新し、追加のレンダラの利点（メモリ使用量削減、マウスサポート、選択時の自動コピー）を記載しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "外部 SIGINT のハンドリングを修正",
+          "description": "IDE の停止ボタンや `kill -INT` などの外部 SIGINT が正常なシャットダウンを行わずに終了していた問題を修正し、ターミナルモードが復元され、 abrupt ではなく `--resume` ヒントが表示されます。"
+        },
+        {
+          "title": "ターミナル閉鎖または SSH 切断時の例外を修正",
+          "description": "ネイティブビルドで、セッション中にターミナルが閉じられたり SSH が切断されたりした際に未捕捉例外が発生していた問題を修正しました。"
+        },
+        {
+          "title": "`--resume` の絵文字エラーを修正",
+          "description": "ツールエラーでの切り詰めにより絵文字が分割され、`--resume` が `no low surrogate in string` エラーで失敗していた問題を修正し、ロード時に事前に破損したセッションをサニタイズします。"
+        },
+        {
+          "title": "`--permission-mode` が無視される問題を修正",
+          "description": "`-p --continue` または `--resume` でプランモードセッションを再開した際に `--permission-mode` フラグが無視され、同一セッション内で `ExitPlanMode` 後にプランモードが再適用されなかった問題を修正しました。"
+        },
+        {
+          "title": "フルスクリーンモードのブランク表示を修正",
+          "description": "ノートPCのスリープ/ウェイクや Ctrl+Z/`fg` 後、次のキー入力またはストリーム出力があるまでフルスクリーンモードが空白画面になる問題を修正しました。"
+        },
+        {
+          "title": "カーソルが文字中に止まる問題を修正",
+          "description": "Indic 結合文字や ZWJ 絵文字が行を跨いで折り返された際、Ctrl+E/A/K/U や矢印キーでカーソルが文字グラフェムの途中に止まっていた問題を修正しました。"
+        },
+        {
+          "title": "vim 演算子が NFD アクセント文字を破壊する問題を修正",
+          "description": "分解形 (NFD) のアクセント文字を含むテキストで、vim のオペレータが文字列を破損していた問題を修正しました。"
+        },
+        {
+          "title": "`/` で始まる貼り付けテキストの処理を修正",
+          "description": "`/` で始まるテキストを貼り付けた際に入力が黙って無視されたり、未知コマンドの返信が返されたりしていた問題を修正しました。"
+        },
+        {
+          "title": "貼り付け時の余計なエスケープシーケンスを除去",
+          "description": "フォーカスイベントやマウストラッキングレポートが括弧付き貼り付けと交錯した際、プロンプトに余計なエスケープシーケンスが流れ込む問題を修正しました。"
+        },
+        {
+          "title": "マウスホイールスクロール速度を調整",
+          "description": "上流の xterm.js バグに起因し、Cursor および VS Code 1.92–1.104 でマウスホイールのスクロールが過剰に速くなる問題を修正しました。"
+        },
+        {
+          "title": "JetBrains IDE 2025.2 のスクロールホイール処理を修正",
+          "description": "JetBrains IDE 2025.2 ターミナルでのスクロールホイール処理における偽の矢印キー、方向逆転、加速の問題を修正しました。"
+        },
+        {
+          "title": "`/usage` の Ctrl+S ハングを修正",
+          "description": "Linux/X11 環境で統計スクリーンショットをクリップボードにコピーする際、`/usage` コマンドの Ctrl+S がハングする問題を修正しました。"
+        },
+        {
+          "title": "`/terminal-setup` の Windows Terminal エラーを修正",
+          "description": "Windows Terminal で Shift+Enter がネイティブにサポートされているにも関わらず、`/terminal-setup` が矛盾したエラーを表示していた問題を修正しました。"
+        },
+        {
+          "title": "`/effort` ピッカーが環境変数を反映しない問題を修正",
+          "description": "`CLAUDE_CODE_EFFORT_LEVEL` 環境変数で上書きした際に、`/effort` ピッカーがその設定を反映しなかった問題を修正しました。"
+        },
+        {
+          "title": "`/status` のデフォルトモデル表示を修正",
+          "description": "一部のユーザーで `/status` が誤ったデフォルトモデルを表示していた問題を修正しました。"
+        },
+        {
+          "title": "スラッシュコマンドオートコンプリートの表示数を修正",
+          "description": "スラッシュコマンドのオートコンプリートポップアップが端末の高さに応じて拡大せず、約3〜5件に制限されていた問題を修正しました。"
+        },
+        {
+          "title": "ステータスラインの `context_window` トークン数を修正",
+          "description": "ステータスラインの `context_window` が累積セッション総トークン数を示していたのを、現在のコンテキスト使用量に正しく反映するよう修正しました。"
+        },
+        {
+          "title": "macOS 端末で Alt+T が動作しない問題を修正",
+          "description": "`Option as Meta` が無効な macOS 端末（iTerm2、Terminal.app デフォルト）で、Alt+T（思考トグル）が機能しなかった問題を修正しました。"
+        },
+        {
+          "title": "Windows で背景セッション再オープン後のキーボード入力停止を修正",
+          "description": "`claude agents` からバックグラウンドセッションを再度開いた際、Windows でキーボード入力が無効になる問題を修正しました。"
+        },
+        {
+          "title": "stdio MCP サーバーの不要出力によるメモリ増大を修正",
+          "description": "stdio MCP サーバーがプロトコル外データを stdout に書き出すと、メモリ使用量が 10GB 以上に無制限に増加していた問題を修正しました。"
+        },
+        {
+          "title": "`tools/list` 失敗時の MCP サーバー表示を修正",
+          "description": "接続は成功するが `tools/list` が失敗する MCP サーバーがツール数0を黙って表示していた問題を修正し、1回リトライした上で `/mcp` に \"connected · tools fetch failed\" と表示するようにしました。"
+        },
+        {
+          "title": "未認証 MCP コネクタのステータス表示とリトライを修正",
+          "description": "認証が必要な claude.ai MCP コネクタが \"failed\" ではなく \"needs auth\" と表示されるようにし、ヘッドレス `-p` モードで一時的でない 4xx 接続失敗をリトライしないように修正しました。"
+        },
+        {
+          "title": "`ENABLE_PROMPT_CACHING_1H` 設定時の Bedrock と Vertex の 400 エラーを修正",
+          "description": "`ENABLE_PROMPT_CACHING_1H` が設定されている場合に、Bedrock と Vertex で発生していた 400 エラーを修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:19:02.960Z"
+}

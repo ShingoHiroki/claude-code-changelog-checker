@@ -1,0 +1,205 @@
+{
+  "version": "2.1.47",
+  "tagName": "v2.1.47",
+  "publishedAt": "2026-02-18T21:38:45Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.47",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 6,
+    "その他": 10,
+    "バグ修正": 49
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`last_assistant_message` フィールドを Stop と SubagentStop フック入力に追加し、最終アシスタント応答テキストを提供することで、フックがトランスクリプトファイルを解析せずに取得できるようにした。",
+          "description": ""
+        },
+        {
+          "title": "設定可能な複数行入力のために `chat:newline` キーバインドアクションを追加した (anthropics/claude-code#26075)",
+          "description": ""
+        },
+        {
+          "title": "ステータスライン JSON の `workspace` セクションに `added_dirs` を追加し、`/add-dir` で追加されたディレクトリを外部スクリプトから参照できるようにした (anthropics/claude-code#26096)",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "VS Code のプランプレビューを改良：Claude がイテレーションするたびに自動更新し、プランがレビュー可能になるまでコメントを有効化し、拒否時にもプレビューを保持して Claude が再度修正できるようにした。",
+          "description": ""
+        },
+        {
+          "title": "長時間セッションにおけるメモリ使用量を改善：API ストリームバッファ、エージェントコンテキスト、スキル状態を使用後に解放するようにした。",
+          "description": ""
+        },
+        {
+          "title": "起動パフォーマンスを改善：SessionStart フックの実行を遅延させ、インタラクティブになるまでの時間を約 500ms 短縮した。",
+          "description": ""
+        },
+        {
+          "title": "`@` ファイルメンションのパフォーマンスを改善：起動時にインデックスを事前ウォームアップし、セッションベースのキャッシュとバックグラウンドリフレッシュを使用することで、ファイル候補表示がより速くなった。",
+          "description": ""
+        },
+        {
+          "title": "エージェントタスク完了後にタスクメッセージ履歴をトリミングすることでメモリ使用量を改善した。",
+          "description": ""
+        },
+        {
+          "title": "長時間エージェントセッション中に、進行状況更新での O(n²) メッセージ蓄積を排除し、メモリ使用量を改善した。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "折りたたまれたツール結果内の検索パターンが、明確にするため引用符で表示されるようになった。",
+          "description": ""
+        },
+        {
+          "title": "Windows: CWD トラッキング用一時ファイルが削除されずに蓄積し続ける問題を修正 (anthropics/claude-code#17600)",
+          "description": ""
+        },
+        {
+          "title": "`ctrl+f` で全バックグラウンドエージェントを終了できるようにし、ESC の二回押しから変更した。ESC でメインスレッドをキャンセルしてもバックグラウンドエージェントは継続し、エージェントのライフサイクルをより細かく制御できる。",
+          "description": ""
+        },
+        {
+          "title": "チームメイトのナビゲーションを簡素化し、Shift+Down（ラップあり）だけで操作できるようにし、Shift+Up は不要にした。",
+          "description": ""
+        },
+        {
+          "title": "再開ピッカーの初期セッション数を 10 から 50 に増やし、セッション検索を高速化した (anthropics/claude-code#26123)",
+          "description": ""
+        },
+        {
+          "title": "Windows: ドライブ文字の大文字小文字が異なる場合の worktree セッションマッチングを修正 (anthropics/claude-code#26123)",
+          "description": ""
+        },
+        {
+          "title": "Windows: パス間でドライブ文字の大文字小文字が異なると同じ CLAUDE.md が二重に読み込まれる問題を修正 (anthropics/claude-code#25756)",
+          "description": ""
+        },
+        {
+          "title": "設定バックアップファイルをホームディレクトリ直下から `~/.claude/backups/` に移動し、ホームディレクトリの散らかりを軽減した (anthropics/claude-code#26130)",
+          "description": ""
+        },
+        {
+          "title": "VSCode: AskUserQuestion ダイアログが開いている間に会話メッセージが暗く表示される問題を修正 (anthropics/claude-code#26078)",
+          "description": ""
+        },
+        {
+          "title": "`/rename` コマンドがデフォルトでターミナルタブのタイトルも更新するようになった (anthropics/claude-code#25789)",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "FileWriteTool の行数カウントを修正し、`trimEnd()` で削除していた意図的な末尾空行を保持するようにした。",
+          "description": ""
+        },
+        {
+          "title": "Windows 端末の表示コードで `os.EOL` (`\\r\\n`) が原因だったレンダリングバグを修正。行数が常に 1 と表示されるのが、正しい値を示すようになった。",
+          "description": ""
+        },
+        {
+          "title": "Windows で `\\r\\n` 改行が原因で、Markdown 出力の太字や色付きテキストが誤った文字にシフトするバグを修正。",
+          "description": ""
+        },
+        {
+          "title": "会話に多数の PDF ドキュメントが含まれる場合にコンパクションが失敗する問題を、画像と同時にドキュメントブロックを除去してコンパクション API に送ることで修正 (anthropics/claude-code#26188)",
+          "description": ""
+        },
+        {
+          "title": "Windows で MSYS2 や Cygwin シェル使用時に、bash ツールの出力が黙って破棄されていた問題を修正。",
+          "description": ""
+        },
+        {
+          "title": "bash パーミッション分類器を修正し、返されたマッチ説明が実際の入力ルールに対応しているか検証するようにした。これにより、架空の説明が誤って権限を付与するのを防止。",
+          "description": ""
+        },
+        {
+          "title": "NFS/FUSE ファイルシステムで inode が 0 と報告される場合に、ユーザー定義エージェントがファイルを 1 つしかロードしない問題を修正 (anthropics/claude-code#26044)",
+          "description": ""
+        },
+        {
+          "title": "プラグインエージェントスキルが、完全修飾プラグイン名ではなく裸の名前で参照されたときに黙ってロードに失敗していた問題を修正 (anthropics/claude-code#25834)",
+          "description": ""
+        },
+        {
+          "title": "同時エージェントが存在するセッションで、ストリーミングコンテンツブロックが交錯しメッセージ統合が正しく行われずに発生していた API 400 エラー（\"thinking blocks cannot be modified\"）を修正。",
+          "description": ""
+        },
+        {
+          "title": "1つのファイル書き込み/編集エラーが、他のすべての並列ファイル書き込み/編集操作を中止していた問題を修正。兄弟ファイルが失敗しても、独立したファイル変更は完了するようになった。",
+          "description": ""
+        },
+        {
+          "title": "`/rename` で設定したカスタムセッションタイトルが、会話再開後に失われていた問題を修正 (anthropics/claude-code#23610)",
+          "description": ""
+        },
+        {
+          "title": "狭い端末で折りたたまれた読み取り/検索ヒントテキストがはみ出す問題を、先頭から切り詰めることで修正。",
+          "description": ""
+        },
+        {
+          "title": "バックスラッシュ＋改行で継続する bash コマンド（例: `\\` で複数行に分割した長いコマンド）で、余計な空引数が生成されコマンド実行が壊れる問題を修正。",
+          "description": ""
+        },
+        {
+          "title": "多数のユーザースキルがインストールされている際に、組み込みスラッシュコマンド（`/help`、`/model`、`/compact` など）がオートコンプリートドロップダウンから隠れていた問題を修正 (anthropics/claude-code#22020)",
+          "description": ""
+        },
+        {
+          "title": "遅延ロード後に MCP Management Dialog に MCP サーバーが表示されない問題を修正。",
+          "description": ""
+        },
+        {
+          "title": "`/clear` コマンド実行後もステータスバーにセッション名が残り続けていた問題を修正 (anthropics/claude-code#26082)",
+          "description": ""
+        },
+        {
+          "title": "SKILL.md の frontmatter で `name` や `description` が裸の数値（例: `name: 3000`）だったときにクラッシュしていた問題を修正。値が文字列に適切に変換されるようになった (anthropics/claude-code#25837)",
+          "description": ""
+        },
+        {
+          "title": "`/resume` が、最初のメッセージが 16KB を超えるか配列形式コンテンツを使用している場合にセッションを黙って除外していた問題を修正 (anthropics/claude-code#25721)",
+          "description": ""
+        },
+        {
+          "title": "`claude doctor` が mise や asdf 管理のインストールをネイティブインストールと誤判定していた問題を修正 (anthropics/claude-code#26033)",
+          "description": ""
+        },
+        {
+          "title": "サンドボックス化されたコマンドで、zsh の heredoc が \"read-only file system\" エラーで失敗していた問題を修正 (anthropics/claude-code#25990)",
+          "description": ""
+        },
+        {
+          "title": "エージェントの進捗インジケータがツール使用回数を過大に表示していた問題を修正 (anthropics/claude-code#26023)",
+          "description": ""
+        },
+        {
+          "title": "Windows が画像を BMP 形式でコピーする WSL2 環境で、画像貼り付けが機能しない問題を修正 (anthropics/claude-code#25935)",
+          "description": ""
+        },
+        {
+          "title": "バックグラウンドエージェントの結果がエージェントの最終回答ではなく生のトランスクリプトデータを返していた問題を修正 (anthropics",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:01:40.129Z"
+}

@@ -1,0 +1,155 @@
+{
+  "version": "2.1.126",
+  "tagName": "v2.1.126",
+  "publishedAt": "2026-05-01T02:05:23Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.126",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 14,
+    "バグ修正": 18
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "/model ピッカーがゲートウェイのモデルを表示",
+          "description": "`/model` ピッカーは、`ANTHROPIC_BASE_URL` が Anthropic 互換ゲートウェイを指す場合、ゲートウェイの `/v1/models` エンドポイントからモデルを一覧表示します。"
+        },
+        {
+          "title": "claude project purge コマンド追加",
+          "description": "`claude project purge [path]` を追加し、プロジェクトの全 Claude Code 状態（トランスクリプト、タスク、ファイル履歴、設定エントリー）を削除できます。`--dry-run`、`-y/--yes`、`-i/--interactive`、`--all` をサポートします。"
+        },
+        {
+          "title": "--dangerously-skip-permissions が権限プロンプトを回避",
+          "description": "`--dangerously-skip-permissions` は、`.claude/`、`.git/`、`.vscode/`、シェル設定ファイルなどへの書き込み時のプロンプトをスキップします（破壊的削除コマンドは安全のため依然プロンプトあり）。"
+        },
+        {
+          "title": "claude auth login が端末貼り付けの OAuth コードに対応",
+          "description": "`claude auth login` は、ブラウザコールバックが localhost に届かない環境（WSL2、SSH、コンテナ）で、端末に貼り付けた OAuth コードを受け付けます。"
+        },
+        {
+          "title": "skill_activated イベントがスラッシュコマンドで発火",
+          "description": "`claude_code.skill_activated` OpenTelemetry イベントがユーザー入力のスラッシュコマンドでも発火し、新しい属性 `invocation_trigger`（`\"user-slash\"`、`\"claude-proactive\"`、`\"nested-skill\"`）を含みます。"
+        },
+        {
+          "title": "Auto モードのスピナーが赤色に変化",
+          "description": "Auto モードで、権限チェックが停止するとスピナーが赤くなり、ツールが実行中に見えるのを防ぎます。"
+        },
+        {
+          "title": "ホスト管理デプロイで分析が自動無効化されなくなった",
+          "description": "`CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST` を使用したホスト管理デプロイでは、Bedrock、Vertex、Foundry の分析が自動的に無効化されません。"
+        },
+        {
+          "title": "Windows で PowerShell 7 の検出が強化",
+          "description": "Windows 環境で、Microsoft Store、PATH 未設定の MSI、または `.NET global tool` でインストールされた PowerShell 7 を検出できるようになりました。"
+        },
+        {
+          "title": "PowerShell ツール有効時にデフォルトシェルが PowerShell に",
+          "description": "PowerShell ツールが有効な場合、Claude は Bash の代わりに PowerShell をプライマリシェルとして扱います。"
+        },
+        {
+          "title": "Read ツールのマルウェア評価リマインダーを削除",
+          "description": "Read ツールから、ファイルごとのマルウェア評価リマインダーが削除され、レガシーモデルでの不必要な拒否や「これはマルウェアではない」コメントが出なくなりました。"
+        },
+        {
+          "title": "Security: allowManagedDomainsOnly が無視される問題を修正",
+          "description": "`allowManagedDomainsOnly` と `allowManagedReadPathsOnly` が、上位優先度の managed-settings ソースに `sandbox` ブロックがない場合に無視されていた問題を修正しました。"
+        },
+        {
+          "title": "ファイル変更リマインダーの総サイズ上限を設定",
+          "description": "リンターが多数のファイルを同時に触れる際、ファイル変更リマインダーの総サイズに上限を設けました。"
+        },
+        {
+          "title": "Windows のクリップボード書き込みが安全になり、22KB 超の選択も対応",
+          "description": "Windows でのクリップボード書き込みが、EDR/SIEM のテレメトリでコマンドライン引数にコピー内容が露出しないようにし、22KB 超の選択がクリップボードに届かない問題も修正しました。"
+        },
+        {
+          "title": "PowerShell ツールで裸の -- が正しく認識",
+          "description": "PowerShell ツールで、`git diff -- file` のような裸の `--` が誤って `--%` の停止トークンと判定されなくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "2000px 超画像貼り付けでセッションが壊れる問題を修正",
+          "description": "画像が 2000px 超の場合にセッションが破綻していた問題を修正し、貼り付け時に画像を縮小し、履歴内の過大画像は自動削除してリクエストを再試行します。"
+        },
+        {
+          "title": "組織で OAuth が許可されていないエラーの表示を修正",
+          "description": "`OAuth not allowed for organization` エラー時にログイン画面が表示されていた問題を修正し、管理者への連絡方法を示す案内が表示されます。"
+        },
+        {
+          "title": "OAuth ログインのタイムアウト失敗を修正",
+          "description": "遅い/プロキシ経由の接続、IPv6 のみの devcontainer、ブラウザコールバックが localhost に届かない場合の OAuth ログインタイムアウト失敗を修正しました。"
+        },
+        {
+          "title": "Credential 書き込み競合でリフレッシュトークンが消える問題を修正",
+          "description": "同時に資格情報を書き込む稀な競合により有効な OAuth リフレッシュトークンがクリアされる問題を修正しました。"
+        },
+        {
+          "title": "API 再試行カウントダウンが 0s のままになる不具合を修正",
+          "description": "API 再試行時のカウントダウンが「0s」で止まっていた問題を修正し、再試行間で正しくカウントダウンします。"
+        },
+        {
+          "title": "Mac のスリープ復帰後の Stream idle timeout エラーを修正",
+          "description": "リクエスト途中で Mac がスリープから復帰した際に発生していた「Stream idle timeout」エラーを修正しました。"
+        },
+        {
+          "title": "長時間のモデル思考中に誤った Stream idle timeout が発生する問題を修正",
+          "description": "バックグラウンドおよびリモートセッションで、モデルの長時間思考停止中に誤って「Stream idle timeout」で中断される問題を修正しました。"
+        },
+        {
+          "title": "思考完了後に出力が無くなるハングを修正",
+          "description": "空ターンが続いた後、アシスタントが思考は完了しているのに出力が表示されないハング状態を修正しました。"
+        },
+        {
+          "title": "Cursor と VS Code 統合ターミナルのトラックパッドスクロール速度を修正",
+          "description": "Cursor と VS Code バージョン 1.92–1.104 の統合ターミナルで、トラックパッドのスクロールが異常に速くなる問題を修正しました。"
+        },
+        {
+          "title": "claude.ai MCP コネクタが手動サーバーで抑制される問題を修正",
+          "description": "手動サーバーが `needs-auth` 状態で停滞した際に、claude.ai MCP コネクタが抑制されていた問題を修正しました。"
+        },
+        {
+          "title": "Windows のノーフリッカーモードでの日本語・韓国語・中国語文字化けを修正",
+          "description": "Windows の no-flicker モードで、日本語、韓国語、中国語のテキストが文字化けして表示される問題を修正しました。"
+        },
+        {
+          "title": "Ctrl+L がプロンプト入力を消去しないよう修正",
+          "description": "`Ctrl+L` がプロンプト入力をクリアしていた動作を修正し、画面の再描画だけを行い、readline の挙動と一致させました。"
+        },
+        {
+          "title": "遅延ツールが最初のターンで利用できない問題を修正",
+          "description": "`context: fork` や他のサブエージェントを持つスキルで、遅延ツール（WebSearch、WebFetch 等）が最初のターンに使用できなかった問題を修正しました。"
+        },
+        {
+          "title": "--channels で起動した対話セッションで plan-mode ツールが利用できない問題を修正",
+          "description": "`--channels` オプションで開始した対話セッションで、plan-mode ツールが利用できなかった問題を修正しました。"
+        },
+        {
+          "title": "/plugin アンインストール時のステータス表示を修正",
+          "description": "`/plugin` の Uninstall が「Enabled」と表示されていたのを正しく「Uninstalled」と表示するよう修正しました。"
+        },
+        {
+          "title": "/remote-control のリトライ表示を改善",
+          "description": "`/remote-control` のリトライが「connecting…」のまま止まって見える問題を修正し、各リトライの結果が表示されるようにしました。"
+        },
+        {
+          "title": "Remote Control の初回接続失敗理由が表示されない問題を修正",
+          "description": "Remote Control の初回接続失敗時に、エラー原因が通知に表示されなかった問題を修正しました。"
+        },
+        {
+          "title": "Agent SDK がツール名不正でハングする問題を修正",
+          "description": "モデルが並列ツール呼び出しバッチで不正なツール名を出した際に、Agent SDK がハングしていた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:17:53.681Z"
+}

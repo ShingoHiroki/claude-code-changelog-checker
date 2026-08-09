@@ -1,0 +1,113 @@
+{
+  "version": "2.1.30",
+  "tagName": "v2.1.30",
+  "publishedAt": "2026-02-03T18:05:59Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.30",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 6,
+    "改善": 2,
+    "その他": 3,
+    "バグ修正": 8
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "PDF の読取でページ指定が可能に",
+          "description": "Read ツールの PDF 読取に `pages` パラメータを追加し、`pages: \"1-5\"` のようにページ範囲を指定できるようにしました。10 ページを超える大きな PDF は、`@` が言及されたときにインライン化せず軽量な参照を返します。"
+        },
+        {
+          "title": "Dynamic Client Registration 非対応 MCP サーバ向け OAuth クレデンシャルを事前設定",
+          "description": "Dynamic Client Registration に対応していない MCP サーバ（例: Slack）向けに、OAuth クライアント ID とシークレットを事前設定できるようにしました。`claude mcp add` とともに `--client-id` と `--client-secret` を使用します。"
+        },
+        {
+          "title": "`/debug` コマンドを追加",
+          "description": "`/debug` コマンドを追加し、現在のセッションのトラブルシューティングが可能になりました。"
+        },
+        {
+          "title": "読み取り専用モードで追加の `git log` / `git show` フラグをサポート",
+          "description": "読み取り専用モードで、`git log` と `git show` の追加フラグ（例: `--topo-order`、`--cherry-pick`、`--format`、`--raw`）をサポートしました。"
+        },
+        {
+          "title": "Task ツール結果にトークン数・ツール使用回数・実行時間メトリクスを追加",
+          "description": "Task ツールの結果にトークン数、ツール使用回数、実行時間のメトリクスを追加しました。"
+        },
+        {
+          "title": "設定に低動作モードを追加",
+          "description": "設定に reduced motion モードを追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`--resume` のメモリ使用量を改善",
+          "description": "`--resume` のメモリ使用量を改善し、セッションインデックスを軽量な統計ベースのロードと段階的エンリッチメントに置き換えることで、セッションが多いユーザーで 68% の削減を実現しました。"
+        },
+        {
+          "title": "`TaskStop` ツールが停止したコマンド/タスクの説明を結果行に表示",
+          "description": "`TaskStop` ツールが停止したコマンド/タスクの説明を結果行に表示し、汎用的な “Task stopped” メッセージから改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/model` が即時実行になるよう変更",
+          "description": "`/model` がキューに入れられるのではなく、即座に実行されるよう変更しました。"
+        },
+        {
+          "title": "[VSCode] 質問ダイアログの “Other” テキスト入力で複数行入力をサポート（Shift+Enter）",
+          "description": "[VSCode] 質問ダイアログの “Other” テキスト入力で Shift+Enter により改行できる複数行入力をサポートしました。"
+        },
+        {
+          "title": "[VSCode] 新規会話開始時にセッション一覧に重複セッションが表示されるバグを修正",
+          "description": "[VSCode] 新規会話開始時にセッション一覧に重複したセッションが表示される問題を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "API 会話履歴に出現する偽の “(no content)” テキストブロックを修正",
+          "description": "API 会話履歴に出現していた phantom の “(no content)” テキストブロックを修正し、トークン無駄とモデルの混乱を減らしました。"
+        },
+        {
+          "title": "ツール説明や入力スキーマ変更時にプロンプトキャッシュが正しく無効化されなかった問題を修正",
+          "description": "ツールの説明や入力スキーマが変更された際に、ツール名が変わらなくてもプロンプトキャッシュが正しく無効化されなかった問題を修正しました。"
+        },
+        {
+          "title": "`/login` 実行後、思考ブロックを含む会話で発生する 400 エラーを修正",
+          "description": "`/login` 実行後、会話に思考ブロックが含まれていると発生する可能性のある 400 エラーを修正しました。"
+        },
+        {
+          "title": "`parentUuid` 循環を含む破損したトランスクリプトでセッション再開時にハングする問題を修正",
+          "description": "`parentUuid` サイクルを含む破損した transcript ファイルでセッションを再開するとハングする問題を修正しました。"
+        },
+        {
+          "title": "レートリミットメッセージが Max 20x ユーザー向けに誤った “/upgrade” 提案を表示する問題を修正",
+          "description": "レートリミットメッセージが extra-usage が利用できないときに Max 20x ユーザー向けに誤った “/upgrade” 提案を表示していた問題を修正しました。"
+        },
+        {
+          "title": "入力中に権限ダイアログがフォーカスを奪う問題を修正",
+          "description": "入力中に権限ダイアログがフォーカスを奪う問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントが SDK 提供の MCP ツールにアクセスできなかった問題を修正（共有アプリ状態に同期されていなかった）",
+          "description": "サブエージェントが SDK 提供の MCP ツールにアクセスできなかった問題を、共有アプリケーション状態への同期が行われていなかったために発生していたことを修正しました。"
+        },
+        {
+          "title": "`.bashrc` を持つ Windows ユーザーが bash コマンドを実行できない回帰バグを修正",
+          "description": "`.bashrc` を持つ Windows ユーザーが bash コマンドを実行できない回帰バグを修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:59:12.473Z"
+}

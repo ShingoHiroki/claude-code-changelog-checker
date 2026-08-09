@@ -1,0 +1,140 @@
+{
+  "version": "2.1.129",
+  "tagName": "v2.1.129",
+  "publishedAt": "2026-05-06T01:40:18Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.129",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 0,
+    "その他": 8,
+    "バグ修正": 16
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`--plugin-url <url>` フラグの追加",
+          "description": "Added `--plugin-url <url>` flag to fetch a plugin `.zip` archive from a URL for the current session"
+        },
+        {
+          "title": "`CLAUDE_CODE_FORCE_SYNC_OUTPUT=1` 環境変数の追加",
+          "description": "Added `CLAUDE_CODE_FORCE_SYNC_OUTPUT=1` env var to force-enable synchronized output on terminals that auto-detection misses (e.g. Emacs `eat`)"
+        },
+        {
+          "title": "`CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` の自動アップデート",
+          "description": "Added `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE`: when set on Homebrew or WinGet installations, Claude Code runs the upgrade command in the background and prompts to restart"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "プラグインマニフェストの experimental 配下宣言",
+          "description": "Plugin manifests: `themes` and `monitors` should now be declared under \"experimental\": { ... }. Top-level declarations still work but `claude plugin validate` will warn"
+        },
+        {
+          "title": "`CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` によるモデルディスカバリのオプトイン",
+          "description": "Gateway `/v1/models` discovery for the `/model` picker is now opt-in via `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` (was automatic in 2.1.126–2.1.128)"
+        },
+        {
+          "title": "Ctrl+R 履歴ピッカーのデフォルト検索範囲拡大",
+          "description": "Ctrl+R history picker now defaults to searching all prompts across all projects, matching pre-2.1.124 behavior. Press Ctrl+S to narrow to the current project or session"
+        },
+        {
+          "title": "サードパーティデプロイでスピナーチップが表示されなくなった",
+          "description": "Third-party deployments (Bedrock, Vertex, Foundry, or `ANTHROPIC_BASE_URL` gateway) no longer see spinner tips pointing at first-party Anthropic surfaces"
+        },
+        {
+          "title": "`skillOverrides` 設定の有効化",
+          "description": "`skillOverrides` setting now works: `off` hides from model and `/`, `user-invocable-only` hides from model only, `name-only` collapses description"
+        },
+        {
+          "title": "`claude_code.pull_request.count` OTEL メトリックの修正",
+          "description": "The `claude_code.pull_request.count` OTel metric now counts PRs/MRs created via MCP tools, not just shell commands"
+        },
+        {
+          "title": "ポリシー拒否エラーメッセージに API Request ID を追加",
+          "description": "Policy refusal error messages now include the API Request ID for easier support debugging"
+        },
+        {
+          "title": "[VSCode] `/clear` が会話コンテキストと表示トランスクリプトをクリアしない問題を修正",
+          "description": "Fixed `/clear` not clearing the conversation context and displayed transcript"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "未認識 400 ステータスコードのエラーメッセージ表示を修正",
+          "description": "Fixed API errors with unrecognized 400 status codes showing raw JSON instead of the underlying error message"
+        },
+        {
+          "title": "`/clear` がタブタイトルをリセットしない問題を修正",
+          "description": "Fixed `/clear` not resetting the terminal tab title after a conversation"
+        },
+        {
+          "title": "`/rename` のセッションタイトルチップが消える不具合を修正",
+          "description": "Fixed session title chip from `/rename` disappearing while a permission or other dialog is active"
+        },
+        {
+          "title": "サブエージェント実行時にエージェントパネルが隠れる不具合を修正",
+          "description": "Fixed agent panel below the prompt being hidden when subagents are running (regression in 2.1.122)"
+        },
+        {
+          "title": "外部エディタハンドオフで会話履歴が消える問題を修正",
+          "description": "Fixed external-editor handoff (Ctrl+G) blanking the conversation history above the prompt"
+        },
+        {
+          "title": "`/context` が ASCII 可視化グリッドを出力するバグを修正",
+          "description": "Fixed `/context` dumping its rendered ASCII visualization grid into the conversation, wasting ~1.6k tokens per call"
+        },
+        {
+          "title": "`/agents` ライブラリリストで矢印キー操作時にハイライトが見えるように修正",
+          "description": "Fixed `/agents` Library list arrow-key navigation: the highlighted agent now stays visible when the list exceeds the viewport"
+        },
+        {
+          "title": "`/branch` 成功メッセージに新ブランチのセッション ID が含まれない不具合を修正",
+          "description": "Fixed `/branch` success message not including the new branch's session id for `/resume`"
+        },
+        {
+          "title": "フルスクリーンモードで絵文字付きヘッダーが切り取られるバグを修正",
+          "description": "Fixed bold headers with keycap/ZWJ/skin-tone emoji losing trailing characters in fullscreen mode"
+        },
+        {
+          "title": "エンタープライズ/チームユーザーでポリシー設定が適用されない問題を修正",
+          "description": "Fixed server-managed settings policy not applying for enterprise/team users whose stored OAuth credentials lacked the `user:inference` scope"
+        },
+        {
+          "title": "スリープ復帰後の OAuth リフレッシュ競合でセッションがログアウトする問題を修正",
+          "description": "Fixed OAuth refresh race after wake-from-sleep that could log out all running sessions"
+        },
+        {
+          "title": "プロンプトキャッシュ TTL が 1 時間から 5 分にダウングレードされる不具合を修正",
+          "description": "Fixed 1-hour prompt cache TTL being silently downgraded to 5 minutes"
+        },
+        {
+          "title": "`/clear` 後や `/effort`・`/model` 変更時にキャッシュミス警告が出る問題を修正",
+          "description": "Fixed cache-miss warning appearing spuriously after `/clear` or compaction when changing `/effort` or `/model`"
+        },
+        {
+          "title": "`Bash(mkdir *)` などの allow ルールがプロジェクト内パスで無視されるバグを修正",
+          "description": "Fixed `Bash(mkdir *)`, `Bash(touch *)` and similar allow rules not being honored for in-project paths"
+        },
+        {
+          "title": "`deniedMcpServers` パターンのスキームワイルドカードが大文字小文字混在ホスト名にマッチしない不具合を修正",
+          "description": "Fixed `deniedMcpServers` patterns with a `*://` scheme wildcard not matching mixed-case hostnames"
+        },
+        {
+          "title": "音声モードで `--debug` 時に WebSocket 警告がエラーとして記録される問題を修正",
+          "description": "Fixed harmless WebSocket warning being logged as an error in `--debug` during voice mode"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:18:36.769Z"
+}

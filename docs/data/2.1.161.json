@@ -1,0 +1,120 @@
+{
+  "version": "2.1.161",
+  "tagName": "v2.1.161",
+  "publishedAt": "2026-06-02T21:58:22Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.161",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 2,
+    "その他": 6,
+    "バグ修正": 14
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "端末レンダリング性能の向上",
+          "description": "レイアウトエンジンの JIT コンパイルプロファイルを安定化させ、端末の描画性能が向上しました。"
+        },
+        {
+          "title": "大容量ファイル書き込み時の描画性能向上",
+          "description": "大きなファイル書き込みにおける描画性能が改善されました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`OTEL_RESOURCE_ATTRIBUTES` が指標データポイントにラベルとして含まれるように",
+          "description": "`OTEL_RESOURCE_ATTRIBUTES` の値がメトリックデータポイントにラベルとして付与され、team や repo などのカスタム次元で使用量指標をスライスできます。"
+        },
+        {
+          "title": "`claude agents` 行に進捗表示が追加",
+          "description": "`claude agents` の行は、作業が分散された際に詳細の前に `done/total` を表示し、プレビューでは最長実行項目が示されます。"
+        },
+        {
+          "title": "`/mcp` が未使用コネクタを折りたたむ",
+          "description": "`/mcp` は、サインインしたことのない claude.ai コネクタを「Show unused connectors」行の下に隠すようになりました。"
+        },
+        {
+          "title": "並列ツール呼び出しで個別失敗が他に影響しない",
+          "description": "バッチ内の Bash コマンドが失敗しても、同じバッチの他のツール呼び出しはキャンセルされず、各ツールが独立して結果を返します。"
+        },
+        {
+          "title": "フルスクリーンモードのクリップボードが Linux で改善",
+          "description": "Linux では利用可能な場合 `wl-copy`/`xclip`/`xsel` を使用し、クリップボードと PRIMARY 選択の両方にコピー、さらにターミナルごとの正しいキーで「hold {key} for native selection」ヒントが表示されます。"
+        },
+        {
+          "title": "[VSCode] 端末の GPU 加速無効化のヒント追加",
+          "description": "端末の文字化けを修正するため、GPU 加速を無効化するか `/terminal-setup` を実行するよう提案するチップが追加されました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`/effort` ダイアログ等がモーション設定を無視",
+          "description": "`/effort` ダイアログ、ワークフローアニメーション、プロンプトキーワードの光彩が「Reduce motion」設定を尊重しない問題を修正しました。"
+        },
+        {
+          "title": "管理設定ポリシーがサードパーティ認証をブロック",
+          "description": "`forceLoginOrgUUID`/`forceLoginMethod` の管理設定ポリシーが、組織ピンと同時に Bedrock、Vertex、Foundry、Mantle などのサードパーティプロバイダーセッションをブロックしていた問題を修正（2.1.146 のリグレッション）。"
+        },
+        {
+          "title": "バックグラウンドサブエージェントの出力が `claude -p` の stdout を汚染",
+          "description": "`--output-format text` または `json` 使用時、バックグラウンドサブエージェントの出力が `claude -p` の標準出力を壊す問題を修正しました。"
+        },
+        {
+          "title": "`/usage-credits` が再ログインを促す問題",
+          "description": "Team と Enterprise の管理者が `/usage-credits` を実行した際に、組織の使用設定ページへでなく再ログインが開始される問題を修正しました。"
+        },
+        {
+          "title": "`/autofix-pr` がデフォルトブランチでエラーを返す",
+          "description": "セッションが git worktree や別リポジトリ内にある場合に、`/autofix-pr` が「cannot run on the default branch」と報告していた問題を修正しました。"
+        },
+        {
+          "title": "`--resume` ピッカーが現在ディレクトリのセッションを表示しない",
+          "description": "現在のディレクトリが git worktree でない場合（例: jj ワークスペース）に、`--resume` ピッカーが該当セッションを表示しなかった問題を修正しました。"
+        },
+        {
+          "title": "Windows フックで bash が見つからないエラー",
+          "description": "`/usr/bin/bash script.sh` のように bash を明示的に呼び出す Windows フックが「command not found」や「cannot execute binary file」エラーで失敗していた問題を修正しました。"
+        },
+        {
+          "title": "OpenTelemetry ログイベントが初期化前に失われる",
+          "description": "テレメトリ初期化完了前に出力された `user_prompt`、`api_request`、`tool_result`、`tool_decision` の OpenTelemetry ログイベントが黙って破棄されていた問題を修正しました。"
+        },
+        {
+          "title": "`claude mcp` がシークレットを端末に出力",
+          "description": "`claude mcp` の list/get/add コマンドで `${VAR}` が展開されず、認証ヘッダーや URL のシークレットがマスクされるようにし、シークレットが端末に表示される問題を修正しました。"
+        },
+        {
+          "title": "`isolation: \"worktree\"` エージェントがファイル編集をブロック",
+          "description": "バックグラウンドセッションで `isolation: \"worktree\"` のワークフローエージェントが、自身の worktree 内のファイル編集を阻害していた問題を修正しました。"
+        },
+        {
+          "title": "バックグラウンドセッションが古いモデルで起動",
+          "description": "`claude agents` からディスパッチされたバックグラウンドセッションが、daemon の環境の古いモデルで起動していた問題を、`settings.json` のモデルに合わせて修正しました。"
+        },
+        {
+          "title": "Write ツール結果のレンダリング時のクラッシュ潜在",
+          "description": "セッション再開後に Write ツールの結果を描画する際に発生する可能性のあるクラッシュを修正しました。"
+        },
+        {
+          "title": "サブエージェント完了後にエラーで実行中と表示され続ける",
+          "description": "サブエージェントが完了した後、結果の最終処理でエラーが起きると実行中のまま止まってしまう問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_TMPDIR` が深いパスの場合の `EADDRINUSE` エラー",
+          "description": "`CLAUDE_CODE_TMPDIR` を深いパスに設定した際、ツールが `$TMPDIR` 配下の Unix ソケットにバインドしようとして `EADDRINUSE` エラーが発生していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:27:36.384Z"
+}

@@ -1,0 +1,177 @@
+{
+  "version": "2.1.76",
+  "tagName": "v2.1.76",
+  "publishedAt": "2026-03-14T01:23:58Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.76",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 7,
+    "改善": 8,
+    "その他": 1,
+    "バグ修正": 19
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "MCP エリケーションサポートを追加",
+          "description": "MCP サーバーがタスク途中で対話型ダイアログ（フォームフィールドまたはブラウザ URL）を通じて構造化入力を要求できるようになりました。"
+        },
+        {
+          "title": "`Elicitation` と `ElicitationResult` フックを追加",
+          "description": "`Elicitation` と `ElicitationResult` フックにより、レスポンスが返される前に介入・上書きできるようになりました。"
+        },
+        {
+          "title": "CLI フラグ `-n` / `--name <name>` を追加",
+          "description": "セッション開始時に表示名を設定できるようになりました。"
+        },
+        {
+          "title": "`worktree.sparsePaths` 設定を追加",
+          "description": "`claude --worktree` で大型モノリポの必要なディレクトリだけを git sparse-checkout によりチェックアウトできるようになりました。"
+        },
+        {
+          "title": "`PostCompact` フックを追加",
+          "description": "コンパクション完了後に実行されるフックです。"
+        },
+        {
+          "title": "`/effort` スラッシュコマンドを追加",
+          "description": "モデルの努力レベルを設定できるようになりました。"
+        },
+        {
+          "title": "セッション品質調査を追加",
+          "description": "エンタープライズ管理者は `feedbackSurveyRate` 設定でサンプルレートを構成できます。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`--worktree` 起動性能の改善",
+          "description": "git ref を直接読み取り、リモートブランチがローカルにある場合は冗長な `git fetch` をスキップするようになりました。"
+        },
+        {
+          "title": "バックグラウンドエージェントの動作改善",
+          "description": "バックグラウンドエージェントを終了しても、部分結果が会話コンテキストに保持されます。"
+        },
+        {
+          "title": "モデルフォールバック通知の改善",
+          "description": "常に表示され、人間に分かりやすいモデル名が使われるようになり、verbose モードの背後に隠れなくなりました。"
+        },
+        {
+          "title": "ブロッククオートの可読性向上（ダークテーマ）",
+          "description": "テキストが斜体となり、左バーが付くようになり、dim 表示ではなくなりました。"
+        },
+        {
+          "title": "古い worktree の自動クリーンアップ改善",
+          "description": "中断された並列実行後に残った worktree が自動的に削除されます。"
+        },
+        {
+          "title": "Remote Control セッションタイトルの改善",
+          "description": "「Interactive session」ではなく、最初のプロンプトからタイトルが生成されます。"
+        },
+        {
+          "title": "`/voice` の改善",
+          "description": "有効化時に音声入力言語が表示され、`language` 設定が音声入力に対応していない場合に警告します。"
+        },
+        {
+          "title": "`--plugin-dir` の更新",
+          "description": "サブコマンドをサポートするために単一パスのみ受け付け、複数ディレクトリは `--plugin-dir` を繰り返し使用してください。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "VSCode の gitignore パターンバグ修正",
+          "description": "gitignore パターンにカンマが含まれると @-mention ファイルピッカーから全ファイルタイプが除外されていた問題を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "ToolSearch の遅延ツールがスキーマ喪失",
+          "description": "`ToolSearch` で読み込まれた遅延ツールが会話コンパクション後に入力スキーマを失い、配列や数値パラメータが型エラーになる問題を修正しました。"
+        },
+        {
+          "title": "スラッシュコマンドが Unknown skill を表示",
+          "description": "スラッシュコマンドが「Unknown skill」と表示される問題を修正しました。"
+        },
+        {
+          "title": "プランモードで再承認を要求するバグ修正",
+          "description": "プランがすでに承認済みなのに、プランモードが再承認を求めていた問題を修正しました。"
+        },
+        {
+          "title": "音声モードでキー入力が失われる問題修正",
+          "description": "権限ダイアログやプランエディタが開いている間に音声モードがキー入力を飲み込んでいた問題を修正しました。"
+        },
+        {
+          "title": "`/voice` が Windows npm インストール時に動作しない不具合修正",
+          "description": "npm 経由でインストールされた Windows 環境で `/voice` が機能しない問題を修正しました。"
+        },
+        {
+          "title": "`model:` frontmatter 使用時の偽の「Context limit reached」エラー修正",
+          "description": "1M コンテキストセッションで `model:` フロントマター付きスキルを呼び出すと出る誤った「Context limit reached」エラーを修正しました。"
+        },
+        {
+          "title": "非標準モデル文字列での「adaptive thinking is not supported」エラー修正",
+          "description": "標準外のモデル文字列を使用した際に出ていた「adaptive thinking is not supported on this model」エラーを修正しました。"
+        },
+        {
+          "title": "`Bash(cmd:*)` 権限ルールが `#` を含む引用引数にマッチしない問題修正",
+          "description": "引用された引数に `#` が含まれると `Bash(cmd:*)` の権限ルールが一致しなかった問題を修正しました。"
+        },
+        {
+          "title": "Bash 権限ダイアログの「don't ask again」でコマンド全体が表示される問題修正",
+          "description": "パイプや複合コマンドで「don't ask again」を選択した際に、ダイアログが生のコマンド全体を表示していた問題を修正しました。"
+        },
+        {
+          "title": "自動コンパクションの無限リトライを回路ブレーカーで 3 回で停止",
+          "description": "連続失敗時に自動コンパクションが無限にリトライし続ける問題を、3 回失敗で停止する回路ブレーカーで対処しました。"
+        },
+        {
+          "title": "MCP 再接続スピナーが成功後も残るバグ修正",
+          "description": "MCP が再接続に成功した後もスピナーが消えずに残っていた問題を修正しました。"
+        },
+        {
+          "title": "LSP プラグインがマーケットプレイス同期前にサーバー登録できない問題修正",
+          "description": "LSP Manager がマーケットプレイスの調整前に初期化された場合、プラグインがサーバーを登録しない問題を修正しました。"
+        },
+        {
+          "title": "SSH 上の tmux でのクリップボードコピーを改善",
+          "description": "SSH 経由の tmux セッションでのコピーが、直接端末書き込みと tmux クリップボード統合の両方を試みるように修正しました。"
+        },
+        {
+          "title": "`/export` が成功メッセージでファイル名のみ表示するバグ修正",
+          "description": "`/export` 実行後の成功メッセージで、フルパスではなくファイル名だけが表示されていた問題を修正しました。"
+        },
+        {
+          "title": "テキスト選択後にトランスクリプトが自動スクロールしない問題修正",
+          "description": "テキストを選択した後、トランスクリプトが新しいメッセージまで自動スクロールしなかった問題を修正しました。"
+        },
+        {
+          "title": "Escape キーでログイン方式選択画面を退出できないバグ修正",
+          "description": "Escape キーがログイン方式選択画面から抜ける操作に反応しなかった問題を修正しました。"
+        },
+        {
+          "title": "Remote Control の複数問題修正",
+          "description": "サーバーがアイドル環境を回収したときにセッションが静かに終了する、メッセージが一件ずつキューイングされバッチ送信されなかった、JWT 再取得後に古い作業項目が再配信される、といった Remote Control の問題を修正しました。"
+        },
+        {
+          "title": "ブリッジセッションが長時間の WebSocket 切断後に回復できない問題修正",
+          "description": "WebSocket が長時間切断された後、ブリッジセッションが復旧しなかった問題を修正しました。"
+        },
+        {
+          "title": "ソフトハイドコマンド名を正確に入力してもスラッシュコマンドが見つからないバグ修正",
+          "description": "ソフトハイド（soft‑hidden）コマンドの正確な名前を入力してもスラッシュコマンドが検出されない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:06:42.108Z"
+}

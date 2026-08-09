@@ -1,0 +1,213 @@
+{
+  "version": "2.1.77",
+  "tagName": "v2.1.77",
+  "publishedAt": "2026-03-17T00:28:12Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.77",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 5,
+    "その他": 10,
+    "バグ修正": 28
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`allowRead` サンドボックス設定を追加",
+          "description": "`allowRead` サンドボックスファイルシステム設定を追加し、`denyRead` 領域内での読み取りアクセスを再度許可できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "macOS の起動が高速化",
+          "description": "macOS での起動が約60ms高速化され、キーチェーン認証情報をモジュール読み込みと並行して取得するようにしました。"
+        },
+        {
+          "title": "`--resume` が高速化",
+          "description": "`--resume` がフォークが多い巨大セッションで最大45%高速化され、ピークメモリ使用量が約100〜150MB削減されます。"
+        },
+        {
+          "title": "Esc キーで非ストリーミング API リクエストを中止",
+          "description": "Esc キーで進行中の非ストリーミング API リクエストを中止できるよう改善しました。"
+        },
+        {
+          "title": "`claude plugin validate` の検証項目拡充",
+          "description": "`claude plugin validate` が skill、agent、command の frontmatter と `hooks/hooks.json` をチェックし、YAML パースエラーやスキーマ違反を検出できるよう改善しました。"
+        },
+        {
+          "title": "ヘッドレスモードでのプラグインインストールが改善",
+          "description": "ヘッドレスモードでのプラグインインストールが `CLAUDE_CODE_PLUGIN_SEED_DIR` と正しく合成されるよう改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Claude Opus 4.6 の出力トークン上限を拡大",
+          "description": "Claude Opus 4.6 のデフォルト最大出力トークン上限を 64k トークンに、Opus 4.6 と Sonnet 4.6 の上限を 128k トークンに増加しました。"
+        },
+        {
+          "title": "`/copy` がインデックスオプションに対応",
+          "description": "`/copy` がオプションのインデックスを受け取れるようになり、`/copy N` と指定すると N 番目に最新のアシスタント応答をコピーします。"
+        },
+        {
+          "title": "バックグラウンド Bash タスクが 5GB 超で自動終了",
+          "description": "バックグラウンドで実行中の Bash タスクは出力が 5GB を超えると自動的に終了し、ディスクを埋め尽くすプロセスを防止します。"
+        },
+        {
+          "title": "プラン受諾時にセッション名が自動設定",
+          "description": "プランを受諾すると、その内容からセッション名が自動的に付けられるようになりました。"
+        },
+        {
+          "title": "`apiKeyHelper` の遅延時に通知を表示",
+          "description": "`apiKeyHelper` が 10 秒以上かかる場合に通知を表示し、メインループのブロックを防止します。"
+        },
+        {
+          "title": "Agent ツールから `resume` パラメータを削除",
+          "description": "Agent ツールは `resume` パラメータを受け取らなくなり、以前に起動したエージェントを継続するには `SendMessage({to: agentId})` を使用してください。"
+        },
+        {
+          "title": "`SendMessage` が停止エージェントを自動再開",
+          "description": "`SendMessage` はエラーを返す代わりに、バックグラウンドで停止したエージェントを自動的に再開します。"
+        },
+        {
+          "title": "`/fork` が `/branch` にリネーム",
+          "description": "`/fork` が `/branch` に名称変更されました（`/fork` はエイリアスとして引き続き使用可能）。"
+        },
+        {
+          "title": "[VSCode] プランプレビュータブのタイトルを改善",
+          "description": "[VSCode] プランプレビュータブのタイトルがプランの見出しを使用するようになり、以前の \"Claude's Plan\" から変更されました。"
+        },
+        {
+          "title": "[VSCode] option+click が機能しない場合のフッター案内追加",
+          "description": "[VSCode] macOS で option+click がネイティブ選択を起動しないとき、フッターが `macOptionClickForcesSelection` 設定への案内を表示するようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "複合 Bash コマンドの \"Always Allow\" が正しく保存",
+          "description": "複合 Bash コマンド（例: `cd src && npm test`）で \"Always Allow\" が全体文字列の単一ルールとして保存され、サブコマンドごとに保存されない問題を修正し、死んだルールや権限プロンプトの繰り返しを防止しました。"
+        },
+        {
+          "title": "オートアップデータが重複ダウンロードを開始する不具合修正",
+          "description": "スラッシュコマンドオーバーレイを頻繁に開閉した際に、オートアップデータがバイナリの重複ダウンロードを開始し、数十ギガバイトのメモリを消費する問題を修正しました。"
+        },
+        {
+          "title": "`--resume` が会話履歴を切り詰めるバグ修正",
+          "description": "メモリ抽出書き込みとメイントランスクリプト間の競合により、`--resume` が直近の会話履歴を無音で切り詰めていた問題を修正しました。"
+        },
+        {
+          "title": "PreToolUse フックの `allow` が deny を迂回する問題修正",
+          "description": "PreToolUse フックが `\"allow\"` を返すことで `deny` 権限ルール（エンタープライズ管理設定を含む）を迂回していたバグを修正しました。"
+        },
+        {
+          "title": "Write ツールの改行変換バグ修正",
+          "description": "CRLF ファイルを上書きしたり CRLF ディレクトリにファイルを作成した際、Write ツールが改行コードを静かに変換していた問題を修正しました。"
+        },
+        {
+          "title": "長時間セッションでのメモリ増大修正",
+          "description": "プログレスメッセージがコンパクション後も残存し、長期セッションでメモリが増加する問題を修正しました。"
+        },
+        {
+          "title": "API が非ストリーミングに切り替わったときのコスト・トークン追跡不具合修正",
+          "description": "API が非ストリーミングモードにフォールバックした際に、コストとトークン使用量が記録されない問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` がベータスキーマを除去しない問題修正",
+          "description": "`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` がベータ版ツールスキーマフィールドを除去せず、プロキシゲートウェイがリクエストを拒否していた問題を修正しました。"
+        },
+        {
+          "title": "Bash ツールが空白パスでエラー報告するバグ修正",
+          "description": "システムの一時ディレクトリパスにスペースが含まれる場合、Bash ツールが成功したコマンドをエラーとして報告していた問題を修正しました。"
+        },
+        {
+          "title": "貼り付け直後の入力でペーストが失われる不具合修正",
+          "description": "貼り付け直後に文字入力をするとペースト内容が失われる問題を修正しました。"
+        },
+        {
+          "title": "`/feedback` 入力での Ctrl+D 動作修正",
+          "description": "`/feedback` のテキスト入力中に Ctrl+D を押すと前方削除になる代わりに、2 回目の押下でセッションが終了するよう修正しました。"
+        },
+        {
+          "title": "0 バイト画像ファイルのドラッグ時の API エラー修正",
+          "description": "0 バイトの画像ファイルをプロンプトにドラッグした際に発生していた API エラーを修正しました。"
+        },
+        {
+          "title": "Claude Desktop が CLI の API キーを使用するバグ修正",
+          "description": "Claude Desktop のセッションが OAuth ではなく、ターミナル CLI の設定された API キーを誤って使用していた問題を修正しました。"
+        },
+        {
+          "title": "`git-subdir` プラグインのキャッシュ衝突修正",
+          "description": "同一モノレポの異なるサブディレクトリにある `git-subdir` プラグインがプラグインキャッシュで衝突する問題を修正しました。"
+        },
+        {
+          "title": "端末 UI での順序付きリスト番号表示不具合修正",
+          "description": "端末 UI で順序付きリストの番号が正しく表示されない問題を修正しました。"
+        },
+        {
+          "title": "古い worktree のクリーンアップ競合修正",
+          "description": "古い worktree のクリーンアップが、前回のクラッシュから再開したばかりのエージェント worktree を削除する競合状態を修正しました。"
+        },
+        {
+          "title": "`/mcp` 等ダイアログ開閉時の入力デッドロック修正",
+          "description": "エージェントが実行中に `/mcp` や類似ダイアログを開くと入力がデッドロックする問題を修正しました。"
+        },
+        {
+          "title": "vim NORMAL モードでの Backspace/Delete 動作修正",
+          "description": "vim の NORMAL モードで Backspace と Delete キーが機能しない問題を修正しました。"
+        },
+        {
+          "title": "vim モード切替時にステータスラインが更新されないバグ修正",
+          "description": "vim モードのオン/オフ切替時にステータスラインが更新されない問題を修正しました。"
+        },
+        {
+          "title": "Cmd+クリックでハイパーリンクが二重に開く不具合修正",
+          "description": "VS Code、Cursor、その他 xterm.js ベースのターミナルで Cmd+クリックした際にハイパーリンクが二回開く問題を修正しました。"
+        },
+        {
+          "title": "tmux 内での背景色が端末デフォルトになるバグ修正",
+          "description": "デフォルト設定の tmux 内で背景色が端末デフォルトとして描画されていた問題を修正しました。"
+        },
+        {
+          "title": "iTerm2 の SSH tmux 内テキスト選択時のクラッシュ修正",
+          "description": "SSH 経由で tmux 内のテキストを選択した際に iTerm2 セッションがクラッシュする問題を修正しました。"
+        },
+        {
+          "title": "tmux セッションでのクリップボードコピー失敗修正と通知改善",
+          "description": "tmux セッションでクリップボードへのコピーが静かに失敗していた問題を修正し、コピートーストに `⌘V` または tmux の `prefix+]` で貼り付ける旨の表示を追加しました。"
+        },
+        {
+          "title": "設定等ダイアログで矢印キーがタブ切替になる不具合修正",
+          "description": "設定、権限、サンドボックスダイアログでリスト操作中に `←`/`→` が誤ってタブを切り替えていた問題を修正しました。"
+        },
+        {
+          "title": "tmux/Screen 内起動時の IDE 連携自動接続不具合修正",
+          "description": "Claude Code を tmux や screen 内で起動した際に、IDE 統合が自動的に接続しなかった問題を修正しました。"
+        },
+        {
+          "title": "右端で切れる CJK 文字の描画漏れ修正",
+          "description": "右端でクリップされた際に CJK 文字が隣接 UI 要素に視覚的ににじむ問題を修正しました。"
+        },
+        {
+          "title": "リーダー退出時にチームメイトペインが閉じないバグ修正",
+          "description": "リーダーが退出した際に、チームメイト用ペインが閉じられない問題を修正しました。"
+        },
+        {
+          "title": "iTerm2 の自動モードで分割ペイン検出しない問題修正",
+          "description": "iTerm2 の自動モードが iTerm2 を検出せず、ネイティブの分割ペインチームメイトを使用できなかった問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:07:12.308Z"
+}

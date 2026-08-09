@@ -1,0 +1,164 @@
+{
+  "version": "2.1.143",
+  "tagName": "v2.1.143",
+  "publishedAt": "2026-05-15T22:28:22Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.143",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 0,
+    "その他": 12,
+    "バグ修正": 18
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "プラグイン依存関係の強制付与",
+          "description": "`claude plugin disable` が、対象プラグインに依存する有効なプラグインがある場合に無効化を拒否し、コピー貼り付け可能な無効化チェーンのヒントを表示する。また `claude plugin enable` は推移的依存関係を強制的に有効化する。"
+        },
+        {
+          "title": "Marketplace のコンテキストコスト表示",
+          "description": "Marketplace の `/plugin` ブラウズペインに、ターンごとおよび呼び出しごとのトークン見積もりとして、投影コンテキストコストが追加された。"
+        },
+        {
+          "title": "バックグラウンドセッションの作業コピー直接編集",
+          "description": "`worktree.bgIsolation: \"none\"` 設定を追加し、バックグラウンドセッションが `EnterWorktree` を使用せずに作業コピーを直接編集できるようにした（ワークツリーが実用的でないリポジトリ向け）。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "PowerShell ツールの実行ポリシー設定",
+          "description": "`claude` が PowerShell ツールを呼び出す際に `-ExecutionPolicy Bypass` を渡すようになった。`CLAUDE_CODE_POWERSHELL_RESPECT_EXECUTION_POLICY=1` を設定すると元のポリシーを尊重するようにオプトアウトできる。"
+        },
+        {
+          "title": "バックグラウンドセッションでモデルと努力レベルを保持",
+          "description": "アイドルから復帰した際に、設定したモデルと effort レベルがバックグラウンドセッションで維持されるようになった。"
+        },
+        {
+          "title": "Shift+Tab のサイクルに自動モードを追加",
+          "description": "エージェントセッションにアタッチした状態で Shift+Tab を押すと、モード切替サイクルに auto モードが含まれるようになった。"
+        },
+        {
+          "title": "PowerShell ツールをデフォルトで有効化",
+          "description": "Windows 上の Bedrock、Vertex、Foundry ユーザー向けに PowerShell ツールが既定で有効になった。`CLAUDE_CODE_USE_POWERSHELL_TOOL=0` を設定するとオプトアウトできる。"
+        },
+        {
+          "title": "`claude agents` が新フラグを受け付ける",
+          "description": "`claude agents` が `--add-dir`、`--settings`、`--mcp-config`、`--plugin-dir` を受け取り、ダッシュボードおよびそこから派生したバックグラウンドセッションに適用できるようになった。"
+        },
+        {
+          "title": "`claude agents` が権限・モデル設定フラグを受け付ける",
+          "description": "`claude agents` が `--permission-mode`、`--model`、`--effort`、`--dangerously-skip-permissions` を受け取り、ビューから派生するセッションのデフォルトとして設定できるようになった。"
+        },
+        {
+          "title": "`--dangerously-skip-permissions` が再起動間で持続",
+          "description": "`claude --bg --dangerously-skip-permissions` オプションが、セッションの retire（退避）から wake（復帰）まで持続するようになった。"
+        },
+        {
+          "title": "Worktree クリーンアップの安全化",
+          "description": "`git worktree remove` が失敗した際に `rm -rf` にフォールバックしなくなり、gitignore されたファイルや作業中のファイルが失われることを防止した。"
+        },
+        {
+          "title": "`/bg` が設定フラグを保持",
+          "description": "`/bg` コマンドが `--mcp-config`、`--settings`、`--add-dir`、`--plugin-dir`、`--strict-mcp-config` を保持し、バックグラウンドセッションが再生成されても MCP サーバーや設定が維持される。"
+        },
+        {
+          "title": "`claude agents` 起動のバックグラウンドセッションがデフォルト権限モードを尊重",
+          "description": "`claude agents` から起動したバックグラウンドセッションが、settings.json の `permissions.defaultMode` を使用するようになり、以前は自動モードに上書きされていた。"
+        },
+        {
+          "title": "`--fallback-model` がバックグラウンドで保持",
+          "description": "`/bg` と `←`-detach が `--fallback-model` を保持し、オーバーロード時にハードフェイルせずフォールバックモデルへ降格する。"
+        },
+        {
+          "title": "`--allow-dangerously-skip-permissions` がバックグラウンドで保持",
+          "description": "`/bg` と `←`-detach が `--allow-dangerously-skip-permissions` を保持し、フォークされたワーカーが Shift+Tab サイクルでバイパス権限を利用できるようにした。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": ".credentials.json の破損を修正",
+          "description": "`scopes` が配列でない破損した .credentials.json が原因で、CLI の起動時にハングしたり OAuth トークン更新が静かに失敗する問題を修正した。"
+        },
+        {
+          "title": "Windows Terminal と WSL での右クリック貼り付けを修正",
+          "description": "`claude agents` において、Windows Terminal と WSL で右クリック貼り付けが機能しなかった問題を修正した。"
+        },
+        {
+          "title": "停止フックの無限ループを修正",
+          "description": "停止フックが繰り返しブロックし続ける問題を修正し、8 回連続でブロックされた場合に警告と共にターンが終了するようにした（上書きは `CLAUDE_CODE_STOP_HOOK_BLOCK_CAP`）。"
+        },
+        {
+          "title": "Esc/Ctrl+C での /loop ウェイクアップキャンセルを修正",
+          "description": "Claude がイテレーション間でアイドル状態の際、Esc や Ctrl+C が保留中の `/loop` ウェイクアップをキャンセルできなかった問題を修正した。"
+        },
+        {
+          "title": "`/goal` 評価子の誤作動を修正",
+          "description": "バックグラウンドシェルや委任されたサブエージェントが実行中でも `/goal` 評価子が発火していた問題を修正した。"
+        },
+        {
+          "title": "settings.json env の NO_COLOR/ FORCE_COLOR の影響範囲を修正",
+          "description": "`settings.json` の `env` で設定された `NO_COLOR` と `FORCE_COLOR` が Claude Code 本体の UI 色まで削除していた問題を修正し、サブプロセスのみに適用されるようにした。"
+        },
+        {
+          "title": "エージェントビューでの PowerShell 重複起動を修正",
+          "description": "Windows でセッション一覧を表示する際、エージェントビューが PowerShell プロセスを繰り返し生成していた問題を修正した。"
+        },
+        {
+          "title": "`/bg` がプロンプトなしで continue を送信する問題を修正",
+          "description": "プロンプトが無い状態で `/bg` を実行した際、フォークされたセッションに自動で \"continue\" が送られていた問題を修正し、フォークは入力待ちになるようにした。"
+        },
+        {
+          "title": "`--agent` のプラグインエージェント検索を修正",
+          "description": "`--agent <name>` が `plugin:` プレフィックスなしでプラグイン提供のエージェントを見つけられなかった問題を修正した。"
+        },
+        {
+          "title": "エージェントビューでのセッション削除がトランスクリプトを残す問題を修正",
+          "description": "エージェントビューからセッションを削除した際に、対応する transcript ファイルが削除されなかった問題を修正した。"
+        },
+        {
+          "title": "Windows Terminal でのバックグラウンドセッションスクロール時の描画問題を修正",
+          "description": "アタッチされたバックグラウンドセッションを Windows Terminal でスクロールした際に、古いフラグメントが描画され続ける問題を修正した。"
+        },
+        {
+          "title": "ホストのスリープ／App Nap 後の誤検知を修正",
+          "description": "ホストがスリープしたり macOS の App Nap が発生した後、バックグラウンドエージェントがワーカーのスタックを誤って多数検出する問題を修正した。"
+        },
+        {
+          "title": "5xx エラーメッセージの表示先を修正",
+          "description": "5xx エラー時に設定されたゲートウェイやクラウドプロバイダー名ではなく status.claude.com を指していたメッセージを正しい情報に修正した。"
+        },
+        {
+          "title": "バックグラウンドセッションでの IDE ファイル参照取得の誤動作を修正",
+          "description": "バックグラウンドセッションが IDE ファイル参照を無音で warm spare の入力に取り込み、次の `claude agents` からのプロンプト先頭に付加される問題を修正した。"
+        },
+        {
+          "title": "macOS バックグラウンドジョブのファイルアクセスエラーを修正",
+          "description": "Full Disk Access が付与されていても、macOS のバックグラウンドジョブが `~/Documents`、`~/Desktop`、`~/Downloads` のファイルを読み取ろうとすると \"Operation not permitted\" エラーが出る問題を修正した。"
+        },
+        {
+          "title": "Windows での ← キーによるエージェントリストのハングを修正",
+          "description": "Windows 環境で `claude agents` の応答ストリーミング中に ← を押すと、エージェントリストが全ての入力に対して応答しなくなる問題を修正した。"
+        },
+        {
+          "title": "バックグラウンドデーモン起動時のランチャー欠如対策を修正",
+          "description": "`~/.local/bin/claude` ランチャーが存在しない、または実行不可の場合、バックグラウンドデーモンが現在実行中のバイナリにフォールバックするように修正した。"
+        },
+        {
+          "title": "`--allow-dangerously-skip-permissions` のデフォルト挙動を修正",
+          "description": "`claude agents --allow-dangerously-skip-permissions` が派生セッションを自動的にバイパスモードに設定していた問題を修正し、権限サイクルで利用可能にした。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:22:32.235Z"
+}

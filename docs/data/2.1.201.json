@@ -1,0 +1,26 @@
+{
+  "version": "2.1.201",
+  "tagName": "v2.1.201",
+  "publishedAt": "2026-07-03T23:50:35Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.201",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 1,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Claude Sonnet 5 セッションのハーネスリマインダー仕様変更",
+          "description": "Claude Sonnet 5 のセッションは、mid-conversation システムロールを利用してハーネスリマインダーを提供しなくなります。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:34:11.109Z"
+}

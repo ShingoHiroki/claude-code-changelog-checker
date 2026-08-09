@@ -1,0 +1,281 @@
+{
+  "version": "2.1.141",
+  "tagName": "v2.1.141",
+  "publishedAt": "2026-05-13T23:19:16Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.141",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 2,
+    "その他": 12,
+    "バグ修正": 43
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`terminalSequence` フィールドの追加",
+          "description": "hook JSON 出力に `terminalSequence` フィールドを追加し、端末がなくてもデスクトップ通知・ウィンドウタイトル・ベルをフックから発信できるようにした"
+        },
+        {
+          "title": "`CLAUDE_CODE_PLUGIN_PREFER_HTTPS` 環境変数の追加",
+          "description": "GitHub プラグインソースを SSH ではなく HTTPS でクローンするための `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` を追加し、GitHub SSH 鍵が無い環境でも利用可能にした"
+        },
+        {
+          "title": "`ANTHROPIC_WORKSPACE_ID` 環境変数の追加",
+          "description": "ワークロードアイデンティティフェデレーション用に `ANTHROPIC_WORKSPACE_ID` を追加し、フェデレーションルールが複数ワークスペースをカバーする場合にトークンを特定のワークスペースにスコープできるようにした"
+        },
+        {
+          "title": "`claude agents --cwd <path>` オプションの追加",
+          "description": "`claude agents --cwd <path>` を導入し、セッション一覧を指定ディレクトリに限定できるようにした"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "スピナーの視覚フィードバック改善",
+          "description": "長時間の思考中にスピナーが 10 秒経過後にアンバーに変化し、Claude がまだ作業中であることを示すようにした"
+        },
+        {
+          "title": "プラグインメニューの操作性向上",
+          "description": "`→`/Tab でタブ切替、`↑` でタブストリップへ移動、フルスクリーンモードでタブヘッダーと検索ボックスがクリック可能になるようプラグインメニューのナビゲーションを改善した"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "/feedback に最近のセッションを含める機能",
+          "description": "`/feedback` が現在のセッションを超える問題に対して、過去 24 時間または 7 日間のセッションを添付できるようにした"
+        },
+        {
+          "title": "Rewind メニューに「Summarize up to here」追加",
+          "description": "Rewind メニューに \"Summarize up to here\" を追加し、直近のターンは保持しつつ以前のコンテキストを圧縮できるようにした"
+        },
+        {
+          "title": "Auto モード権限ダイアログで `permissions.ask` ルールの原因を記載",
+          "description": "Auto モードの権限ダイアログが、`permissions.ask` ルールがトリガーとなったことを説明するようにした"
+        },
+        {
+          "title": "IDE 接続時に「view diff in your IDE」オプション復元",
+          "description": "IDE が接続されている場合、ファイル編集権限プロンプトで \"view diff in your IDE\" オプションを復元した"
+        },
+        {
+          "title": "`/bg`・`←←` で起動したバックグラウンドエージェントが権限モードを保持",
+          "description": "`/bg` または `←←` で開始したバックグラウンドエージェントがデフォルトに戻らず、現在の権限モードを保持するようにした"
+        },
+        {
+          "title": "完了したがシェルが残るエージェントを Completed に移動",
+          "description": "作業完了後にバックグラウンドシェルが残っているエージェントを Working のままにせず Completed に自動的に移すようにした"
+        },
+        {
+          "title": "Bedrock の `awsCredentialExport` が常に実行され認証が修正",
+          "description": "Bedrock で `awsCredentialExport` が設定されていれば常に実行し、環境変数の AWS 資格情報が解決された場合でもスキップされず、クロスアカウントアクセスの認証が正しく行われるようにした"
+        },
+        {
+          "title": "VSCode: マイク無音時に「No audio detected」表示",
+          "description": "VSCode のチャット内マイクが無音のみを検出した場合にフィードバックがなくなっていた問題を修正し、代わりに \"No audio detected\" と表示するようにした"
+        },
+        {
+          "title": "VSCode: Voice モードで WSL エラー時にインストール案内追加",
+          "description": "VSCode の Voice モードで WSLg ユーザー向けに `sox libsox-fmt-pulse` のインストールを提案するエラーメッセージを追加した"
+        },
+        {
+          "title": "背景ワーカーが不健康でも `claude agents` の起動が失敗しない",
+          "description": "事前起動済みのバックグラウンドワーカーが不健康な場合でも、`claude agents` のセッション起動が失敗せず、新規起動にフォールバックするようにした"
+        },
+        {
+          "title": "バックグラウンド REPL のプレースホルダー削除とオンボーディングテキスト表示",
+          "description": "バックグラウンド化された新規 REPL から残っていた空のプレースホルダーセッションが表示されなくなり、`←` でエージェントが無い状態で入った場合にオンボーディングテキストが表示されるようにした"
+        },
+        {
+          "title": "`←` から残る空のバックグラウンドセッションが 5 分で自動削除",
+          "description": "`←` により残った空のバックグラウンドセッションがデーモンによって 5 分後に自動的に退役されるようにした"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "背景サイドクエリの Haiku モデル ID 送信バグ修正",
+          "description": "`ANTHROPIC_SMALL_FAST_MODEL` が未設定の場合、Bedrock/Vertex/Foundry/gateway の背景サイドクエリが利用不可の Haiku モデル ID を送信していた問題を修正し、メインループモデルにフォールバックするようにした"
+        },
+        {
+          "title": "Windows での daemon パイプキーエラー処理修正",
+          "description": "Windows 上で `claude daemon status` と `/doctor` がデーモンパイプキーのファイルがロックまたは読み取り不可の場合に例外を投げていた問題を修正し、具体的なエラーを表示するようにした"
+        },
+        {
+          "title": "ラッパー経由起動時のエージェント表示バグ修正",
+          "description": "フラグを追加するラッパー経由で `claude agents` を起動した際に、エージェントタイプ一覧がダッシュボードの代わりに表示されていた問題を修正した"
+        },
+        {
+          "title": "作業ディレクトリ削除時のクラッシュセッションディスパッチ重複修正",
+          "description": "作業ディレクトリが削除された状態でクラッシュしたセッションを開くと、冗長なディスパッチが発生していた問題を修正した"
+        },
+        {
+          "title": "カスタムゲートウェイでバックグラウンドジョブの自動命名修正",
+          "description": "カスタム `ANTHROPIC_BASE_URL` ゲートウェイ使用時にバックグラウンドジョブが自動命名されず、Haiku モデル未設定時にメインモデル名で命名されるように修正した"
+        },
+        {
+          "title": "`/model` が他セッションの autocompact 閾値を変更するバグ修正",
+          "description": "あるセッションで `/model` を実行すると、同時に動作中の他セッションの autocompact 閾値が静かに変更されていた問題を修正した"
+        },
+        {
+          "title": "権限モード切替時のツール権限プロンプト自動解除バグ修正",
+          "description": "ツール権限プロンプトが開いている最中に権限モードを切り替えても、新しい設定でツールが許可されている場合にプロンプトが自動的に閉じなかった問題を修正した"
+        },
+        {
+          "title": "プロンプト表示中の Enter キーが入力ボックスに送信されるバグ修正",
+          "description": "権限/ダイアログプロンプトが開いている状態で Enter を押すと、テキスト入力欄にも送信されていた問題を修正した"
+        },
+        {
+          "title": "`EnterWorktree` 後の `transcript_path` 不在フック受信バグ修正",
+          "description": "`EnterWorktree` により作業ディレクトリが切り替わった後、存在しない `transcript_path` がフックに渡されていた問題を修正した"
+        },
+        {
+          "title": "Markdown テーブルのセル折り返しでレイアウトが変わるバグ修正",
+          "description": "セル折り返しがある Markdown テーブルが、縦方向のキー‑バリュー形式にフォールバックしていた問題（2.1.136 での回帰）を修正し、罫線付きグリッドとして正しく描画されるようにした"
+        },
+        {
+          "title": "キャンセルプロンプトの Up キー履歴削除バグ修正",
+          "description": "キャンセルされたプロンプトが自動復元された際に Up キー履歴から削除され、重複エントリができていた問題を修正した"
+        },
+        {
+          "title": "返答前の Ctrl+C/Esc キャンセルが履歴に残らないバグ修正",
+          "description": "応答が無い状態で Ctrl+C または Esc によってキャンセルされたプロンプトが Up キー履歴に残らない問題を修正した"
+        },
+        {
+          "title": "vim INSERT/VISUAL 中の Ctrl+C が割り込まれないバグ修正",
+          "description": "vim の INSERT/VISUAL モード中に Ctrl+C を押しても、実行中のターンが中断されなかった問題を修正した"
+        },
+        {
+          "title": "`enter` を `chat:newline` にリバインドした際の代替送信キー無効化修正",
+          "description": "`enter` が `chat:newline` に再割り当てされた場合に、代替の `chat:submit` キーバインド（例: `meta+enter`、`ctrl+enter`）が機能しなくなる問題を修正した"
+        },
+        {
+          "title": "出力スタイル設定時にプロンプトサジェストが無効になるバグ修正",
+          "description": "出力スタイルが設定されていると、プロンプト提案が黙って無効化されていた問題を修正した"
+        },
+        {
+          "title": "`spinnerVerbs` がターン完了メッセージで無視されるバグ修正",
+          "description": "`spinnerVerbs` 設定がターン完了時のメッセージに反映されていなかった問題を修正した"
+        },
+        {
+          "title": "AskUserQuestion ポップアップが前チャット行を隠すバグ修正",
+          "description": "AskUserQuestion のポップアップが直前のチャット内容の最終行を覆い隠していた問題を修正した"
+        },
+        {
+          "title": "Web 検索エラー時に \"Did 0 searches\" と表示されるバグ修正",
+          "description": "検索がエラーで失敗した際にステータスが \"Did 0 searches\" と誤表示されていた問題を修正した"
+        },
+        {
+          "title": "長行超過時のステータスライン出力破損バグ修正",
+          "description": "ステータスラインの出力が複数行にまたがり、任意の行が端末幅を超えると行が落ちるか破損する問題を修正した"
+        },
+        {
+          "title": "Light-ansi テーマで diff コンテキスト行が見えないバグ修正",
+          "description": "Light-ansi テーマで diff のコンテキスト行が背景が明るい場合に見えない白色で描画されていた問題を修正し、黒色で表示するようにした"
+        },
+        {
+          "title": "エラーオーバーレイがミニ化ソースを表示し元エラーメッセージが隠れるバグ修正",
+          "description": "エラーオーバーレイが縮小されたバンドルソースを出力し、元のエラーメッセージが見えなくなる問題を修正した"
+        },
+        {
+          "title": "フィードバック評価入力後の Enter がチャットメッセージになるバグ修正",
+          "description": "フィードバック調査で評価の数字を入力した後に Enter を押すと、その数字がチャットメッセージとして送信されていた問題を修正した"
+        },
+        {
+          "title": "サブエージェント選択時の `x` がプロンプトに入力されるバグ修正",
+          "description": "エージェントパネルで選択中のサブエージェントに対して `x` を押すと、エージェントが停止せずプロンプトに文字が入力されていた問題を修正した"
+        },
+        {
+          "title": "最初のプロンプト前にプラグイン通知でセッションタイトルが設定されるバグ修正",
+          "description": "ユーザーの最初のプロンプト以前にプラグインモニタ通知からセッションタイトルが決定されていた問題を修正した"
+        },
+        {
+          "title": "\"Allowed by PermissionRequest hook\" がツール呼び出しごとに重複表示されるバグ修正",
+          "description": "折りたたみされた read/search グループ内で、PermissionRequest フックによる許可メッセージがツール呼び出しごとに一度ずつ重複して表示されていた問題を修正した"
+        },
+        {
+          "title": "`/tui` がバックグラウンドシェルとサブエージェントを落とすバグ修正",
+          "description": "`/tui` が実行中のバックグラウンドシェルやサブエージェントを黙って終了させていた問題を修正し、終了前に確認し、完了を待つようにした"
+        },
+        {
+          "title": "ウェルカムバナーが各プロバイダーで \"API Usage Billing\" と表示されるバグ修正",
+          "description": "Bedrock、Vertex、Foundry などサードパーティプロバイダーでウェルカムバナーが \"API Usage Billing\" と誤表示されていた問題を修正し、正しいプロバイダー名を表示するようにした"
+        },
+        {
+          "title": "フルスクリーン短端末で `/mcp` サーバーリストのフォーカスが見えないバグ修正",
+          "description": "フルスクリーンモードかつ端末が狭い場合に、`/mcp` のサーバーリストで現在フォーカスされているサーバーが見えなくなる問題を修正した"
+        },
+        {
+          "title": "`/feedback` のマスキングで JSON が無効になるバグ修正",
+          "description": "`/feedback` バンドルでのリダクションが、セッション ID など引用された値に対して無効な JSON を生成していた問題を修正した"
+        },
+        {
+          "title": "デスクトップ/サードパーティセッションがホスト設定を誤継承するバグ修正",
+          "description": "デスクトップおよびサードパーティプロバイダーのセッションが、ホストの managed‑settings から `apiKeyHelper`/`ANTHROPIC_AUTH_TOKEN` を誤って継承していた問題を修正した"
+        },
+        {
+          "title": "ロガー初期化前の分析イベントが失われるバグ修正",
+          "description": "ロガーが初期化される前に発火した分析イベントが黙ってドロップされていた問題を修正した"
+        },
+        {
+          "title": "`claude plugin install` が失効した marketplace `ref` で失敗するバグ修正",
+          "description": "`sha` がピン留めされている場合に、上流で存在しなくなった marketplace の `ref` が原因で `claude plugin install` が失敗していた問題を修正した"
+        },
+        {
+          "title": "`.mcp.json` 宣言プラグインの詳細ペインで MCP サーバーが 0 と表示されるバグ修正",
+          "description": "`.mcp.json` で MCP サーバーを宣言しているプラグインの詳細ペインに、サーバー数が 0 と表示されていた問題を修正した"
+        },
+        {
+          "title": "設定未設定 MCP サーバーが一般的接続失敗を示すバグ修正",
+          "description": "設定が未設定の MCP サーバーが、具体的な \"config issue\" ヒントではなく汎用的な接続失敗メッセージを表示していた問題を修正した"
+        },
+        {
+          "title": "POSIX パラメータ展開使用時に環境変数欠如と誤判定されるバグ修正",
+          "description": "MCP サーバー設定で POSIX シェルパラメータ展開（例 `${var%pattern}`）を使用した場合に、環境変数が欠如していると誤ってフラグ付けされていた問題を修正した"
+        },
+        {
+          "title": "MCP HTTP/SSE サーバーの 403 が \"needs auth\" ではなく \"failed\" と表示されるバグ修正",
+          "description": "MCP HTTP/SSE サーバーが接続時に 403 を返すと、ステータスが \"needs auth\" と表示されず \"failed\" と表示されていた問題を修正した"
+        },
+        {
+          "title": "オプション server-events 再接続失敗で Remote MCP が不必要に切断されるバグ修正",
+          "description": "任意の server‑events ストリームの再接続に失敗したときに、Remote MCP サーバーが不要に切断されていた問題を修正した"
+        },
+        {
+          "title": "セッション中トークンローテーションで Remote Control MCP が 401 失敗するバグ修正",
+          "description": "ワーカーセッショントークンがセッション途中でローテーションされた際に、Remote Control MCP コネクタが全て 401 エラーで失敗していた問題を修正した"
+        },
+        {
+          "title": "ステールトークン拒否時の Remote Control が `/login` ループせず自動再登録するバグ修正",
+          "description": "サーバーが古いトークンを拒否した場合に、Remote Control が信頼デバイスを自動的に再登録し、`/login` へのループを回避していた問題を修正した"
+        },
+        {
+          "title": "ベータトレース有効時の OTel スパン早期ドロップ競合バグ修正",
+          "description": "SDK/ヘッドレスモードでベータトレースが有効な際、初期の OTel スパンが黙ってドロップされる競合状態を修正した"
+        },
+        {
+          "title": "カスタム `voice:pushToTalk` キーバインドと `\"space\": null` が無視されるバグ修正",
+          "description": "カスタムの `voice:pushToTalk` キーバインドや `\"space\": null` によるバインド解除が無視されていた問題を修正した"
+        },
+        {
+          "title": "Windows の Alt+V 画像貼り付けでスクリーンショットが見つからないバグ修正",
+          "description": "Windows で Alt+V により画像貼り付けを行った際、クリップボードにスクリーンショットがあるにもかかわらず \"no image found\" と報告されていた問題を修正した"
+        },
+        {
+          "title": "Linux で glibc と musl 両方インストール時の SDK ネイティブバイナリ未検出バグ修正",
+          "description": "Linux 環境で glibc と musl の両方のプラットフォームパッケージがインストールされている場合に、SDK が \"Claude Code native binary not found\" と表示していた問題を修正した"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:21:57.064Z"
+}

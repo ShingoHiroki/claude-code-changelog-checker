@@ -1,0 +1,126 @@
+{
+  "version": "2.1.92",
+  "tagName": "v2.1.92",
+  "publishedAt": "2026-04-04T00:42:02Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.92",
+  "counts": {
+    "破壊的変更": 2,
+    "新機能": 3,
+    "改善": 1,
+    "その他": 4,
+    "バグ修正": 11
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "`/tag` コマンドの削除",
+          "description": "`/tag` コマンドが削除されました。"
+        },
+        {
+          "title": "`/vim` コマンドの削除",
+          "description": "`/vim` コマンドが削除され、Vim モードは `/config` の「Editor mode」から切り替えるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`forceRemoteSettingsRefresh` ポリシー設定の追加",
+          "description": "`forceRemoteSettingsRefresh` を有効にすると、CLI はリモート管理設定が新たに取得されるまで起動をブロックし、取得に失敗した場合は起動せずに終了します（フェイルクローズ）。"
+        },
+        {
+          "title": "対話型 Bedrock セットアップウィザードの追加",
+          "description": "ログイン画面で「3rd-party platform」を選択すると、AWS 認証、リージョン設定、認証情報の検証、モデル固定などを案内する対話型 Bedrock 設定ウィザードが利用可能になりました。"
+        },
+        {
+          "title": "`/cost` にモデル別・キャッシュヒットの内訳を追加",
+          "description": "サブスクリプションユーザー向けに、`/cost` コマンドでモデルごとのコストとキャッシュヒットの内訳が表示されるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "大容量ファイルの Write ツールドiff 計算速度改善",
+          "description": "タブや `&`、`$` を含む大きなファイルで、Write ツールの diff 計算が約 60% 高速化されました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/release-notes` がインタラクティブ版選択へ",
+          "description": "`/release-notes` コマンドがインタラクティブなバージョンピッカーに変更されました。"
+        },
+        {
+          "title": "Remote Control セッション名のデフォルトプレフィックスをホスト名に",
+          "description": "Remote Control のセッション名はデフォルトでホスト名がプレフィックスとして使用され（例: `myhost-graceful-unicorn`）、`--remote-control-session-name-prefix` で上書き可能です。"
+        },
+        {
+          "title": "プロユーザー向けフッターヒントの追加",
+          "description": "プロユーザーは、プロンプトキャッシュが期限切れになったセッションに戻った際に、次のターンでキャッシュされずに送信されるトークン数のおおよその目安をフッターに表示します。"
+        },
+        {
+          "title": "Linux サンドボックスに `apply-seccomp` ヘルパーを同梱",
+          "description": "Linux サンドボックスは npm とネイティブビルドの両方で `apply-seccomp` ヘルパーを提供し、サンドボックス化されたコマンドに対する unix ソケットのブロック機能が復元されました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "tmux ウィンドウ削除・再番号付け時のサブエージェント生成失敗を修正",
+          "description": "長時間セッション中に tmux ウィンドウが終了または再番号付けされても、\\\"Could not determine pane count\\\" エラーでサブエージェントが生成できなくなる問題を修正しました。"
+        },
+        {
+          "title": "Stop フックの失敗条件と `preventContinuation:true` の復元",
+          "description": "小型高速モデルが `ok:false` を返した際にプロンプトタイプの Stop フックが誤って失敗していた問題を修正し、Stop 以外のプロンプトタイプフックで `preventContinuation:true` の挙動を復元しました。"
+        },
+        {
+          "title": "ストリーミング時のツール入力検証エラーを修正",
+          "description": "ストリーミングで配列/オブジェクトフィールドが JSON 文字列として出力される際に、ツール入力のバリデーションが失敗していた問題を修正しました。"
+        },
+        {
+          "title": "拡張思考での空白ブロックが原因の API 400 エラーを修正",
+          "description": "拡張思考が実際のコンテンツと共に空白のみのテキストブロックを生成した際に発生する可能性があった API 400 エラーを修正しました。"
+        },
+        {
+          "title": "オートパイロットキー入力や連続プロンプト数字衝突によるフィードバック送信誤作動を修正",
+          "description": "オートパイロットのキー入力や連続プロンプトで数字が衝突した場合に、意図せずフィードバック調査が送信されていた問題を修正しました。"
+        },
+        {
+          "title": "フルスクリーンモードでの誤った ESC ヒントを修正",
+          "description": "処理中にテキスト選択があるフルスクリーンモードで、\\\"esc to interrupt\\\" と \\\"esc to clear\\\" が同時に表示される誤解を招くヒントを修正しました。"
+        },
+        {
+          "title": "Homebrew インストール更新プロンプトのリリースチャンネル修正",
+          "description": "Homebrew のインストール更新時に、cask のリリースチャンネルを正しく使用するように修正しました（`claude-code` は stable、`claude-code@latest` は latest）。"
+        },
+        {
+          "title": "`ctrl+e` の行末ジャンプ不具合を修正",
+          "description": "マルチラインプロンプトで行末にいる状態で `ctrl+e` を押すと次の行末へジャンプしていた問題を修正しました。"
+        },
+        {
+          "title": "フルスクリーンスクロール時の重複メッセージ表示を修正",
+          "description": "iTerm2、Ghostty、DEC 2026 対応端末などでフルスクリーンモードで上スクロールした際、同一メッセージが二箇所に表示される問題を修正しました。"
+        },
+        {
+          "title": "アイドル時の \"/clear\" ヒント表示トークン数を修正",
+          "description": "アイドル状態で戻った際に表示される \"/clear to save X tokens\" ヒントが、累計セッショントークンではなく現在のコンテキストサイズを示すように修正しました。"
+        },
+        {
+          "title": "未認証 claude.ai コネクタ複製時の plugin MCP サーバー接続不具合を修正",
+          "description": "プラグイン MCP サーバーが、未認証の claude.ai コネクタを複製した場合にセッション開始時に \\\"connecting\\\" のまま止まってしまう問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:11:15.830Z"
+}

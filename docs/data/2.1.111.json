@@ -1,0 +1,177 @@
+{
+  "version": "2.1.111",
+  "tagName": "v2.1.111",
+  "publishedAt": "2026-04-16T15:18:45Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.111",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 5,
+    "改善": 2,
+    "その他": 18,
+    "バグ修正": 10
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Opus 4.7 に xhigh 努力レベルを追加",
+          "description": "`xhigh` effort level が Opus 4.7 に追加され、`high` と `max` の間に位置します。`/effort`、`--effort`、モデルピッカーで利用可能で、他のモデルは `high` にフォールバックします。"
+        },
+        {
+          "title": "端末のダーク/ライトモードに合わせたテーマオプション",
+          "description": "`Auto (match terminal)` テーマオプションを追加。`/theme` から選択でき、端末のダーク/ライトモードに自動一致します。"
+        },
+        {
+          "title": "`/less-permission-prompts` スキルの追加",
+          "description": "トランスクリプトを走査し、読み取り専用 Bash や MCP ツール呼び出しの一般的なパターンを検出、`.claude/settings.json` 用の優先許可リストを提案する `/less-permission-prompts` スキルを追加。"
+        },
+        {
+          "title": "`/ultrareview` による包括的コードレビュー",
+          "description": "並列マルチエージェント分析と批評を用いたクラウド上での包括的コードレビューを実行する `/ultrareview` を追加。引数なしで現在のブランチを、`/ultrareview <PR#>` で特定の GitHub PR を取得してレビューできます。"
+        },
+        {
+          "title": "`OTEL_LOG_RAW_API_BODIES` 環境変数の追加",
+          "description": "デバッグ用に、OpenTelemetry のログイベントとして API リクエスト・レスポンスの全文ボディを出力する `OTEL_LOG_RAW_API_BODIES` 環境変数を追加。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/setup-vertex` と `/setup-bedrock` の改善",
+          "description": "`CLAUDE_CONFIG_DIR` が設定されている場合に実際の `settings.json` パスを表示し、再実行時に既存のピンからモデル候補をシードし、サポートモデル向けに「with 1M context」オプションを提供するように改善。"
+        },
+        {
+          "title": "プラグインエラーハンドリングの改善",
+          "description": "依存関係エラーが衝突、無効、過度に複雑なバージョン要件を区別して表示。`plugin update` 後の古い解決バージョンを修正。`plugin install` が中断された以前のインストールから回復できるようにした。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Opus 4.7 xhigh が利用可能",
+          "description": "Opus 4.7 の `xhigh` が利用可能になり、`/effort` で速度と知能のバランスを調整できます。"
+        },
+        {
+          "title": "Max サブスクライバー向け Auto モード",
+          "description": "Opus 4.7 使用時に Max サブスクライバー向けの Auto モードが利用可能になりました。"
+        },
+        {
+          "title": "`/effort` のインタラクティブスライダー",
+          "description": "`/effort` を引数なしで呼び出すとインタラクティブスライダーが開き、矢印キーでレベルを移動、Enter で確定できます。"
+        },
+        {
+          "title": "Auto モードから `--enable-auto-mode` が不要に",
+          "description": "Auto モード使用時に `--enable-auto-mode` フラグが不要になりました。"
+        },
+        {
+          "title": "Windows の PowerShell ツール展開",
+          "description": "Windows で PowerShell ツールが段階的にロールアウト。`CLAUDE_CODE_USE_POWERSHELL_TOOL` でオン/オフ切替。Linux/macOS では `CLAUDE_CODE_USE_POWERSHELL_TOOL=1`（PATH に `pwsh` 必要）で有効化。"
+        },
+        {
+          "title": "読み取り専用 Bash コマンドの許可プロンプト抑制",
+          "description": "`ls *.ts` のような glob パターンや `cd <project-dir> &&` で始まるコマンドは、読み取り専用 Bash コマンドとして許可プロンプトが表示されなくなりました。"
+        },
+        {
+          "title": "コマンド入力ミス時のサジェスト",
+          "description": "`claude <word>` がタイプミスに近い場合、最も近いサブコマンドを提案（例: `claude udpate` → \"Did you mean `claude update`?\"）。"
+        },
+        {
+          "title": "プランファイル名がプロンプトに基づく",
+          "description": "プランファイルがランダムな名前ではなく、プロンプトに基づく名前（例: `fix-auth-race-snug-otter.md`）で保存されます。"
+        },
+        {
+          "title": "`/skills` メニューでトークン数でソート",
+          "description": "`/skills` メニューで推定トークン数でのソートが可能になり、`t` キーで切替えられます。"
+        },
+        {
+          "title": "`Ctrl+U` が入力全体をクリア",
+          "description": "`Ctrl+U` が行頭までではなく入力バッファ全体をクリアし、`Ctrl+Y` で復元できます。"
+        },
+        {
+          "title": "`Ctrl+L` が画面全体を再描画",
+          "description": "`Ctrl+L` がプロンプト入力のクリアに加えて、全画面の再描画を強制します。"
+        },
+        {
+          "title": "トランスクリプトビューのフッターショートカット表示",
+          "description": "トランスクリプトビューのフッターに `[`（ダンプしてスクロールバック） と `v`（エディタで開く） ショートカットが表示されます。"
+        },
+        {
+          "title": "長い貼り付けのマーカーが全幅ルールに",
+          "description": "切り詰められた長い貼り付けの「+N 行」マーカーが全幅ルールに変更され、スキャンしやすくなりました。"
+        },
+        {
+          "title": "`--output-format stream-json` に plugin_errors を含む",
+          "description": "ヘッドレスモードで `--output-format stream-json` を使用した際、プラグインが依存関係不満足で降格された場合、init イベントに `plugin_errors` が含まれるようになりました。"
+        },
+        {
+          "title": "TUI での不要なエラーメッセージ抑制",
+          "description": "TUI 操作中に表示される可能性のある、誤検知の解凍・ネットワーク・一時的エラー メッセージを抑制しました。"
+        },
+        {
+          "title": "v2.1.110 の非ストリーミングリトライ上限を元に戻す",
+          "description": "API オーバーロード時に長時間待機して失敗が減るはずだった v2.1.110 の非ストリーミングフォールバックリトライ上限を元に戻しました。"
+        },
+        {
+          "title": "Windows で環境ファイルが適用",
+          "description": "`CLAUDE_ENV_FILE` と SessionStart フック用環境ファイルが Windows で適用されるようになりました（以前は無効）。"
+        },
+        {
+          "title": "Windows のドライブ文字パス権限ルール修正",
+          "description": "ドライブ文字で始まるパスの権限ルールが正しくルートアンカーされ、ドライブ文字の大小違いのみのパスは同一と認識されるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "iTerm2 + tmux での端末表示の乱れ修正",
+          "description": "iTerm2 と tmux 環境で、端末通知が送信された際に起きる文字の乱れや入力のドリフトを修正しました。"
+        },
+        {
+          "title": "`@` ファイルサジェストの再スキャン問題修正",
+          "description": "`@` ファイルサジェストが非 git 作業ディレクトリで毎回プロジェクト全体を再スキャンしたり、トラッキングされていないファイルがない新規 git リポジトリで設定ファイルだけ表示する問題を修正しました。"
+        },
+        {
+          "title": "編集前の LSP 診断が残る問題修正",
+          "description": "編集前の LSP 診断が編集後に再表示されるバグを修正し、モデルが編集したばかりのファイルを再読込みしないようにしました。"
+        },
+        {
+          "title": "`/resume` のタブ補完が誤動作修正",
+          "description": "`/resume` のタブ補完で、任意のタイトル付きセッションが即座に再開される問題を修正し、セッションピッカーが表示されるようにしました。"
+        },
+        {
+          "title": "`/context` のグリッド描画の余白修正",
+          "description": "`/context` のグリッド描画時に行間に余分な空白行が入る問題を修正しました。"
+        },
+        {
+          "title": "`/clear` が `/rename` のセッション名を失う問題修正",
+          "description": "`/clear` 実行時に `/rename` で設定したセッション名が失われ、ステータスラインの `session_name` が消えるバグを修正しました。"
+        },
+        {
+          "title": "存在しない `commit` スキル呼び出しのエラー修正",
+          "description": "カスタム `/commit` コマンドが無いユーザーが `commit` スキルを呼び出すと \"Unknown skill: commit\" と表示される問題を修正しました。"
+        },
+        {
+          "title": "Bedrock/Vertex/Foundry の 429 エラー修正",
+          "description": "ステータスページ `status.claude.com` が参照されていたために発生していた Bedrock/Vertex/Foundry の 429 レートリミットエラーを修正しました（Anthropic が運営するプロバイダーのみ対象）。"
+        },
+        {
+          "title": "フィードバック調査が連続表示される問題修正",
+          "description": "調査を閉じた後、別のフィードバック調査が直ちに表示されることがあるバグを修正しました。"
+        },
+        {
+          "title": "URL が折り返しでクリック不可になる問題修正",
+          "description": "bash/PowerShell/MCP ツール出力中の裸 URL が端末で行を跨いで折り返された際にクリックできない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:14:26.730Z"
+}

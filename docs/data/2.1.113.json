@@ -1,0 +1,189 @@
+{
+  "version": "2.1.113",
+  "tagName": "v2.1.113",
+  "publishedAt": "2026-04-17T19:34:41Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.113",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 2,
+    "その他": 13,
+    "バグ修正": 22
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`sandbox.network.deniedDomains` 設定を追加",
+          "description": "`sandbox.network.deniedDomains` 設定を追加し、`allowedDomains` のワイルドカードで許可されている場合でも特定ドメインをブロックできるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/loop` の挙動改善",
+          "description": "Esc キーで保留中のウェイクアップをキャンセルできるようになり、ウェイクアップ時には \"Claude resuming /loop wakeup\" と表示されるようにしました。"
+        },
+        {
+          "title": "`/ultrareview` の起動改善",
+          "description": "チェックを並列化し起動が高速化、起動ダイアログに diffstat を表示、起動中のアニメーション状態を追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "CLI がネイティブ Claude Code バイナリを使用",
+          "description": "CLI がプラットフォーム別オプション依存として提供されるネイティブ Claude Code バイナリを起動するよう変更し、従来のバンドル JavaScript を廃止しました。"
+        },
+        {
+          "title": "フルスクリーンで Shift+↑/↓ がビューポートをスクロール",
+          "description": "選択範囲が表示領域を超えると、Shift+↑/↓ でビューポートがスクロールするようになりました。"
+        },
+        {
+          "title": "`Ctrl+A`/`Ctrl+E` が論理行の先頭/末尾へ移動",
+          "description": "マルチライン入力で `Ctrl+A` と `Ctrl+E` がそれぞれ現在の論理行の先頭・末尾へ移動し、readline の挙動と一致しました。"
+        },
+        {
+          "title": "Windows で `Ctrl+Backspace` が前の単語を削除",
+          "description": "Windows 環境で `Ctrl+Backspace` が前の単語を削除するようになりました。"
+        },
+        {
+          "title": "長い URL の折り返しでもクリック可能に",
+          "description": "レスポンスや bash 出力の長い URL が行を跨いで折り返されても、OSC 8 ハイパーリンク対応端末ではクリック可能です。"
+        },
+        {
+          "title": "`/extra-usage` が Remote Control クライアントで利用可能に",
+          "description": "モバイル・ウェブの Remote Control クライアントからも `/extra-usage` コマンドが使用できるようになりました。"
+        },
+        {
+          "title": "Remote Control クライアントで `@` ファイル補完が可能に",
+          "description": "Remote Control クライアントが `@`-ファイルのオートコンプリート候補を取得できるようになりました。"
+        },
+        {
+          "title": "中断したサブエージェントが 10 分後にエラーで停止",
+          "description": "ストリーム途中で停止したサブエージェントは、無音でハングする代わりに 10 分経過後に明確なエラーで失敗します。"
+        },
+        {
+          "title": "Bash ツールでコメント行付きマルチラインコマンドを全体表示",
+          "description": "最初の行がコメントのマルチラインコマンドでも、トランスクリプトに全コマンドが表示され、UI スプーフィングのリスクを解消しました。"
+        },
+        {
+          "title": "`cd` が無操作でも許可プロンプトが出なくなった",
+          "description": "`cd <current-directory> && git …` のように `cd` が実質無操作でも、許可プロンプトが表示されなくなりました。"
+        },
+        {
+          "title": "macOS の `/private/*` が危険削除対象に",
+          "description": "macOS で `/private/etc`, `/private/var`, `/private/tmp`, `/private/home` パスが `Bash(rm:*)` の allow ルールで危険削除対象として扱われます。"
+        },
+        {
+          "title": "Bash の deny ルールがラッパーコマンドに適用",
+          "description": "`env`、`sudo`、`watch`、`ionice`、`setsid` などで包まれたコマンドにも Bash の deny ルールがマッチするようになりました。"
+        },
+        {
+          "title": "`Bash(find:*)` の allow ルールが `find -exec`/`-delete` を自動承認しなくなった",
+          "description": "`Bash(find:*)` の allow ルールは、`find -exec` や `-delete` を自動的に承認しないよう変更されました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "MCP 同時呼び出しのタイムアウト処理バグ修正",
+          "description": "ツール呼び出し間でメッセージが別の呼び出しのウォッチドッグを黙って無効にすることがあった MCP の同時呼び出しタイムアウト処理を修正しました。"
+        },
+        {
+          "title": "`Cmd+Backspace`/`Ctrl+U` が行頭まで削除できるよう修正",
+          "description": "`Cmd+Backspace` と `Ctrl+U` がカーソル位置から行の先頭まで削除できるよう復元しました。"
+        },
+        {
+          "title": "Markdown 表のパイプ文字付きコードスパンの破損を修正",
+          "description": "セルにパイプ文字を含むインラインコードスパンがある場合に Markdown 表が崩れる問題を修正しました。"
+        },
+        {
+          "title": "未送信テキスト入力中のセッション要約自動実行を修正",
+          "description": "プロンプトで未送信テキストを入力中にセッション要約が自動でトリガーされる問題を修正しました。"
+        },
+        {
+          "title": "`/copy Full response` の Markdown 表列揃えを修正",
+          "description": "GitHub、Notion、Slack へ貼り付ける際、`/copy` の \"Full response\" が Markdown 表の列を揃えない問題を修正しました。"
+        },
+        {
+          "title": "実行中サブエージェントのメッセージが親 AI に誤属したバグ修正",
+          "description": "サブエージェント実行中に入力したメッセージがそのトランスクリプトに表示されず、親 AI に誤って割り当てられる問題を修正しました。"
+        },
+        {
+          "title": "`dangerouslyDisableSandbox` が許可プロンプトなしでサンドボックス外実行する問題修正",
+          "description": "`dangerouslyDisableSandbox` オプションでコマンドがサンドボックス外で実行されても許可プロンプトが表示されるように修正しました。"
+        },
+        {
+          "title": "`/effort auto` の確認メッセージを修正",
+          "description": "`/effort auto` 実行時の確認がステータスバーと同じ \"Effort level set to max\" と表示されるよう修正しました。"
+        },
+        {
+          "title": "コピー通知で絵文字等が過大カウントされるバグ修正",
+          "description": "\"copied N chars\" トーストが絵文字やマルチコードユニット文字を過大にカウントしていた問題を修正しました。"
+        },
+        {
+          "title": "`/insights` が Windows で `EBUSY` クラッシュする問題修正",
+          "description": "`/insights` 実行時に Windows 環境で `EBUSY` エラーが発生してクラッシュする問題を修正しました。"
+        },
+        {
+          "title": "終了確認ダイアログで一回限りタスクを誤表記していた問題修正",
+          "description": "一回限りのスケジュールタスクを「定期」と表示していた終了確認ダイアログを、カウントダウン表示に変更しました。"
+        },
+        {
+          "title": "フルスクリーンで補完メニューがプロンプト境界にずれる問題修正",
+          "description": "フルスクリーンモードでスラッシュ/@ 補完メニューがプロンプト境界にぴったり合わせて表示されるよう修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_EXTRA_BODY` の effort 設定で 400 エラーが出る問題修正",
+          "description": "`output_config.effort` が effort 未対応モデルや Vertex AI のサブエージェント呼び出しで 200 エラーになる問題を修正しました。"
+        },
+        {
+          "title": "`NO_COLOR` 設定時にプロンプトカーソルが消えるバグ修正",
+          "description": "`NO_COLOR` が有効な場合でもプロンプトカーソルが表示されるように修正しました。"
+        },
+        {
+          "title": "`ToolSearch` のランキングで正しいツールが表示されるよう修正",
+          "description": "貼り付けた MCP ツール名が説明が類似する兄弟ツールではなく、実際のツールが上位に表示されるよう `ToolSearch` の順位付けを修正しました。"
+        },
+        {
+          "title": "長期コンテキスト再開時のコンパクト化エラー修正",
+          "description": "再開した長期コンテキストセッションのコンパクト化が \"Extra usage is required for long context requests\" エラーで失敗する問題を修正しました。"
+        },
+        {
+          "title": "`plugin install` の依存バージョン衝突時にエラー報告を追加",
+          "description": "既にインストール済みプラグインと依存バージョンが衝突した場合、`plugin install` が成功していた問題を修正し、`range-conflict` を報告するようにしました。"
+        },
+        {
+          "title": "\"Refine with Ultraplan\" がリモートセッション URL を表示しない問題修正",
+          "description": "\"Refine with Ultraplan\" 実行時にトランスクリプトにリモートセッションの URL が表示されるように修正しました。"
+        },
+        {
+          "title": "SDK 画像コンテンツブロック処理失敗時にクラッシュしないよう修正",
+          "description": "処理に失敗した SDK の画像コンテンツブロックがセッションをクラッシュさせるのを防ぎ、テキストプレースホルダーにフォールバックするようにしました。"
+        },
+        {
+          "title": "Remote Control セッションでサブエージェントのトランスクリプトがストリーミングされない問題修正",
+          "description": "Remote Control セッション中にサブエージェントのトランスクリプトがリアルタイムで配信されるよう修正しました。"
+        },
+        {
+          "title": "Claude Code 終了時に Remote Control セッションがアーカイブされない問題修正",
+          "description": "Claude Code が終了した際に Remote Control セッションがアーカイブされるように修正しました。"
+        },
+        {
+          "title": "`thinking.type.enabled` がサポート外で 400 エラーになる問題修正",
+          "description": "Bedrock Application Inference Profile ARN 経由で Opus 4.7 を使用した際に `thinking.type.enabled is not supported` という 400 エラーが発生していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:14:56.071Z"
+}

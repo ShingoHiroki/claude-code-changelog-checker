@@ -1,0 +1,39 @@
+{
+  "version": "2.1.42",
+  "tagName": "v2.1.42",
+  "publishedAt": "2026-02-13T19:56:33Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.42",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 1,
+    "その他": 0,
+    "バグ修正": 2
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "多画像寸法制限エラーのエラーメッセージ改善",
+          "description": "多画像の寸法制限エラー時に、`/compact` の提案を含むエラーメッセージを改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`/resume` が割り込みメッセージをセッションタイトルとして表示していた問題を修正",
+          "description": "`/resume` コマンドで割り込みメッセージがセッションタイトルとして表示されていたバグを修正しました。"
+        },
+        {
+          "title": "Bedrock/Vertex/Foundry ユーザー向けの Opus 4.6 発表が表示される問題を修正",
+          "description": "Bedrock、Vertex、Foundry ユーザーに対して Opus 4.6 のリリース告知が誤って表示されていたバグを修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:00:17.968Z"
+}

@@ -1,0 +1,63 @@
+{
+  "version": "2.1.9",
+  "tagName": "v2.1.9",
+  "publishedAt": "2026-01-16T02:19:31Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.9",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 6,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 3
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`auto:N` 構文の追加",
+          "description": "MCP ツール検索の自動有効化閾値を設定する `auto:N` 構文を追加しました。N はコンテキストウィンドウの割合（0〜100）です。"
+        },
+        {
+          "title": "`plansDirectory` 設定の追加",
+          "description": "`plansDirectory` 設定を追加し、プランファイルの保存場所をカスタマイズできるようにしました。"
+        },
+        {
+          "title": "外部エディタサポート（Ctrl+G）の追加",
+          "description": "AskUserQuestion の「Other」入力フィールドで外部エディタ（Ctrl+G）をサポートする機能を追加しました。"
+        },
+        {
+          "title": "セッションURL属性の追加",
+          "description": "Web セッションから作成されたコミットやプルリクエストにセッション URL の属性情報を付与するようにしました。"
+        },
+        {
+          "title": "`PreToolUse` フックのサポート追加",
+          "description": "`PreToolUse` フックが `additionalContext` をモデルに返すことをサポートする機能を追加しました。"
+        },
+        {
+          "title": "`${CLAUDE_SESSION_ID}` 置換の追加",
+          "description": "スキルが現在のセッション ID にアクセスできるよう、 `${CLAUDE_SESSION_ID}` 文字列置換を追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "長時間セッションの並列ツール呼び出しエラー修正",
+          "description": "長時間のセッションで、並列ツール呼び出しが orphan tool_result ブロックに関する API エラーで失敗する問題を修正しました。"
+        },
+        {
+          "title": "MCP サーバ再接続ハングアップの修正",
+          "description": "キャッシュされた接続プロミスが解決しない場合に MCP サーバの再接続がハングする問題を修正しました。"
+        },
+        {
+          "title": "Kitty キーボードプロトコルでの Ctrl+Z 中断不具合修正",
+          "description": "Kitty キーボードプロトコル（Ghostty、iTerm2、kitty、WezTerm）使用時に Ctrl+Z でのサスペンドが機能しない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:57:18.462Z"
+}

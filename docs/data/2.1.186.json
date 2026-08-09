@@ -1,0 +1,169 @@
+{
+  "version": "2.1.186",
+  "tagName": "v2.1.186",
+  "publishedAt": "2026-06-22T20:37:34Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.186",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 5,
+    "改善": 4,
+    "その他": 4,
+    "バグ修正": 20
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`claude mcp login`/`logout` コマンドの追加",
+          "description": "CLI から対話メニューを開かずに MCP サーバーに認証できるようになり、`--no-browser` と標準入力リダイレクトで SSH 経由の完了をサポートします。"
+        },
+        {
+          "title": "`/workflows` エージェント詳細ビューにステータスフィルタを追加",
+          "description": "`f` キーでステータスフィルタリングが可能になりました。"
+        },
+        {
+          "title": "`/plugin` の Installed タブに「Skills」セクションを追加",
+          "description": "Installed タブに Skills セクションが表示されます。"
+        },
+        {
+          "title": "`teammateMode: \"iterm2\"` 設定を追加",
+          "description": "自動モードで `it2` CLI が見つからない場合に警告を表示します。"
+        },
+        {
+          "title": "`/login` に「Claude Platform on AWS - refresh credentials」オプションを追加",
+          "description": "`awsAuthRefresh` が設定されている場合に表示されます。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`claude mcp get`/`remove` の改善",
+          "description": "タイプミス時に最も近い設定済みサーバー名を提案し、長いサーバーリストを省略表示します。"
+        },
+        {
+          "title": "メモリインデックスの自動コンパクト化リマインド",
+          "description": "エージェントはサイズ上限に近づくと `MEMORY.md` インデックスの圧縮を促します。"
+        },
+        {
+          "title": "スキルフロントマターのキー名形式を拡張",
+          "description": "`display-name`、`default-enabled`、`fallback`、`metadata.*` が kebab-case、snake_case、camelCase のいずれも受け付けます。"
+        },
+        {
+          "title": "不正な `SKILL.md` YAML フロントマターの処理を改善",
+          "description": "メタデータが空でもスキル本体を読み込み、サイレント失敗を防止します。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`!` Bash コマンドの自動応答",
+          "description": "`!` で始まるコマンドの出力に自動で Claude が応答します。元のコンテキストのみの挙動に戻すには settings.json の `\"respondToBashCommands\": false` を設定してください。"
+        },
+        {
+          "title": "`CLAUDE_CODE_MAX_RETRIES` の上限変更",
+          "description": "上限が 15 に変更されました。無人セッションでは代わりに `CLAUDE_CODE_RETRY_WATCHDOG` を使用してください。"
+        },
+        {
+          "title": "バックグラウンドサブエージェントの権限プロンプト表示変更",
+          "description": "自動拒否からメインセッションでプロンプトを表示し、どのエージェントが要求しているか示します。Esc でそのツールのみ拒否できます。"
+        },
+        {
+          "title": "`/review` コマンドのエンジン変更",
+          "description": "`/review <pr>` が `/code-review medium` と同じレビューエンジンを使用するようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "スリープ後のストリーミングリクエスト失敗を修正",
+          "description": "`Content block not found` や JSON パースエラーが発生していた問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントのスクロール位置がメインに漏れる不具合修正",
+          "description": "サブエージェント終了時にスクロール位置がメイントランスクリプトに影響する問題を修正しました。"
+        },
+        {
+          "title": "バックグラウンドタスクプレビューでツール名が一瞬表示される問題修正",
+          "description": "エージェントのプランがロードされる前に生ツール名がフラッシュする問題を修正しました。"
+        },
+        {
+          "title": "Chrome タブグループ分離が無効になる不具合修正",
+          "description": "同時 CLI セッションで製品内権限ゲートがオフの場合でもタブグループの分離が適用されるようにしました。"
+        },
+        {
+          "title": "バックグラウンドセッションの要約重複を修正",
+          "description": "エージェントのターン終了要約が要約行として正しく表示され、重複がなくなりました。"
+        },
+        {
+          "title": "`claude agents` からバックグラウンドセッション開始時の画面残像を修正",
+          "description": "背景セッションを開くと前画面が残らないようにしました。"
+        },
+        {
+          "title": "`Agent(type)` と `Agent(x,y)` のタイプ制限が適用されなかった問題修正",
+          "description": "名前付きサブエージェント生成時に拒否ルールや許可タイプが正しく適用されるようにしました。"
+        },
+        {
+          "title": "メインターン終了後の Esc / Ctrl+C が効かない不具合修正",
+          "description": "バックグラウンドエージェントが走っていても Esc と Ctrl+C が応答するようにしました。"
+        },
+        {
+          "title": "権限プロンプトのオプション番号がずれる問題修正",
+          "description": "オプションテキストが長くなると番号がずれる問題を解消しました。"
+        },
+        {
+          "title": "完了したサブエージェントで `x` が機能しない不具合修正",
+          "description": "`x` キーで完了サブエージェントを閉じられるようになりました。"
+        },
+        {
+          "title": "意図的に廃止されたツール再開時の誤った MCP 切断通知を修正",
+          "description": "古いセッションを再開した際に誤って表示されていた「MCP server disconnected」通知を削除しました。"
+        },
+        {
+          "title": "`/plugin` Installed タブの上部インジケータ誤表示を修正",
+          "description": "スクロールがトップにあるときに「more above」インジケータが出る問題を解消しました。"
+        },
+        {
+          "title": "アシスタントメッセージの打消し線が文字列として表示される問題修正",
+          "description": "`~~strikethrough~~` が正しく打消し線としてレンダリングされるようにしました。"
+        },
+        {
+          "title": "`--tools` がフラグロード前に制限ツールを通す不具合修正",
+          "description": "初回起動時にフラグがロードされる前に機能制限ツールが使用できないようにしました。"
+        },
+        {
+          "title": "`claude agents` のバックグラウンドジョブステータスが古い「needs input」を表示する問題修正",
+          "description": "返信後にステータスが更新されるようにしました。"
+        },
+        {
+          "title": "ライト端末でのバックグラウンドセッション開始時にダークテーマがフラッシュする問題修正",
+          "description": "ライト端末でもフラッシュが起きないようにしました。"
+        },
+        {
+          "title": "`claude agents` で削除後もテキストがハイライトされたままになる不具合修正",
+          "description": "削除後にハイライトが消えるようにしました。"
+        },
+        {
+          "title": "利用ベースの Enterprise / Team でセッションコストが表示されない問題修正",
+          "description": "対象サブスクライバーでもセッションコストが正しく表示されます。"
+        },
+        {
+          "title": "エージェントチームで tmux/pane バックエンドの仲間がリーダーの `--effort` を継承",
+          "description": "仲間エージェントがリーダーと同じ `--effort` レベルを使用します。"
+        },
+        {
+          "title": "Workflow `agent({schema})` のサブエージェントがスキーマ検証失敗で無限ループする問題修正",
+          "description": "検証失敗が繰り返されても 5 回で中止するようになりました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:31:45.319Z"
+}

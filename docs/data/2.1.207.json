@@ -1,0 +1,128 @@
+{
+  "version": "2.1.207",
+  "tagName": "v2.1.207",
+  "publishedAt": "2026-07-11T00:52:10Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.207",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 2,
+    "その他": 5,
+    "バグ修正": 17
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "エージェントビューの貼り付け動作改善",
+          "description": "同じテキストを再度貼り付けると、二つ目の `[Pasted text #N]` プレースホルダーを追加するのではなく、折りたたまれた `[Pasted text #N]` が展開されます。"
+        },
+        {
+          "title": "ブロックセッションプレビューの表示改善",
+          "description": "ブロックされたセッションのプレビューは質問を先頭に表示し、同じタイムスタンプが二度表示される代わりに、`waiting 3m` のような文字列で示すステaleness時計が表示されます。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Autoモードのデフォルト有効化",
+          "description": "`CLAUDE_CODE_ENABLE_AUTO_MODE` のオプトイン不要で、Bedrock、Vertex AI、Foundry で Autoモードが利用可能になりました。設定の `disableAutoMode` で無効化できます。"
+        },
+        {
+          "title": "デフォルトモデルの更新",
+          "description": "Bedrock、Vertex、AWS上のClaude Platform のデフォルトが Claude Opus 4.8 に変更されました。"
+        },
+        {
+          "title": "Autoモード設定ファイルの変更",
+          "description": "Autoモードは `.claude/settings.local.json`（リポジトリ内）から `autoMode` を読み取らなくなり、代わりに `~/.claude/settings.json` を使用します。"
+        },
+        {
+          "title": "プラグインコマンドのシェルインジェクション対策",
+          "description": "Plugin の hooks、monitors、MCP headersHelper でシェル形式コマンド内の `${user_config.*}` が拒否されます（シェルインジェクション修正）。hooks は exec 形式（`args` 配列）または `$CLAUDE_PLUGIN_OPTION_<KEY>` を使用し、monitors と headersHelper はスクリプト内部（設定ファイルまたはサーバーの `env` ブロック）で値を取得してください。"
+        },
+        {
+          "title": "プラグイン設定のスコープ変更",
+          "description": "プラグインオプション値（`pluginConfigs`）はプロジェクトレベルの `.claude/settings.json` からは読み取られず、ユーザー設定、`--settings`、および管理設定のみが適用されます。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "端末のフリーズとキー入力遅延の修正",
+          "description": "非常に長いリスト、テーブル、段落、コードブロックを含むストリーミング応答中に端末がフリーズし、キー入力が遅れる問題を修正しました。"
+        },
+        {
+          "title": "非対話実行時のリモート管理設定同意バグ修正",
+          "description": "`claude -p` や SDK など非対話的実行時に、リモート管理設定がセキュリティ同意ダイアログを表示せずに永続的に同意済みとして記録される問題を修正しました。"
+        },
+        {
+          "title": "誤検知のプロンプトインジェクション警告修正",
+          "description": "無害なシステム生成会話更新により発生していた誤ったプロンプトインジェクション警告を修正しました。"
+        },
+        {
+          "title": "Autoアップデートによるランチャ上書き防止",
+          "description": "リリースごとに `~/.local/bin/claude` のカスタムランチャースクリプトやシンボリックリンクが上書きされる問題を修正し、`/doctor` が外部管理ランチャーを報告するようになりました。"
+        },
+        {
+          "title": "`cd` コマンドの権限要求バグ修正",
+          "description": "`cd` を含む複合コマンドで、出力リダイレクトが `/dev/null` のみの場合に不要な権限要求が表示される問題を修正しました。"
+        },
+        {
+          "title": "トランスクリプトのスクロール位置バグ修正",
+          "description": "応答のストリーミングが完了した際に、トランスクリプトが回答開始位置より上にジャンプする問題を修正しました。"
+        },
+        {
+          "title": "`extensions.worktreeConfig` の残留バグ修正",
+          "description": "最後の `worktree.sparsePaths` ワークツリー削除後もリポジトリの `.git/config` に `extensions.worktreeConfig` が残り、go-git ツール（例: `tea`）が壊れる問題を修正しました。"
+        },
+        {
+          "title": "不正なブラケットパターンによるファイル処理障害修正",
+          "description": "ルール glob、スキルパス、`.ignore`、`.worktreeinclude` の不正な角括弧パターンがファイル読み取り、ファイルサジェスト、ワークツリー作成を破壊する問題を修正しました。"
+        },
+        {
+          "title": "エージェントチームのクラッシュループ修正",
+          "description": "チームメイトのメールボックスメッセージが不正な形式で、手動でメールボックスファイルを削除するまで毎秒エラーが繰り返されるクラッシュループを修正しました。"
+        },
+        {
+          "title": "バックグラウンドセッションの自動命名表示バグ修正",
+          "description": "プランを受諾したバックグラウンドセッションが、エージェントビューの行に名前が表示されない問題を修正し、正しく自動命名されるようにしました。"
+        },
+        {
+          "title": "バックグラウンドセッションの作業ツリー再開バグ修正",
+          "description": "git worktree に入っていたバックグラウンドセッションが、エージェントリストから再度開くと内容が空になる問題を修正しました。"
+        },
+        {
+          "title": "Remote Control のステータス更新喪失修正",
+          "description": "ネットワーク障害や認証情報更新後に接続が復旧した際、Remote Control タスクのステータス更新が失われる問題を修正しました。"
+        },
+        {
+          "title": "デスクトップアプリの Remote Control セッション表示修正",
+          "description": "デスクトップアプリでホストされた Remote Control セッションが、モバイルおよびウェブでバックグラウンドエージェントとワークフローの進行状況を表示しない問題を修正しました。"
+        },
+        {
+          "title": "Deep research のフェッチエージェント表示修正",
+          "description": "Deep research 実行時に取得フェーズのエージェントがすべて \"unknown\" と表示されていた問題を修正し、チップにソースホスト名が表示されるようになりました。"
+        },
+        {
+          "title": "Bedrock の過剰な AWS SSO 資格情報取得修正",
+          "description": "Bedrock が API リクエストごとに IAM Identity Center から新しい AWS SSO 資格情報を要求し続ける問題を修正しました。"
+        },
+        {
+          "title": "Windows の AWS 資格情報解決ハング修正",
+          "description": "`credential_process` が停止するなどで AWS 資格情報解決がスタックした際、Windows で無期限にハングする問題を、60 秒のスタルガードが作動するように修正しました。"
+        },
+        {
+          "title": "`/usage-credits` の金額入力バリデーション修正",
+          "description": "`/usage-credits` の金額入力で、誤った形式（例: 貼り付けたタイムスタンプ）が自動的に数字だけに変換されていた問題を修正し、誤形式はエラーで拒否され、$1,000 超の金額は手入力確認が必要になります。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:36:02.247Z"
+}

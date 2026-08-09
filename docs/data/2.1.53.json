@@ -1,0 +1,54 @@
+{
+  "version": "2.1.53",
+  "tagName": "v2.1.53",
+  "publishedAt": "2026-02-25T00:13:48Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.53",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 8
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "UI フラッカーの修正",
+          "description": "送信後、メッセージが表示される前にユーザー入力が一瞬消える UI フラッカーを修正しました"
+        },
+        {
+          "title": "一括エージェント停止の通知改善",
+          "description": "bulk agent kill (ctrl+f) がエージェントごとに通知を送るのではなく、単一の集約通知を送信し、コマンドキューを正しくクリアするように修正しました"
+        },
+        {
+          "title": "リモートコントロール時の優雅なシャットダウンのセッション残留修正",
+          "description": "Remote Control 使用時に、優雅なシャットダウンがステールセッションを残すことがあった問題を、ネットワークの終了呼び出しを並列化することで修正しました"
+        },
+        {
+          "title": "`--worktree` が最初の起動で無視される問題の修正",
+          "description": "`--worktree` が初回起動時に無視されることがあったバグを修正しました"
+        },
+        {
+          "title": "Windows のパニック（\"switch on corrupted value\"）修正",
+          "description": "Windows 上で \"switch on corrupted value\" というパニックが発生していた問題を修正しました"
+        },
+        {
+          "title": "Windows で多数プロセス生成時のクラッシュ修正",
+          "description": "Windows で多数のプロセスを生成すると発生する可能性があったクラッシュを修正しました"
+        },
+        {
+          "title": "Linux x64 と Windows x64 の WebAssembly インタプリタのクラッシュ修正",
+          "description": "Linux x64 および Windows x64 上の WebAssembly インタプリタで発生していたクラッシュを修正しました"
+        },
+        {
+          "title": "Windows ARM64 で 2 分後に発生するクラッシュの修正",
+          "description": "Windows ARM64 環境で、2 分経過後に時々発生していたクラッシュを修正しました"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:02:33.669Z"
+}

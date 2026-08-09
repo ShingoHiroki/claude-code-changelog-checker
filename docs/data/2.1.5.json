@@ -1,0 +1,26 @@
+{
+  "version": "2.1.5",
+  "tagName": "v2.1.5",
+  "publishedAt": "2026-01-12T18:48:25Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.5",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_TMPDIR` 環境変数の追加",
+          "description": "内部一時ファイルに使用される一時ディレクトリを上書きできる `CLAUDE_CODE_TMPDIR` 環境変数を追加しました。カスタムの一時ディレクトリが必要な環境で有用です。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:56:42.976Z"
+}

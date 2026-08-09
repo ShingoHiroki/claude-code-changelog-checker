@@ -1,0 +1,146 @@
+{
+  "version": "2.1.73",
+  "tagName": "v2.1.73",
+  "publishedAt": "2026-03-11T18:26:43Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.73",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 2,
+    "改善": 6,
+    "その他": 2,
+    "バグ修正": 15
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "`/output-style` コマンドの廃止",
+          "description": "`/output-style` コマンドは廃止され、代わりに `/config` を使用してください。出力スタイルはセッション開始時に固定され、プロンプトキャッシュが改善されます。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`modelOverrides` 設定の追加",
+          "description": "`modelOverrides` 設定を追加し、モデルピッカーのエントリをカスタムプロバイダーのモデルID（例: Bedrock 推論プロファイル ARN）にマッピングできるようになりました。"
+        },
+        {
+          "title": "OAuth ログイン失敗時のガイダンス追加",
+          "description": "OAuth ログインや接続チェックが SSL 証明書エラー（社内プロキシ、`NODE_EXTRA_CA_CERTS`）で失敗した場合に、実行可能なガイダンスが表示されるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "割り込み後の Up キー改善",
+          "description": "Claude が割り込まれた後に Up キーを押すと、割り込んだプロンプトを復元し、会話を一括で巻き戻すようになりました。"
+        },
+        {
+          "title": "起動時の IDE 検出速度向上",
+          "description": "起動時の IDE 検出が高速化されました。"
+        },
+        {
+          "title": "macOS のクリップボード画像貼り付け性能向上",
+          "description": "macOS でのクリップボードから画像を貼り付ける際のパフォーマンスが改善されました。"
+        },
+        {
+          "title": "`/effort` コマンドの改善",
+          "description": "`/effort` が Claude の応答中でも機能し、`/model` の動作と一致するようになりました。"
+        },
+        {
+          "title": "音声モードの自動再試行改善",
+          "description": "音声モードでプッシュ・トゥ・トークを再度押した際の一時的な接続失敗を自動的に再試行するようになりました。"
+        },
+        {
+          "title": "Remote Control のスポーンモード選択プロンプト改善",
+          "description": "Remote Control のスポーンモード選択プロンプトに、より適切なコンテキストが提供されるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "デフォルト Opus モデルを 4.6 に更新",
+          "description": "Bedrock、Vertex、Microsoft Foundry のデフォルト Opus モデルが Opus 4.6 に変更され、以前は Opus 4.1 でした。"
+        },
+        {
+          "title": "VSCode のプロキシ・モデル関連 HTTP 400 エラー修正",
+          "description": "プロキシ背後や Bedrock/Vertex 環境で Claude 4.5 モデルを使用している場合に発生していた VSCode の HTTP 400 エラーが修正されました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "複雑な bash コマンドの権限プロンプトでのフリーズとCPU 100% ループの修正",
+          "description": "複雑な bash コマンドに対する権限プロンプトが原因で発生していたフリーズと CPU 使用率 100% のループを修正しました。"
+        },
+        {
+          "title": "多数のスキルファイル変更時のデッドロック修正",
+          "description": "大量の `.claude/skills/` ディレクトリ内ファイルが一度に変更される（例: `git pull`）際に、Claude Code がフリーズする可能性があったデッドロックを修正しました。"
+        },
+        {
+          "title": "同一ディレクトリでの複数セッション時の Bash ツール出力消失修正",
+          "description": "同一プロジェクトディレクトリで複数の Claude Code セッションを同時に実行した際に、Bash ツールの出力が失われる問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントのモデルダウングレード修正",
+          "description": "`model: opus`、`sonnet`、`haiku` を指定したサブエージェントが、Bedrock、Vertex、Microsoft Foundry 上で古いモデルバージョンに自動的にダウングレードされていた問題を修正しました。"
+        },
+        {
+          "title": "サブエージェント終了時の背景 Bash プロセス清掃修正",
+          "description": "サブエージェントが生成した背景 Bash プロセスが、エージェント終了時にクリーンアップされない問題を修正しました。"
+        },
+        {
+          "title": "`/resume` ピッカーでの現在セッション表示修正",
+          "description": "`/resume` コマンドがピッカーに現在のセッションを表示していた問題を修正しました。"
+        },
+        {
+          "title": "`/ide` の自動インストール時クラッシュ修正",
+          "description": "拡張機能の自動インストール時に `onInstall is not defined` エラーでクラッシュしていた `/ide` を修正しました。"
+        },
+        {
+          "title": "`/loop` の利用不可問題修正",
+          "description": "Bedrock、Vertex、Foundry 環境およびテレメトリが無効化されている際に `/loop` が利用できなかった問題を修正しました。"
+        },
+        {
+          "title": "SessionStart フック二重実行修正",
+          "description": "`--resume` または `--continue` でセッションを再開した際に SessionStart フックが二回発火していた問題を修正しました。"
+        },
+        {
+          "title": "JSON 出力フックの無意味なシステムリマインダー注入修正",
+          "description": "JSON 出力フックが各ターンでモデルコンテキストに noop の system‑reminder メッセージを注入していた問題を修正しました。"
+        },
+        {
+          "title": "音声モードのセッション破損修正",
+          "description": "遅い接続で新しい録音が重なる際に音声モードのセッションが破損する問題を修正しました。"
+        },
+        {
+          "title": "Linux サンドボックスの起動失敗修正",
+          "description": "ネイティブビルドで \"ripgrep (rg) not found\" エラーが出て Linux サンドボックスが起動しない問題を修正しました。"
+        },
+        {
+          "title": "Linux ネイティブモジュールのロード失敗修正",
+          "description": "Amazon Linux 2 および glibc 2.26 系統のシステムで Linux ネイティブモジュールが読み込めない問題を修正しました。"
+        },
+        {
+          "title": "Remote Control で画像受信時の API エラー修正",
+          "description": "Remote Control 経由で画像を受信した際に \"media_type: Field required\" という API エラーが発生していた問題を修正しました。"
+        },
+        {
+          "title": "`/heapdump` の Windows での EEXIST エラー修正",
+          "description": "Desktop フォルダが既に存在する場合に、Windows で `/heapdump` が `EEXIST` エラーで失敗していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:06:09.034Z"
+}

@@ -1,0 +1,245 @@
+{
+  "version": "2.1.89",
+  "tagName": "v2.1.89",
+  "publishedAt": "2026-04-01T01:07:06Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.89",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 5,
+    "改善": 4,
+    "その他": 13,
+    "バグ修正": 30
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`\"defer\"` パーミッション決定の追加",
+          "description": "`PreToolUse` フックに `\"defer\"` パーミッション決定を追加。ヘッドレスセッションはツール呼び出しで一時停止し、`-p --resume` で再開してフックを再評価できる。"
+        },
+        {
+          "title": "`CLAUDE_CODE_NO_FLICKER=1` 環境変数の追加",
+          "description": "フリッカーフリーな代替画面レンダリングと仮想スクロールバックを有効にするための環境変数 `CLAUDE_CODE_NO_FLICKER=1` を追加。"
+        },
+        {
+          "title": "`PermissionDenied` フックの追加",
+          "description": "オートモードの分類器が拒否した後に発火する `PermissionDenied` フックを追加。フックが `{retry: true}` を返すと、モデルに再試行を指示できる。"
+        },
+        {
+          "title": "`@` メンションのサブエージェント名表示の追加",
+          "description": "`@` メンションのタイプアヘッド候補に名前付きサブエージェントを含めるようにした。"
+        },
+        {
+          "title": "`MCP_CONNECTION_NONBLOCKING=true` の `-p` モードへの追加",
+          "description": "`-p` モードで MCP 接続待ちを完全にスキップするために `MCP_CONNECTION_NONBLOCKING=true` を追加し、`--mcp-config` のサーバ接続を最長5秒に制限して最遅サーバでのブロックを回避。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "ツールサマリの表示改善",
+          "description": "折りたたみツール概要で、`ls`/`tree`/`du` の結果を「Read N files」ではなく「Listed N directories」と表示するようにした。"
+        },
+        {
+          "title": "Bash ツールの変更警告追加",
+          "description": "フォーマッタ/リンタが以前に読み込んだファイルを変更しようとした際に警告し、古い編集エラーを防止するよう Bash ツールを改善した。"
+        },
+        {
+          "title": "`@` メンションの順位付け改善",
+          "description": "同名の MCP リソースよりもソースファイルを上位に表示するよう `@` メンションのタイプアヘッド順位付けを改善した。"
+        },
+        {
+          "title": "PowerShell ツールのプロンプト改善",
+          "description": "バージョンに応じた構文ガイダンス（5.1 と 7+）を提供するよう PowerShell ツールのプロンプトを改善した。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "オートモードでの拒否コマンド通知",
+          "description": "オートモードで拒否されたコマンドは通知として表示され、`/permissions` の Recent タブに掲載され、`r` で再試行できるようになった。"
+        },
+        {
+          "title": "`Edit` の前提条件緩和",
+          "description": "`Bash` で `sed -n` や `cat` により閲覧したファイルに対して、別途 `Read` を呼び出さなくても `Edit` が機能するよう変更した。"
+        },
+        {
+          "title": "大容量フック出力の保存方式変更",
+          "description": "50K 文字を超えるフック出力は、コンテキストへ直接注入する代わりにファイルパスとプレビューでディスクに保存されるように変更した。"
+        },
+        {
+          "title": "`cleanupPeriodDays: 0` のバリデーション追加",
+          "description": "`settings.json` の `cleanupPeriodDays: 0` が無効としてバリデーションエラーで拒否されるようにした。以前はトランスクリプト永続化が無音で無効化されていた。"
+        },
+        {
+          "title": "思考サマリのデフォルト生成無効化",
+          "description": "対話セッションで思考サマリがデフォルトで生成されなくなり、再度有効にするには `settings.json` の `showThinkingSummaries: true` を設定する必要がある。"
+        },
+        {
+          "title": "`TaskCreated` フックのドキュメント追加",
+          "description": "`TaskCreated` フックイベントとそのブロッキング挙動をドキュメントに記載した。"
+        },
+        {
+          "title": "バックグラウンド化時のタスク通知保持",
+          "description": "`Ctrl+B` で実行中コマンドをバックグラウンドにした際に、タスク通知が保持されるようにした。"
+        },
+        {
+          "title": "PowerShell ツールの外部コマンド引数確認強化",
+          "description": "Windows の PowerShell ツールで、ダブルクオートと空白を含む外部コマンド引数は自動許可せず、プロンプトで確認するようにした（PS 5.1 の引数分割強化）。"
+        },
+        {
+          "title": "`/env` の PowerShell への適用拡大",
+          "description": "以前は Bash のみ対象だった `/env` が、PowerShell ツールコマンドにも適用されるようになった。"
+        },
+        {
+          "title": "`/usage` の表示簡略化",
+          "description": "Pro と Enterprise プランで冗長な「Current week (Sonnet only)」バーが非表示になるよう `/usage` を変更した。"
+        },
+        {
+          "title": "画像貼り付け時の余白削除",
+          "description": "画像貼り付けで末尾にスペースが挿入されなくなった。"
+        },
+        {
+          "title": "`!command` 貼り付けで Bash モードへ遷移",
+          "description": "空プロンプトに `!command` を貼り付けると、入力時の `!` と同様に Bash モードに入るようになった。"
+        },
+        {
+          "title": "`/buddy` 機能の追加",
+          "description": "4月1日向けに `/buddy` が登場し、小さな生き物を孵化させてコード作業を見守らせることができる。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "シンボリックリンク先の許可チェック修正",
+          "description": "`Edit(//path/**)` と `Read(//path/**)` の許可ルールが要求パスだけでなく解決されたシンボリックリンク先も確認するよう修正した。"
+        },
+        {
+          "title": "音声 push-to-talk とモードの不具合修正",
+          "description": "特定の修飾キー組み合わせで音声 push-to-talk が起動しなかった問題と、Windows の音声モードで「WebSocket upgrade rejected with HTTP 101」エラーが出る問題を修正した。"
+        },
+        {
+          "title": "Edit/Write ツールの改行処理修正",
+          "description": "Windows で CRLF が二重になる問題と、Markdown のハードラインブレイク（2 つの末尾スペース）が削除される問題を修正した。"
+        },
+        {
+          "title": "`StructuredOutput` スキーマキャッシュのバグ修正",
+          "description": "複数スキーマ使用時に約 50% の失敗率を引き起こしていた `StructuredOutput` のスキーマキャッシュバグを修正した。"
+        },
+        {
+          "title": "大規模 JSON 入力によるメモリリーク修正",
+          "description": "長時間セッションで大きな JSON 入力が LRU キャッシュキーとして保持され、メモリリークが発生していた問題を修正した。"
+        },
+        {
+          "title": "大容量セッションファイルからのメッセージ削除時クラッシュ修正",
+          "description": "50 MB を超える大きなセッションファイルからメッセージを削除するとクラッシュする問題を修正した。"
+        },
+        {
+          "title": "LSP サーバのゾンビ状態修正",
+          "description": "クラッシュ後に LSP サーバがゾンビ状態になる問題を修正し、次のリクエスト時にサーバが再起動するようにした。"
+        },
+        {
+          "title": "プロンプト履歴の CJK/絵文字削除バグ修正",
+          "description": "`~/.claude/history.jsonl` で 4 KB 境界に跨る CJK や絵文字を含むエントリが無音で削除されていた問題を修正した。"
+        },
+        {
+          "title": "`/stats` のトークン集計と履歴保持修正",
+          "description": "サブエージェント使用分が除外されトークンが過小計算されていた問題と、統計キャッシュ形式変更時に 30 日以降の履歴データが失われる問題を修正した。"
+        },
+        {
+          "title": "`-p --resume/--continue` のデフツールハング修正",
+          "description": "デフツール入力が 64 KB 超またはデフマーカーが無い場合に `-p --resume` がハングし、`-p --continue` がデフツールを再開しなかった問題を修正した。"
+        },
+        {
+          "title": "macOS での `claude-cli://` ディープリンク修正",
+          "description": "macOS で `claude-cli://` 深部リンクが開かない問題を修正した。"
+        },
+        {
+          "title": "MCP ツールエラー表示の切り捨て修正",
+          "description": "サーバが複数要素のエラーコンテンツを返した際に、MCP ツールエラーが最初のブロックだけに切り詰められる問題を修正した。"
+        },
+        {
+          "title": "SDK 経由画像送信時のシステムコンテキスト保持修正",
+          "description": "画像付きメッセージを SDK 経由で送信した際に、スキルリマインダーやその他システムコンテキストが失われていた問題を修正した。"
+        },
+        {
+          "title": "フックの `file_path` 取得方式修正",
+          "description": "Write/Edit/Read ツールで PreToolUse / PostToolUse フックが `file_path` を絶対パスで受け取るようにし、ドキュメント通りの動作に合わせた。"
+        },
+        {
+          "title": "自動コンパクトのスローモーション修正",
+          "description": "コンテキストが3回連続で圧縮された直後に上限に再達成した場合を検出し、API コールを浪費せず実行可能なエラーで停止するよう autocompact のスラッシュループを修正した。"
+        },
+        {
+          "title": "長期セッションでのプロンプトキャッシュ不一致修正",
+          "description": "ツールスキーマのバイトがセッション途中で変化し、長期セッションでプロンプトキャッシュがミスマッチする問題を修正した。"
+        },
+        {
+          "title": "ネストした CLAUDE.md の冗長再注入修正",
+          "description": "多数のファイルを読む長時間セッションで、入れ子になった CLAUDE.md が何十回も再注入される問題を修正した。"
+        },
+        {
+          "title": "`--resume` 時のクラッシュ修正",
+          "description": "トランスクリプトに旧CLIバージョンのツール結果や中断された書き込みが含まれると `--resume` がクラッシュする問題を修正した。"
+        },
+        {
+          "title": "レートリミットメッセージの誤表示修正",
+          "description": "API が権利エラーを返した際に誤って「Rate limit reached」と表示されていた問題を修正し、実際のエラーと対処ヒントを表示するようにした。"
+        },
+        {
+          "title": "フック `if` 条件の複合コマンド対応修正",
+          "description": "フックの `if` 条件フィルタが複合コマンド（`ls && git push`）や環境変数プリフィックス付きコマンド（`FOO=bar git push`）にマッチしなかった問題を修正した。"
+        },
+        {
+          "title": "折りたたみ検索/読み取りバッジの重複表示修正",
+          "description": "並列ツール使用が多い時に端末スクロールバックで折りたたみ検索/読み取りグループバッジが重複して表示される問題を修正した。"
+        },
+        {
+          "title": "通知 `invalidates` の即時クリア修正",
+          "description": "`invalidates` が現在表示中の通知を即座にクリアしない問題を修正した。"
+        },
+        {
+          "title": "背景メッセージ受信時のプロンプト消失修正",
+          "description": "処理中に背景メッセージが到着した際、送信後にプロンプトが一瞬消える問題を修正した。"
+        },
+        {
+          "title": "結合文字テキストの切り捨て修正",
+          "description": "アシスタント出力でデーヴァナーガリーや他の結合マーク文字が切り捨てられる問題を修正した。"
+        },
+        {
+          "title": "メイン画面端末のレイアウトシフト後描画アーティファクト修正",
+          "description": "レイアウトシフト後にメインスクリーン端末で発生していた描画アーティファクトを修正した。"
+        },
+        {
+          "title": "macOS Apple Silicon の音声モードでのマイク許可要求修正",
+          "description": "macOS Apple Silicon で音声モードがマイクロフォン許可をリクエストできない問題を修正した。"
+        },
+        {
+          "title": "Windows Terminal Preview 1.25 の Shift+Enter 動作修正",
+          "description": "Shift+Enter が改行挿入ではなく送信になる問題を Windows Terminal Preview 1.25 で修正した。"
+        },
+        {
+          "title": "tmux 内 iTerm2 でのストリーミング時 UI ジッター修正",
+          "description": "tmux 内で iTerm2 を使用中にストリーミング時に発生していた周期的な UI ジッターを修正した。"
+        },
+        {
+          "title": "PowerShell ツールのエラーレポート誤認識修正",
+          "description": "Windows PowerShell 5.1 で `git push` などが stderr に進捗を書き込んだ際、PowerShell ツールが失敗と誤報告していた問題を修正した。"
+        },
+        {
+          "title": "巨大ファイル編集時の OOM クラッシュ修正",
+          "description": "1 GiB 超の非常に大きなファイルに対して Edit ツールを使用した際に発生する可能性のあるメモリ不足クラッシュを修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:10:33.399Z"
+}

@@ -1,0 +1,35 @@
+{
+  "version": "2.1.170",
+  "tagName": "v2.1.170",
+  "publishedAt": "2026-06-09T17:23:09Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.170",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 1,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Claude Fable 5 の提供",
+          "description": "Claude Fable 5（Mythos クラス）を一般利用向けに安全化して導入。Fable の能力はこれまで一般提供したモデルの中で最も高い。バージョン 2.1.170 に更新すると利用可能。https://www.anthropic.com/news/claude-fable-5-mythos-5"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "セッションのトランスクリプト保存不具合を修正",
+          "description": "VS Code 統合ターミナルや Claude Code の環境変数を継承したシェルから起動した場合に、セッションがトランスクリプトを保存せず、`--resume` にも表示されなかった問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:29:05.961Z"
+}

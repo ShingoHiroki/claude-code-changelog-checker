@@ -1,0 +1,138 @@
+{
+  "version": "2.1.142",
+  "tagName": "v2.1.142",
+  "publishedAt": "2026-05-14T22:55:10Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.142",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 1,
+    "改善": 2,
+    "その他": 4,
+    "バグ修正": 16
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "古い `/model claude-sonnet-4-20250514` 提案の削除",
+          "description": "Usage Policy の拒否メッセージから、古くなった `/model claude-sonnet-4-20250514` の提案が削除されました"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`claude agents` フラグを追加",
+          "description": "バックグラウンドセッションを設定できる新しいフラグ `--add-dir`、`--settings`、`--mcp-config`、`--plugin-dir`、`--permission-mode`、`--model`、`--effort`、`--dangerously-skip-permissions` が `claude agents` に導入されました"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "リアクティブコンパクションの改善",
+          "description": "最初の summarize 試行が元リクエストのオーバーフローサイズからシードされるようになり、ほぼフルコンテキストの無駄なリトライが回避されます"
+        },
+        {
+          "title": "フック構成エラーの改善",
+          "description": "`SessionStart`／`Setup`／`SubagentStart` 用にプロンプトまたはエージェントタイプのフックを設定すると、\"use a command-type hook instead\" という明確なエラーメッセージが表示されるようになりました"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Fast mode のデフォルトが Opus 4.7 に変更",
+          "description": "Fast mode はデフォルトで Opus 4.7 を使用します（従前は Opus 4.6）。`CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1` を設定すると Opus 4.6 に固定できます"
+        },
+        {
+          "title": "`SKILL.md` があるプラグインがスキルとして表示",
+          "description": "ルートレベルに `SKILL.md` があり `skills/` サブディレクトリがないプラグインは、スキルとして検出されるようになりました"
+        },
+        {
+          "title": "`/plugin` 詳細ペインでプラグイン提供の LSP サーバーを表示",
+          "description": "`/plugin` の詳細ペインと `claude plugin details` コマンドで、プラグインが提供する LSP サーバーが表示されます"
+        },
+        {
+          "title": "`/web-setup` が既存の GitHub App 接続置換前に警告",
+          "description": "`/web-setup` が既存の GitHub App 接続を置き換える際に、事前に警告を表示するようになりました"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`MCP_TOOL_TIMEOUT` がリクエストごとの取得タイムアウトを適用しなかった問題を修正",
+          "description": "リモート HTTP および SSE MCP サーバーで、`MCP_TOOL_TIMEOUT` が設定値を無視して 60 秒に固定されていた不具合を修正しました"
+        },
+        {
+          "title": "バックグラウンドセッションが既存の Git ワークツリーを認識しなかった問題を修正",
+          "description": "既存の Git ワークツリーがある場合でも正しく認識し、`EnterWorktree` が重複作成を拒否する問題を解消しました"
+        },
+        {
+          "title": "macOS のスリープ／ウェイク後にバックグラウンドセッションが消失し、デーモン再接続が失敗する問題を修正",
+          "description": "デーモンがアイドル時間として扱う代わりに時計のジャンプを検出するように変更し、スリープ／ウェイク後の復帰を安定させました"
+        },
+        {
+          "title": "バイナリアップグレード後にデーモンがクリーンに終了しなかった問題を修正",
+          "description": "`brew upgrade` などでバイナリが更新された際、デーモンが正しく終了せず、削除されたパスでエージェントがクラッシュループする問題を解消しました"
+        },
+        {
+          "title": "Claude-in-Chrome 拡張が共有タブなしで接続されたときのバックグラウンドエージェントのクラッシュループを修正",
+          "description": "Chrome 拡張が共有タブなしで接続された場合にバックグラウンドエージェントがクラッシュループする不具合を修正しました"
+        },
+        {
+          "title": "添付された `claude agents` セッションでリンククリック時の問題を修正",
+          "description": "セッションに添付された状態でリンクをクリックしても、バックグラウンドワーカーのヘッドレスブラウザシムが適用されなくなり、正しく動作します"
+        },
+        {
+          "title": "`claude agents` の \"v to open in editor\" がデーモンのデフォルトエディタを使用していた問題を修正",
+          "description": "シェルの `$EDITOR`／`$VISUAL` が使用されるようになり、デフォルトエディタではなく設定されたエディタで開くようになりました"
+        },
+        {
+          "title": "Windows のネットワークドライブ作業ディレクトリでの `claude agents` デッドロックを修正",
+          "description": "起動中に Ctrl+C が機能し、デッドロックが解消されました"
+        },
+        {
+          "title": "Apple Terminal や 256 色のみの端末で `claude agents` セッションにアタッチしたときの背景色漏れを修正",
+          "description": "背景色が正しく表示され、色漏れがなくなりました"
+        },
+        {
+          "title": "`claude --bg --dangerously-skip-permissions` がリテア／ウェイク後に持続しなかった問題を修正",
+          "description": "リテアまたはウェイク後も設定が保持されるようになりました"
+        },
+        {
+          "title": "最初のメッセージがリンクの場合に URL からセッションタイトルが生成されていた問題を修正",
+          "description": "リンクが最初のメッセージでも、URL から誤ってタイトルが作成されることがなくなりました"
+        },
+        {
+          "title": "リモートクライアントからの冗長な `set_model` 要求がトランスクリプトに重複 `/model` ブレッドクラムを挿入していた問題を修正",
+          "description": "重複した `/model` エントリが挿入されるのを防止しました"
+        },
+        {
+          "title": "`skills: [\"./\"]` を使用するプラグインで誤った \"path escapes plugin directory\" エラーが表示されていた問題を修正",
+          "description": "正しいパスでもエラーが出なくなりました"
+        },
+        {
+          "title": "インストールメタデータがない場合にプラグインキャッシュクリーンアップがアクティブなプラグインバージョンディレクトリを削除していた問題を修正",
+          "description": "アクティブなバージョンが誤って削除されることがなくなりました"
+        },
+        {
+          "title": "新規公開プラグインの `/plugin` ブラウズペインで \"0 installs\" と表示されていた問題を修正",
+          "description": "インストール数が正しく表示されます"
+        },
+        {
+          "title": "プラグインアドバイザリで `plugin.json` のすべてのキーが適切に名前付けされていなかった問題を修正",
+          "description": "デフォルトフォルダを上書きするキーも正しく列挙されるようになりました"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:22:07.551Z"
+}

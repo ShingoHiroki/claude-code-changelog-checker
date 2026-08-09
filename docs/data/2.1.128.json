@@ -1,0 +1,180 @@
+{
+  "version": "2.1.128",
+  "tagName": "v2.1.128",
+  "publishedAt": "2026-05-04T23:01:47Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.128",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 1,
+    "その他": 11,
+    "バグ修正": 25
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "/model ピッカー更新",
+          "description": "重複した Opus 4.7 エントリを折りたたみ、現在の Opus が \"Opus\" と表示され、\"Opus 4.7\" ではなくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/color` が引数なしでランダム色を選択",
+          "description": "引数を指定しない `/color` がセッションの色をランダムに選ぶようになりました。"
+        },
+        {
+          "title": "`/mcp` がツール数と0ツールサーバーを表示",
+          "description": "`/mcp` が接続されたサーバーのツール数を表示し、ツールが0個のサーバーをフラグで示します。"
+        },
+        {
+          "title": "`--plugin-dir` が `.zip` アーカイブを受け入れ",
+          "description": "`--plugin-dir` がディレクトリに加えて `.zip` 形式のプラグインアーカイブも指定可能になりました。"
+        },
+        {
+          "title": "`--channels` がコンソール認証で使用可能に",
+          "description": "`--channels` がコンソール（APIキー）認証でも機能し、管理設定があるコンソール組織は `channelsEnabled: true` を設定する必要があります。"
+        },
+        {
+          "title": "サブプロセスが `OTEL_*` 環境変数を継承しない",
+          "description": "Bash、フック、MCP、LSP のサブプロセスは `OTEL_*` 環境変数を継承しなくなり、Bash ツールで実行される OTEL 計測アプリは CLI の OTLP エンドポイントを取得しません。"
+        },
+        {
+          "title": "MCP で `workspace` が予約サーバー名に",
+          "description": "`workspace` が予約されたサーバー名となり、同名の既存サーバーは警告とともにスキップされます。"
+        },
+        {
+          "title": "MCP 再接続時のツール名リストが要約化",
+          "description": "MCP サーバー再接続時に会話がフルツール名リストで埋め尽くされず、再通知されたツールはサーバープレフィックスで要約されます。"
+        },
+        {
+          "title": "SDK ホストが Bash 権限プロンプトで永続的 `localSettings` 提案を受け取る",
+          "description": "SDK ホストは Bash 権限プロンプトで永続的な `localSettings` 提案を受け取り、\"Always allow\" が `.claude/settings.local.json` に書き込まれます。"
+        },
+        {
+          "title": "`EnterWorktree` がローカル HEAD から新ブランチ作成",
+          "description": "`EnterWorktree` がドキュメント通りローカル HEAD から新ブランチを作成し、`origin/<default-branch>` ではなくなります。未プッシュのコミットは破棄されません。"
+        },
+        {
+          "title": "Auto モードでエラーにヒントを追加",
+          "description": "分類器がアクションを評価できないとき、エラーに再試行、`/compact`、または `--debug` 実行のヒントが含まれます。"
+        },
+        {
+          "title": "`--output-format stream-json` の `init.plugin_errors` にプラグインディレクトリのロード失敗を追加",
+          "description": "`--output-format stream-json` のヘッドレスモードで、`init.plugin_errors` に `--plugin-dir` のロード失敗が依存関係の降格情報と共に含まれるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "フォーカスモードで前回応答が一瞬暗くなるバグ修正",
+          "description": "新しいプロンプト送信時にフォーカスモードが前回の応答を短時間暗くしていた問題を修正しました。"
+        },
+        {
+          "title": "`/exit` 時の不要な \"4;0;\" 通知を修正",
+          "description": "Kitty など OSC 9 を通知と解釈する端末で、`/exit` 毎に表示されていた余計な \"4;0;\" デスクトップ通知を修正しました。"
+        },
+        {
+          "title": "レートリミット時の Remote Control が空メッセージを表示する問題修正",
+          "description": "レートリミット時に Remote Control が \"Opening your options…\" の空メッセージを表示し、実際のアップセルオプションが出なかった問題を修正しました。"
+        },
+        {
+          "title": "画像ドラッグ＆ドロップで読み込み失敗時にハングするバグ修正",
+          "description": "画像の読み込みに失敗した際、ドラッグ＆ドロップアップロードが \"Pasting text…\" でハングしていた問題を修正しました。"
+        },
+        {
+          "title": "`claude -p` への大容量 (>10 MB) stdin パイプでクラッシュループが発生する問題修正",
+          "description": "`claude -p` に 10 MB 超の入力を stdin 経由でパイプしたときにクラッシュループが起きていた問題を修正しました。"
+        },
+        {
+          "title": "フルスクリーンモードで長い URL が折り返し行ごとにクリックできない問題修正",
+          "description": "フルスクリーンモードで長い URL が折り返された各行で個別にクリックできない不具合を修正しました。"
+        },
+        {
+          "title": "`/plugin` コンポーネントパネルで `--plugin-dir` 読み込み時に \"Marketplace 'inline' not found\" が表示されるバグ修正",
+          "description": "`--plugin-dir` で読み込んだプラグインに対し、`/plugin` のコンポーネントパネルが \"Marketplace 'inline' not found\" と表示していた問題を修正しました。"
+        },
+        {
+          "title": "MCP ツール結果で画像が失われる問題修正",
+          "description": "サーバーが構造化コンテンツとコンテンツブロックの両方を返す場合に、MCP ツール結果から画像が削除されていた問題を修正しました。"
+        },
+        {
+          "title": "リスト項目内のコードブロックコピー時に先頭空白がコピーされるバグ修正",
+          "description": "リスト項目内のフェンスコードブロックをコピー&ペーストした際、先頭の空白がクリップボードに含まれていた問題を修正しました。"
+        },
+        {
+          "title": "`/config` のタブナビゲーションでフォーカスが失われる問題修正",
+          "description": "`/config` でタブ移動時にフォーカスが残らず、矢印キーや Esc が効かなくなる問題を修正し、タブヘッダーがフォーカスされた状態を維持します。"
+        },
+        {
+          "title": "OSC 8 非対応端末で Markdown リンクラベルが失われるバグ修正",
+          "description": "OSC 8 ハイパーリンクをサポートしない端末で、Markdown のリンクラベルが消えて URL のみ表示されていた問題を修正し、`label (url)` 形式で表示されます。"
+        },
+        {
+          "title": "1M コンテキストモデルで自動圧縮ウィンドウが小さいと誤って \"Prompt is too long\" が出る問題修正",
+          "description": "1M コンテキストモデルのセッションで、実際の API リミットに達する前に自動圧縮ウィンドウが小さく誤って \"Prompt is too long\" とブロックされていた問題を修正しました。"
+        },
+        {
+          "title": "並列シェルツール呼び出しで読み取り専用コマンド失敗時に他がキャンセルされるバグ修正",
+          "description": "grep、git diff、ls などの読み取り専用コマンドが失敗しても、並列に実行中の他のシェルツール呼び出しがキャンセルされないように修正しました。"
+        },
+        {
+          "title": "努力度非対応モデルでバナーが \"with X effort\" と表示される問題修正",
+          "description": "努力度をサポートしないモデルでもバナーに \"with X effort\" が表示されていた問題を修正しました。"
+        },
+        {
+          "title": "サードパーティプロバイダの `/fast` が無関係なスキルにマッチするバグ修正",
+          "description": "3P プロバイダで `/fast` が無関係なスキルに曖昧マッチし、\"not available\" が表示されなかった問題を修正しました。"
+        },
+        {
+          "title": "Bedrock デフォルトモデルが `global.*` に解決されるバグ修正",
+          "description": "Bedrock のデフォルトモデルが地域に適したプレフィックスではなく `global.*` に解決されていた問題を修正しました。"
+        },
+        {
+          "title": "vim モードで NORMAL の `Space` が右移動しない問題修正",
+          "description": "vim モードの NORMAL モードで `Space` が標準の vi/vim の動作に合わせてカーソルを右に移動するよう修正しました。"
+        },
+        {
+          "title": "ターミナル進捗インジケータ (OSC 9;4) がツール呼び出し間で点滅する問題修正",
+          "description": "ツール呼び出し間でターミナルの進捗インジケータ (OSC 9;4) が消えて点滅していた問題を修正し、ターン全体で表示が維持されます。"
+        },
+        {
+          "title": "`/rename` が引数なしでコンパクト境界後の再開セッションで失敗するバグ修正",
+          "description": "引数なしの `/rename` が、最後のエントリがコンパクト境界である再開セッションで失敗していた問題を修正しました。"
+        },
+        {
+          "title": "`--resume`/`--continue` 後に古い \"remote-control is active\" ステータスが残る問題修正",
+          "description": "`--resume` または `--continue` 使用後に、以前のセッションから残っていた \"remote-control is active\" ステータスラインが表示され続けていた問題を修正しました。"
+        },
+        {
+          "title": "削除されたキャッシュディレクトリを指す `installed_plugins.json` が PATH を汚染する問題修正",
+          "description": "削除されたキャッシュディレクトリを指す古い `installed_plugins.json` エントリが PATH を汚染していた問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_SHELL_PREFIX` 設定時に引数に空白やメタ文字があると MCP stdio サーバが引数破損するバグ修正",
+          "description": "`CLAUDE_CODE_SHELL_PREFIX` が設定され、引数に空白やシェルメタ文字が含まれると MCP stdio サーバが破損した引数を受け取っていた問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントの進捗要約でプロンプトキャッシュが欠落していた問題修正",
+          "description": "サブエージェントの進捗要約からプロンプトキャッシュが欠落し、`cache_creation` が約3倍減少していた問題を修正しました。"
+        },
+        {
+          "title": "`/plugin update` が npm プラグインの新バージョンを検出しないバグ修正",
+          "description": "`/plugin update` が npm 経由のプラグインの新バージョンを検出しなかった問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントのトランスクリプトが静的でも要約が繰り返し送信される問題修正",
+          "description": "サブエージェントのトランスクリプトが変わっていないときに要約が繰り返し生成され、アイドル時のトークンコストが上限になる問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:18:22.524Z"
+}

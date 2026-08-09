@@ -1,0 +1,85 @@
+{
+  "version": "2.1.51",
+  "tagName": "v2.1.51",
+  "publishedAt": "2026-02-24T01:40:58Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.51",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 1,
+    "その他": 4,
+    "バグ修正": 4
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "remote-control サブコマンドの追加",
+          "description": "外部ビルド向けに `claude remote-control` サブコマンドを追加し、すべてのユーザーがローカル環境でサービングできるようにしました。"
+        },
+        {
+          "title": "npm レジストリとバージョン固定のサポート",
+          "description": "`npm` ソースからプラグインをインストールする際に、カスタム npm レジストリと特定バージョンの固定ができるようになりました。"
+        },
+        {
+          "title": "SDK 用環境変数の追加",
+          "description": "`CLAUDE_CODE_ACCOUNT_UUID`、`CLAUDE_CODE_USER_EMAIL`、`CLAUDE_CODE_ORGANIZATION_UUID` 環境変数を追加し、SDK 呼び出し側がアカウント情報を同期的に提供できるようにし、初期テレメトリでアカウントメタデータが欠落するレースコンディションを解消しました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "プラグインマーケットプレイスの git タイムアウト延長",
+          "description": "デフォルトの git タイムアウトを 30 秒から 120 秒に変更し、`CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS` で設定できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "BashTool がデフォルトでログインシェルをスキップ",
+          "description": "シェルスナップショットが利用可能な場合、BashTool はデフォルトで `-l` フラグを付けずに実行し、コマンド実行性能が向上します。従来は `CLAUDE_BASH_NO_LOGIN=true` を設定する必要がありました。"
+        },
+        {
+          "title": "ツール結果のディスク永続化閾値変更",
+          "description": "50K 文字を超えるツール結果はディスクに永続化されるようになり（以前は 100K）、コンテキストウィンドウ使用量が減少し会話の長期性が向上します。"
+        },
+        {
+          "title": "HTTP フックのサンドボックスプロキシ経由化",
+          "description": "サンドボックスが有効な場合、HTTP フックはサンドボックスネットワークプロキシを経由し、ドメイン許可リストが適用されます。SessionStart/Setup イベントでは HTTP フックはサポートされません。"
+        },
+        {
+          "title": "`/model` ピッカーが可読ラベル表示に",
+          "description": "`/model` ピッカーはピン留めされたモデルバージョンについて、生のモデル ID の代わりに「Sonnet 4.5」等の人間が読めるラベルを表示し、更新可能な場合はアップグレードヒントを表示します。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`statusLine` と `fileSuggestion` フックの信頼問題修正",
+          "description": "対話モードでワークスペース信頼が受諾されていなくても `statusLine` と `fileSuggestion` フックコマンドが実行できていたセキュリティ問題を修正しました。"
+        },
+        {
+          "title": "HTTP フックの環境変数展開セキュリティ修正",
+          "description": "ヘッダー値から任意の環境変数が展開できていた問題を修正し、環境変数の展開はフック設定の `allowedEnvVars` リストで明示的に許可されたもののみとなります。"
+        },
+        {
+          "title": "重複 `control_response` による API 400 エラー修正",
+          "description": "WebSocket 再接続時などで重複した `control_response` メッセージが会話に重複したアシスタントメッセージをプッシュし、API が 400 エラーになるバグを修正しました。"
+        },
+        {
+          "title": "スラッシュコマンドオートコンプリートのクラッシュ修正",
+          "description": "プラグインの `SKILL.md` の記述が YAML 配列や非文字列タイプの場合に、オートコンプリートがクラッシュしていた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:02:22.506Z"
+}

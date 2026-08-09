@@ -1,0 +1,97 @@
+{
+  "version": "2.1.45",
+  "tagName": "v2.1.45",
+  "publishedAt": "2026-02-17T18:53:52Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.45",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 3,
+    "その他": 1,
+    "バグ修正": 7
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude Sonnet 4.6 のサポート追加",
+          "description": "Claude Sonnet 4.6 のサポートが追加されました。"
+        },
+        {
+          "title": "`enabledPlugins` と `extraKnownMarketplaces` の読み取りサポート",
+          "description": "`--add-dir` ディレクトリから `enabledPlugins` と `extraKnownMarketplaces` を読み取る機能を追加しました。"
+        },
+        {
+          "title": "`spinnerTipsOverride` 設定の追加",
+          "description": "`spinnerTipsOverride` 設定を追加し、`tips` にカスタム文字列の配列を設定でき、`excludeDefault: true` を指定すると組み込みのヒントを除外してカスタムヒントのみ表示できます。"
+        },
+        {
+          "title": "`SDKRateLimitInfo` と `SDKRateLimitEvent` 型の追加",
+          "description": "SDK に `SDKRateLimitInfo` と `SDKRateLimitEvent` 型を追加し、利用率、リセット時刻、超過情報などのレートリミットステータス更新を受け取れるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "スタートアップ時のパフォーマンス改善",
+          "description": "セッション履歴のイーガーローディングを削除し、統計キャッシュのためのスタートアップパフォーマンスを向上させました。"
+        },
+        {
+          "title": "シェルコマンドのメモリ使用量削減",
+          "description": "大きな出力を生成するシェルコマンドのメモリ使用量を改善し、コマンド出力サイズに応じて RSS が無制限に増加しなくなりました。"
+        },
+        {
+          "title": "折りたたみ表示の読込/検索グループ改善",
+          "description": "折りたたまれた読込/検索グループが、アクティブ時に要約行の下に現在処理中のファイルまたは検索パターンを表示するように改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "[VSCode] パーミッション保存先選択の永続化",
+          "description": "[VSCode] パーミッションの保存先選択（project/user/session）がセッション間で永続するように改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Agent Teams のチームメイトが Bedrock, Vertex, Foundry で失敗するバグ修正",
+          "description": "API プロバイダー環境変数を tmux 起動プロセスに伝播させることで、Bedrock、Vertex、Foundry 上の Agent Teams のチームメイトが失敗する問題を修正しました（anthropics/claude-code#23561）。"
+        },
+        {
+          "title": "macOS のサンドボックスでの一時ファイル書き込みエラー修正",
+          "description": "正しいユーザ別一時ディレクトリを使用することで、macOS のサンドボックスで \"operation not permitted\" エラーが発生する問題を修正しました（anthropics/claude-code#21654）。"
+        },
+        {
+          "title": "Task ツールの `ReferenceError` クラッシュ修正",
+          "description": "Task ツール（バックグラウンドエージェント）が完了時に `ReferenceError` を投げてクラッシュする問題を修正しました（anthropics/claude-code#22087）。"
+        },
+        {
+          "title": "画像貼り付け時のオートコンプリート受け入れ不具合修正",
+          "description": "画像が入力に貼り付けられた状態で Enter キーを押してもオートコンプリートの候補が受け入れられない問題を修正しました。"
+        },
+        {
+          "title": "サブエージェント呼び出しスキルのコンテキスト残存修正",
+          "description": "サブエージェントによって呼び出されたスキルが、圧縮後にメインセッションコンテキストに誤って残る問題を修正しました。"
+        },
+        {
+          "title": "過剰な `.claude.json.backup` ファイル作成の修正",
+          "description": "毎回の起動時に過剰な `.claude.json.backup` ファイルが蓄積される問題を修正しました。"
+        },
+        {
+          "title": "プラグイン提供コマンド・エージェント・フックの即時利用バグ修正",
+          "description": "プラグインインストール直後に再起動せずにプラグイン提供のコマンド、エージェント、フックがすぐに利用できない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:00:31.389Z"
+}

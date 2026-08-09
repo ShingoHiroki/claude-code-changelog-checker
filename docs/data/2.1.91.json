@@ -1,0 +1,89 @@
+{
+  "version": "2.1.91",
+  "tagName": "v2.1.91",
+  "publishedAt": "2026-04-02T23:45:35Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.91",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 2,
+    "その他": 3,
+    "バグ修正": 5
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "MCPツール結果永続性オーバーライド追加",
+          "description": "`_meta[\\\"anthropic/maxResultSizeChars\\\"]` アノテーションで最大500KBまで上書き可能となり、DBスキーマなどの大きな結果が切り詰められずに渡せます。"
+        },
+        {
+          "title": "`disableSkillShellExecution` 設定追加",
+          "description": "`disableSkillShellExecution` 設定により、スキル、カスタムスラッシュコマンド、プラグインコマンド内でのインラインシェル実行を無効化できます。"
+        },
+        {
+          "title": "マルチラインプロンプトのディープリンク対応",
+          "description": "`claude-cli://open?q=` のディープリンクで改行をエンコードした `%0A` が受け入れられるようになり、マルチラインプロンプトが使用可能になりました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/claude-api` スキルガイダンスの改善",
+          "description": "エージェント設計パターン（ツールの表面選択、コンテキスト管理、キャッシュ戦略）に関する `/claude-api` スキルガイダンスが向上しました。"
+        },
+        {
+          "title": "`stripAnsi` のパフォーマンス向上 (Bun)",
+          "description": "`stripAnsi` が `Bun.stripANSI` 経由で処理されるようになり、Bun 上での実行が高速化されました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "プラグインが `bin/` 配下の実行ファイルを提供可能に",
+          "description": "プラグインは `bin/` ディレクトリに実行可能ファイルを同梱でき、Bashツールから裸コマンドとして呼び出せます。"
+        },
+        {
+          "title": "`/feedback` が利用不可時に理由を表示",
+          "description": "`/feedback` が利用できない場合、スラッシュメニューから消えるのではなく、利用不可の理由が説明されます。"
+        },
+        {
+          "title": "Editツールの `old_string` アンカー短縮化",
+          "description": "Editツールがより短い `old_string` アンカーを使用するようになり、出力トークン数が削減されます。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`--resume` 時のトランスクリプトチェーン破損修正",
+          "description": "`--resume` 使用時、非同期トランスクリプト書き込みが失敗しても黙っているため会話履歴が失われる問題を修正しました。"
+        },
+        {
+          "title": "`cmd+delete` が行頭まで削除しない問題を修正",
+          "description": "iTerm2、kitty、WezTerm、Ghostty、Windows Terminal で `cmd+delete` が行頭まで削除しなかった不具合を修正しました。"
+        },
+        {
+          "title": "リモートセッションのプランモードのファイル追跡不具合修正",
+          "description": "コンテナ再起動後にプランファイルの追跡が失われ、プラン編集時に権限プロンプトが出たりプラン承認モーダルが空になる問題を修正しました。"
+        },
+        {
+          "title": "`permissions.defaultMode: \"auto\"` のJSONスキーマ検証修正",
+          "description": "settings.json における `permissions.defaultMode: \"auto\"` のJSONスキーマバリデーションの問題を修正しました。"
+        },
+        {
+          "title": "Windows版クリーンアップ時のロールバックコピー保護不具合修正",
+          "description": "Windows バージョンのクリーンアップがアクティブバージョンのロールバックコピーを保護しない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:10:58.672Z"
+}

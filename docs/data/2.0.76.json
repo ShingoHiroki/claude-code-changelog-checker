@@ -1,0 +1,26 @@
+{
+  "version": "2.0.76",
+  "tagName": "v2.0.76",
+  "publishedAt": "2026-01-07T20:37:13Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.0.76",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "macOSコード署名警告の修正",
+          "description": "Chrome 統合で Claude を使用する際に表示されていた macOS のコード署名警告の問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:54:44.124Z"
+}

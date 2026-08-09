@@ -1,0 +1,216 @@
+{
+  "version": "2.1.97",
+  "tagName": "v2.1.97",
+  "publishedAt": "2026-04-08T21:52:34Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.97",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 5,
+    "改善": 13,
+    "その他": 0,
+    "バグ修正": 28
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "フォーカスビュー切替追加",
+          "description": "`NO_FLICKER` モードで `Ctrl+O` を押すと、プロンプト、1 行のツールサマリー（編集差分統計付き）、最終レスポンスが表示されるようになりました。"
+        },
+        {
+          "title": "`refreshInterval` 設定の追加",
+          "description": "`refreshInterval` ステータスライン設定を追加し、ステータスラインコマンドを N 秒ごとに再実行できるようになりました。"
+        },
+        {
+          "title": "`workspace.git_worktree` のステータスライン入力への追加",
+          "description": "現在のディレクトリがリンクされた git worktree 内にある場合に設定される `workspace.git_worktree` をステータスライン JSON 入力に追加しました。"
+        },
+        {
+          "title": "`● N running` インジケータの追加",
+          "description": "`/agents` で、ライブサブエージェントインスタンスがあるエージェントタイプ横に `● N running` インジケータが表示されるようになりました。"
+        },
+        {
+          "title": "Cedar ポリシーファイルの構文ハイライト",
+          "description": "拡張子 `.cedar`、`.cedarpolicy` の Cedar ポリシーファイルに構文ハイライトが追加されました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Accept Edits モードの自動承認改善",
+          "description": "安全な環境変数やプロセスラッパーでプレフィックスされたファイルシステムコマンド（例: `LANG=C rm foo`、`timeout 5 mkdir out`）を Accept Edits モードで自動承認するよう改善しました。"
+        },
+        {
+          "title": "Auto/B bypass-permissions モードのネットワーク承認改善",
+          "description": "auto モードと bypass-permissions モードで、サンドボックスのネットワークアクセスプロンプトを自動承認するように改善しました。"
+        },
+        {
+          "title": "`sandbox.network.allowMachLookup` が macOS で有効化",
+          "description": "サンドボックス設定 `sandbox.network.allowMachLookup` が macOS でも機能するように改善しました。"
+        },
+        {
+          "title": "画像処理の圧縮統一",
+          "description": "貼り付けや添付された画像が、Read ツールで読み込む画像と同じトークン予算で圧縮されるように改善しました。"
+        },
+        {
+          "title": "スラッシュコマンド・＠メンション補完の句読点対応",
+          "description": "CJK 句読点の後でもスラッシュコマンドと `@` メンションの補完がトリガーされるようになり、日本語/中国語入力で `/` や `@` の前にスペースが不要になりました。"
+        },
+        {
+          "title": "Bridge セッションでローカル Git 情報表示",
+          "description": "Bridge セッションの claude.ai セッションカードに、ローカル Git リポジトリ、ブランチ、作業ディレクトリが表示されるよう改善しました。"
+        },
+        {
+          "title": "フッター配置の改善",
+          "description": "インジケータ（Focus、通知）がモードインジケータ行に固定され、下に折り返さないようフッターのレイアウトを改善しました。"
+        },
+        {
+          "title": "コンテキスト不足警告のフッタ通知化",
+          "description": "コンテキスト低警告が永続的な行ではなく、一時的なフッタ通知として表示されるように改善しました。"
+        },
+        {
+          "title": "Markdown ブロック引用の左バー連続表示",
+          "description": "Markdown のブロック引用で、折り返し行でも左側のバーが連続して表示されるよう改善しました。"
+        },
+        {
+          "title": "セッショントランスクリプトサイズの削減",
+          "description": "空のフックエントリをスキップし、編集前ファイルコピーの保存数に上限を設けることで、セッショントランスクリプトのサイズを削減しました。"
+        },
+        {
+          "title": "トランスクリプトのトークン使用量精度向上",
+          "description": "各ブロックエントリがストリーミングのプレースホルダーではなく、最終的なトークン使用量を保持するよう改善しました。"
+        },
+        {
+          "title": "Bash ツールの OTEL トレース強化",
+          "description": "トレースが有効な場合、サブプロセスが W3C `TRACEPARENT` 環境変数を継承するよう Bash ツールの OTEL トレースを改善しました。"
+        },
+        {
+          "title": "`/claude-api` スキルの Managed Agents 対応",
+          "description": "`/claude-api` スキルを更新し、Claude API に加えて Managed Agents もカバーするようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`--dangerously-skip-permissions` のモード降格バグ修正",
+          "description": "保護されたパスへの書き込みを承認した後、`--dangerously-skip-permissions` が silent に Accept Edits モードに降格していた問題を修正しました。"
+        },
+        {
+          "title": "Bash ツール権限の強化と誤プロンプト削減",
+          "description": "環境変数プレフィックスとネットワークリダイレクトのチェックを強化し、一般的なコマンドでの誤プロンプトを減らすよう Bash ツールの権限を修正・強化しました。"
+        },
+        {
+          "title": "JS プロトタイプ名と同名権限ルールの無視バグ修正",
+          "description": "`toString` など JavaScript プロトタイププロパティ名と一致する権限ルールが `settings.json` を無視していた問題を修正しました。"
+        },
+        {
+          "title": "Managed Settings の許可ルール削除後も残存するバグ修正",
+          "description": "管理者が許可ルールを削除しても、プロセス再起動まで有効なままだった問題を修正しました。"
+        },
+        {
+          "title": "`permissions.additionalDirectories` の設定変更がセッション中に反映されないバグ修正",
+          "description": "設定で `permissions.additionalDirectories` を変更しても、セッション途中で反映されなかった問題を修正しました。"
+        },
+        {
+          "title": "`--add-dir` で追加したディレクトリのアクセスが `additionalDirectories` 削除で誤って失われるバグ修正",
+          "description": "`settings.permissions.additionalDirectories` からディレクトリを削除すると、`--add-dir` で渡した同じディレクトリへのアクセスが失われていた問題を修正しました。"
+        },
+        {
+          "title": "MCP HTTP/SSE 接続のバッファリーク修正",
+          "description": "サーバ再接続時に MCP の HTTP/SSE 接続で約 50 MB/時 の未解放バッファが蓄積される問題を修正しました。"
+        },
+        {
+          "title": "MCP OAuth の `oauth.authServerMetadataUrl` がトークン更新時に無視されるバグ修正",
+          "description": "再起動後のトークンリフレッシュで `oauth.authServerMetadataUrl` が適用されず、ADFS 等の IdP が機能しなかった問題を修正しました。"
+        },
+        {
+          "title": "429 エラー時のリトライ消費バグ修正",
+          "description": "サーバが短い `Retry-After` を返した際、約 13 秒で全リトライが消費されていた問題を修正し、指数バックオフを最低でも適用するようにしました。"
+        },
+        {
+          "title": "コンテキスト圧縮後のレートリミットアップグレードオプション消失バグ修正",
+          "description": "コンテキスト圧縮後にレートリミットのアップグレードオプションがなくなる問題を修正しました。"
+        },
+        {
+          "title": "`/resume` ピッカーの複数不具合修正",
+          "description": "`--resume <name>` が編集不可で開く、Ctrl+A リロードで検索が消える、空リストでナビが無視される、タスクステータステキストが会話サマリを置換、プロジェクト跨ぎでのステイルネスなど、`/resume` ピッカーに関する複数の問題を修正しました。"
+        },
+        {
+          "title": "`--resume` 時の 10KB 超ファイル編集差分消失バグ修正",
+          "description": "編集対象ファイルが 10 KB 超の場合、`--resume` 時にファイル編集差分が表示されなくなる問題を修正しました。"
+        },
+        {
+          "title": "`--resume` のキャッシュ欠落と添付メッセージ入力喪失バグ修正",
+          "description": "`--resume` でキャッシュがヒットせず、添付メッセージからの途中入力がトランスクリプトに保存されなかった問題を修正しました。"
+        },
+        {
+          "title": "Claude 作業中に入力したメッセージがトランスクリプトに保存されないバグ修正",
+          "description": "Claude が作業中に入力されたメッセージがトランスクリプトに永続化されなかった問題を修正しました。"
+        },
+        {
+          "title": "長時間セッションでの `Stop`/`SubagentStop` フック失敗とエラーメッセージ表示修正",
+          "description": "長いセッションでプロンプトタイプ `Stop`、`SubagentStop` フックが失敗し、フック評価 API エラーが実際のメッセージではなく「JSON validation failed」と表示されていた問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントの作業ディレクトリ漏洩バグ修正",
+          "description": "worktree 分離または `cwd:` オーバーライドを使用したサブエージェントが、親セッションの Bash ツールに作業ディレクトリを漏らす問題を修正しました。"
+        },
+        {
+          "title": "コンパクション時のサブエージェント重複トランスクリプト書き込み修正",
+          "description": "プロンプトが長すぎるリトライ時に、コンパクションが複数 MB のサブエージェントトランスクリプトファイルを重複して書き込む問題を修正しました。"
+        },
+        {
+          "title": "`claude plugin update` の Git ベースプラグイン更新誤報修正",
+          "description": "リモートに新しいコミットがあるにも関わらず、`claude plugin update` が「already at the latest version」と誤って報告していた問題を修正しました。"
+        },
+        {
+          "title": "プラグイン frontmatter `name` が YAML 真偽値の場合のスラッシュコマンドピッカー破損修正",
+          "description": "プラグインの frontmatter で `name` が YAML のブールキーワード（true/false）だった際に、スラッシュコマンドピッカーが壊れる問題を修正しました。"
+        },
+        {
+          "title": "`NO_FLICKER` モードでの URL ラップ時のスペース挿入バグ修正",
+          "description": "`NO_FLICKER` モードで改行された URL をコピーするとスペースが挿入される問題を修正しました。"
+        },
+        {
+          "title": "zellij 内での `NO_FLICKER` スクロール描画アーティファクト修正",
+          "description": "zellij 上で `NO_FLICKER` モードを使用した際のスクロール描画のアーティファクトを修正しました。"
+        },
+        {
+          "title": "`NO_FLICKER` モードで MCP ツール結果ホバー時のクラッシュ修正",
+          "description": "MCP ツール結果上にマウスホバーした際、`NO_FLICKER` モードでクラッシュする問題を修正しました。"
+        },
+        {
+          "title": "`NO_FLICKER` の API リトライ時メモリリーク修正",
+          "description": "API リトライ後に古いストリーミング状態が残り、`NO_FLICKER` モードでメモリリークが発生していた問題を修正しました。"
+        },
+        {
+          "title": "Windows Terminal の `NO_FLICKER` でのマウスホイール遅延修正",
+          "description": "Windows Terminal 上で `NO_FLICKER` モード使用時にマウスホイルスクロールが遅くなる問題を修正しました。"
+        },
+        {
+          "title": "24 行未満端末での `NO_FLICKER` カスタムステータスライン非表示バグ修正",
+          "description": "行数 24 未満の端末で `NO_FLICKER` モード使用時、カスタムステータスラインが表示されなかった問題を修正しました。"
+        },
+        {
+          "title": "Warp で `NO_FLICKER` 時の Shift+Enter・Alt/Cmd+矢印ショートカット不具合修正",
+          "description": "Warp ターミナルで `NO_FLICKER` モード中に Shift+Enter および Alt/Cmd+矢印ショートカットが機能しなかった問題を修正しました。"
+        },
+        {
+          "title": "Windows の `NO_FLICKER` での韓国語/日本語/Unicode 文字化け修正",
+          "description": "Windows で `NO_FLICKER` モード中に韓国語・日本語・Unicode テキストをコピーすると文字化けする問題を修正しました。"
+        },
+        {
+          "title": "Bedrock SigV4 認証の空文字列設定時失敗バグ修正",
+          "description": "`AWS_BEARER_TOKEN_BEDROCK` または `ANTHROPIC_BEDROCK_BASE_URL` が空文字列（GitHub Actions の未設定入力での挙動）に設定されても Bedrock SigV4 認証が失敗する問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:12:07.301Z"
+}

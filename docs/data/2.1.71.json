@@ -1,0 +1,149 @@
+{
+  "version": "2.1.71",
+  "tagName": "v2.1.71",
+  "publishedAt": "2026-03-07T00:12:46Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.71",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 4,
+    "改善": 5,
+    "その他": 0,
+    "バグ修正": 18
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "未認証の組織登録Claude.aiコネクタの起動通知を削除",
+          "description": "認証されていない org-registered claude.ai コネクタに対する起動時の通知音が削除されました。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/loop` コマンドを追加",
+          "description": "指定した間隔でプロンプトやスラッシュコマンドを繰り返し実行できる `/loop` コマンドを追加しました（例: `/loop 5m check the deploy`）。"
+        },
+        {
+          "title": "セッション内での定期プロンプト用 cron スケジューラを追加",
+          "description": "セッション中に繰り返し実行されるプロンプトのための cron スケジューリングツールを導入しました。"
+        },
+        {
+          "title": "`voice:pushToTalk` キーバインディングを追加",
+          "description": "`keybindings.json` で音声起動キーを再割り当て可能にする `voice:pushToTalk` キーバインディングを追加しました（デフォルトは space）。`meta+k` などの修飾子+文字の組み合わせは入力の干渉がありません。"
+        },
+        {
+          "title": "bash 自動承認許可リストにコマンドを追加",
+          "description": "`fmt`, `comm`, `cmp`, `numfmt`, `expr`, `test`, `printf`, `getconf`, `seq`, `tsort`, `pr` を bash の自動承認許可リストに加えました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "起動時間を改善",
+          "description": "ネイティブ画像プロセッサの読み込みを初回使用時まで遅延させ、起動時間を短縮しました。"
+        },
+        {
+          "title": "ブリッジセッションの再接続を高速化",
+          "description": "ノートPCがスリープから復帰した際、ブリッジセッションの再接続が数秒で完了するよう改善し、最大10分待ちの問題を解消しました。"
+        },
+        {
+          "title": "`/plugin uninstall` の挙動を改善",
+          "description": "プロジェクトスコープのプラグインを `.claude/settings.local.json` で無効化するよう変更し、`.claude/settings.json` を変更しないため、チームメンバーへの影響を防ぎます。"
+        },
+        {
+          "title": "プラグイン提供MCPサーバーの重複排除を改善",
+          "description": "手動設定サーバーと同一のコマンド/URLを持つプラグイン提供サーバーは重複としてスキップされ、重複接続やツールセットが防止されます。抑制情報は `/plugin` メニューに表示されます。"
+        },
+        {
+          "title": "`/debug` がセッション中にデバッグログを切替可能に",
+          "description": "`/debug` がセッション途中でデバッグロギングのオン/オフを切替えるよう更新し、デフォルトでデバッグログは書き込まれません。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "長時間セッションでの stdin フリーズを修正",
+          "description": "長時間実行中にキー入力が処理されず、プロセスは生存したままであった問題を修正しました。"
+        },
+        {
+          "title": "音声モード有効時の起動フリーズ（5‑8秒）を修正",
+          "description": "システム復帰後、CoreAudio 初期化がメインスレッドをブロックし、音声モード有効ユーザーで起動が5〜8秒凍結する問題を解消しました。"
+        },
+        {
+          "title": "多数の claude.ai プロキシコネクタでの起動 UI フリーズを修正",
+          "description": "多くの claude.ai プロキシコネクタが同時に期限切れ OAuth トークンを更新する際に、起動 UI が凍結する問題を修正しました。"
+        },
+        {
+          "title": "`/fork` 会話でプランファイルが共有される問題を修正",
+          "description": "フォークされた会話が同じプランファイルを共有し、一方の編集が他方に上書きされるバグを修正しました。"
+        },
+        {
+          "title": "Read ツールで画像サイズが大きすぎるとコンテキストに入るバグを修正",
+          "description": "画像処理失敗時に過大な画像がコンテキストに入って、長い画像重視セッションで後続ターンが破損する問題を修正しました。"
+        },
+        {
+          "title": "複合 bash コマンドで誤検知する権限プロンプトを修正",
+          "description": "ヒアドック付きコミットメッセージを含む複合 bash コマンドで、誤って権限プロンプトが表示される問題を修正しました。"
+        },
+        {
+          "title": "複数 Claude Code インスタンスでプラグインインストールが失われる問題を修正",
+          "description": "複数インスタンス同時実行時にプラグインのインストール情報が失われるバグを修正しました。"
+        },
+        {
+          "title": "OAuth トークン更新後の claude.ai コネクタ再接続失敗を修正",
+          "description": "OAuth トークンリフレッシュ後に claude.ai コネクタが再接続できない問題を修正しました。"
+        },
+        {
+          "title": "claude.ai MCP コネクタ起動通知がすべての org 設定コネクタに表示される問題を修正",
+          "description": "以前は接続済みのもの以外でも通知が出ていたのを、以前に接続したもののみに限定するよう修正しました。"
+        },
+        {
+          "title": "バックグラウンドエージェント完了通知に出力ファイルパスが欠如していた問題を修正",
+          "description": "コンテキスト圧縮後にエージェント結果を復元しにくくなる出力ファイルパスが通知に含まれないバグを修正しました。"
+        },
+        {
+          "title": "Bash ツールエラーメッセージでの重複出力を修正",
+          "description": "コマンドが非ゼロステータスで終了した際、エラーメッセージに出力が二重になる問題を修正しました。"
+        },
+        {
+          "title": "Chrome 拡張自動検出が「未インストール」で永続的にスタックする問題を修正",
+          "description": "ローカルに Chrome が無いマシンで実行した際、拡張機能自動検出が「not installed」のまま固まるバグを修正しました。"
+        },
+        {
+          "title": "`/plugin marketplace update` のマージコンフリクト失敗を修正",
+          "description": "マーケットプレイスがブランチ/タグ参照に固定されている場合に、`/plugin marketplace update` がマージコンフリクトで失敗する問題を修正しました。"
+        },
+        {
+          "title": "`/plugin marketplace add` の `@` 解析バグを修正",
+          "description": "`/plugin marketplace add owner/repo@ref` が `@` を正しく解析できず、以前は `#` のみがリファレンス区切りとして機能していた問題を修正し、`strictKnownMarketplaces` でのエラーを防止しました。"
+        },
+        {
+          "title": "`/permissions` Workspace タブでの重複エントリを修正",
+          "description": "同一ディレクトリを末尾スラッシュ有無で追加した際、`/permissions` の Workspace タブに重複項目が表示される問題を修正しました。"
+        },
+        {
+          "title": "`--print` がチームエージェント構成時にハングする問題を修正",
+          "description": "`--print` が無限にハングし、長時間実行される `in_process_teammate` タスクを待ち続けていた問題を解消しました。"
+        },
+        {
+          "title": "REPL で `ToolSearch` 後に毎回表示される \"❯ Tool loaded.\" を修正",
+          "description": "`ToolSearch` 呼び出し毎に REPL に \"❯ Tool loaded.\" が表示される不具合を修正しました。"
+        },
+        {
+          "title": "Windows で `cd <cwd> && git ...` のプロンプト問題を修正",
+          "description": "モデルが mingw スタイルのパスを使用する際、Windows で `cd <cwd> && git ...` を求める不必要なプロンプトが出る問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:05:06.785Z"
+}

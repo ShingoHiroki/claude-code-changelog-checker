@@ -1,0 +1,97 @@
+{
+  "version": "2.1.7",
+  "tagName": "v2.1.7",
+  "publishedAt": "2026-01-14T00:04:17Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.7",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 1,
+    "その他": 3,
+    "バグ修正": 8
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "showTurnDuration 設定の追加",
+          "description": "turn duration メッセージ（例: \"Cooked for 1m 6s\"）を非表示にする `showTurnDuration` 設定を追加しました。"
+        },
+        {
+          "title": "権限プロンプト受諾時のフィードバック機能追加",
+          "description": "権限プロンプトを受諾する際にフィードバックを提供できる機能を追加しました。"
+        },
+        {
+          "title": "タスク通知でエージェント最終応答をインライン表示",
+          "description": "タスク通知にエージェントの最終応答をインラインで表示する機能を追加し、全トランスクリプトを読むことなく結果を確認しやすくしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "ターミナル描画時のメモリ割り当てオーバーヘッド削減で入力応答性向上",
+          "description": "ターミナル描画時のメモリ割り当てオーバーヘッドを削減し、入力時のレスポンス性を改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "MCP ツール検索自動モードをデフォルトで有効化",
+          "description": "MCP ツールの説明がコンテキストウィンドウの 10% を超える場合、自動的に遅延され MCPSearch ツールで検索されるようにし、MCP ツールが多数設定されたユーザーのコンテキスト使用量を削減します。無効化したい場合は設定に `MCPSearch` を `disallowedTools` に追加してください。"
+        },
+        {
+          "title": "OAuth と API コンソールの URL を変更",
+          "description": "OAuth および API コンソールの URL を `console.anthropic.com` から `platform.claude.com` に変更しました。"
+        },
+        {
+          "title": "[VSCode] `claudeProcessWrapper` 設定のパス修正",
+          "description": "`claudeProcessWrapper` 設定がラッパーパスを渡すように修正し、Claude バイナリのパスではなくラッパーパスが使用されていました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "ワイルドカード権限ルールの脆弱性修正",
+          "description": "ワイルドカード権限ルールがシェル演算子を含む複合コマンドにマッチしてしまうセキュリティ脆弱性を修正しました。"
+        },
+        {
+          "title": "Windows の偽ファイル変更エラー修正",
+          "description": "クラウド同期ツール、アンチウイルススキャナ、または Git がコンテンツを変更せずにファイルタイムスタンプを触る際に、Windows で発生していた偽の \"file modified\" エラーを修正しました。"
+        },
+        {
+          "title": "ストリーミング実行中のツール失敗時の tool_result エラー修正",
+          "description": "兄弟ツールがストリーミング実行中に失敗した際に発生していた孤立した `tool_result` エラーを修正しました。"
+        },
+        {
+          "title": "コンテキストウィンドウブロッキング制限の計算修正",
+          "description": "最大出力トークン用の領域を確保する有効コンテキストウィンドウではなく、全コンテキストウィンドウを使用していたブロッキング制限計算を修正しました。"
+        },
+        {
+          "title": "ローカルスラッシュコマンド実行時のスピナー点滅修正",
+          "description": "`/model` や `/theme` などのローカルスラッシュコマンド実行時にスピナーが一瞬点滅していた問題を修正しました。"
+        },
+        {
+          "title": "ターミナルタイトルアニメーションのジッター修正",
+          "description": "固定幅のブレイル文字を使用することで、ターミナルタイトルアニメーションの揺れを修正しました。"
+        },
+        {
+          "title": "Git サブモジュールプラグインの初期化不備修正",
+          "description": "インストール時に Git サブモジュールを含むプラグインが完全に初期化されていなかった問題を修正しました。"
+        },
+        {
+          "title": "Windows の Bash コマンドパス文字エスケープバグ修正",
+          "description": "一時ディレクトリパスに `t` や `n` などの文字が含まれ、エスケープシーケンスとして誤解釈されて Bash コマンドが失敗していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:57:11.188Z"
+}

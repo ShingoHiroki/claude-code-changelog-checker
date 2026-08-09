@@ -1,0 +1,117 @@
+{
+  "version": "2.1.145",
+  "tagName": "v2.1.145",
+  "publishedAt": "2026-05-19T21:31:07Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.145",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 1,
+    "その他": 5,
+    "バグ修正": 12
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`claude agents --json` の追加",
+          "description": "ライブの Claude セッションを JSON 形式で一覧表示できるようになり、tmux-resurrect、ステータスバー、セッションピッカーなどのスクリプトで利用可能になりました。"
+        },
+        {
+          "title": "`agent_id` と `parent_agent_id` 属性の追加",
+          "description": "`claude_code.tool` の OTEL スパンに `agent_id` と `parent_agent_id` 属性を追加し、トレースの親子関係を修正して、バックグラウンドのサブエージェントスパンがディスパッチ元の Agent ツールスパンの下にネストされるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Read ツールの挙動改善",
+          "description": "ファイル全体の読み取りがトークン上限を超えた場合、ハードエラーを返す代わりに、先頭ページを切り詰めて \"PARTIAL view\" と通知するように Read ツールを改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "ステータス行 JSON に GitHub 情報を含む",
+          "description": "ステータス行の JSON 入力に、検出された場合 GitHub リポジトリと PR の情報が含まれるようになりました。"
+        },
+        {
+          "title": "`/plugin` の Discover/Browse 画面にプラグイン情報を表示",
+          "description": "`/plugin` の Discover と Browse 画面で、インストール前にプラグインのコマンド、エージェント、スキル、フック、MCP/LSP サーバーを表示するようになりました。"
+        },
+        {
+          "title": "`claude agents` タブタイトルに入力待ち数を表示",
+          "description": "`claude agents` のターミナルタブタイトルに、入力待ちのカウントが表示され、Alt‑Tab で切り替えたウィンドウでもエージェントが注意を必要としているかが分かります。"
+        },
+        {
+          "title": "スラッシュコマンドと @ メンションのサジェストがフルスクリーンでマウス操作対応",
+          "description": "スラッシュコマンドと @ メンションのサジェスト一覧がフルスクリーンモードでマウスホバーとクリックをサポートするようになりました。"
+        },
+        {
+          "title": "Stop と SubagentStop フック入力に新フィールド追加",
+          "description": "Stop と SubagentStop フックの入力に `background_tasks` と `session_crons` フィールドが含まれるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Bash コマンドの環境変数代入バイパスを修正",
+          "description": "許可リストにない環境変数への単純代入が自動承認されていた権限プロンプト回避問題を修正しました。"
+        },
+        {
+          "title": "MCP スラッシュコマンドのエラーメッセージを改善",
+          "description": "必須引数が省略されたときにサーバーの生の検証エラーが表示されていた問題を修正し、エラーに欠落した引数名と期待される使用方法が示されるようになりました。"
+        },
+        {
+          "title": "スピナーと経過時間表示のフリーズを修正",
+          "description": "ターミナルがリサイズまたは再フォーカスされた後、キー入力がないとスピナーと経過時間表示が凍結する問題を修正しました。"
+        },
+        {
+          "title": "Windows PowerShell 5.1 でのクロスプロジェクト再開ヒントを修正",
+          "description": "デフォルトの Windows PowerShell 5.1 でクロスプロジェクト再開ヒントが失敗していた問題を修正し、Windows ではコマンド区切り文字として `;` を使用するようにしました。"
+        },
+        {
+          "title": "エージェントビューでの音声プッシュ‑トゥ‑トークを修正",
+          "description": "エージェントビューの返信ペインで音声プッシュ‑トゥ‑トークが機能しなかった問題を修正しました。"
+        },
+        {
+          "title": "タスク一覧の順序表示バグを修正",
+          "description": "複数タスクを同時に作成した際にタスクリストがランダム順に表示される問題を修正しました。"
+        },
+        {
+          "title": "Anthropic Marketplace のインストール失敗バナー表示バグを修正",
+          "description": "Marketplace が既にインストール済みでも古い \"Failed to install Anthropic marketplace\" バナーが表示される問題を修正しました。"
+        },
+        {
+          "title": "フッターの PR バッジ更新遅延を修正",
+          "description": "`gh pr create` などセッション内で PR 状態を変更するコマンド実行後、フッターの PR バッジがすぐに更新されない問題を修正しました。"
+        },
+        {
+          "title": "Agent Teams の非ASCII名メンバーの API 呼び出し失敗を修正",
+          "description": "非ASCII文字を含む名前のチームメイトがヘッダーエンコードの不備で全ての API 呼び出しに失敗していた問題を修正しました。"
+        },
+        {
+          "title": "`/review` の旧 `projectCards` クエリ使用を修正",
+          "description": "Classic Projects を持つリポジトリでエラーになる、非推奨の `projectCards` GraphQL クエリを `/review` が使用していた問題を修正しました。"
+        },
+        {
+          "title": "`claude plugin validate` のスキルパス検証バグを修正",
+          "description": "`skills:` エントリがディレクトリでなくファイルを指していた場合に警告しなかった問題を修正し、エラーに親ディレクトリを示すようにしました。"
+        },
+        {
+          "title": "`context: fork` スキルの無限ループを修正",
+          "description": "`context: fork` を使用するスキルが実行せずに自己再呼び出しを繰り返す無限ループ問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:23:44.444Z"
+}

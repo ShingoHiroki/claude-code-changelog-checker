@@ -1,0 +1,116 @@
+{
+  "version": "2.1.166",
+  "tagName": "v2.1.166",
+  "publishedAt": "2026-06-06T00:55:18Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.166",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 0,
+    "その他": 5,
+    "バグ修正": 14
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`fallbackModel` 設定の追加",
+          "description": "`fallbackModel` 設定を追加し、プライマリモデルが過負荷または利用不可の場合に最大3つのフォールバックモデルを順に試すよう構成できるようになりました。`--fallback-model` オプションも対話セッションで適用されます。"
+        },
+        {
+          "title": "deny ルールのツール名に glob パターンをサポート",
+          "description": "deny ルールの tool-name 位置で glob パターンが使用可能になり、`\"*\"` はすべてのツールを拒否します。allow ルールは MCP 以外の glob を拒否し、deny ルールに未知のツール名がある場合は起動時に警告が表示されます。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "クロスセッションメッセージの権限強化",
+          "description": "`SendMessage` を介して他の Claude セッションから転送されたメッセージはユーザー権限を保持しなくなり、受信側は転送された権限要求を拒否し、auto モードでもブロックされます。"
+        },
+        {
+          "title": "思考（thinking）無効化オプションの追加",
+          "description": "`MAX_THINKING_TOKENS=0`、`--thinking disabled`、およびモデル単位の thinking トグルにより、Claude API のデフォルトで思考するモデルの思考を無効化できるようになりました（サードパーティプロバイダーは変更なし）。"
+        },
+        {
+          "title": "フォールバックモデルでのターン再試行",
+          "description": "API が予期しない再試行不可エラーを返した場合、フォールバックモデルでターンを1回だけ再試行します。認証エラー、レートリミット、リクエストサイズ、通信エラーは即座に表面化します。"
+        },
+        {
+          "title": "`claude update` がバージョンを事前通知",
+          "description": "`claude update` はダウンロード開始前に対象バージョンをアナウンスするようになり、以前のように無言ではなくなりました。"
+        },
+        {
+          "title": "`claude agents` の URL 入力でセッションを絞り込み",
+          "description": "`claude agents` のリストに URL を入力すると、最初のプロンプトにその URL が含まれるセッションに絞り込まれるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "処理不可画像送信時のエラーとトークン消費の修正",
+          "description": "「image could not be processed」エラーが再発する問題と、処理不可画像を送信した際に余計なトークンが消費される問題を修正しました。"
+        },
+        {
+          "title": "起動時のワーカー登録障害でリモートセッションがハングする問題の修正",
+          "description": "バックエンドの短時間障害が起動時のワーカー登録中に発生した場合に、リモートセッションが永続的にスタックする問題を修正しました。"
+        },
+        {
+          "title": "JetBrains IDE ターミナルのちらつき修正",
+          "description": "IntelliJ、PyCharm、WebStorm など 2026.1 以降の JetBrains IDE ターミナルでの出力同期を有効にし、ちらつきを解消しました。"
+        },
+        {
+          "title": "Kitty キーボードプロトコルで Shift+非ASCII 文字が失われる不具合の修正",
+          "description": "Kitty キーボードプロトコル（WezTerm、Ghostty、kitty）使用時に Shift+非 ASCII 文字（例: Shift+ä → Ä）がドロップされる問題を修正しました。"
+        },
+        {
+          "title": "Windows の PowerShell コマンド検証がハングする問題を修正",
+          "description": "終了したプロセスの子プロセスが出力パイプを保持している場合に、Windows で PowerShell コマンド検証がタイムバジェットを大幅に超えてハングすることがある問題を修正しました。"
+        },
+        {
+          "title": "`claude --bg-pty-host` の孤児プロセスが CPU 高使用率になる問題の修正",
+          "description": "macOS でデーモンが死亡した後に接続された `claude --bg-pty-host` プロセスが 100% CPU で回転し続ける孤児プロセス問題を修正しました。"
+        },
+        {
+          "title": "音声モード切替後に `/login` が必要だった認証チェックの不具合修正",
+          "description": "`/voice` をトグルした後、音声モードが残っている古い認証チェックをクリアするために `/login` が必要だった問題を修正しました。"
+        },
+        {
+          "title": "無効なエントリがある管理設定で残りのポリシーが無効になるバグ修正",
+          "description": "管理設定に無効なエントリが含まれると、残りの有効なポリシーが黙って無効化されていた問題を修正しました。"
+        },
+        {
+          "title": "`allowedMcpServers`/`deniedMcpServers` が `${VAR}` 参照時にマッチしない問題の修正",
+          "description": "管理設定の `allowedMcpServers` と `deniedMcpServers` が `${VAR}` 形式の変数参照を使用した際に、予期通りにマッチしない不具合を修正しました。"
+        },
+        {
+          "title": "git worktree に入ったバックグラウンドエージェントが `claude agents` 再開時にクラッシュループする問題修正",
+          "description": "バックグラウンドエージェントセッションが git worktree に入った状態で `claude agents` から再開すると \"No conversation found\" エラーでクラッシュループする問題を修正しました。"
+        },
+        {
+          "title": "Ctrl+O トランスクリプト表示で思考テキストが重複する不具合修正",
+          "description": "ストリーミング中に Ctrl+O でトランスクリプトビューを開くと、思考テキストが二重に表示される問題を修正しました。"
+        },
+        {
+          "title": "`/doctor` がリモートセッション内で「リモートセッション外」エラーを出す問題修正",
+          "description": "リモートセッション内で `/doctor` を実行した際に、矛盾した失敗メッセージ \"Not inside a remote session\" が表示される問題を修正しました。"
+        },
+        {
+          "title": "`claude agents` のマルチラインプロンプト入力時にカーソルが先頭行末に止まる不具合修正",
+          "description": "`claude agents` のディスパッチおよび返信入力でマルチラインプロンプトを入力すると、カーソルが最初の行末に固定されてしまう問題を修正しました。"
+        },
+        {
+          "title": "Unicode 未対応ターミナルでバックグラウンドエージェントタスク一覧に空行が入る問題修正",
+          "description": "Unicode をサポートしないターミナル上で、バックグラウンドエージェントのタスク一覧行間に余計な空行が表示される問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:28:32.263Z"
+}

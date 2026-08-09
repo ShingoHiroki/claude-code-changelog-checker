@@ -1,0 +1,168 @@
+{
+  "version": "2.1.118",
+  "tagName": "v2.1.118",
+  "publishedAt": "2026-04-23T00:42:21Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.118",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 0,
+    "その他": 9,
+    "バグ修正": 21
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Vim ビジュアルモードの追加",
+          "description": "`v`（ビジュアルモード）と `V`（ビジュアルラインモード）を追加し、選択、演算子、ビジュアルフィードバックが利用可能になりました。"
+        },
+        {
+          "title": "`DISABLE_UPDATES` 環境変数の追加",
+          "description": "`DISABLE_UPDATES` 環境変数を導入し、`claude update` を含むすべての更新経路を完全にブロックします。`DISABLE_AUTOUPDATER` よりも厳格です。"
+        },
+        {
+          "title": "自動モードの「再度確認しない」オプション",
+          "description": "自動モードのオプトインプロンプトに \"Don't ask again\" オプションを追加しました。"
+        },
+        {
+          "title": "`claude plugin tag` コマンドの追加",
+          "description": "`claude plugin tag` を追加し、バージョン検証を行いながらプラグイン用のリリース Git タグを作成できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/cost` と `/stats` を `/usage` に統合",
+          "description": "`/cost` と `/stats` を `/usage` に統合しましたが、両コマンドはそれぞれ該当タブを開くタイピングショートカットとして残ります。"
+        },
+        {
+          "title": "カスタムテーマの作成・切替",
+          "description": "`/theme` から名前付きカスタムテーマを作成・切替でき、`~/.claude/themes/` の JSON ファイルを手動編集も可能です。プラグインは `themes/` ディレクトリでテーマを提供できます。"
+        },
+        {
+          "title": "フックから MCP ツールを直接呼び出し",
+          "description": "フックで `type: \"mcp_tool\"` を指定することで、MCP ツールを直接呼び出せるようになりました。"
+        },
+        {
+          "title": "WSL が Windows 設定を継承",
+          "description": "Windows 上の WSL が `wslInheritsWindowsSettings` ポリシーキーを通じて Windows 側の管理設定を継承できるようになりました。"
+        },
+        {
+          "title": "Auto mode でデフォルトルールを保持",
+          "description": "`autoMode.allow`、`autoMode.soft_deny`、`autoMode.environment` に `\"$defaults\"` を含めることで、組み込みリストを置き換えるのではなくカスタムルールを追加できます。"
+        },
+        {
+          "title": "`--continue`／`--resume` が `/add-dir` で追加されたディレクトリを検出",
+          "description": "`--continue`／`--resume` オプションは、現在のディレクトリが `/add-dir` によってセッションに追加された場合にそのセッションを検出します。"
+        },
+        {
+          "title": "`/color` が Remote Control 時にアクセントカラーを同期",
+          "description": "Remote Control が接続されているとき、`/color` はセッションのアクセントカラーを `claude.ai/code` に同期します。"
+        },
+        {
+          "title": "`/model` ピッカーでカスタムモデル名・説明を尊重",
+          "description": "カスタム `ANTHROPIC_BASE_URL` ゲートウェイ使用時、`/model` ピッカーは `ANTHROPIC_DEFAULT_*_MODEL_NAME` と `_DESCRIPTION` のオーバーライドを適用します。"
+        },
+        {
+          "title": "自動更新でスキップしたプラグインが `/doctor` に表示",
+          "description": "別プラグインのバージョン制約でプラグインが自動更新でスキップされた場合、その情報が `/doctor` と `/plugin` の Errors タブに表示されます。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`/mcp` メニューで OAuth 操作が隠れる不具合修正",
+          "description": "`headersHelper` 設定のサーバーやカスタムヘッダーを持つ HTTP/SSE MCP サーバーで、一時的な 401 後に「認証が必要」状態から抜けられず、OAuth Authenticate/Re-authenticate アクションがメニューに表示されない問題を修正しました。"
+        },
+        {
+          "title": "`expires_in` 欠如による毎時再認証バグ修正",
+          "description": "`expires_in` が省略された MCP サーバーの OAuth トークン応答で、1 時間ごとに再認証が必要になる問題を修正しました。"
+        },
+        {
+          "title": "ステップアップ認可の再同意プロンプト欠如修正",
+          "description": "サーバーの `insufficient_scope` 403 が現在のトークンに既に含まれるスコープを示す場合に、MCP のステップアップ認可が再同意を求めずにサイレントでリフレッシュされていた問題を修正しました。"
+        },
+        {
+          "title": "OAuth フローのタイムアウト時の未処理 Promise 拒否修正",
+          "description": "MCP サーバーの OAuth フローがタイムアウトまたはキャンセルされた際に発生していた未処理の Promise 拒否を修正しました。"
+        },
+        {
+          "title": "OAuth リフレッシュのクロスプロセスロック欠如修正",
+          "description": "競合時に MCP の OAuth リフレッシュがクロスプロセスロックなしで進行していた問題を修正しました。"
+        },
+        {
+          "title": "macOS キーチェーン競合でのトークン上書きバグ修正",
+          "description": "同時に行われる MCP トークンリフレッシュが新しくリフレッシュされた OAuth トークンを上書きし、予期せぬ \"Please run /login\" プロンプトが表示される macOS キーチェーンの競合を修正しました。"
+        },
+        {
+          "title": "トークン失効前のリフレッシュ失敗修正",
+          "description": "サーバーがトークンをローカル有効期限前に失効させた際に OAuth トークンのリフレッシュが失敗していた問題を修正しました。"
+        },
+        {
+          "title": "資格情報保存時のクラッシュ修正",
+          "description": "Linux/Windows で資格情報保存時に `~/.claude/.credentials.json` が破損しクラッシュする問題を修正しました。"
+        },
+        {
+          "title": "`/login` が環境トークンで無効になる問題修正",
+          "description": "`CLAUDE_CODE_OAUTH_TOKEN` で起動したセッションで `/login` が効果を示さなかった問題を修正し、環境トークンをクリアしてディスク上の資格情報が適用されるようにしました。"
+        },
+        {
+          "title": "スクロールピルとプラグインバッジの文字化け修正",
+          "description": "\"new messages\" スクロールピルと `/plugin` バッジの文字が読めない問題を修正しました。"
+        },
+        {
+          "title": "`--dangerously-skip-permissions` 時のプラン受諾ダイアログ修正",
+          "description": "`--dangerously-skip-permissions` を使用した際、プラン受諾ダイアログが \"auto mode\" を表示していたのを、正しく \"bypass permissions\" を表示するよう修正しました。"
+        },
+        {
+          "title": "エージェントフックのイベント設定エラー修正",
+          "description": "`Stop` または `SubagentStop` 以外のイベントで設定されたエージェント型フックが \"Messages are required for agent hooks\" エラーで失敗していた問題を修正しました。"
+        },
+        {
+          "title": "`prompt` フックの誤再発火修正",
+          "description": "エージェントフック検証サブエージェントがツール呼び出しを行った際に、`prompt` フックが再度発火していた問題を修正しました。"
+        },
+        {
+          "title": "`/fork` の保存方式変更",
+          "description": "フォークごとに親会話全体をディスクに書き込んでいた `/fork` を、ポインタを書き込み読み取り時にハイドレートする方式に変更しました。"
+        },
+        {
+          "title": "Alt+キー系での入力フリーズ修正",
+          "description": "Alt+K、Alt+X、Alt+^、Alt+_ がキーボード入力を凍結させていた問題を修正しました。"
+        },
+        {
+          "title": "リモート接続時の model 設定上書きバグ修正",
+          "description": "リモートセッションに接続した際に、ローカルの `~/.claude/settings.json` の `model` 設定が上書きされていた問題を修正しました。"
+        },
+        {
+          "title": "パス貼り付け時のタイプアヘッドエラー修正",
+          "description": "`/` で始まるファイルパスを貼り付けた際にタイプアヘッドが \"No commands match\" エラーを表示していた問題を修正しました。"
+        },
+        {
+          "title": "既存プラグインの依存関係再解決バグ修正",
+          "description": "すでにインストール済みのプラグインに対して `plugin install` を実行した際、誤ったバージョンでインストールされた依存関係が再解決されなかった問題を修正しました。"
+        },
+        {
+          "title": "ファイルウォッチャーの未処理エラー修正",
+          "description": "無効なパスやファイルディスクリプタ枯渇時にファイルウォッチャーから発生していた未処理エラーを修正しました。"
+        },
+        {
+          "title": "JWT リフレッシュ時の Remote Control アーカイブバグ修正",
+          "description": "JWT リフレッシュ中の一時的な CCR 初期化ブリップで Remote Control セッションがアーカイブされていた問題を修正しました。"
+        },
+        {
+          "title": "`SendMessage` 再開時のサブエージェント cwd 復元修正",
+          "description": "`SendMessage` で再開されたサブエージェントが、生成時に指定された明示的な `cwd` を復元していなかった問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:16:00.684Z"
+}

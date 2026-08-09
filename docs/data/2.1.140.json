@@ -1,0 +1,84 @@
+{
+  "version": "2.1.140",
+  "tagName": "v2.1.140",
+  "publishedAt": "2026-05-12T21:09:45Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.140",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 2,
+    "その他": 1,
+    "バグ修正": 10
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Agent tool `subagent_type` のマッチング改善",
+          "description": "ケースや区切り文字に依存しない値を受け付けるように `subagent_type` のマッチングを改善し、例えば \\\"Code Reviewer\\\" が `code-reviewer` に解決されるようになった。"
+        },
+        {
+          "title": "エージェントのカラーパレットを更新",
+          "description": "エージェントのカラーパレットが更新された。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "デフォルトコンポーネントフォルダが無視されたときの警告追加",
+          "description": "プラグインで `plugin.json` がマッチングキーを設定している場合、デフォルトのコンポーネントフォルダ（例: `commands/`）が黙って無視されると警告を表示するようになった。警告は `/doctor`、`claude plugin list`、`/plugin` に表示される。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`/goal` のハングアップ修正",
+          "description": "`disableAllHooks` または `allowManagedHooksOnly` が設定されていると `/goal` が無音でハングしていた問題を修正し、解決しないインジケータの代わりに明確なメッセージを表示するようにした。"
+        },
+        {
+          "title": "設定ホットリロードの回帰バグ修正",
+          "description": "シンボリックリンクされた設定ファイルが誤った変更イベントを引き起こし、不要な `ConfigChange` フックが発生していた回帰を修正した。"
+        },
+        {
+          "title": "`claude --bg` の接続切断エラー修正",
+          "description": "バックグラウンドサービスがアイドル退出直前に \\\"connection dropped mid-request\\\" エラーで失敗していた問題を修正した。"
+        },
+        {
+          "title": "エンタープライズエンドポイントセキュリティ下でのバックグラウンドサービス起動失敗修正",
+          "description": "エンタープライズエンドポイントセキュリティが有効なマシンで、起動に時間が足りず失敗する問題を、起動待ち時間を延長することで修正した。"
+        },
+        {
+          "title": "リモート管理設定の 401 エラー再試行修正",
+          "description": "`remote managed settings` が 401 エラーで再試行しなかった問題を修正し、トークンを強制更新して一度再試行するようにした。"
+        },
+        {
+          "title": "`extraKnownMarketplaces` の自動更新ポリシー永続化修正",
+          "description": "管理下の `extraKnownMarketplaces` の自動更新ポリシーが `known_marketplaces.json` に保存されていなかった問題を修正した。"
+        },
+        {
+          "title": "`/loop` の冗長ウェイクアップスケジューリング修正",
+          "description": "バックグラウンドタスクが完了時に通知するのに加えて、`/loop` が不要なウェイクアップをスケジュールしてポーリングしていた問題を修正した。"
+        },
+        {
+          "title": "Windows のイベントループスタック修正",
+          "description": "欠損した実行可能ファイル（例: `gh`）が同期的に `where.exe` を再生成し、チェックごとに発生していた Windows のイベントループのスタックを修正した。"
+        },
+        {
+          "title": "`Read` ツールの `offset` バリデーション修正",
+          "description": "`Read` ツール呼び出しで、`offset` が空白でパディングされた文字列や `+` プレフィックス付き文字列として渡されたときにバリデーションが失敗していた問題を修正した。"
+        },
+        {
+          "title": "ネイティブターミナルのカーソル位置維持修正",
+          "description": "ターミナルがフォーカスを失ったときに、入力キャレットにカーソルが留まらない問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:21:24.240Z"
+}
