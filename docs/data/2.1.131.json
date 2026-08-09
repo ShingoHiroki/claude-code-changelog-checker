@@ -1,0 +1,30 @@
+{
+  "version": "2.1.131",
+  "tagName": "v2.1.131",
+  "publishedAt": "2026-05-06T07:47:56Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.131",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 2
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "VS Code拡張のWindowsでの起動失敗を修正",
+          "description": "ハードコードされたビルドパスがバンドルされたSDKにあり、`createRequire` ポリフィルのバグが原因で、Windows 上で VS Code 拡張がアクティベートできなかった問題を修正しました。"
+        },
+        {
+          "title": "Mantleエンドポイントの認証失敗を修正",
+          "description": "`x-api-key` ヘッダーが欠如しているために Mantle エンドポイントの認証が失敗していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:18:41.015Z"
+}

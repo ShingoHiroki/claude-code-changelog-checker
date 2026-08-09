@@ -1,0 +1,76 @@
+{
+  "version": "2.1.27",
+  "tagName": "v2.1.27",
+  "publishedAt": "2026-01-30T20:38:53Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.27",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 0,
+    "その他": 6,
+    "バグ修正": 3
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "ツール呼び出し失敗と拒否をデバッグログに追加",
+          "description": "ツール呼び出しが失敗したケースや拒否されたケースをデバッグログに記録するようになりました。"
+        },
+        {
+          "title": "`--from-pr` フラグを追加",
+          "description": "`--from-pr` フラグにより、特定の GitHub PR 番号または URL に紐づくセッションを再開できるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`gh pr create` で作成されたセッションが自動的に PR にリンク",
+          "description": "`gh pr create` コマンドでセッションを作成すると、対象のプルリクエストに自動的に紐付けられます。"
+        },
+        {
+          "title": "VSCode: Chrome 連携で Claude を有効化",
+          "description": "VSCode の Chrome 連携機能で Claude が使用できるようになりました。"
+        },
+        {
+          "title": "権限がコンテンツレベルの `ask` を優先",
+          "description": "ツールレベルの `allow` よりもコンテンツレベルの `ask` が優先されます。従来は `allow: [\"Bash\"], ask: [\"Bash(rm *)\"]` で全 Bash コマンドが許可されていましたが、今回から `rm` コマンドは許可プロンプトが表示されます。"
+        },
+        {
+          "title": "Windows: `.bashrc` がある環境での Bash コマンド実行不具合を修正",
+          "description": "`.bashrc` ファイルを持つ Windows ユーザーで Bash コマンドが失敗する問題を解消しました。"
+        },
+        {
+          "title": "Windows: 子プロセス生成時のコンソールウィンドウの点滅を修正",
+          "description": "子プロセスを生成するときにコンソールウィンドウが点滅する問題を修正しました。"
+        },
+        {
+          "title": "VSCode: 長時間セッションでの OAuth トークン有効期限切れによる 401 エラーを修正",
+          "description": "長期間のセッション後に OAuth トークンが期限切れとなり 401 エラーが発生する問題を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "ゲートウェイユーザーのコンテキスト管理検証エラーを修正",
+          "description": "`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` を設定すると、ゲートウェイユーザーで発生していたコンテキスト管理の検証エラーが回避できるようになりました。"
+        },
+        {
+          "title": "`/context` コマンドでカラー出力が表示されない問題を修正",
+          "description": "`/context` コマンド実行時にカラー出力が表示されなかった不具合を修正しました。"
+        },
+        {
+          "title": "ステータスバーで PR ステータス表示時にバックグラウンドタスクアイコンが重複する問題を修正",
+          "description": "PR ステータスが表示された際に、ステータスバーにバックグラウンドタスクインジケータが二重に表示される不具合を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:58:51.740Z"
+}

@@ -1,0 +1,164 @@
+{
+  "version": "2.1.152",
+  "tagName": "v2.1.152",
+  "publishedAt": "2026-05-27T01:30:59Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.152",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 0,
+    "その他": 13,
+    "バグ修正": 16
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/reload-skills` コマンド追加",
+          "description": "セッションを再起動せずにスキルディレクトリを再スキャンできる `/reload-skills` コマンドを追加しました。"
+        },
+        {
+          "title": "`MessageDisplay` フックイベント追加",
+          "description": "`MessageDisplay` フックイベントを追加し、フックが表示中のアシスタントメッセージテキストを変換または非表示にできるようにしました。"
+        },
+        {
+          "title": "`pluginSuggestionMarketplaces` 設定追加",
+          "description": "管理者がコンテキスト対応のヒントで提案されるプラグインのオーガニゼーションマーケットプレイスを許可リストに登録できる `pluginSuggestionMarketplaces` 管理設定を追加しました。"
+        },
+        {
+          "title": "セッションエントリポイントの OpenTelemetry メトリック属性追加",
+          "description": "`app.entrypoint` という属性でセッションエントリポイントを OpenTelemetry メトリックに含められるようにし、`OTEL_METRICS_INCLUDE_ENTRYPOINT=true` を設定すると有効になります。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/code-review --fix` と `/simplify` の動作拡張",
+          "description": "`/code-review --fix` がレビュー結果を作業ツリーに適用し、再利用・簡素化・効率化の提案を提示します。また、`/simplify` が `/code-review --fix` を呼び出すようになりました。"
+        },
+        {
+          "title": "`disallowed-tools` 設定でツールの使用制限",
+          "description": "スキルやスラッシュコマンドのフロントマターで `disallowed-tools` を設定でき、スキルが有効な間モデルから指定ツールを除外します。"
+        },
+        {
+          "title": "`SessionStart` フックでスキル再スキャン可能に",
+          "description": "`SessionStart` フックが `reloadSkills: true` を返すとスキルディレクトリを再スキャンし、フックでインストールしたスキルを同一セッションで利用できるようになります。"
+        },
+        {
+          "title": "`SessionStart` フックでセッションタイトル設定",
+          "description": "`SessionStart` フックは起動時および再開時に `hookSpecificOutput.sessionTitle` を設定してセッションタイトルを変更できます。"
+        },
+        {
+          "title": "`claude plugin marketplace remove` に `--scope` オプション追加",
+          "description": "`claude plugin marketplace remove` が `--scope user|project|local` を受け付けるようになり、`marketplace add`、`install`、`uninstall` と対称的に使用できます。"
+        },
+        {
+          "title": "プライマリモデル未検出時に `--fallback-model` に自動切替",
+          "description": "プライマリモデルが見つからない場合、セッション全体で設定された `--fallback-model` に切り替え、リクエスト失敗を防止します。"
+        },
+        {
+          "title": "Auto モードの同意不要化",
+          "description": "Auto モードの使用に際して、事前のオプトイン同意が不要になりました。"
+        },
+        {
+          "title": "Vim モードで NORMAL 時の `/` が逆履歴検索に",
+          "description": "Vim モードの NORMAL モードで `/` を入力すると、Ctrl+R のような逆履歴検索が開き、bash/zsh の vi-mode と同様に動作します。"
+        },
+        {
+          "title": "`/usage` に大容量セッションファイルを含む",
+          "description": "`/usage` の内訳に大きなセッションファイルが含まれるようになり、ファイルはストリーミング読み取りでスキャンされ、メモリ使用量は一定に保たれます。"
+        },
+        {
+          "title": "思考サマリの表示改善",
+          "description": "折りたたみグループ内の思考サマリは最低 3 秒間は読めるようになり、マークダウンでレンダリングされ、最大 10 行に制限されます。`Ctrl+O` で全文が表示されます。"
+        },
+        {
+          "title": "フルスクリーン時の思考時間インジケータがリアルタイムカウント",
+          "description": "フルスクリーンモードで \"Thinking for Ns\" インジケータがモデルが思考中にリアルタイムでカウントアップし、途中で中断してもその値を保持します。"
+        },
+        {
+          "title": "Workflow ツールのインライン進捗表示を簡素化",
+          "description": "Workflow ツールのインライン進捗表示を簡素化し、ライブエージェント数はプロンプト下の永続的なワークフローステータス行にのみ表示されます。"
+        },
+        {
+          "title": "応答後タイマーにバックグラウンド待機表示追加",
+          "description": "応答後のタイマーがバックグラウンドエージェント/ワークフローが残っている場合に \"Waiting for N background agents/workflows to finish\" と表示し、結果処理完了時に累積時間を報告します。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "長時間セッションでの端末スタイリング崩れを修正",
+          "description": "レンダラのスタイルプールを再利用することで、非常に長いセッションで端末スタイリングが劣化する問題を修正しました。"
+        },
+        {
+          "title": "サンドボックス警告が縮小起動モードで表示されない問題を修正",
+          "description": "サンドボックス有効警告が縮小起動モードでも表示されるようにし、すべてのレイアウトで表示されるようにしました。"
+        },
+        {
+          "title": "ツール実行中のローディングスピナー表示を修正",
+          "description": "ツール実行中にローディングスピナーが \"still thinking\" / \"almost done thinking\" と表示される問題を修正し、各ツール実行後に思考ステータスを \"thinking\" にリセットしました。"
+        },
+        {
+          "title": "フォーカスモードでの誤った非表示メッセージ数表示を修正",
+          "description": "隠れたアクティビティがないターンでフォーカスモードが不要な \"N messages hidden\" カウントを示す問題を修正しました。"
+        },
+        {
+          "title": "ツール結果内リンククリックでセクションが縮小する不具合修正",
+          "description": "展開されたツール結果内のリンクをクリックするとセクションが折りたたまれる代わりにリンクが開くように修正しました。"
+        },
+        {
+          "title": "Markdown テーブル表示の複数バグ修正",
+          "description": "Markdown テーブルのセル境界がインラインコードの色を継承する問題、改行行がスタイルを失う問題、狭い端末のスタックレイアウトで空ヘッダーセルがラベルを表示する問題を修正しました。"
+        },
+        {
+          "title": "同一コマンド異なる env のプラグイン MCP サーバー重複除外バグ修正",
+          "description": "同じコマンドだが環境変数が異なるプラグイン MCP サーバーが誤って重複除外されていた問題を修正しました。"
+        },
+        {
+          "title": "`/doctor` の古いエントリ報告バグ修正",
+          "description": "`/doctor` が削除されたマーケットプレイスやプラグインを参照する古い `enabledPlugins` エントリに対し、\"marketplace not found\" や \"plugin not found\" と誤報する問題を修正しました。"
+        },
+        {
+          "title": "Git ブランチ追跡プラグインの更新取得不具合修正",
+          "description": "プラグインレジストリ再構築後に、Git ブランチを追跡するプラグインが静かに更新を受け取れなくなる問題を修正しました。"
+        },
+        {
+          "title": "リモート MCP サーバー接続失敗バグ修正",
+          "description": "イーグレスプロキシが有効な Claude Code Remote セッションで、リモート MCP サーバーへの接続が失敗する問題を修正しました。"
+        },
+        {
+          "title": "努力レベル変更確認ダイアログの誤表示修正",
+          "description": "会話にメッセージがない場合や、同一基礎値に解決する努力レベル間の切り替え時に、努力変更確認ダイアログが不要に表示される問題を修正しました。"
+        },
+        {
+          "title": "`Agent` ツール説明のエージェントリスト参照バグ修正",
+          "description": "`--bare` モードまたは添付ファイル無効時に、エージェントリストが配信されないにもかかわらず `Agent` ツールの説明が参照していた問題を修正しました。"
+        },
+        {
+          "title": "`claude agents` のバックグラウンドワーカークラッシュ修正",
+          "description": "サブエージェントがキャンセルされた後に古い権限プロンプトを受け入れた際、`claude agents` のバックグラウンドワーカーがクラッシュする問題を修正しました。"
+        },
+        {
+          "title": "`cache_creation_input_tokens` のレポート誤り修正",
+          "description": "API がキャッシュ書き込みを `cache_creation` のネストされた内訳でのみ報告する場合に、トランスクリプトと結果使用量で `cache_creation_input_tokens` が 0 と報告されていた問題を修正しました。"
+        },
+        {
+          "title": "PushNotification ツールの誤報告修正",
+          "description": "Remote Control が有効な SDK ホストセッションで、PushNotification ツールが \"Mobile push not sent (Remote Control inactive)\" と誤って報告していた問題を修正しました。"
+        },
+        {
+          "title": "モデル/ログイン切替後のセッションスタック防止",
+          "description": "モデルまたはログイン切替後に履歴に残った古い思考ブロック署名が原因でセッションが停止する問題を、リトライ安全策で事前に除去するように修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:25:07.170Z"
+}

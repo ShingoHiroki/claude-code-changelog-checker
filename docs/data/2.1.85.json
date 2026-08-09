@@ -1,0 +1,157 @@
+{
+  "version": "2.1.85",
+  "tagName": "v2.1.85",
+  "publishedAt": "2026-03-26T22:52:12Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.85",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 3,
+    "その他": 6,
+    "バグ修正": 17
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "MCPヘルパーのサーバー名・URL環境変数追加",
+          "description": "`CLAUDE_CODE_MCP_SERVER_NAME` と `CLAUDE_CODE_MCP_SERVER_URL` 環境変数を MCP の `headersHelper` スクリプトに追加し、1つのヘルパーで複数サーバーを扱えるようにした。"
+        },
+        {
+          "title": "フックの条件付き if フィールド追加",
+          "description": "フックで permission ルール構文（例: `Bash(git *)`）を用いた条件付き `if` フィールドを追加し、実行タイミングを絞ることでプロセス生成オーバーヘッドを削減した。"
+        },
+        {
+          "title": "スケジュールタスク実行時のタイムスタンプマーカー追加",
+          "description": "スケジュールタスク（`/loop`、`CronCreate`）が発火した際に、トランスクリプトにタイムスタンプマーカーを挿入するようにした。"
+        },
+        {
+          "title": "画像プレースホルダー後のスペース追加",
+          "description": "画像貼り付け時に `[Image #N]` プレースホルダーの後にスペースを付加するようにした。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "@メンションのファイルオートコンプリート速度改善",
+          "description": "大規模リポジトリにおける @-mention のファイルオートコンプリート性能を向上させた。"
+        },
+        {
+          "title": "PowerShell の危険コマンド検知精度向上",
+          "description": "PowerShell における危険コマンド検出を改善した。"
+        },
+        {
+          "title": "大規模トランスクリプトのスクロール性能改善",
+          "description": "WASM の yoga-layout を純粋な TypeScript 実装に置き換え、巨大トランスクリプトのスクロール性能を向上させた。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Deep Link クエリ文字数上限拡大",
+          "description": "`claude-cli://open?q=…` のクエリが最大5,000文字までサポート可能になり、長い事前入力プロンプトには「スクロールしてレビュー」警告が表示される。"
+        },
+        {
+          "title": "MCP OAuth が RFC 9728 に準拠",
+          "description": "MCP OAuth が RFC 9728 Protected Resource Metadata discovery に従い、認可サーバーを検出するようになった。"
+        },
+        {
+          "title": "組織ポリシーでブロックされたプラグインのインストール防止",
+          "description": "`managed-settings.json` による組織ポリシーでブロックされたプラグインはインストール・有効化できず、マーケットプレイスの表示からも隠される。"
+        },
+        {
+          "title": "PreToolUse フックで AskUserQuestion を応答可能に",
+          "description": "PreToolUse フックが `permissionDecision: \"allow\"` と共に `updatedInput` を返すことで `AskUserQuestion` を満たせるようになり、独自 UI で回答を収集するヘッドレス統合が可能になった。"
+        },
+        {
+          "title": "`tool_parameters` が OTEL_LOG_TOOL_DETAILS で制御",
+          "description": "OpenTelemetry の `tool_result` イベント内 `tool_parameters` が `OTEL_LOG_TOOL_DETAILS=1` が設定されている場合にのみ記録されるようにした。"
+        },
+        {
+          "title": "大規模セッションのコンパクション時の UI ちらつき軽減",
+          "description": "大きなセッションでコンパクションがトリガーされた際の UI のスタッターが低減された。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`/compact` のコンテキスト超過エラー修正",
+          "description": "会話が大きくなりすぎてコンパクトリクエスト自体が収まらない場合に、`/compact` が \"context exceeded\" エラーで失敗する問題を修正した。"
+        },
+        {
+          "title": "`/plugin enable/disable` がプラグインのインストール場所不一致で失敗する問題修正",
+          "description": "プラグインのインストール場所が設定で宣言された場所と異なる場合でも、`/plugin enable` と `/plugin disable` が正しく動作するようにした。"
+        },
+        {
+          "title": "`--worktree` が非gitリポジトリでフック実行前にエラー退出する問題修正",
+          "description": "`--worktree` が Git リポジトリでない場合でも、`WorktreeCreate` フックが実行できるようにし、エラー退出を防止した。"
+        },
+        {
+          "title": "`deniedMcpServers` 設定が claude.ai MCP サーバーをブロックしない問題修正",
+          "description": "`deniedMcpServers` が claude.ai の MCP サーバーを正しくブロックするようにした。"
+        },
+        {
+          "title": "`switch_display` がマルチモニタで \"not available in this session\" を返す問題修正",
+          "description": "コンピュータ使用ツールの `switch_display` がマルチモニタ環境で正しく機能し、エラーを返さなくなった。"
+        },
+        {
+          "title": "`OTEL_*_EXPORTER` を `none` に設定した際のクラッシュ修正",
+          "description": "`OTEL_LOGS_EXPORTER`、`OTEL_METRICS_EXPORTER`、`OTEL_TRACES_EXPORTER` を `none` に設定すると発生していたクラッシュを修正した。"
+        },
+        {
+          "title": "Diff のシンタックスハイライトが非ネイティブビルドで機能しない問題修正",
+          "description": "非ネイティブビルドでも diff のシンタックスハイライトが正しく機能するようにした。"
+        },
+        {
+          "title": "MCP ステップアップ認可でリフレッシュトークンがある際の失敗修正",
+          "description": "リフレッシュトークンが存在する場合でも、`403 insufficient_scope` によるスコープ昇格要求が正しく再認可フローを開始するように修正した。"
+        },
+        {
+          "title": "リモートセッションでのストリーミング中断時のメモリリーク修正",
+          "description": "ストリーミング応答が中断された際にリモートセッションで発生していたメモリリークを修正した。"
+        },
+        {
+          "title": "エッジ接続の再接続時に発生する ECONNRESET エラーの解消",
+          "description": "接続が頻繁に切り替わる際、リトライ時に新しい TCP 接続を使用することで、持続的な ECONNRESET エラーを解消した。"
+        },
+        {
+          "title": "スラッシュコマンド実行後にプロンプトがキューに残る問題修正",
+          "description": "特定のスラッシュコマンド実行後、上矢印でプロンプトを取得できない状態になるバグを修正した。"
+        },
+        {
+          "title": "Python Agent SDK の `type:'sdk'` MCP サーバー設定が起動時に除外される問題修正",
+          "description": "`--mcp-config` で渡された `type:'sdk'` の MCP サーバーが Python Agent SDK の起動時に失われないようにした。"
+        },
+        {
+          "title": "SSH や VS Code 統合ターミナルでの生キーシーケンスがプロンプトに表示される問題修正",
+          "description": "SSH または VS Code 統合ターミナル経由で実行時に、キーシーケンスがプロンプトにそのまま出力されるバグを修正した。"
+        },
+        {
+          "title": "リモートコントロールセッションが \"Requires Action\" で停止する問題修正",
+          "description": "権限が解決された後でもセッション状態が \"Requires Action\" のままになるバグを修正した。"
+        },
+        {
+          "title": "Shift+Enter/Meta+Enter がタイプアヘッド提案に捕捉される問題修正",
+          "description": "Shift+Enter と Meta+Enter が改行ではなくタイプアヘッド提案に割り込まれる問題を修正し、正しく改行が入力できるようにした。"
+        },
+        {
+          "title": "ストリーミング中の上スクロール時に古いコンテンツが残る問題修正",
+          "description": "ストリーミング表示中に上へスクロールすると、古い内容が漏れ出すバグを修正した。"
+        },
+        {
+          "title": "端末が拡張キーボードモードのまま残る問題修正",
+          "description": "Ghostty、Kitty、WezTerm など Kitty キーボードプロトコル対応端末で、終了後に端末が拡張キーボードモードのままになる問題を修正し、Ctrl+C と Ctrl+D が正しく動作するようにした。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:09:37.799Z"
+}

@@ -1,0 +1,84 @@
+{
+  "version": "2.1.174",
+  "tagName": "v2.1.174",
+  "publishedAt": "2026-06-12T01:16:36Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.174",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 0,
+    "その他": 1,
+    "バグ修正": 11
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`wheelScrollAccelerationEnabled` 設定を追加",
+          "description": "フルスクリーンモードでマウスホイールのスクロール加速を無効にできる `wheelScrollAccelerationEnabled` 設定を追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "VSCode の使用属性表示を追加",
+          "description": "`Account & usage` ダイアログ（`/usage`）に、キャッシュミス、長いコンテキスト、サブエージェント、スキル/エージェント/プラグイン/MCP 別の使用状況の内訳を、過去 24 時間または 7 日で表示する機能を VSCode に追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "/model ピッカーでデフォルト解決するモデルファミリが非表示になる問題を修正",
+          "description": "デフォルトで解決されるモデルファミリが非表示になる問題を修正し、Opus が Max/Team Premium/Enterprise プランで独立した行として表示され、Sonnet が Pro/Team プランで、Pay-as-you-go API アカウントでは Opus が表示されるようになりました。"
+        },
+        {
+          "title": "/model ピッカーのハードコードされた Sonnet バージョンラベル問題を修正",
+          "description": "`ANTHROPIC_DEFAULT_SONNET_MODEL` が異なる Sonnet を固定している場合でも、ハードコードされた Sonnet バージョンラベルが表示される問題を修正しました。"
+        },
+        {
+          "title": "エンタープライズの従量課金アカウントで誤って表示されるバナーを修正",
+          "description": "エンタープライズアカウントで従量課金請求がある場合に、'Fable 5 is now consuming usage credits' バナーが誤って表示される問題を修正しました。"
+        },
+        {
+          "title": "Bedrock GovCloud リージョンの推論プロファイルプレフィックス問題を修正",
+          "description": "Bedrock GovCloud リージョン（`us-gov-*`）で誤った推論プロファイルプレフィックス（`global` ではなく `us-gov`）が使用され、派生モデル ID で 400 エラーが発生する問題を修正しました。"
+        },
+        {
+          "title": "バックグラウンドセッションが他セッションの `ANTHROPIC_*` 環境を継承する問題を修正",
+          "description": "バックグラウンドデーモンを開始したシェルから、別セッションの `ANTHROPIC_*` プロバイダー環境（ゲートウェイ URL、カスタムヘッダー、`/model` エイリアス）が継承される問題を修正しました。"
+        },
+        {
+          "title": "macOS と Linux でシェルコマンド中断後の終了遅延を修正",
+          "description": "シェルコマンドが中断または終了された直後に Claude Code を終了すると、1〜2 秒の遅延が発生する問題を macOS と Linux で修正しました。"
+        },
+        {
+          "title": "git コミット共同作成者 attribution が誤ったモデル名を表示する問題を修正",
+          "description": "一部のモデルで git コミットの共同作成者 attribution が誤ったモデル名を表示していた問題を修正しました。"
+        },
+        {
+          "title": "`/advisor` ダイアログでブロックされた保存済みモデルが事前選択される問題を修正",
+          "description": "`availableModels` 許可リストでブロックされている保存済みアドバイザーモデルが `/advisor` ダイアログで事前選択されていた問題を修正しました。"
+        },
+        {
+          "title": "スキルホットリロードで変更されたスキルだけ再通知するよう修正",
+          "description": "スキルが単一変更された場合に、全スキル一覧を再送信していた問題を修正し、変更されたスキルのみを再アナウンスするようにしました。"
+        },
+        {
+          "title": "Workflow ツール `agent()` のサブエージェントでエージェント単位の属性ヘッダーが欠如していた問題を修正",
+          "description": "`agent()` サブエージェントがエージェントごとの属性ヘッダーを含まない問題を修正しました。"
+        },
+        {
+          "title": "アイドル状態のバックグラウンドワーカーが認証方法解決エラーで失敗する問題を修正",
+          "description": "アイドル状態で待機していたバックグラウンドワーカーが、使用開始時に \"Could not resolve authentication method\" エラーで失敗する問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:29:46.612Z"
+}

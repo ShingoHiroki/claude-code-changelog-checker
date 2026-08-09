@@ -1,0 +1,121 @@
+{
+  "version": "2.1.222",
+  "tagName": "v2.1.222",
+  "publishedAt": "2026-08-04T22:39:55Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.222",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 0,
+    "改善": 3,
+    "その他": 1,
+    "バグ修正": 16
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "ultraplan 機能の削除",
+          "description": "ultraplan 機能が削除されました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "自動モードの安全性向上",
+          "description": "`SendMessage` 経由で他エージェントセッションへ送信されるメッセージは、ディスパッチ前に権限分類器で評価されるようになりました。"
+        },
+        {
+          "title": "`disable-model-invocation` 時の拒否処理改善",
+          "description": "Claude が `disable-model-invocation` を使用してスキルを呼び出そうとした際、ワークフローを再現するのではなく、ユーザーにスキルの実行を依頼するように変更されました。"
+        },
+        {
+          "title": "`/diff` 表示の改善",
+          "description": "ウェブセッションの Claude Code における `/diff` ビュー、Remote Control ワークスペース差分、ファイル編集差分が、生の git ブロブコンテンツを使用するようになり、ワークスペース設定の diff ドライバーや textconv を無視します。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Remote Control の自動起動変更",
+          "description": "リポジトリローカル設定 (`.claude/settings.json` または `.claude/settings.local.json`) で Remote Control をオンにできなくなり（オフは可能）、ユーザースコープで `/config` により有効化する必要があります。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "作業ツリー分離セッションの Git コマンド制限修正",
+          "description": "作業ツリー分離セッションとそのサブエージェントがメインチェックアウトに対して破壊的な git コマンドを実行できていた問題を修正し、すべてのセッションタイプでファイル編集と Bash も分離されるようになりました。"
+        },
+        {
+          "title": "PreToolUse 自動許可フックのツール制限回避修正",
+          "description": "バックグラウンドエージェントタスク（サマリー、圧縮、リネーム）で、PreToolUse の自動許可フックがツール制限をバイパスしていた問題を修正しました。"
+        },
+        {
+          "title": "`/usage-credits` の重複リクエスト表示修正",
+          "description": "Team および Enterprise で、以前のリクエストが却下されたメンバーが「既に使用クレジットリクエストを送信済み」と表示され、新しいリクエストが送れない問題を修正しました。"
+        },
+        {
+          "title": "HTTPS プロキシ環境での起動接続チェックのハングアップ修正",
+          "description": "HTTPS プロキシ背後で起動時の接続性チェックがハングし失敗していた問題を修正し、API リクエストと同様のプロキシ対応トランスポートを使用し、タイムアウト時に明確なメッセージを表示します。"
+        },
+        {
+          "title": "途中での接続クローズエラー誤報の修正",
+          "description": "実際には完了した応答に対して「Connection closed mid-response」エラーが報告されていた問題を修正しました。"
+        },
+        {
+          "title": "`/usage` の MCP サーバー使用量過大計上修正",
+          "description": "`/usage` で MCP サーバーへの使用量が過大に計上されていた問題を修正し、サーバーのシェアは実際にそのツール結果を消費したリクエストのみを反映するようになりました。"
+        },
+        {
+          "title": "プルリクエストリンク不具合修正",
+          "description": "ブランチをプッシュした後に作成されたプルリクエスト（GitHub REST API 経由含む）とセッションがリンクしなかった問題を修正しました。"
+        },
+        {
+          "title": "組織制限 `model: opus` サブエージェントのモデル選択修正",
+          "description": "組織制限された `model: opus` 形式のサブエージェントやチームメイトファミリーエイリアスが、最新の組織許可モデルへステップダウンする代わりに親モデルに降格していた問題を修正しました。"
+        },
+        {
+          "title": "カスタム `ANTHROPIC_BASE_URL` ゲートウェイのストリームアイドルタイムアウト修正",
+          "description": "サーバーからの keep-alive ping が届いているにもかかわらず、カスタム `ANTHROPIC_BASE_URL` ゲートウェイでストリームのアイドルタイムアウトが発火していた問題を修正しました。"
+        },
+        {
+          "title": "claude.ai コネクタの認証誤判定修正",
+          "description": "セッショントークンが無効な場合に claude.ai コネクタが誤って認証が必要と表示していた問題を修正し、代わりに `/login` ヒントを表示するようになりました。"
+        },
+        {
+          "title": "ローカルで利用不可ツールのエラー表示修正",
+          "description": "MCP サーバーが削除された後など、ローカルで利用できなくなったツールのエラーが表示されなかった問題を修正しました。"
+        },
+        {
+          "title": "`SendMessage` の長文サマリー処理修正",
+          "description": "`SendMessage` が長いサマリーを拒否していた問題を修正し、文字数制限で送信が失敗しないように切り詰めて送信します。"
+        },
+        {
+          "title": "サブエージェントのトランスクリプトスピナー表示修正",
+          "description": "サブエージェントのトランスクリプトビューで、スピナーの effort ラベルがセッションの effort レベルを表示していたのを、サブエージェント自身の `effort:` 設定を表示するよう修正しました。"
+        },
+        {
+          "title": "ファイルウォッチャーのクラッシュ修正",
+          "description": "ファイルウォッチャーがファイルシステムエラーに遭遇したり、終了処理中に発生する稀なクラッシュを修正しました。"
+        },
+        {
+          "title": "`--ax-screen-reader` モードでのバックスペース処理修正",
+          "description": "`--ax-screen-reader` モードで、バックスペースごとに入力行全体が読み上げられていた問題を修正し、行末の削除は削除された文字のみがエコーされます。"
+        },
+        {
+          "title": "ホスト側モデル選択キーの優先順位修正",
+          "description": "`CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST` が設定されている際に、ディスク上の古い `managed-settings.json` よりもホスト側のモデル選択キーが優先されなかった問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:40:57.567Z"
+}

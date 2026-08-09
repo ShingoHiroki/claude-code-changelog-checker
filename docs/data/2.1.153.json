@@ -1,0 +1,176 @@
+{
+  "version": "2.1.153",
+  "tagName": "v2.1.153",
+  "publishedAt": "2026-05-28T00:52:08Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.153",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 0,
+    "その他": 12,
+    "バグ修正": 23
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`skipLfs` オプションを追加",
+          "description": "`github`/`git` プラグインのマーケットプレイスソースに `skipLfs` オプションを追加し、クローンや更新時の Git LFS ダウンロードをスキップできるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "npm グローバルインストールの自動更新不可時に一度だけ通知を表示",
+          "description": "npm のグローバルインストールが自動更新できない場合、Claude Code が一度だけ通知を表示し、`/doctor` コマンドで修正手順を一覧できます。"
+        },
+        {
+          "title": "ステータスラインコマンドが `COLUMNS` / `LINES` 環境変数を受け取るように",
+          "description": "ステータスラインコマンドは `COLUMNS` と `LINES` 環境変数が渡され、スクリプトが端末幅に合わせて出力サイズを調整できるようになりました。"
+        },
+        {
+          "title": "`claude agents` のディスパッチ入力オートコンプリートが拡張",
+          "description": "`claude agents` のディスパッチ入力でオートコンプリートが、プロジェクトスキルだけでなくネイティブスラッシュコマンドやバンドルされたスキルも提案するようになりました。"
+        },
+        {
+          "title": "`claude agents` の PR カラム表示が変更",
+          "description": "`claude agents` の PR カラムで、単一の PR は `PR #N`、複数の場合は `N PRs` と表示されます。"
+        },
+        {
+          "title": "`claude doctor` が最終更新結果を表示",
+          "description": "`claude doctor` コマンドは、最後の更新試行の結果を表示するようになりました。"
+        },
+        {
+          "title": "MCP サーバーとコネクタの認証通知を統合",
+          "description": "MCP サーバーとコネクタの起動時に表示されていた個別の「認証が必要」通知を、単一のメッセージにまとめました。"
+        },
+        {
+          "title": "macOS のバックグラウンドエージェントが「Claude Code」と表示され権限が保持",
+          "description": "macOS でバックグラウンドエージェントが「Privacy & Security」設定に「Claude Code」として表示され、アップグレード後も権限が保持されます。"
+        },
+        {
+          "title": "`--strict-mcp-config` がインライン `mcpServers` を除去しなくなり警告を表示",
+          "description": "`--strict-mcp-config` が、`--agents` や SDK の `agents` で明示的に渡されたエージェント定義からインライン `mcpServers` を除去しなくなり、ブロックされたサブエージェント MCP サーバーに対して可視的な警告を出すようになりました。"
+        },
+        {
+          "title": "`/bg` 実行時に応答がバックグラウンドセッションで続行",
+          "description": "Claude が応答中に `/bg` を使用すると、応答が失われずバックグラウンドセッションで継続されます。"
+        },
+        {
+          "title": "[VSCode] Windows で VS Code 閉じ時のクリーンなプロセス終了バグを修正",
+          "description": "Windows 環境で VS Code が閉じられた際、Claude Code のプロセスが正しく終了せず\\\"unclean exit\\\" の誤報や孤立した MCP サーバーが残っていた問題を修正しました。"
+        },
+        {
+          "title": "`/model` が選択を新規セッションのデフォルトとして保存",
+          "description": "`/model` コマンドで選択したモデルが IDE と同様に新しいセッションのデフォルトとして保存されます。ピッカーで `s` を押すと現在のセッションだけのモデルを切り替えられます。"
+        },
+        {
+          "title": "`modelPicker:setAsDefault` キーバインドを `modelPicker:thisSessionOnly` に変更",
+          "description": "`modelPicker:setAsDefault` のキーバインドをカスタマイズしている場合、keybindings.json で `modelPicker:thisSessionOnly` に名前を変更してください（`d` アクションは `s` に置き換えられました）。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "状態保持型 MCP サーバーの `tools/list` 再接続ループを修正",
+          "description": "`tools/list` エンドポイントで、オプションの GET SSE ストリームが再接続ループに陥っていた状態保持型 MCP サーバーの問題（v2.1.147 での回帰）を修正しました。"
+        },
+        {
+          "title": "カスタム API ゲートウェイがユーザーの Anthropic OAuth 資格情報を受け取る回帰バグを修正",
+          "description": "カスタム API ゲートウェイが、ゲートウェイ自身のトークンではなくユーザーの Anthropic OAuth 資格情報を受け取ってしまう回帰バグを修正しました。"
+        },
+        {
+          "title": "サブエージェントのフロントマター MCP サーバーが設定を無視する問題を修正",
+          "description": "サブエージェント（Agent ツール）のフロントマター MCP サーバーが `--strict-mcp-config`、`--bare`、リモートモード、エンタープライズ管理 MCP 設定、managed-settings の allow/deny ポリシーを無視していた問題を修正しました。"
+        },
+        {
+          "title": "Windows PowerShell インストーラの失敗時誤報告を修正",
+          "description": "インストールが失敗しているにもかかわらず、Windows PowerShell インストーラが\\\"Installation complete!\\\" と表示していた問題を修正しました。"
+        },
+        {
+          "title": "`claude update` が npm インストールでリリースチャネルのバージョンをインストールしないバグを修正",
+          "description": "`claude update` が npm インストール時に設定されたリリースチャネルのバージョンではなく最新バージョンをインストールしていた問題を修正しました。"
+        },
+        {
+          "title": "多数のセッションがある環境でトランスクリプト経由の再開時のメモリ使用量過多を修正",
+          "description": "多数保存されたセッションがあるマシンで、トランスクリプトファイルパス指定でセッションを再開するとメモリが数 GB まで使用していた問題を修正しました。"
+        },
+        {
+          "title": "古いデーモン上で `claude agents` と `claude --bg` が動作し続けるバグを修正",
+          "description": "バイナリテイクオーバーサポート導入前に起動された古いデーモン上で、アップグレード後も `claude agents` と `claude --bg` が実行され続けていた問題を修正しました。"
+        },
+        {
+          "title": "stream-json モードで stdin が EOF なしに閉じた際の CLI ハングアップを修正",
+          "description": "stream-json モードで stdin が EOF なしに閉じられると CLI が終了できず、古いセッションマーカーが残るハングアップを修正しました。"
+        },
+        {
+          "title": "Claude の応答内 `file://` リンクのクリック不具合を修正",
+          "description": "Claude の応答に含まれる不正な形式の `file://` リンクがターミナルでクリックできなかった問題を修正しました。"
+        },
+        {
+          "title": "`claude --help` が狭い端末で改行されない出力になる問題を修正",
+          "description": "幅 92 列未満の端末で `claude --help` の出力が折り返されずに表示されていた問題を修正しました。"
+        },
+        {
+          "title": "MCP ツールの進捗通知が折りたたみビューで表示されない問題を修正",
+          "description": "MCP ツールの進捗通知が折りたたみツールビューで描画されていなかった問題を修正しました。"
+        },
+        {
+          "title": "`subagent_type: 'claude'` の `Agent` ツールが一時作業ツリーで出力を失う問題を修正",
+          "description": "`subagent_type: 'claude'` を使用した `Agent` ツールが、ドキュメント未記載の一時作業ツリーで実行され、gitignore されたパスへの出力が黙って破棄されていた問題を修正しました。"
+        },
+        {
+          "title": "タスク実行中のバックグラウンドセッションで `/btw` のショートカットが反応しなくなる問題を修正",
+          "description": "バックグラウンドセッションでタスクが走っている間に `/btw` のキーボードショートカットが無応答になる問題を修正しました。"
+        },
+        {
+          "title": "バックグラウンドセッションが `$CLAUDE_JOB_DIR` に書き込んで許可プロンプトが出る問題を修正",
+          "description": "バックグラウンドセッションが一時ファイルを `$CLAUDE_JOB_DIR` に書き込み、\\\"sensitive file\\\" 権限プロンプトが表示されていた問題を修正しました。"
+        },
+        {
+          "title": "作業ディレクトリ削除時のバックグラウンドエージェント復旧でスタックトレースが省略されていた問題を修正",
+          "description": "作業ディレクトリが削除されたバックグラウンドエージェントを復旧しようとした際、明確なエラーメッセージの代わりに省略されたスタックトレースが表示されていた問題を修正しました。"
+        },
+        {
+          "title": "`EnterWorktree` がバックグラウンドセッションで即利用不可だった問題を修正",
+          "description": "バックグラウンドセッションで `EnterWorktree` がすぐに利用できず、以前は `ToolSearch` を先に実行する必要があった問題を修正しました。"
+        },
+        {
+          "title": "iTerm2/Terminal.app で `cmd+k` がバックグラウンドセッションの再描画を行わない問題を修正",
+          "description": "iTerm2 および Terminal.app で `cmd+k` を使用した際、アタッチされたバックグラウンドセッションが再描画されなかった問題を修正しました。"
+        },
+        {
+          "title": "Windows のバックグラウンドセッションで IME 候補ウィンドウ位置が誤っていた問題を修正",
+          "description": "Windows 環境でアタッチされたバックグラウンドセッション中に IME 候補ウィンドウが入力キャレット横ではなく画面下部に表示されていた問題を修正しました。"
+        },
+        {
+          "title": "256 色端末でファイル差分描画後にバックグラウンドエージェントにアタッチすると背景色がにじむ問題を修正",
+          "description": "256 カラーのみ対応の端末で、エージェントがファイル差分を描画した後にバックグラウンドエージェントにアタッチすると背景色がにじむ問題を修正しました。"
+        },
+        {
+          "title": "`/copy` と選択コピーが tmux 内バックグラウンドセッションでクリップボード更新に失敗する問題を修正",
+          "description": "tmux 内でバックグラウンドセッションにアタッチした状態で `/copy` や選択コピーがシステムクリップボードを更新できず黙って失敗していた問題を修正しました。"
+        },
+        {
+          "title": "Remote Control 有効時に `claude agents` を開くと Code タブにゾンビセッションが残る問題を修正",
+          "description": "Remote Control が有効な状態で `claude agents` を開いた後、終了時に Code タブに残っていたゾンビセッションエントリを修正しました。"
+        },
+        {
+          "title": "バックグラウンドセッションの `/rename` がバナーを即更新しない問題を修正",
+          "description": "バックグラウンドセッションで `/rename` を実行しても、セッションバナーがすぐに更新されなかった問題を修正しました。"
+        },
+        {
+          "title": "Windows アップデート失敗時のロールバックを修正",
+          "description": "Windows アップデートが失敗した場合、Claude Code が元の実行ファイルをコピーで復元し、復旧方法を通知するように修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:25:37.577Z"
+}

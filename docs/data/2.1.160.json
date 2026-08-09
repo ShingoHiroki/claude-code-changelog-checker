@@ -1,0 +1,150 @@
+{
+  "version": "2.1.160",
+  "tagName": "v2.1.160",
+  "publishedAt": "2026-06-02T02:10:25Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.160",
+  "counts": {
+    "破壊的変更": 2,
+    "新機能": 1,
+    "改善": 3,
+    "その他": 3,
+    "バグ修正": 18
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE` の削除",
+          "description": "環境変数 `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE` が無効化され、もはや動作しなくなります"
+        },
+        {
+          "title": "JetBrains プラグインインストール提案の削除",
+          "description": "起動時に表示されていた JetBrains プラグインのインストール提案を削除しました"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "シェル起動ファイル書き込み前の確認プロンプト追加",
+          "description": "`.zshenv`、`.zlogin`、`.bash_login` および `~/.config/git/` への書き込み前にプロンプトを表示し、意図しないコマンド実行を防止します"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "バックグラウンドエージェント起動のパフォーマンス向上",
+          "description": "`claude agents` で最近使用されていないバックグラウンドエージェントセッションを開く際の速度が改善されました"
+        },
+        {
+          "title": "自動モード分類器のレイテンシ低減",
+          "description": "日常的なアクションの推論を削減し、レイテンシが向上、\"could not evaluate this action\" エラーが発生しにくくなりました"
+        },
+        {
+          "title": "バックグラウンドセッション終了処理の改善",
+          "description": "`claude rm`/`stop` やアイドルリープ時に、実行中のシェルサブプロセスへ SIGTERM を送ってから SIGKILL を送るようにし、クリーンアップハンドラが実行されるようにしました"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`acceptEdits` モードでビルドツール設定ファイル書き込み時の確認",
+          "description": "コード実行を許す `.npmrc`、`.yarnrc*`、`bunfig.toml`、`.bazelrc`、`.pre-commit-config.yaml`、`.devcontainer/` などのファイルを書き込む際にプロンプトが表示されます"
+        },
+        {
+          "title": "`grep` 系コマンドで編集前の読取り不要に",
+          "description": "単一ファイルの `grep`/`egrep`/`fgrep` 実行で、ファイル閲覧後の別途 Read が不要となり、直接編集チェックが通ります"
+        },
+        {
+          "title": "動的ワークフロートリガーキーワードの変更",
+          "description": "トリガーキーワードを `workflow` から `ultracode` に変更しました。`workflow` は自動実行をトリガーしなくなりますが、文章中で求めることは引き続き可能です。プロンプト入力でのキーワードは紫色でハイライトされます"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "WSL のコピー選択が Windows クリップボードへ書き込まれなかった問題を修正",
+          "description": "コピー時に PowerShell の相互運用を使用し、OSC 52 がサポートされていない端末（例: MobaXterm）でもクリップボードへコピーできるようにしました"
+        },
+        {
+          "title": "`claude agents` の完了セッション復元でチャット履歴が失われるバグを修正",
+          "description": "完了したセッションを復元した際にチャット履歴が保持され、元のプロンプトが再実行されなくなります"
+        },
+        {
+          "title": "夜間に再接続したバックグラウンドセッションで会話が失われる問題を修正",
+          "description": "バックグラウンドセッションが再接続されたときに会話履歴が失われず、元のプロンプトが再実行されません"
+        },
+        {
+          "title": "`claude --bg` が \"socket missing\" エラーで失敗するケースを修正",
+          "description": "バックグラウンドデーモンがコールドスタート中のマシンで起動した際のソケット欠如エラーを解消しました"
+        },
+        {
+          "title": "Windows でバックグラウンドセッション開始ディレクトリが削除できない問題を修正",
+          "description": "`claude rm` 後、バックグラウンドデーモンが終了するまでディレクトリが削除できない問題を解消しました"
+        },
+        {
+          "title": "完了リストに再開中エージェントが誤って表示されるバグを修正",
+          "description": "再開作業中のバックグラウンドエージェントが Completed リストに表示されなくなります"
+        },
+        {
+          "title": "`claude agents` がセッション一覧復帰時に数秒フリーズする問題を修正",
+          "description": "自動アップデータが毎回再チェックを行っていたために起きていたフリーズを解消しました"
+        },
+        {
+          "title": "Windows で重負荷時に Esc・矢印キー・入力が無反応になる問題を修正",
+          "description": "重い CPU 負荷下でも Esc、矢印キー、タイピングが正常に動作します"
+        },
+        {
+          "title": "端末が同期出力マーカーをサポートしない場合の描画アーティファクトを修正",
+          "description": "Apple Terminal や tmux など同期出力マーカーをサポートしない端末で、バックグラウンドエージェントが不要なマーカーを出さないようにしました"
+        },
+        {
+          "title": "エージェント一覧からセッションを開いた直後にマウスホイールでプロンプト履歴がスクロールされるバグを修正",
+          "description": "マウスホイールでトランスクリプトがスクロールされ、プロンプト履歴が誤ってスクロールされる問題を解消しました"
+        },
+        {
+          "title": "CJK IME の構成位置が `claude agents` ビューで画面左下に表示されるバグを修正",
+          "description": "入力キャレット位置に正しく IME の構成が表示されます"
+        },
+        {
+          "title": "Windows 端末で `file:///C:/...` リンクが壊れたパスに書き換えられる問題を修正",
+          "description": "ハイパーリンク対応端末でも正しいパスのリンクが保持されます"
+        },
+        {
+          "title": "プロジェクトディレクトリやブランチ名に非 ASCII 文字が含まれると音声モードが接続失敗するバグを修正",
+          "description": "非 ASCII や特殊文字を含むパスでも音声モードが正常に接続します"
+        },
+        {
+          "title": "サードパーティプロバイダでの自動モード利用不可メッセージを修正",
+          "description": "Bedrock/Vertex/Foundry で自動モードが利用不可の場合、`CLAUDE_CODE_ENABLE_AUTO_MODE` のオプトインを案内し、誤ってモデルを非難するメッセージを削除しました"
+        },
+        {
+          "title": "`/effort ultracode` が動的ワークフロー設定を誤って指摘するバグを修正",
+          "description": "モデルが xhigh を実行できない場合に ultracode が提供されず、誤った指摘が出なくなります"
+        },
+        {
+          "title": "モデル未検出エラーで不適切な `--model` 提案が出るバグを修正",
+          "description": "SDK や他ホスト使用時に CLI フラグが適用されない環境でも不適切な `--model` 提案が表示されなくなります"
+        },
+        {
+          "title": "ブリーフモードオフで再開した際に過去の返信がスクロールバックから消えるバグを修正",
+          "description": "ブリーフモードがオフの状態でセッション再開しても過去の返信が保持されます"
+        },
+        {
+          "title": "Vim モードで `p` が行下に貼り付けるバグを修正",
+          "description": "レジスタを `v$` でヤンクした場合でも、`p` がカーソル位置に正しく貼り付けられます"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:27:21.030Z"
+}

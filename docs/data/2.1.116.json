@@ -1,0 +1,128 @@
+{
+  "version": "2.1.116",
+  "tagName": "v2.1.116",
+  "publishedAt": "2026-04-20T22:18:28Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.116",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 1,
+    "その他": 11,
+    "バグ修正": 12
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "MCP起動時間の短縮",
+          "description": "複数の stdio サーバーが設定されている場合の MCP 起動が高速化され、`resources/templates/list` の処理が最初の `@` メンションまで遅延されます。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/resume` の高速化",
+          "description": "大容量セッション（40 MB 超）で `/resume` の処理が最大 67 % 速くなり、デッドフォークエントリが多いセッションも効率的に扱えるようになりました。"
+        },
+        {
+          "title": "フルスクリーンスクロールの改善",
+          "description": "`/terminal-setup` がエディタのスクロール感度を設定し、VS Code、Cursor、Windsurf ターミナルでフルスクリーンスクロールが滑らかになりました。"
+        },
+        {
+          "title": "思考スピナーの進捗表示",
+          "description": "思考スピナーがインラインで進捗を示すようになり（「still thinking」「thinking more」「almost done thinking」）、別のヒント行が削除されました。"
+        },
+        {
+          "title": "`/config` 検索の拡張",
+          "description": "`/config` の検索がオプション値にもマッチし、たとえば「vim」を検索すると Editor モード設定がヒットします。"
+        },
+        {
+          "title": "`/doctor` の同時起動",
+          "description": "Claude が応答中でも `/doctor` を開くことができ、現在のターンの完了を待つ必要がなくなりました。"
+        },
+        {
+          "title": "プラグイン依存関係の自動インストール",
+          "description": "`/reload-plugins` とバックグラウンドのプラグイン自動更新が、既に追加したマーケットプレイスから不足しているプラグイン依存関係を自動的にインストールします。"
+        },
+        {
+          "title": "`gh` コマンドのレートリミット警告",
+          "description": "Bash ツールが `gh` コマンドで GitHub API のレートリミットに達した際にヒントを表示し、エージェントがリトライせずにバックオフできるようになりました。"
+        },
+        {
+          "title": "Usage タブの表示改善",
+          "description": "設定の Usage タブが 5 時間と週次の使用量を即座に表示し、使用量エンドポイントがレートリミットされた場合でもエラーが出なくなりました。"
+        },
+        {
+          "title": "エージェント frontmatter `hooks:` の実行",
+          "description": "`--agent` オプションでメインスレッドエージェントとして実行した際に、エージェント frontmatter の `hooks:` が呼び出されるようになりました。"
+        },
+        {
+          "title": "スラッシュコマンドメニューの空結果表示",
+          "description": "フィルタ結果が 0 件の場合、スラッシュコマンドメニューが消える代わりに「No commands match」と表示されます。"
+        },
+        {
+          "title": "Sandbox のセキュリティ強化",
+          "description": "sandbox auto-allow が `/`、`$HOME`、その他重要システムディレクトリを対象とする `rm`/`rmdir` の危険パス安全チェックを回避しなくなり、セキュリティが向上しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Devanagari 等インド系スクリプトの表示修正",
+          "description": "端末 UI で Devanagari や他のインド系スクリプトが列揃えが崩れる問題を修正しました。"
+        },
+        {
+          "title": "Ctrl+- の Undo が機能しない問題の修正",
+          "description": "Kitty キーボードプロトコルを使用する端末 (iTerm2、Ghostty、kitty、WezTerm、Windows Terminal) で Ctrl+- が Undo をトリガーしなかった不具合を修正しました。"
+        },
+        {
+          "title": "Cmd+←/→ の行先頭/末尾ジャンプ修正",
+          "description": "Kitty キーボードプロトコルを使用する端末 (Warp フルスクリーン、kitty、Ghostty、WezTerm) で Cmd+Left/Right が行の先頭・末尾に移動しなかった問題を修正しました。"
+        },
+        {
+          "title": "Ctrl+Z によるハングの修正",
+          "description": "Claude Code をラッパープロセス (例: `npx`、`bun run`) で起動した際、Ctrl+Z が端末をハングさせる問題を修正しました。"
+        },
+        {
+          "title": "インラインモードでのスクロールバック重複修正",
+          "description": "端末サイズ変更や大量出力時に、インラインモードで過去の会話履歴が重複して表示される問題を修正しました。"
+        },
+        {
+          "title": "モーダル検索ダイアログの画面オーバーフロー修正",
+          "description": "端末の高さが低い場合にモーダル検索ダイアログが画面外に溢れ、検索ボックスやキーボードヒントが隠れる問題を修正しました。"
+        },
+        {
+          "title": "VS Code 統合端末のスクロール時描画不具合修正",
+          "description": "スクロール中に VS Code 統合端末で散在する空白セルや Composer の UI が消える問題を修正しました。"
+        },
+        {
+          "title": "API 400 エラーの間欠的発生修正",
+          "description": "リクエスト設定中に並列リクエストが完了した際に発生する、キャッシュ制御 TTL 順序に起因する間欠的な API 400 エラーを修正しました。"
+        },
+        {
+          "title": "`/branch` のサイズ制限問題修正",
+          "description": "`/branch` が 50 MB 超のトランスクリプトを含む会話を拒否していた問題を修正しました。"
+        },
+        {
+          "title": "`/resume` のエラーハンドリング修正",
+          "description": "大容量セッションファイルでロードエラーが発生した際に、`/resume` が空の会話を黙って表示していた問題を修正し、エラーを報告するようにしました。"
+        },
+        {
+          "title": "`/plugin` Installed タブの重複表示修正",
+          "description": "`/plugin` の Installed タブで、Needs attention または Favorites にある項目が 2 回表示される問題を修正しました。"
+        },
+        {
+          "title": "`/update` と `/tui` の動作不具合修正",
+          "description": "セッション途中で worktree に入った後、`/update` と `/tui` が機能しなくなる問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:15:15.870Z"
+}

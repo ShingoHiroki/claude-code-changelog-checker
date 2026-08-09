@@ -1,0 +1,105 @@
+{
+  "version": "2.1.133",
+  "tagName": "v2.1.133",
+  "publishedAt": "2026-05-07T23:49:04Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.133",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 2,
+    "その他": 3,
+    "バグ修正": 9
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`worktree.baseRef` 設定を追加",
+          "description": "`worktree.baseRef` 設定（`fresh` | `head`）を追加し、`--worktree`、`EnterWorktree`、およびエージェント分離用 worktree が `origin/<default>` から分岐するかローカル `HEAD` から分岐するかを選択できるようにしました。デフォルトの `fresh` は `EnterWorktree` のベースを `origin/<default>` に戻し（2.1.128 以降はローカル `HEAD` でした）、新しい worktree で未プッシュコミットを保持したい場合は `worktree.baseRef: \"head\"` を設定します。"
+        },
+        {
+          "title": "`sandbox.bwrapPath` と `sandbox.socatPath` 設定を追加",
+          "description": "Linux/WSL 向けに管理設定 `sandbox.bwrapPath` と `sandbox.socatPath` を追加し、カスタムの bubblewrap および socat バイナリの場所を指定できるようにしました。"
+        },
+        {
+          "title": "`parentSettingsBehavior` 管理者キーを追加",
+          "description": "管理者向けキー `parentSettingsBehavior`（`'first-wins' | 'merge'`）を追加し、管理者が SDK の `managedSettings`（親ティア）をポリシーのマージに組み込む方法を選択できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "フォーカスモードの動作を改善",
+          "description": "フォーカスモードの挙動を改善しました。"
+        },
+        {
+          "title": "メモリ使用量を改善",
+          "description": "メモリ圧迫時にウォームスペアのバックグラウンドワーカーを解放することで、メモリ使用量を改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "フックが努力レベルを取得可能に",
+          "description": "フックは `effort.level` JSON 入力フィールドと `$CLAUDE_EFFORT` 環境変数を通じて現在の努力レベルを受け取れるようになり、Bash ツールコマンドも `$CLAUDE_EFFORT` を読み取れるようになりました。"
+        },
+        {
+          "title": "`claude --help` に `--remote-control` を追加",
+          "description": "`claude --help` が `--remote-control-session-name-prefix` と並んで `--remote-control` を表示するようになりました。"
+        },
+        {
+          "title": "VSCode での `claudeProcessWrapper` のエラーを修正",
+          "description": "拡張機能ビルドに Claude バイナリが同梱されていない場合に「Unsupported platform」エラーで失敗していた `claudeCode.claudeProcessWrapper` を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "並列セッションが 401 で終了する不具合を修正",
+          "description": "リフレッシュトークン競合で共有資格情報が消失し、並列セッションがすべて 401 で終了していた問題を修正しました。"
+        },
+        {
+          "title": "ドライブルート/ルートディレクトリの `Edit`/`Write` ルールの誤動作を修正",
+          "description": "ドライブルート（`C:\\`）や POSIX ルート（`/`）にスコープされた `Edit`/`Write` 許可ルールが誤ってマッチし、常にプロンプトが表示されていた問題を修正しました。"
+        },
+        {
+          "title": "`ECOMPROMISED` の未処理リジェクションを修正",
+          "description": "履歴またはセッションログファイルのロックが時計のズレやディスク遅延で破損した際に発生していた未処理リジェクション（`ECOMPROMISED`）を修正しました。"
+        },
+        {
+          "title": "会話圧縮中の Esc 押下で誤通知が表示される問題を修正",
+          "description": "会話圧縮中に Esc キーを押すと、実際にはエラーが無いのに「Error compacting conversation」通知が誤って表示されていた問題を修正しました。"
+        },
+        {
+          "title": "MCP OAuth フローでプロキシ設定と mTLS が無視される問題を修正",
+          "description": "`HTTP(S)_PROXY`、`NO_PROXY`、および mTLS が、ディスカバリー、動的クライアント登録、トークン交換、トークンリフレッシュを含む MCP OAuth フロー全体で尊重されていなかった問題を修正しました。"
+        },
+        {
+          "title": "`--add-dir` / `additionalDirectories` 経由のネットワークドライブでの Read/Write/Edit 拒否を修正",
+          "description": "`--add-dir` や SDK の `additionalDirectories` で渡されたマッピングされたネットワークドライブに対して、Read/Write/Edit が拒否されていた問題を修正しました。"
+        },
+        {
+          "title": "Remote Control の停止/割り込みが CLI セッションを完全にキャンセルしない問題を修正",
+          "description": "claude.ai からの Remote Control の stop/interrupt がローカルの Esc と同様に CLI セッションを完全にキャンセルせず、ツールやプロンプトがスタックした後にキューイングされたメッセージが進まない不具合を修正しました。"
+        },
+        {
+          "title": "`/effort` が他セッションの努力レベルを変更する不具合と IDE の変更が無視される問題を修正",
+          "description": "あるセッションでの `/effort` が同時実行中の他セッションの努力レベルを予期せず変更する問題と、IDE からの努力レベル変更が無音でドロップされる問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントが Skill ツールでプロジェクト・ユーザー・プラグインスキルを検出しない問題を修正",
+          "description": "サブエージェントが Skill ツール経由でプロジェクト、ユーザー、またはプラグインスキルを発見しない不具合を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:19:15.642Z"
+}

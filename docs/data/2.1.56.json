@@ -1,0 +1,26 @@
+{
+  "version": "2.1.56",
+  "tagName": "v2.1.56",
+  "publishedAt": "2026-02-25T06:27:48Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.56",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 1,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "VS Code のクラッシュ原因を修正",
+          "description": "VS Code において、`command 'claude-vscode.editor.openLast' not found` が原因で発生するクラッシュの別の原因を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:02:39.585Z"
+}

@@ -1,0 +1,225 @@
+{
+  "version": "2.1.214",
+  "tagName": "v2.1.214",
+  "publishedAt": "2026-07-18T01:20:30Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.214",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 7,
+    "改善": 1,
+    "その他": 4,
+    "バグ修正": 35
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "EndConversation ツールの追加",
+          "description": "Claude が高度に攻撃的なユーザーや jailbreak 試行を終了できる EndConversation ツールを追加。claude.ai で 2025 年から利用可能。詳細: https://www.anthropic.com/research/end-subset-conversations"
+        },
+        {
+          "title": "長時間ツール呼び出しのハートビート",
+          "description": "長時間実行されるツール呼び出しが沈黙するのを防ぐため、定期的な進捗ハートビートを追加。"
+        },
+        {
+          "title": "メモリファイル frontmatter に ISO `modified` タイムスタンプを追加",
+          "description": "メモリファイルの frontmatter に ISO 形式の `modified` タイムスタンプを付与。"
+        },
+        {
+          "title": "OpenTelemetry ログに `message.uuid` 等属性を追加",
+          "description": "`message.uuid`、`client_request_id`、`tool_source` 属性を OpenTelemetry のログイベントに追加し、メッセージレベルの相関とツールの出所を追跡可能に。"
+        },
+        {
+          "title": "`CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH` 設定項目を追加",
+          "description": "OpenTelemetry の content 属性に対する 60 KB の切り捨て上限を設定できる `CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH` を追加。"
+        },
+        {
+          "title": "`subagentStatusLine` に推論コストを追加",
+          "description": "`subagentStatusLine` ペイロードに reasoning effort を含め、カスタムエージェント行でモデルとコストを表示できるようにした。"
+        },
+        {
+          "title": "`docker` コマンドの権限プロンプトを追加",
+          "description": "`docker`（Podman の `docker` shim を含む）コマンドが `--url`、`--connection`、`--identity` などデーモンリダイレクトフラグを使用する際に、権限プロンプトを表示するように変更。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`claude rc` の workspace‑trust エラーメッセージを改善",
+          "description": "ホームディレクトリでの `claude rc` workspace‑trust エラーが、信頼情報が保存されていないことを明示し、プロジェクトディレクトリから実行するよう提案するように改善。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`dir/**` フックの `if:` 条件を単一セグメントに変更",
+          "description": "単一セグメント `dir/**` フックの `if:` 条件が `<cwd>/dir` のみとマッチするよう変更。任意の深さでマッチさせるには `**/dir/**` を使用。`deny`/`ask` 権限ルールは深さ無関係のまま。"
+        },
+        {
+          "title": "`file` コマンドの `-m`/`--magic-file` と `-f`/`--files-from` に権限を要求",
+          "description": "`file` コマンドで `-m`/`--magic-file` や `-f`/`--files-from` を使用する際、読み取り専用でも自動許可せず権限プロンプトを表示するよう変更。"
+        },
+        {
+          "title": "キープアライブ接続プーリングをステイル接続エラー後に無効化",
+          "description": "キープアライブ接続プーリングがステイル（古い）接続エラー後に無効化され、リトライ時に新しいソケットが開かれるように変更。"
+        },
+        {
+          "title": "SessionStart フックの source をフォーク時に `\"fork\"` と報告",
+          "description": "セッションがフォークとして開始された場合、SessionStart フックが source を `\"resume\"` ではなく `\"fork\"` と報告するよう変更。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "単一セグメント `dir/**` 許可ルールの誤承認を修正",
+          "description": "`Edit(src/**)` のような単一セグメント `dir/**` 許可ルールがツリー全体の `dir/` ディレクトリへの書き込みを自動承認していた問題を修正。"
+        },
+        {
+          "title": "Windows PowerShell 5.1 の権限チェック回避バグを修正",
+          "description": "Windows PowerShell 5.1 セッションでコマンド実行時に発生していた権限チェックのバイパスを修正。"
+        },
+        {
+          "title": "Bash のファイルディスクリプタリダイレクト権限チェックを厳格化",
+          "description": "Bash のファイルディスクリプタリダイレクト形式での権限チェックが閉じた（deny）状態になるよう修正。"
+        },
+        {
+          "title": "10,000文字超の Bash コマンドで常にプロンプトを表示するよう修正",
+          "description": "10,000文字を超える長大な Bash コマンドが自動実行されず、必ず権限プロンプトが表示されるようにした。"
+        },
+        {
+          "title": "Bash が `[[ ]]` 内の zsh 変数サブスクリプトを無視する問題を修正",
+          "description": "`[[ ]]` 比較式で zsh の変数サブスクリプトや修飾子をテキストとして扱っていた Bash の権限チェックを修正し、これらのコマンドがプロンプトを要求するようにした。"
+        },
+        {
+          "title": "`help` と `man` コマンドの自動承認バグを修正",
+          "description": "安全でないオプションやコマンド置換、バックスラッシュパスを含む可能性がある `help` と `man` コマンドが自動承認されていた問題を修正。"
+        },
+        {
+          "title": "リモートセッションでローカル確認前に進む権限プロンプトを修正",
+          "description": "リモートセッションにおいて、ローカルの確認ダイアログが表示される前に権限プロンプトが進行してしまう問題を修正。"
+        },
+        {
+          "title": "GrowthBook 機能が null の時のクラッシュとフラグペイロードのバグを修正",
+          "description": "GrowthBook 機能が null を返した際のクラッシュと、Malformed なフラグペイロードがキャッシュされたフラグを消去してしまうバグを修正。"
+        },
+        {
+          "title": "`pkill -f` が CLI 自身を殺すバグを修正",
+          "description": "Bash ツールで `pkill -f` パターンが誤って CLI 自プロセスにマッチし、Claude セッションが終了していた問題を修正（Linux）。"
+        },
+        {
+          "title": "`--settings` が大容量ファイルを指す際のメモリ増大を修正",
+          "description": "`--settings` がデバイスファイルや数 GB のファイルを指すとメモリが無制限に増える問題を修正。2 MiB 超の設定ファイルは起動時に明確なエラーで失敗するようにした。"
+        },
+        {
+          "title": "Windows の社内プロキシ下でストリーミング中に \"Socket is closed\" が出る問題を修正",
+          "description": "Windows 環境で企業プロキシ経由のストリーミングターンが \"Socket is closed\" エラーで失敗する問題を修正。"
+        },
+        {
+          "title": "遅い SDK/パイプライン消費側での stream-json 出力切り詰めを修正",
+          "description": "stream-json の出力が終了時に切り詰められる問題を修正。終了時のドレインがキューされたバイト数に応じてスケールし、固定 2 秒の上限は廃止。"
+        },
+        {
+          "title": "スケジュールタスクが自身のプロンプトを不信入力とみなす問題を修正",
+          "description": "Scheduled tasks が自分で設定したプロンプトを \"untrusted input\" として拒否していたバグを修正。発火したプロンプトはセッションのタスクとして配信される。"
+        },
+        {
+          "title": "PowerShell ツールで子プロセスが標準入力待ちする際のハングを修正",
+          "description": "PowerShell ツールのコマンドが子プロセスが標準入力を待機しているとタイムアウトまでハングする問題を修正（Windows）。"
+        },
+        {
+          "title": "PowerShell ツール内の Python スクリプトで UnicodeDecodeError が発生する問題を修正",
+          "description": "PowerShell ツール経由で実行される Python スクリプトが、標準入力から非 UTF-8 データを読んだ際に UnicodeDecodeError でクラッシュする問題を修正（Windows）。"
+        },
+        {
+          "title": "PowerShell ツール経由の Python スクリプトで UnicodeEncodeError と ANSI シーケンス問題を修正",
+          "description": "PowerShell ツールで Python スクリプトが非 ASCII 出力時に UnicodeEncodeError でクラッシュしたり、PowerShell 7 のエラーメッセージに生の ANSI エスケープシーケンスが含まれる問題を修正（Windows）。"
+        },
+        {
+          "title": "`where.exe`、`fc.exe`、`diff.exe` が正常な否定結果でもエラーと報告されるバグを修正",
+          "description": "PowerShell ツールが `where.exe`、`fc.exe`、`diff.exe` の有効な否定結果をエラーとして扱っていた問題を修正（Windows）。"
+        },
+        {
+          "title": "PowerShell ツールで `>`/`>>` が UTF-16LE に書き込む問題を修正",
+          "description": "Windows PowerShell 5.1 で `>` と `>>` が UTF-16LE でファイルを書き込み、他ツールが UTF-8 として読めなかった問題を修正。"
+        },
+        {
+          "title": "バックグラウンドデーモンが後続の制御ソケットを削除するバグを修正",
+          "description": "終了時に位置ずれたバックグラウンドデーモンが次のデーモンの制御ソケットを削除し、次のクライアントが正常なデーモンを殺す事態を修正。"
+        },
+        {
+          "title": "`←` または `/background` で駐車されたバックグラウンドセッションがデーモンを永遠に残す問題を修正",
+          "description": "`←` や `/background` でバックグラウンドに駐車されたセッションがアイドル状態でデーモンとワーカープロセスを無期限に残し続けていた問題を修正。"
+        },
+        {
+          "title": "完了したバックグラウンドセッションが `claude rm` で削除できないバグを修正",
+          "description": "バックグラウンドサービスがアイドルになった後、完了済みバックグラウンドセッションが `claude rm` またはエージェントビューから削除できなかった問題を修正。"
+        },
+        {
+          "title": "Git リポジトリ外からのバックグラウンドセッション削除不具合を修正",
+          "description": "Git 管理外のフォルダーからディスパッチされたバックグラウンドセッションがエージェントビューから削除できなかった問題を修正。"
+        },
+        {
+          "title": "読み取り不可フォルダーがある場合のバックグラウンドセッション再開失敗を修正",
+          "description": "セッションストアに読み取り不可フォルダーが存在すると、停止中のバックグラウンドセッションを再開した際に保存された会話が復元できなかった問題を修正。"
+        },
+        {
+          "title": "Remote Control が無効でも \"session ready\" プッシュ通知が送られるバグを修正",
+          "description": "Remote Control が明示的に有効化されていないセッションでも \"session ready\" プッシュ通知が誤って発火していた問題を修正。"
+        },
+        {
+          "title": "`/install-github-app` と `/mcp` がエージェントビューでブロックされる問題を修正",
+          "description": "エージェントビューセッションで `/install-github-app` と `/mcp` の設定メニューがブロックされていた問題を修正。バックグラウンドでターミナルが無い場合にのみ拒否されるようにした。"
+        },
+        {
+          "title": "`--settings` で有効化したプラグインがロードされないバグを修正",
+          "description": "v2.1.181 以降で発生していた、`--settings` CLI フラグで有効化したプラグインが読み込まれない回帰バグを修正。"
+        },
+        {
+          "title": "OAuth トークン更新後に長時間セッションで機能フラグが古くなる問題を修正",
+          "description": "OAuth トークンがローテーションした後、長時間稼働するセッションで機能フラグがステールになる問題を修正。"
+        },
+        {
+          "title": "`/ultrareview` がマージベースなしで実行できない問題を修正",
+          "description": "マージベースがないリポジトリで `/ultrareview` が実行を拒否していたバグを修正。すべての追跡ファイルのレビューを提案するようにした。"
+        },
+        {
+          "title": "`claude update` / `claude doctor` がディレクトリをシェル設定パスにした際にハングする問題を修正",
+          "description": "シェル設定パスがディレクトリである場合に `claude update` と `claude doctor` が黙ってハングし、`/status` のシステム診断が空白になる問題を修正。"
+        },
+        {
+          "title": "メモリファイル保存時に frontmatter の `#` で切り詰められる問題を修正",
+          "description": "メモリファイルを保存する際、インラインの `#` で frontmatter の値が静かに切り詰められていた問題を修正。"
+        },
+        {
+          "title": "ストリームで複数 `message_delta` が出た際のコスト・トークン計測二重計上を修正",
+          "description": "ストリームが複数の累積 `message_delta` フレームを出す場合に、セッションコストとトークンテレメトリが二重にカウントされていた問題を修正。"
+        },
+        {
+          "title": "アドバイザー思考中に誤って \"check your network\" 警告が出る問題を修正",
+          "description": "アドバイザーが思考している間に、根拠のない \"check your network\" 警告が表示される現象を修正。"
+        },
+        {
+          "title": "exit code 2 のフックが JSON スキーマ検証失敗時にブロックしないバグを修正",
+          "description": "フックが exit code 2 を返し、かつ stdout の JSON がスキーマ検証に失敗した場合に、仕様どおりブロックされていなかった問題を修正。"
+        },
+        {
+          "title": "非同期ターン外で出た OTel ログイベントがトレースコンテキストを欠く問題を修正",
+          "description": "ターンの非同期コンテキスト外で生成された OTel ログイベントが、インタラクションスパンの trace context を含まない問題を修正。"
+        },
+        {
+          "title": "MCP の一時的エラーでサーバーのスラッシュコマンドとリソースがクリアされるバグを修正",
+          "description": "プロンプト/リソースのリフレッシュ中に MCP のトランジェントエラーが発生すると、サーバー側のスラッシュコマンドとリソースが削除されてしまう問題を修正。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:38:18.246Z"
+}

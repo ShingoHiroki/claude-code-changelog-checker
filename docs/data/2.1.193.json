@@ -1,0 +1,92 @@
+{
+  "version": "2.1.193",
+  "tagName": "v2.1.193",
+  "publishedAt": "2026-06-25T21:45:57Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.193",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 6,
+    "改善": 4,
+    "その他": 0,
+    "バグ修正": 5
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`autoMode.classifyAllShell` 設定を追加",
+          "description": "すべての Bash/PowerShell コマンドを任意コード実行パターンだけでなく、自動モード分類器へルーティングする `autoMode.classifyAllShell` 設定を追加しました。"
+        },
+        {
+          "title": "自動モードの拒否理由を表示",
+          "description": "自動モードの拒否理由をトランスクリプト、拒否トースト、`/permissions` の最近の拒否一覧に追加しました。"
+        },
+        {
+          "title": "`claude_code.assistant_response` ログイベントを追加",
+          "description": "モデルの応答テキストを含む `claude_code.assistant_response` OpenTelemetry ログイベントを追加しました。`OTEL_LOG_ASSISTANT_RESPONSES=1` のときのみ非マスク、未設定時は `OTEL_LOG_USER_PROMPTS` と同様に動作するため、プロンプトロギングしている環境はアップグレードで応答も取得開始します。プロンプトのみ保持したい場合は `OTEL_LOG_ASSISTANT_RESPONSES=0` を設定してください。"
+        },
+        {
+          "title": "bash モードでファイルパス自動補完を追加",
+          "description": "bash モード（`!`）でライブファイルパス自動補完が利用できるようになりました。"
+        },
+        {
+          "title": "MCP 認証が必要な際の起動通知を追加",
+          "description": "MCP サーバーが認証を必要とする場合、起動時に `/mcp` を指し示す通知を表示するようにしました。"
+        },
+        {
+          "title": "アイドルバックグラウンドシェルコマンドのメモリ圧力自動回収を追加",
+          "description": "アイドル状態のバックグラウンドシェルコマンドに対してメモリ圧力に応じた自動回収を行います。無効にする場合は `CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1` を設定してください。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "バックグラウンドエージェントの起動結果を改善",
+          "description": "バックグラウンドエージェントの起動結果が、Claude に「レスポンスを終了する」指示を出さなくなり、エージェント実行中も他のタスクを継続して処理できるようになりました。"
+        },
+        {
+          "title": "`headersHelper` 認証の改善",
+          "description": "`headersHelper` が 401/403 応答を受け取った際に自動で再実行・再接続するよう改善しました。"
+        },
+        {
+          "title": "プラグイン自動リネームを改善",
+          "description": "Marketplace の `renames` マップを自動的に適用し、設定が新しい名前に自動更新されるようになりました。"
+        },
+        {
+          "title": "`/add-dir` メッセージを改善",
+          "description": "ディレクトリがすでに作業ディレクトリの場合の `/add-dir` メッセージを改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`/model` 等の UI が `/login` 後に古い/空状態を表示する問題を修正",
+          "description": "`/model` やその他クライアントデータで制限された UI が、`/login` 直後に古い情報や空状態を表示していた問題を修正しました。"
+        },
+        {
+          "title": "バックグラウンド化の誤キャンセルを修正",
+          "description": "新しいセッションにすべての実行タスクが引き継がれる際、バックグラウンド化 (←←) が誤って「N 個のバックグラウンドタスクが放棄されます」とキャンセルする問題を修正しました。"
+        },
+        {
+          "title": "固定バックグラウンドエージェントの再プロンプトを修正",
+          "description": "固定されたバックグラウンドエージェントが、毎回の自動アップデート後に「続きから再開してください」と再度プロンプトされる問題を修正しました。"
+        },
+        {
+          "title": "メインターンのバックグラウンド化で生成される幻のサブエージェントを修正",
+          "description": "メインターンをバックグラウンド化した際に、幻の「general-purpose (resumed)」サブエージェントが生成され、会話が再実行される問題を修正しました。"
+        },
+        {
+          "title": "サブエージェント表示時にエージェントパネルが兄弟エージェントを隠す問題を修正",
+          "description": "サブエージェントを表示しているときにエージェントパネルが同レベルのエージェントを隠していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:32:32.402Z"
+}

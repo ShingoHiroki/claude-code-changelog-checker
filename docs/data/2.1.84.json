@@ -1,0 +1,197 @@
+{
+  "version": "2.1.84",
+  "tagName": "v2.1.84",
+  "publishedAt": "2026-03-26T00:31:05Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.84",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 8,
+    "改善": 5,
+    "その他": 13,
+    "バグ修正": 14
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "PowerShell ツール（プレビュー）を追加",
+          "description": "Windows 用の PowerShell ツールをオプトインプレビューとして追加。詳細は https://code.claude.com/docs/en/tools-reference#powershell-tool を参照。"
+        },
+        {
+          "title": "デフォルトモデル検出を上書きする環境変数を追加",
+          "description": "`ANTHROPIC_DEFAULT_{OPUS,SONNET,HAIKU}_MODEL_SUPPORTS` 環境変数を導入し、3p（Bedrock、Vertex、Foundry）の固定デフォルトモデルの effort/thinking 能力検出を上書きできる。また `_MODEL_NAME` / `_DESCRIPTION` で `/model` ピッカーラベルをカスタマイズ可能。"
+        },
+        {
+          "title": "ストリーミングアイドルタイムアウト設定を追加",
+          "description": "`CLAUDE_STREAM_IDLE_TIMEOUT_MS` 環境変数でストリーミングアイドル監視の閾値を設定可能（デフォルト 90 秒）。"
+        },
+        {
+          "title": "`TaskCreated` フックを追加",
+          "description": "`TaskCreated` フックが `TaskCreate` によりタスクが作成されたときに発火するようになった。"
+        },
+        {
+          "title": "`WorktreeCreate` フック（http タイプ）を追加",
+          "description": "`type: \"http\"` 用の `WorktreeCreate` フックをサポート。作成された worktree のパスはレスポンス JSON の `hookSpecificOutput.worktreePath` で返される。"
+        },
+        {
+          "title": "`allowedChannelPlugins` 設定を追加",
+          "description": "チーム/エンタープライズ管理者がチャンネルプラグインの許可リストを定義できる `allowedChannelPlugins` 管理設定を追加。"
+        },
+        {
+          "title": "`x-client-request-id` ヘッダーを追加",
+          "description": "デバッグ用に API リクエストに `x-client-request-id` ヘッダーが付与され、タイムアウトの診断が容易になる。"
+        },
+        {
+          "title": "アイドル復帰プロンプトを追加",
+          "description": "75 分以上アイドル状態で戻ってきたユーザーに `/clear` を促すプロンプトを表示し、古いセッションでの不要なトークン再キャッシュを削減する。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Windows ルート削除検出を改善",
+          "description": "危険な Windows ドライブルート（`C:\\`、`C:\\Windows` など）の削除検出を強化した。"
+        },
+        {
+          "title": "インタラクティブ起動を約30ms高速化",
+          "description": "`setup()` をスラッシュコマンドとエージェントロードと並列で実行し、インタラクティブ起動時間を約30ms短縮した。"
+        },
+        {
+          "title": "`claude \"prompt\"` 起動を改善",
+          "description": "MCP サーバー使用時、REPL が即座に描画され、全サーバー接続待ちでブロックしないようにした。"
+        },
+        {
+          "title": "リモートコントロールのブロック理由表示を改善",
+          "description": "ブロック時に汎用的な「まだ有効化されていません」ではなく、具体的な理由を表示するようにした。"
+        },
+        {
+          "title": "p90 プロンプトキャッシュ率を改善",
+          "description": "p90 プロンプトキャッシュ率を向上させた。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Deepリンクの端末選択を改善",
+          "description": "`claude-cli://` の Deepリンクは、検出リストの最初ではなく、ユーザーが設定した優先端末で開くようになった。"
+        },
+        {
+          "title": "`paths:` フロントマターで YAML リストを受け入れ",
+          "description": "Rules と skills の `paths:` フロントマターが、グロブの YAML リスト形式を許容するようになった。"
+        },
+        {
+          "title": "MCP ツール説明のサイズ上限を設定",
+          "description": "MCP ツールの説明とサーバー指示は 2KB に制限され、OpenAPI 生成サーバーがコンテキストを肥大化させるのを防止した。"
+        },
+        {
+          "title": "MCP サーバー設定の重複除去",
+          "description": "ローカルと claude.ai コネクタ両方で設定された MCP サーバーは重複除去され、ローカル設定が優先される。"
+        },
+        {
+          "title": "バックグラウンド Bash タスクのスタック通知",
+          "description": "対話プロンプトで停止したように見えるバックグラウンド Bash タスクは、約45秒後に通知を表示するようになった。"
+        },
+        {
+          "title": "トークン数表示形式を変更",
+          "description": "トークン数が 1M 以上の場合、`1512.6k` ではなく `1.5m` と表示される。"
+        },
+        {
+          "title": "グローバルシステムプロンプトキャッシュを拡張",
+          "description": "`ToolSearch` が有効でもグローバルシステムプロンプトのキャッシュが機能し、MCP ツールが設定されたユーザーにも適用されるようにした。"
+        },
+        {
+          "title": "長時間セッションでのスクロールリセットを削減",
+          "description": "メッセージウィンドウが圧縮やグルーピング変更に対して免疫を持つようにし、長セッションでのトップへのスクロールリセットを減少させた。"
+        },
+        {
+          "title": "端末のフリッカーを削減",
+          "description": "アニメーションツールの進行がビューポート上部へスクロールする際の端末ちらつきを抑えた。"
+        },
+        {
+          "title": "Issue/PR 参照のリンク化条件変更",
+          "description": "`owner/repo#123` の形式のみクリック可能リンクになり、単独の `#123` は自動リンクされなくなった。"
+        },
+        {
+          "title": "利用不可スラッシュコマンドを非表示化",
+          "description": "現在の認証設定で利用できないスラッシュコマンド（`/voice`、`/mobile`、`/chrome`、`/upgrade` など）は表示されず非表示になる。"
+        },
+        {
+          "title": "[VSCode] レートリミット警告バナーを追加",
+          "description": "使用率とリセット時間を示すレートリミット警告バナーが表示されるようになった。"
+        },
+        {
+          "title": "Stats スクリーンショット機能を高速化",
+          "description": "`/stats` でのスクリーンショット（Ctrl+S）がすべてのビルドで機能し、16 倍速くなった。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "音声プッシュトーク修正",
+          "description": "音声キーを長押ししたときに文字がテキスト入力に漏れず、文字起こしが正しい位置に挿入されるようにした。"
+        },
+        {
+          "title": "フッター項目フォーカス時の矢印キー修正",
+          "description": "フッター項目がフォーカスされている状態で上下矢印キーが反応しなかった問題を修正した。"
+        },
+        {
+          "title": "`Ctrl+U` の行先頭削除を修正",
+          "description": "`Ctrl+U` がマルチライン入力の行境界で無効になる問題を解消し、連続使用で行全体をクリアできるようにした。"
+        },
+        {
+          "title": "デフォルトコードバインディングの null 解除バグ修正",
+          "description": "`\"ctrl+x ctrl+k\": null` のようなデフォルトコードバインディングを null で解除してもコード待機モードになる問題を修正し、プレフィックスキーが解放されるようにした。"
+        },
+        {
+          "title": "マウスイベントが文字列として挿入されるバグ修正",
+          "description": "マウスイベントが文字検索入力に文字列 \"mouse\" を挿入していた問題を修正した。"
+        },
+        {
+          "title": "Workflow サブエージェントの API 400 エラー修正",
+          "description": "外部セッションが `--json-schema` を使用し、サブエージェントもスキーマ指定した際に API 400 が返っていた問題を修正した。"
+        },
+        {
+          "title": "絵文字背景色欠損バグ修正",
+          "description": "一部端末でユーザーメッセージバブル内の特定絵文字の背景色が欠けて表示される問題を修正した。"
+        },
+        {
+          "title": "設定編集許可オプションの永続化バグ修正",
+          "description": "`Edit(.claude)` 許可ルールを持つユーザーで「このセッションで Claude が自身の設定を編集できる」オプションが保持されなかった問題を修正した。"
+        },
+        {
+          "title": "添付ファイルスニペット生成時のハング修正",
+          "description": "大きな編集ファイルの添付スニペット生成でハングする問題を修正した。"
+        },
+        {
+          "title": "サーバ再接続時の MCP キャッシュリーク修正",
+          "description": "サーバ再接続時に MCP ツール/リソースキャッシュがリークする問題を修正した。"
+        },
+        {
+          "title": "部分クローンリポジトリ起動時のパフォーマンス問題修正",
+          "description": "Scalar/GVFS の部分クローンリポジトリが起動時に大量の blob ダウンロードを引き起こす問題を修正した。"
+        },
+        {
+          "title": "ネイティブ端末カーソルのキャレット追従修正",
+          "description": "ネイティブ端末のカーソルがテキスト入力キャレットを追従しなかった問題を修正し、IME（CJK）入力がインラインで表示され、スクリーンリーダーが入力位置を追えるようにした。"
+        },
+        {
+          "title": "macOS の誤ったログインエラー修正",
+          "description": "一時的なキーチェーン読取失敗によって macOS で誤った「Not logged in」エラーが表示される問題を修正した。"
+        },
+        {
+          "title": "コアツールのコールドスタート競合バグ修正",
+          "description": "コールドスタート時にコアツールがバイパスが有効でなく遅延され、Edit/Write が InputValidationError になる競合を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:09:18.456Z"
+}

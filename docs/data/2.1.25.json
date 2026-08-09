@@ -1,0 +1,26 @@
+{
+  "version": "2.1.25",
+  "tagName": "v2.1.25",
+  "publishedAt": "2026-01-29T21:13:33Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.25",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Bedrock と Vertex のゲートウェイユーザーに対するベータヘッダー検証エラーを修正し、`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` でエラーが回避できるようにしました。",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:58:43.208Z"
+}

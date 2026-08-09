@@ -1,0 +1,86 @@
+{
+  "version": "2.1.31",
+  "tagName": "v2.1.31",
+  "publishedAt": "2026-02-04T00:44:13Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.31",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 2,
+    "改善": 2,
+    "その他": 1,
+    "バグ修正": 5
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "モデルセレクタから誤解を招くAnthropic API料金表示を削除",
+          "description": "サードパーティプロバイダ (Bedrock, Vertex, Foundry) ユーザー向けに、モデルセレクタ上の誤解を招くAnthropic API料金情報を削除しました。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "終了時にセッション再開ヒントを追加",
+          "description": "会話を後で続ける方法を示す再開ヒントを、セッション終了時に表示するようにしました。"
+        },
+        {
+          "title": "全角スペース入力をチェックボックス選択でサポート",
+          "description": "日本語IMEからの全角（zenkaku）スペース入力を、チェックボックス選択時に受け付けるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "システムプロンプトを改善し専用ツール使用を促す",
+          "description": "モデルが専用ツール（Read, Edit, Glob, Grep）を使用するよう、`cat`、`sed`、`grep`、`find` などのbash相当コマンドより明確に誘導するシステムプロンプトに改良を加え、不要なbashコマンド使用を減らしました。"
+        },
+        {
+          "title": "PDF・リクエストサイズエラーメッセージに実際の上限を表示",
+          "description": "PDF のページ数上限 100 ページ、リクエストサイズ上限 20MB など、実際の制限をエラーメッセージに表示するよう改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "ストリーミング中のスピナー表示でレイアウト揺れを削減",
+          "description": "ストリーミング時にスピナーが表示・非表示になる際のターミナルレイアウトのジッタ（揺れ）を減らしました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "PDFサイズ超過エラーでセッションがロックする不具合を修正",
+          "description": "PDF が大きすぎる際のエラーがセッションを永久にロックし、新しい会話を開始しなければならない問題を修正しました。"
+        },
+        {
+          "title": "`sandbox`モードでbashコマンドが誤ってRead-only file systemエラーを報告する不具合を修正",
+          "description": "`sandbox`モード有効時に、bash コマンドが実際には成功しているにもかかわらず “Read-only file system” エラーで失敗と報告していた問題を修正しました。"
+        },
+        {
+          "title": "`~/.claude.json`のプロジェクト設定がデフォルト項目欠如時にプランモードでクラッシュする不具合を修正",
+          "description": "`~/.claude.json` のプロジェクト設定にデフォルトフィールドが無い場合、プランモードに入った際にクラッシュしてセッションが使用不能になる問題を修正しました。"
+        },
+        {
+          "title": "ストリーミングAPIで`temperatureOverride`が無視される不具合を修正",
+          "description": "ストリーミング API パスで `temperatureOverride` が無視され、設定したオーバーライドに関わらずデフォルト温度 (1) が使用されていた問題を修正しました。"
+        },
+        {
+          "title": "null パラメータを拒否する厳格な LSP との shutdown/exit 互換性を修正",
+          "description": "null パラメータを受け付けない厳格な言語サーバーでも LSP の shutdown/exit が正しく動作するよう互換性を改善しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:59:22.865Z"
+}

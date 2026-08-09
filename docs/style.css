@@ -104,7 +104,7 @@ code {
 .breaking-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--icon-breaking-fg); margin-left: 0.35em; vertical-align: 0.2em; }
 
 /* ---- Content ---- */
-.content { padding: 1.5rem 0 4rem; }
+.content { padding: 0 0 4rem; }
 .content-inner { animation: rise-in 340ms cubic-bezier(0.2, 0.9, 0.3, 1); }
 @keyframes rise-in { from { opacity: 0; transform: translateY(8px) scale(0.995); } to { opacity: 1; transform: none; } }
 

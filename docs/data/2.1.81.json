@@ -1,0 +1,145 @@
+{
+  "version": "2.1.81",
+  "tagName": "v2.1.81",
+  "publishedAt": "2026-03-20T22:24:50Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.81",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 5,
+    "その他": 4,
+    "バグ修正": 16
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`--bare` フラグ追加",
+          "description": "`--bare` フラグをスクリプト化された `-p` 呼び出しに追加しました。フック、LSP、プラグイン同期、スキルディレクトリ走査をスキップし、`ANTHROPIC_API_KEY` または `--settings` 経由の `apiKeyHelper` が必要です（OAuth とキーリング認証は無効）。自動メモリも完全に無効化されます。"
+        },
+        {
+          "title": "`--channels` パーミッションリレー追加",
+          "description": "`--channels` パーミッションリレーを追加しました。権限機能を宣言したチャンネルサーバーは、ツール承認プロンプトを携帯電話に転送できます。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "MCP 読み取り/検索ツール呼び出しの行数削減",
+          "description": "MCP の read/search ツール呼び出しが単一の \"Queried {server}\" 行に折りたたまれるよう改善しました（Ctrl+O で展開可能）。"
+        },
+        {
+          "title": "`!` Bash モードの検出性向上",
+          "description": "インタラクティブコマンド実行が必要なときに Claude が `!` Bash モードを提案するようになり、検出性が向上しました。"
+        },
+        {
+          "title": "プラグインの新鮮さ改善（再クローン）",
+          "description": "参照追跡プラグインがロード時に毎回再クローンされ、上流の変更を確実に取得できるようになりました。"
+        },
+        {
+          "title": "Remote Control セッションタイトルの更新タイミング改善",
+          "description": "Remote Control セッションのタイトルが3番目のメッセージ送信後に自動でリフレッシュされるよう改善しました。"
+        },
+        {
+          "title": "MCP OAuth が CIMD (SEP-991) をサポート",
+          "description": "Dynamic Client Registration がないサーバー向けに、MCP OAuth が Client ID Metadata Document（CIMD / SEP-991）をサポートするよう更新しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "作業ツリー内セッション再開で元の worktree に戻る",
+          "description": "作業ツリー内で中断したセッションを再開すると、自動的にその worktree に切り替わります。"
+        },
+        {
+          "title": "プランモードで「clear context」オプションをデフォルト非表示に変更",
+          "description": "プランモードのデフォルト設定で \"clear context\" オプションが非表示になりました。元に戻すには `\"showClearContextOnPlanAccept\": true` を設定してください。"
+        },
+        {
+          "title": "Windows での行単位レスポンスストリーミングを無効化",
+          "description": "描画問題への対応として、Windows（WSL を含む Windows Terminal）での行単位レスポンスストリーミングを無効化しました。"
+        },
+        {
+          "title": "[VSCode] Git Bash 使用時の Bash ツールの PATH 継承バグ修正",
+          "description": "v2.1.78 で発生した回帰により、Git Bash 使用時に Bash ツールが Windows の PATH を継承しなかった問題を VSCode で修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "同時セッションでの再認証要求バグ修正",
+          "description": "複数の Claude Code セッションが同時に動作している際、1つのセッションが OAuth トークンを更新すると他セッションが再認証を要求し続ける問題を修正しました。"
+        },
+        {
+          "title": "音声モードでリトライ失敗が隠れる問題修正",
+          "description": "音声モードでリトライ失敗が黙って無視され、実際のエラーではなく誤解を招く \"check your network\" メッセージが表示される問題を修正しました。"
+        },
+        {
+          "title": "音声モードで WebSocket 切断時に音声が復旧しない不具合修正",
+          "description": "サーバーが WebSocket 接続を静かに切断した際、音声モードのオーディオが復旧しない問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` がベータヘッダーを抑制しない問題修正",
+          "description": "`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` が structured-outputs ベータヘッダーを抑制せず、Vertex/Bedrock へ転送するプロキシゲートウェイで 400 エラーが発生する問題を修正しました。"
+        },
+        {
+          "title": "`--channels` が Team/Enterprise 組織で回避されるバグ修正",
+          "description": "Team/Enterprise 組織で他の管理設定が無い場合に `--channels` がバイパスされていた問題を修正しました。"
+        },
+        {
+          "title": "Node.js 18 でのクラッシュ修正",
+          "description": "Node.js 18 環境下で発生していたクラッシュを修正しました。"
+        },
+        {
+          "title": "ハイフン含む Bash コマンドでの不要な権限プロンプト修正",
+          "description": "文字列内にハイフンを含む Bash コマンド実行時に不要な権限プロンプトが表示される問題を修正しました。"
+        },
+        {
+          "title": "プラグインディレクトリ削除中のフックがプロンプト送信を阻止するバグ修正",
+          "description": "セッション中にプラグインディレクトリが削除された場合、プラグインフックがプロンプト送信をブロックしていた問題を修正しました。"
+        },
+        {
+          "title": "バックグラウンドエージェントタスク出力のハング競合状態修正",
+          "description": "タスクがポーリング間隔間に完了した際、バックグラウンドエージェントのタスク出力が無期限にハングする競合状態を修正しました。"
+        },
+        {
+          "title": "`/btw` が貼り付けテキストを含めないバグ修正",
+          "description": "アクティブな応答中に `/btw` を使用した際、貼り付けたテキストが含まれなかった問題を修正しました。"
+        },
+        {
+          "title": "tmux 下で Cmd+Tab 後の貼り付けがクリップボードコピーに追いつく競合バグ修正",
+          "description": "tmux 環境で Cmd+Tab を素早く行いその後貼り付けた際、クリップボードのコピーが追いつかず貼り付けが失敗する競合を修正しました。"
+        },
+        {
+          "title": "ターミナルタブタイトルが自動生成説明で更新されない問題修正",
+          "description": "自動生成されたセッション説明でターミナルタブのタイトルが更新されないバグを修正しました。"
+        },
+        {
+          "title": "見えないフック添付がトランスクリプトモードのメッセージ数を増やすバグ修正",
+          "description": "不可視のフック添付がメッセージ数を不正に増加させていたトランスクリプトモードの問題を修正しました。"
+        },
+        {
+          "title": "Remote Control セッションが汎用タイトルになる問題修正",
+          "description": "Remote Control セッションが最初のプロンプトからタイトルを取得せず、汎用タイトルを表示していた問題を修正しました。"
+        },
+        {
+          "title": "`/rename` が Remote Control セッションのタイトルを同期しないバグ修正",
+          "description": "`/rename` コマンドが Remote Control セッションのタイトルを正しく同期しなかった問題を修正しました。"
+        },
+        {
+          "title": "Remote Control `/exit` がセッションを確実にアーカイブしない問題修正",
+          "description": "Remote Control の `/exit` がセッションを信頼性高くアーカイブしないバグを修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:08:00.769Z"
+}

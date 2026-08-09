@@ -1,0 +1,26 @@
+{
+  "version": "2.1.148",
+  "tagName": "v2.1.148",
+  "publishedAt": "2026-05-22T01:16:52Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.148",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Bashツールが一部ユーザーで全てのコマンドに対して exit code 127 を返す問題を修正しました（2.1.147で導入されたリグレッション）",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:24:23.439Z"
+}

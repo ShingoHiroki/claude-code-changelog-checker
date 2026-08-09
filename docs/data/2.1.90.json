@@ -1,0 +1,118 @@
+{
+  "version": "2.1.90",
+  "tagName": "v2.1.90",
+  "publishedAt": "2026-04-01T23:41:31Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.90",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 3,
+    "改善": 4,
+    "その他": 2,
+    "バグ修正": 9
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "自動許可から `Get-DnsClientCache` と `ipconfig /displaydns` を削除",
+          "description": "DNSキャッシュプライバシー向上のため、これらのコマンドが自動許可対象から除外されました。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/powerup` を追加",
+          "description": "インタラクティブレッスンで、Claude Code の機能をアニメーションデモ付きで学べます。"
+        },
+        {
+          "title": "`CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE` 環境変数を追加",
+          "description": "`git pull` が失敗した際に既存のマーケットプレイスキャッシュを保持し、オフライン環境で役立ちます。"
+        },
+        {
+          "title": "保護ディレクトリに `.husky` を追加",
+          "description": "`acceptEdits` モードで `.husky` ディレクトリが保護対象に含まれました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "MCP ツールスキーマの JSON.stringify を削除し性能向上",
+          "description": "キャッシュキー検索時に毎ターン行われていた JSON.stringify を排除し、パフォーマンスが向上しました。"
+        },
+        {
+          "title": "SSE 伝送の大規模フレーム処理を線形時間化",
+          "description": "大きなストリームフレームの処理が二次時間から線形時間に改善されました。"
+        },
+        {
+          "title": "長会話の SDK セッションでの書き込み遅延を改善",
+          "description": "トランスクリプト書き込みが二次的に遅くなる問題を解消し、長時間の会話でも速度が保たれます。"
+        },
+        {
+          "title": "`/resume` の全プロジェクトビューを並列読み込みに改善",
+          "description": "多数のプロジェクトを持つユーザーのロード時間が短縮されました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "PowerShell ツール権限チェックを強化",
+          "description": "末尾の `&` バックグラウンドジョブ回避、`-ErrorAction Break` デバッガハング、archive-extraction の TOCTOU、parse-fail フォールバックの deny-rule 劣化を修正しました。"
+        },
+        {
+          "title": "`--resume` ピッカーで `claude -p` や SDK 起動セッションを非表示に変更",
+          "description": "これらのセッションがピッカーに表示されなくなります。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "レートリミットオプションダイアログの無限ループを修正",
+          "description": "使用制限に達した後、ダイアログが自動で繰り返し開きセッションがクラッシュする問題を解消しました。"
+        },
+        {
+          "title": "`--resume` が最初のリクエストでプロンプトキャッシュ未ヒットになる不具合を修正",
+          "description": "遅延ツール、MCP サーバー、カスタムエージェント使用時に発生していた回帰バグを解消しました。"
+        },
+        {
+          "title": "`Edit`/`Write` がファイル書き換え後に失敗する問題を修正",
+          "description": "PostToolUse の保存時フォーマットフックが連続編集間にファイルを書き換える際の \\\"File content has changed\\\" エラーを解消しました。"
+        },
+        {
+          "title": "コード 2 で終了し JSON を stdout に出す `PreToolUse` フックのブロック不具合を修正",
+          "description": "ツール呼び出しを正しくブロックできなかった問題を修正しました。"
+        },
+        {
+          "title": "ツール呼び出し中の CLAUDE.md 自動ロードでサマリーバッジが重複表示される問題を修正",
+          "description": "フルスクリーンスクロールバック時に検索/読み取りサマリーバッジが複数表示されるバグを解消しました。"
+        },
+        {
+          "title": "Auto モードで明示的なユーザー境界が無視される不具合を修正",
+          "description": "\\\"don't push\\\"、\\\"wait for X before Y\\\" などの指定が正しく適用されるようになりました。"
+        },
+        {
+          "title": "ライトテーマでのホバー文字が見えにくい問題を修正",
+          "description": "クリックで展開するホバー文字の可視性を改善しました。"
+        },
+        {
+          "title": "不正なツール入力が権限ダイアログに達した際の UI クラッシュを修正",
+          "description": "入力が不正な場合でもクラッシュしないようにしました。"
+        },
+        {
+          "title": "`/model` や `/config` などでスクロール時にヘッダーが消える問題を修正",
+          "description": "選択画面でスクロールしてもヘッダーが維持されます。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:10:46.585Z"
+}

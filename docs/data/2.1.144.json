@@ -1,0 +1,237 @@
+{
+  "version": "2.1.144",
+  "tagName": "v2.1.144",
+  "publishedAt": "2026-05-19T00:48:51Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.144",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 2,
+    "その他": 16,
+    "バグ修正": 30
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Added `/resume` support for background sessions — sessions started via `claude --bg` or agent view now appear alongside interactive ones, marked with `bg`",
+          "description": ""
+        },
+        {
+          "title": "Added elapsed duration to background subagent completion notifications (e.g. \"Agent completed · 3h 2m 5s\")",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Improved recovery from rare pre-response stream stalls — now retries streaming once instead of falling back to a slower non-streaming request",
+          "description": ""
+        },
+        {
+          "title": "Improved SDK/headless MCP startup: pre-wait now overlaps startup instead of blocking before the first turn (up to 2s faster with slow MCP servers)",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "The `/plugin` browse and discover panes now show when a plugin was last updated",
+          "description": ""
+        },
+        {
+          "title": "`/model` now changes the model for the current session only; press `d` in the model picker to set a default for new sessions",
+          "description": ""
+        },
+        {
+          "title": "Renamed \"extra usage\" to \"usage credits\" across CLI copy; `/extra-usage` is now `/usage-credits` (old name still works)",
+          "description": ""
+        },
+        {
+          "title": "Reduced terminal rendering glitches in VS Code by reducing spinner animation color count",
+          "description": ""
+        },
+        {
+          "title": "Fewer spurious tool errors during search: `head`/`tail` file views now satisfy the read-before-edit check, and a \"no matches\" result (exit code 1) from `egrep`, `fgrep`, `git grep`, or `git diff` is no longer reported as a command failure",
+          "description": ""
+        },
+        {
+          "title": "Resumed sessions now keep the model they were using instead of picking up another session's `/model` choice",
+          "description": ""
+        },
+        {
+          "title": "`/bg` and `←`-detach now preserve directories added via `/add-dir`",
+          "description": ""
+        },
+        {
+          "title": "`claude agents` / `--bg` rejection messages now name the specific gate (non-TTY, env var, or setting) instead of a generic message",
+          "description": ""
+        },
+        {
+          "title": "`claude --bg --name <label>` now echoes the name in the post-spawn confirmation",
+          "description": ""
+        },
+        {
+          "title": "`claude agents`: renaming a background session with Ctrl+R now updates the attached session's banner immediately",
+          "description": ""
+        },
+        {
+          "title": "Background session worktree isolation guard now applies for non-git VCS users with `WorktreeCreate` hooks configured",
+          "description": ""
+        },
+        {
+          "title": "Plugin marketplace add/update now respects `CLAUDE_CODE_PLUGIN_PREFER_HTTPS`",
+          "description": ""
+        },
+        {
+          "title": "`/plugin` now returns to the Installed list after enabling, disabling, or uninstalling a plugin",
+          "description": ""
+        },
+        {
+          "title": "`/doctor` now shows an exec-form example when a command hook is missing the `command` field",
+          "description": ""
+        },
+        {
+          "title": "Skill-listing truncation is no longer shown as a startup notification — run `/doctor` for the full breakdown",
+          "description": ""
+        },
+        {
+          "title": "The post-survey follow-up hint now appears after every non-dismiss survey response with context-aware copy, making it easier to share more detail via /feedback.",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Fixed startup hanging up to 75s when `api.anthropic.com` is unreachable (captive portal, firewall, VPN issues) — side-channel API calls now time out after 15s",
+          "description": ""
+        },
+        {
+          "title": "Fixed garbled terminal output after a missed window-resize event (e.g. dragging a VS Code split-pane divider) — now self-heals on the next frame instead of requiring Ctrl+L",
+          "description": ""
+        },
+        {
+          "title": "Fixed progressive terminal display corruption (stale/garbled glyphs) that could appear in very long sessions and only cleared on terminal resize or restart",
+          "description": ""
+        },
+        {
+          "title": "Fixed macOS background sessions crashing with \"exit 1 before init\" when the project lives under a Full Disk Access-protected folder (regression in 2.1.143)",
+          "description": ""
+        },
+        {
+          "title": "Fixed an unrecoverable conversation when reading a file whose image extension doesn't match its contents (e.g. HTML saved as .png) — now falls back to text",
+          "description": ""
+        },
+        {
+          "title": "Fixed `/branch` failing with \"No conversation to branch\" after entering a worktree or in some background sessions",
+          "description": ""
+        },
+        {
+          "title": "Fixed pressing Escape in the AskUserQuestion notes field aborting the turn instead of returning to answer selection",
+          "description": ""
+        },
+        {
+          "title": "Fixed model selection not applying when changed via the IDE model picker or `applyFlagSettings` after startup",
+          "description": ""
+        },
+        {
+          "title": "Fixed Bedrock and Vertex users unable to select \"Opus (1M context)\" from the `/model` picker (regression in v2.1.129)",
+          "description": ""
+        },
+        {
+          "title": "Fixed remote-session login failing with \"Can't access this organization\" for users with `forceLoginMethod` and `forceLoginOrgUUID` set",
+          "description": ""
+        },
+        {
+          "title": "Fixed MCP servers with paginated `tools/list` responses only returning the first page, silently dropping tools",
+          "description": ""
+        },
+        {
+          "title": "Fixed MCP images with unsupported MIME types (e.g. SVG) breaking the conversation — now saved to disk and referenced in the tool result",
+          "description": ""
+        },
+        {
+          "title": "Fixed file descriptor exhaustion when a build runs inside a skill directory — non-`.md` files no longer trigger skill reloads",
+          "description": ""
+        },
+        {
+          "title": "Fixed session title being generated from plugin monitor output instead of the user's first prompt",
+          "description": ""
+        },
+        {
+          "title": "Fixed Skill tool failing with permission error in headless mode (regression in v2.1.141)",
+          "description": ""
+        },
+        {
+          "title": "Fixed plugins enabled in your own settings showing \"not cached\" errors after first load on a fresh machine; plugins enabled only by a project's `.claude/settings.json` now show an actionable `claude plugin install` hint",
+          "description": ""
+        },
+        {
+          "title": "Fixed `claude mcp list` silently reporting no servers when `.mcp.json` can't be parsed (e.g. using VS Code's `\"servers\"` key instead of `\"mcpServers\"`) — now shows configuration errors",
+          "description": ""
+        },
+        {
+          "title": "Fixed background side-queries on custom `ANTHROPIC_BASE_URL` setups and Bedrock Mantle not using Haiku — now falls back correctly when a first-party API key is configured or no Haiku model is set",
+          "description": ""
+        },
+        {
+          "title": "Fixed scrolling in attached background sessions on Windows — PgUp/PgDn, mouse wheel, and Ctrl+O transcript navigation now work",
+          "description": ""
+        },
+        {
+          "title": "Fixed a crash when closing the terminal while attached to a background session",
+          "description": ""
+        },
+        {
+          "title": "Fixed on Windows, pressing ← in `claude agents` leaving the list unresponsive to keyboard input",
+          "description": ""
+        },
+        {
+          "title": "Fixed ghost characters at the left edge when switching panes in Agent View on Windows Terminal with CJK content",
+          "description": ""
+        },
+        {
+          "title": "Fixed Edit/Write refusing with \"background session hasn't isolated its changes yet\" right after detaching a session that was already editing in place",
+          "description": ""
+        },
+        {
+          "title": "Fixed `claude respawn <id>` on a stopped background session showing \"stopped\" instead of running",
+          "description": ""
+        },
+        {
+          "title": "Fixed `/resume` picker not showing sessions forked from a background session",
+          "description": ""
+        },
+        {
+          "title": "Fixed opening a session from `claude agents` or running `claude logs <id>` hanging when the background service is unresponsive — now times out after 10s with a recovery hint",
+          "description": ""
+        },
+        {
+          "title": "Fixed background Bash tasks spawned by subagents staying \"Running\" in SDK task panels after the process exits",
+          "description": ""
+        },
+        {
+          "title": "Fixed completed or stopped background sessions briefly failing to wake being permanently marked as a startup crash",
+          "description": ""
+        },
+        {
+          "title": "Fixed markdown links in `claude agents` attached sessions rendering as plain text instead of clickable hyperlinks",
+          "description": ""
+        },
+        {
+          "title": "Fixed custom `spinnerVerbs` applying to the post-turn duration message — past-tense built-ins like \"Worked for 5s\" are restored.",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:23:28.576Z"
+}

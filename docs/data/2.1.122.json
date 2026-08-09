@@ -1,0 +1,104 @@
+{
+  "version": "2.1.122",
+  "tagName": "v2.1.122",
+  "publishedAt": "2026-04-28T22:05:15Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.122",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 0,
+    "その他": 6,
+    "バグ修正": 11
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "環境変数 `ANTHROPIC_BEDROCK_SERVICE_TIER` を追加",
+          "description": "`ANTHROPIC_BEDROCK_SERVICE_TIER` 環境変数を追加し、Bedrock のサービスティア（`default`、`flex`、`priority`）を選択できるようにした。選択は `X-Amzn-Bedrock-Service-Tier` ヘッダーとして送信される。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/resume` 検索で PR URL を貼り付けてセッションを検索",
+          "description": "`/resume` の検索ボックスに PR の URL（GitHub、GitHub Enterprise、GitLab、Bitbucket）を貼り付けると、その PR を作成したセッションが見つかるようになった。"
+        },
+        {
+          "title": "`/mcp` が重複サーバーのコネクタを表示し削除ヒントを提示",
+          "description": "`/mcp` が手動で追加された同一 URL のサーバーによって非表示になっていた claude.ai コネクタを表示し、重複を削除するヒントを表示するようになった。"
+        },
+        {
+          "title": "未認可 MCP サーバー時の `/mcp` メッセージを明確化",
+          "description": "`/mcp` でブラウザサインイン後も MCP サーバーが未認可の場合に表示されるメッセージを明確にした。"
+        },
+        {
+          "title": "OpenTelemetry の数値属性を数値として出力",
+          "description": "OpenTelemetry において、`api_request` と `api_error` のログイベントの数値属性が文字列ではなく数値として出力されるようになった。"
+        },
+        {
+          "title": "`claude_code.at_mention` ログイベントを追加",
+          "description": "OpenTelemetry に `claude_code.at_mention` ログイベントを追加し、`@` メンションの解決を記録できるようにした。"
+        },
+        {
+          "title": "Voice モードで Caps Lock キーバインドがエラー表示に",
+          "description": "Voice モードで Caps Lock にバインドされたキー操作は、端末が Caps Lock をキーイベントとして送らないためエラーを表示するようになった。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`/branch` でフォークが失敗するバグ修正",
+          "description": "`/branch` が、ソースセッションに巻き戻しタイムラインのエントリが含まれている場合にフォークが作成され、\\\"tool_use ids were found without tool_result blocks\\\" エラーで失敗する問題を修正した。"
+        },
+        {
+          "title": "`/model` で Effort オプションが表示されないバグ修正",
+          "description": "`/model` が Bedrock アプリケーション推論プロファイル ARN に対して Effort オプションを表示しない、またそれら ARN が `output_config.effort` を受け取らない問題を修正した。"
+        },
+        {
+          "title": "Vertex AI / Bedrock の `invalid_request_error` を修正",
+          "description": "Vertex AI および Bedrock がセッションタイトル生成やその他構造化出力クエリで `invalid_request_error: output_config: Extra inputs are not permitted` を返す問題を修正した。"
+        },
+        {
+          "title": "`count_tokens` エンドポイントの 400 エラーを修正",
+          "description": "プロキシゲートウェイ越えのユーザーで Vertex AI の `count_tokens` エンドポイントが 400 エラーを返す問題を修正した。"
+        },
+        {
+          "title": "`spinnerTipsOverride.excludeDefault` がタイマースピナーヒントを抑制しない問題を修正",
+          "description": "`spinnerTipsOverride.excludeDefault` が時間ベースのスピナー提示を抑制しなかった問題を修正した。"
+        },
+        {
+          "title": "非ブロッキングモードでセッション開始後接続した MCP ツールが見つからないバグ修正",
+          "description": "非ブロッキングモードで、セッション開始後に接続した MCP ツールが ToolSearch に表示されなかった問題を修正した。"
+        },
+        {
+          "title": "`!exit` / `!quit` が CLI を終了させていたバグ修正",
+          "description": "bash モードで `!exit` / `!quit` がシェルコマンドとして実行されず CLI を終了していたバグを修正した。"
+        },
+        {
+          "title": "新モデルへの画像サイズが 2576px にリサイズされるバグ修正",
+          "description": "新しいモデルへ送信された画像が、正しい最大 2000px ではなく 2576px のサイズにリサイズされていた問題を修正した。"
+        },
+        {
+          "title": "リモートコントロールのアイドルステータス描画頻度過多を修正",
+          "description": "リモートコントロールセッションのアイドルステータスが秒間 2 回描画され、`tmux -CC` の制御パイプが溢れ端末が停止する可能性があった問題を修正した。"
+        },
+        {
+          "title": "アシスタントメッセージが空白になるバグ修正",
+          "description": "古いビュー設定が原因で、一部セッションでアシスタントメッセージが空白になる問題を修正した。"
+        },
+        {
+          "title": "`settings.json` の不正な hooks エントリがファイル全体を無効化しないよう修正",
+          "description": "`settings.json` の不正な hooks エントリがファイル全体を無効化していた問題を修正し、他の設定が正常に読み込まれるようにした。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:17:25.008Z"
+}

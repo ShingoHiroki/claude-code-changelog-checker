@@ -1,0 +1,109 @@
+{
+  "version": "2.1.79",
+  "tagName": "v2.1.79",
+  "publishedAt": "2026-03-18T22:29:36Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.79",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 2,
+    "その他": 5,
+    "バグ修正": 9
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`--console` フラグの追加",
+          "description": "`claude auth login` コマンドに `--console` フラグを追加し、Anthropic Console（API 課金）認証が可能になりました。"
+        },
+        {
+          "title": "ターン時間表示トグルの追加",
+          "description": "`/config` メニューに「Show turn duration」トグルを追加し、各ターンの所要時間を表示できるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "起動時メモリ使用量の削減",
+          "description": "全シナリオで起動時のメモリ使用量が約 18 MB 減少しました。"
+        },
+        {
+          "title": "非ストリーミング API フォールバックのタイムアウト改善",
+          "description": "非ストリーミング API のフォールバックに 2 分の試行ごとのタイムアウトを設定し、セッションが無期限にハングアップするのを防止しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_PLUGIN_SEED_DIR` の複数ディレクトリ対応",
+          "description": "`CLAUDE_CODE_PLUGIN_SEED_DIR` がプラットフォームのパス区切り文字（Unix では `:`、Windows では `;`）で区切られた複数のシードディレクトリをサポートするようになりました。"
+        },
+        {
+          "title": "VSCode に `/remote-control` を追加",
+          "description": "VSCode 拡張に `/remote-control` コマンドを追加し、セッションを claude.ai/code とブリッジしてブラウザやスマートフォンから続行できるようになりました。"
+        },
+        {
+          "title": "VSCode セッションタブに AI 生成タイトルを付与",
+          "description": "VSCode のセッションタブが、最初のメッセージに基づいて AI が生成したタイトルを自動的に付与するようになりました。"
+        },
+        {
+          "title": "VSCode の思考ピル表示バグ修正",
+          "description": "応答完了後に「Thinking」ではなく「Thought for Ns」と正しく表示されるように修正しました。"
+        },
+        {
+          "title": "VSCode のセッション差分ボタン欠如バグ修正",
+          "description": "左サイドバーからセッションを開く際に diff ボタンが欠如していた問題を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`claude -p` のハングアップ修正",
+          "description": "サブプロセスとして起動し、stdin が明示されていない場合（例: Python の `subprocess.run`）に `claude -p` がハングアップする問題を修正しました。"
+        },
+        {
+          "title": "`-p` モードでの Ctrl+C が機能しない問題の修正",
+          "description": "`-p`（print）モードで Ctrl+C が正しく動作しなかった不具合を修正しました。"
+        },
+        {
+          "title": "`/btw` のサイド質問応答不具合修正",
+          "description": "ストリーミング中に `/btw` がトリガーされた際、サイド質問への回答ではなくメインエージェントの出力を返していた問題を修正しました。"
+        },
+        {
+          "title": "起動時の voiceEnabled 設定が反映されないバグ修正",
+          "description": "`voiceEnabled: true` が設定されていても、起動時に音声モードが正しく有効にならなかった問題を修正しました。"
+        },
+        {
+          "title": "`/permissions` のタブナビゲーション修正",
+          "description": "`/permissions` で左右矢印キーによるタブ切り替えが機能しなかった不具合を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_DISABLE_TERMINAL_TITLE` の効果修正",
+          "description": "このフラグが設定されても起動時にターミナルタイトルが設定されていた問題を修正しました。"
+        },
+        {
+          "title": "ワークスペース信頼が阻止する際のステータスライン表示バグ修正",
+          "description": "ワークスペースが信頼されていない場合にカスタムステータスラインが何も表示されない問題を修正しました。"
+        },
+        {
+          "title": "エンタープライズユーザーのレートリミット再試行不具合修正",
+          "description": "レートリミット（429）エラー時にエンタープライズユーザーが再試行できなかった問題を修正しました。"
+        },
+        {
+          "title": "`SessionEnd` フックが発火しない問題修正",
+          "description": "インタラクティブな `/resume` でセッションを切り替える際、`SessionEnd` フックが実行されなかった不具合を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:07:36.452Z"
+}

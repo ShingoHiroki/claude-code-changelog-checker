@@ -1,0 +1,245 @@
+{
+  "version": "2.1.136",
+  "tagName": "v2.1.136",
+  "publishedAt": "2026-05-08T18:39:08Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.136",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 2,
+    "その他": 2,
+    "バグ修正": 46
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_ENABLE_FEEDBACK_SURVEY_FOR_OTEL` を追加し、OpenTelemetry を通じて企業のセッション品質調査の回答を取得できるように再有効化しました",
+          "description": ""
+        },
+        {
+          "title": "`settings.autoMode.hard_deny` を追加し、ユーザー意図に関係なく無条件にブロックする、または例外を許可するオートモード分類子ルールを提供します",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "スラッシュコマンドダイアログ全体で視覚的一貫性を向上させ、フッターヒント、ダイアログ間隔、矢印キーのスタイルを標準化し、ダイアログフレームがロード中にすぐ表示され、後からポップインしなくなりました",
+          "description": ""
+        },
+        {
+          "title": "`--worktree` が既存または古い worktree と衝突したときのエラーメッセージを改善しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "WSL2: Windows クリップボードからの画像貼り付けが、xclip/wl-paste で画像データを取得できない場合に PowerShell フォールバックで動作するようになりました",
+          "description": ""
+        },
+        {
+          "title": "プラグインマーケットプレイスの削除キーを `r` から `d` に変更しました（他の削除と一致）。`r` はリトライと衝突していました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`/clear` 後に VS Code 拡張、JetBrains プラグイン、Agent SDK で `.mcp.json`、プラグイン、および claude.ai コネクタに設定された MCP サーバーが黙って消えてしまう問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "同時に資格情報が書き込まれた際に新しくローテーションされた OAuth トークンが上書きされ、再ログインを強制される稀なログインループを修正しました",
+          "description": ""
+        },
+        {
+          "title": "複数のサーバーが同時にリフレッシュしたときに MCP OAuth リフレッシュトークンが失われる問題を修正しました。複数のリモート MCP サーバーを使用するユーザーは、もはや毎日再認証する必要がなくなります",
+          "description": ""
+        },
+        {
+          "title": "ツール呼び出し後に拡張思考がリダクションされた思考ブロックを出力した際に発生していた API エラー (400) を修正しました",
+          "description": ""
+        },
+        {
+          "title": "プロジェクトパスにアンダースコアが含まれる場合に `--resume` / `--continue` がセッションを検出できない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "一致する `Edit(...)` 許可ルールがあるにも関わらず、プランモードでファイル書き込みがブロックされない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "キャッシュクリーンアップで実行中セッションが使用中のバージョンが削除されたときに、プラグインの `Stop`/`UserPromptSubmit` フックが失敗する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "bash コマンド出力および markdown コードブロックで色が誤った位置に表示される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "ReasonML の差分で単語差分境界に壊れた「undefined」テキストアーティファクトが表示される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "worktree 削除後に、未コミットファイルに関する警告が誤ったディレクトリを指す worktree 終了ダイアログの問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "小規模な非 git ディレクトリでセッション中に作成されたファイルが `@` ファイルピッカーで一致しない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "100 件以上のエントリがあるディレクトリで `@` メンションファイルピッカーがファイルを見つけられない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "出力が切り詰められた失敗したツール呼び出しが、フルスクリーンモードでクリックして展開できない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "永続的な拡張キー モードを持つ端末で Ctrl+G で外部エディタを開いた後、Backspace と Ctrl+Backspace が入れ替わる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/usage` の週次リセットが日時ではなくカレンダー日付を表示するように修正しました",
+          "description": ""
+        },
+        {
+          "title": "CJK 端末でウェルカムバナーの省略記号が列オーバーフローを起こす問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "セッション履歴に入力フィールドが不正なツール呼び出しがある場合に `/insights` がクラッシュする問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "ツールの折りたたみ可能性分類がセッション途中で変わったときにレンダラーがクラッシュする問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`plugin.json` の `skills` エントリがプラグインのデフォルト `skills/` ディレクトリを隠す問題を修正し、ファイルパスを列挙するとエラーが表示され、サイレント失敗しなくなりました",
+          "description": ""
+        },
+        {
+          "title": "IDE のシェル統合ロックファイルが `CLAUDE_CONFIG_DIR` を尊重しない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "ストリーミング中にコピーされた端末出力の末尾空白を修正しました",
+          "description": ""
+        },
+        {
+          "title": "プラグインのアンインストールや有効化/無効化がスラッグの大文字小文字を区別しないように修正しました",
+          "description": ""
+        },
+        {
+          "title": "サロゲートペア文字列でツールエラーの切り詰めマーカーが負のカウントを示す問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_ENV_FILE` の環境変数が `/resume` または `/clear` 後に古くなる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/branch` に貼り付けた複数行の名前がある場合に、複数行のセッションタイトルが保存される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "列境界で折り返されたテキストの2行目に余分な先頭空白が入る問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/install-github-app`、`/desktop`、`/resume`、`/web-setup` で Esc がダイアログを閉じない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/doctor` の MCP スキーマエラーで欠落フィールド名やソースファイルパスが表示されない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Bash の権限プロンプトがユーザー向けの説明ではなく内部パーサ診断を表示する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "スペースを含むプラグインスラッシュコマンド（例: `/myplugin review`）が名前空間形式に解決されない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`AskUserQuestion` が配列で提供されたマルチセレクト回答を破棄する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/clear <name>` がクリアされたセッションにラベルを付けず、`/resume` で認識できない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`CronList` の出力で限定子と予定プロンプトが欠落している問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "フルスクリーンモードで「Jump to bottom」オーバーレイが CJK 文字に色アーティファクトを残す問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "幅の広い markdown テーブルがストリーミング中に端末スクロールバックに古い枠付きレンダリングを残す問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "長いプロンプトに貼り付けテキストプレースホルダーがあり自動切り詰めされた際に、貼り付けテキストがサイレントに削除される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/release-notes` が変更ログのリフレッシュ失敗後に古いバージョンで止まる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/mcp` のサーバーリストが端末に収まらない数のサーバーがある場合にスクロールしない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "初回スラッシュコマンドの後に、入力途中のスラッシュコマンド自動補完が機能しない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "最下部へスクロールしたときに `autoScrollEnabled: false` でも自動追従が再度有効になる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "空入力時に Enter キーでプロンプト提案が自動送信され、Tab や矢印で受け入れる必要があるはずが、という問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`keybindings.json` で再割り当てされたキーがキーボードショートカットヒントに反映されない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/settings` で言語変更を確定後、Esc キーで元に戻ってしまう問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/terminal-setup` がオートコンプリートで正確な名前一致時のみ表示され、部分プレフィックスでも表示されない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`AskUserQuestion` ダイアログで「Chat about this」を選択すると質問文が消える問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "サーバーがコンテンツブロックを返すと MCP ツール結果が見えなくなる問題を修正しました",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:20:11.873Z"
+}

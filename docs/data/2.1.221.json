@@ -1,0 +1,198 @@
+{
+  "version": "2.1.221",
+  "tagName": "v2.1.221",
+  "publishedAt": "2026-08-04T00:14:23Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.221",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 3,
+    "改善": 5,
+    "その他": 13,
+    "バグ修正": 17
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "承認プロンプトから重複通知を削除",
+          "description": "承認プロンプトに表示されていた \"Permission mode changed while the auto-mode classifier call was queued\" の重複通知を削除しました。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`mode: \"mask\"` の追加（Linux/WSL のサンドボックス認証ファイル）",
+          "description": "Linux と WSL でサンドボックス認証ファイルに `mode: \"mask\"` を追加しました。サンドボックス化されたコマンドはファイル全体または `extract` 正規表現で取得した部分だけのコピーを読み取り、サンドボックスプロキシが外部に出す際に実際の値に置き換えます。macOS ではファイルマスキングが `deny` にフォールバックします。"
+        },
+        {
+          "title": "`claude plugin validate` に警告を追加",
+          "description": "`claude plugin validate` 実行時に、マーケットプレイスまたはプラグイン名が Claude Desktop の管理されたマーケットプレイス同期で拒否される可能性がある場合、警告を表示します。"
+        },
+        {
+          "title": "`prompt-audit` サブコマンドを `claude-api` に追加",
+          "description": "`claude-api` スキルに `prompt-audit` サブコマンドを導入し、旧モデル向けに書かれたプロンプトやツール記述のパターンを監査できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Google Vertex AI ツール検索を改善",
+          "description": "Google Vertex AI 上のツール検索を改善し、Claude 4.5-generation 以降のモデルで再度有効化しました。"
+        },
+        {
+          "title": "Auto mode のパーミッションチェックを最適化",
+          "description": "並列ツール呼び出しのパーミッションチェックがキャッシュ効率化され、チェックが保留中にモードを切り替えると、古い結果を適用せず確実にプロンプトが表示されるようになりました。"
+        },
+        {
+          "title": "Stats パネルでキャッシュトークンを集計",
+          "description": "Stats パネルがトークン総数にキャッシュトークンを含め、入力、出力、キャッシュ読み取り、キャッシュ書き込みごとに内訳を表示するよう改善しました。"
+        },
+        {
+          "title": "`/ultrareview` のエラーメッセージを改善",
+          "description": "リポジトリがベースと履歴を共有していない場合、ブランチがないチェックアウトは即座に拒否され、作成方法のアドバイスが提供されます。また、拒否時のヒントから、既に完全なクローンに対して `git fetch --unshallow` を提案しないようにしました。"
+        },
+        {
+          "title": "Windows 起動時のプロセス作成時間取得方法を改善",
+          "description": "Windows の起動時にプロセス作成時間を取得する際、PowerShell の起動ではなくネイティブな kernel32 呼び出しを使用するように変更し、`powershell.exe` をブロックするエンドポイントセキュリティツールによるプロンプトが表示されなくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "VSCode に Focus view を追加",
+          "description": "チャットメニューにトグルを追加し、ツールの活動を各ターンごとの展開可能な要約とリアルタイムの実行ツールインジケータで隠す Focus view を実装しました。`Ctrl+Alt+F` または「Claude Code: Toggle Focus view」コマンドで切り替え可能です。"
+        },
+        {
+          "title": "Auto mode のパーミッションチェックでプロンプトキャッシュコスト削減",
+          "description": "決定間でキャッシュされた会話プレフィックスを再利用することで、Auto mode のパーミッションチェックにかかるプロンプトキャッシュコストを削減しました。"
+        },
+        {
+          "title": "バックグラウンドセッションの動作を変更",
+          "description": "バックグラウンドセッションは作業を保持するためにコミットとプッシュを行い、タスクが要求する場合のみドラフト PR を開き、CLAUDE.md の git 手順に従い、最後に作業の所在を報告するよう変更しました。"
+        },
+        {
+          "title": "`/plugin install` がカタログをリフレッシュして再試行",
+          "description": "`/plugin install` が古いマーケットプレイスカタログを更新し、再試行した上でプラグインが見つからない旨を報告するように変更しました。"
+        },
+        {
+          "title": "`/plugin` でインストールしたプラグインが即時有効化",
+          "description": "`/plugin` からインストールされたプラグインは安全な場合に即座に有効化され、従来のように常に `/reload-plugins` を必要としなくなりました。"
+        },
+        {
+          "title": "プラグインが `\".\"` を `skills` パスとして受け入れ",
+          "description": "プラグインが `\".\"` を `skills` のパスとして認識できるようになり、ルートレベルの `SKILL.md` 検証エラーではプラグインルートの使用を提案します。"
+        },
+        {
+          "title": "`/status` にセッション種別を表示",
+          "description": "`/status` がセッションの種類を示すようになり、`interactive`、`attached`、`unattended` のいずれかが表示されます。"
+        },
+        {
+          "title": "絵文字オートコンプリートが代替ショートコードを受け入れ",
+          "description": "絵文字オートコンプリートが `:thumbsup:`、`:thumbsdown:`、`:love:` などの一般的な代替ショートコードを受け付けるようになりました。"
+        },
+        {
+          "title": "`/fork` でフォークしたセッションが独自の作業ツリーを作成",
+          "description": "`/fork` によってフォークされたセッションは、元のセッションのチェックアウトを使用せず、独自の作業ツリーを作成するよう変更しました。"
+        },
+        {
+          "title": "Chrome の Claude が不要になったタブを自動閉鎖",
+          "description": "Chrome 上の Claude が不要になったブラウザタブを自動的に閉じるように変更しました。"
+        },
+        {
+          "title": "Fast mode がクレジット切れ時にストリーム上で報告",
+          "description": "Fast mode でセッション途中に使用クレジットが枯渇した場合、サイレントに失敗するのではなく、ストリーム上でその旨を報告するよう変更しました。"
+        },
+        {
+          "title": "Monitor が出力なしで終了した旨を明示",
+          "description": "出力を生成せずに終了した Monitor は、従来の「stream ended」ではなく、何も出力せずに終了したことを明示的に示すようになりました。"
+        },
+        {
+          "title": "Gateway の `model` フィールド検証を変更",
+          "description": "`model` フィールドに文字列以外の値が指定された場合、転送せずに 400 エラーで拒否するよう Gateway の検証ロジックを変更しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Bash ツールのパーミッションチェック回避バグを修正",
+          "description": "zsh が `[[ ]]` 正規表現条件で隠しコマンドを実行できていた Bash ツールのパーミッションチェック回避を修正し、影響を受けたコマンドは現在パーミッションを求めるプロンプトが表示されます。"
+        },
+        {
+          "title": "PowerShell のパーミッションチェックで引用符含むパスが誤処理されるバグを修正",
+          "description": "Windows で引用符を含むパスが PowerShell のパーミッションチェックで誤って処理されていた問題を修正し、該当パスは承認プロンプトが表示されます。"
+        },
+        {
+          "title": "Thinking トグルと MCP サーバー無効化の不具合を修正",
+          "description": "セッション開始時に Thinking がオフのままだとトグルが効かない問題と、MCP サーバーを接続途中で無効化した際に黙って元に戻っていた問題を修正しました。"
+        },
+        {
+          "title": "`--mcp-config` の MCP サーバーが印刷モードで最初のターン前に接続されないバグを修正",
+          "description": "印刷モード (`-p`) で最初のターン前に `--mcp-config` で指定した MCP サーバーが接続されず、モデルがツール呼び出しを文字列として出力していた問題を修正しました。"
+        },
+        {
+          "title": "@ メンションされたファイルが Esc でプロンプト撤回後に消えるバグを修正",
+          "description": "Esc キーでプロンプトを撤回し再送信した際、@ メンションされたファイルがサイレントに除外されていた問題を修正しました。"
+        },
+        {
+          "title": "SDK MCP ツール名が `constructor` など組み込みプロパティと同名の場合のクラッシュを修正",
+          "description": "`constructor` など組み込みオブジェクトプロパティと同名の SDK MCP ツール用 API リクエスト作成時に発生していたクラッシュを修正しました。"
+        },
+        {
+          "title": "Thinking 無効時の WebSearch が effort `xhigh`/`max` で 400 エラーになるバグを修正",
+          "description": "Thinking が無効な状態で effort を `xhigh` または `max` に設定した際、WebSearch が 400 エラーで失敗していた問題を修正しました。"
+        },
+        {
+          "title": "サンドボックス経由の大容量アップロードで TLS エラーが出るバグを修正",
+          "description": "サンドボックスプロキシ経由の大容量アップロードが TLS エラーで失敗していた問題を修正しました。"
+        },
+        {
+          "title": "Team/Enterprise の支出上限メッセージが組織月間上限を誤って指摘していたバグを修正",
+          "description": "Team および Enterprise の支出上限メッセージが、ユーザー個人の上限ではなく組織の月間上限を誤って表示していた問題を修正しました。"
+        },
+        {
+          "title": "Windows のデスクトップ管理セッションで `HOME` 環境変数が設定されている場合の Bedrock 認証バグを修正",
+          "description": "AWS SSO の名前付きプロファイルを使用した Bedrock 認証が、`HOME` 環境変数が余計に設定された Windows のデスクトップ管理セッションで失敗していた問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_RESUME_INTERRUPTED_TURN=0` が無効にならなかったバグを修正",
+          "description": "`CLAUDE_CODE_RESUME_INTERRUPTED_TURN=0` が中断ターンの自動再開を無効にせず、偽値が無視されていた問題を修正し、現在は偽値が正しく適用されます。"
+        },
+        {
+          "title": "スリープ復帰時の MCP コネクタ・WIF OAuth トークンリフレッシュ競合バグを修正",
+          "description": "スリープから復帰した際に、2つの Claude Code プロセスが同時に同一の MCP コネクタまたは WIF OAuth トークンをリフレッシュし、再認証を強制するまれな競合状態を修正しました。"
+        },
+        {
+          "title": "セッション名変更が CLI に反映されないバグを修正",
+          "description": "Claude Code Desktop や claude.ai からセッション名を変更しても CLI のセッション名が更新されなかった問題を修正し、すべてのリネーム時にセッション名がサニタイズされるようにしました。"
+        },
+        {
+          "title": "端末専用ビルトイン名のプラグイン/組織スキルが非対話セッションで呼び出せないバグを修正",
+          "description": "`/help` や `/feedback` のような端末専用ビルトインと同名のプラグイン・組織提供スキルが、非対話セッションで呼び出せない問題を修正しました。"
+        },
+        {
+          "title": "プラグイン再ロード後に「Plugins changed」通知が残るバグを修正",
+          "description": "プラグインを再読み込みした後も「Plugins changed」通知が消えずに残っていた問題を修正し、正しくクリアされるようにしました。"
+        },
+        {
+          "title": "Vim モードでヤンクレジスタがリセットされるバグを修正",
+          "description": "Vim モードにおいて、ダイアログ、履歴検索、トランスクリプトビューでヤンクレジスタがサイレントにクリアされていた問題を修正し、レジスタが保持されるようにしました。"
+        },
+        {
+          "title": "Vim モードで空プロンプトまでUndoした際の確認動作を修正",
+          "description": "Vim モードで空のプロンプトまで Undo すると、エージェントビューに戻る前に「← をもう一度押す」確認が適切に表示されるように修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:40:39.337Z"
+}

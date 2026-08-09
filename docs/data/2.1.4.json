@@ -1,0 +1,35 @@
+{
+  "version": "2.1.4",
+  "tagName": "v2.1.4",
+  "publishedAt": "2026-01-11T00:28:28Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.4",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` 環境変数を追加",
+          "description": "背景タスク機能（auto-backgrounding と Ctrl+B ショートカットを含む）すべてを無効にするための `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` 環境変数を追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`Help improve Claude` 設定取得のバグ修正",
+          "description": "`Help improve Claude` 設定の取得時に、OAuth が古くなっている場合にリフレッシュし、失敗した場合に再試行するよう修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:56:39.431Z"
+}

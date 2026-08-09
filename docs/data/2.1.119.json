@@ -1,0 +1,236 @@
+{
+  "version": "2.1.119",
+  "tagName": "v2.1.119",
+  "publishedAt": "2026-04-23T23:24:19Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.119",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 0,
+    "その他": 18,
+    "バグ修正": 31
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`prUrlTemplate` 設定の追加",
+          "description": "フッターの PR バッジを github.com ではなく、カスタムコードレビュー URL にポイントするための `prUrlTemplate` 設定を追加しました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_HIDE_CWD` 環境変数の追加",
+          "description": "起動ロゴに作業ディレクトリを表示しないようにする `CLAUDE_CODE_HIDE_CWD` 環境変数を追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/config` 設定の永続化",
+          "description": "`/config` の設定（テーマ、エディタモード、verbose など）が `~/.claude/settings.json` に保存され、プロジェクト／ローカル／ポリシーのオーバーライド優先順位に参加するようになりました。"
+        },
+        {
+          "title": "`--from-pr` のURL対応拡張",
+          "description": "`--from-pr` が GitLab のマージリクエスト、Bitbucket のプルリクエスト、GitHub Enterprise の PR URL を受け取れるようになりました。"
+        },
+        {
+          "title": "`--print` モードでツール制限を適用",
+          "description": "`--print` モードがエージェントの frontmatter にある `tools:` と `disallowedTools:` を尊重し、インタラクティブモードと同様の動作を行います。"
+        },
+        {
+          "title": "`--agent` で `permissionMode` を尊重",
+          "description": "`--agent <name>` が組み込みエージェントの定義にある `permissionMode` を適用するようになりました。"
+        },
+        {
+          "title": "PowerShell ツールコマンドの自動承認",
+          "description": "PowerShell のツールコマンドが permission mode で自動承認され、Bash と同様の挙動になります。"
+        },
+        {
+          "title": "`PostToolUse` フックに実行時間追加",
+          "description": "`PostToolUse` と `PostToolUseFailure` フックの入力に `duration_ms`（ツール実行時間、権限プロンプトや PreToolUse フックを除く）が含まれるようになりました。"
+        },
+        {
+          "title": "サブエージェントと SDK MCP サーバーの並列接続",
+          "description": "サブエージェントおよび SDK の MCP サーバー再構成時に、サーバーへの接続がシリアルではなく並列で行われるようになりました。"
+        },
+        {
+          "title": "プラグインの自動バージョン更新",
+          "description": "別プラグインのバージョン制約で固定されたプラグインが、最高の満たす git タグに自動的に更新されます。"
+        },
+        {
+          "title": "Vim モードで INSERT の Esc 挙動変更",
+          "description": "Vim モードの INSERT 時に Esc を押しても、キューに入ったメッセージが入力に戻らず、再度 Esc を押すと中断できます。"
+        },
+        {
+          "title": "スラッシュコマンド候補のハイライト",
+          "description": "スラッシュコマンドの候補が、クエリにマッチした文字をハイライト表示するようになりました。"
+        },
+        {
+          "title": "スラッシュコマンドピッカーの改行",
+          "description": "長い説明文があるスラッシュコマンドピッカーで、説明が切り捨てられる代わりに2 行目へ折り返されます。"
+        },
+        {
+          "title": "`owner/repo#N` リンクのホスト修正",
+          "description": "出力中の `owner/repo#N` 省略リンクが常に github.com を指すのではなく、git remote のホストを使用するようになりました。"
+        },
+        {
+          "title": "`blockedMarketplaces` のパターン適用修正",
+          "description": "セキュリティ機能で `blockedMarketplaces` が `hostPattern` と `pathPattern` のエントリを正しく強制するようになりました。"
+        },
+        {
+          "title": "OpenTelemetry イベントに ID とサイズ追加",
+          "description": "`tool_result` と `tool_decision` イベントに `tool_use_id` が追加され、`tool_result` には `tool_input_size_bytes` も含まれるようになりました。"
+        },
+        {
+          "title": "ステータスラインの stdin JSON 拡張",
+          "description": "ステータスラインの stdin JSON に `effort.level` と `thinking.enabled` が含まれるようになりました。"
+        },
+        {
+          "title": "Vertex AI のツール検索デフォルト無効化",
+          "description": "Vertex AI でツール検索がデフォルトで無効になり、未サポートのベータヘッダーエラーを回避します。`ENABLE_TOOL_SEARCH` で有効化できます。"
+        },
+        {
+          "title": "Windows の誤警告削除",
+          "description": "Windows での MCP 設定で、誤って表示されていた \"Windows requires 'cmd /c' wrapper\" 警告が削除されました。"
+        },
+        {
+          "title": "[VSCode] macOS マイク権限時の音声入力修正",
+          "description": "VSCode で macOS のマイク許可プロンプトが表示中に、音声ディクテーションの最初の録音が何も出力しない問題を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "CRLF ペースト時の余分な空行修正",
+          "description": "Windows クリップボードや Xcode コンソールから CRLF 内容を貼り付けた際、各行の間に余計な空白行が挿入される問題を修正しました。"
+        },
+        {
+          "title": "マルチライン貼り付けで改行失われる問題修正",
+          "description": "kitty キーボードプロトコルシーケンスを使用した端末で、ブラケット貼り付け中に改行が失われる問題を修正しました。"
+        },
+        {
+          "title": "権限拒否時の Glob/Grep ツール復活",
+          "description": "ネイティブ macOS/Linux ビルドで Bash ツールが権限で拒否された場合に、Glob と Grep ツールが消える問題を修正しました。"
+        },
+        {
+          "title": "フルスクリーンでのスクロール復元バグ修正",
+          "description": "フルスクリーンモードで上方向にスクロールした後、ツール完了時に自動で底部に戻っていた問題を修正しました。"
+        },
+        {
+          "title": "MCP OAuth で非 JSON 応答時のエラー修正",
+          "description": "OAuth ディスカバリ要求に対してサーバーが JSON でない本文を返した際に、\"Invalid OAuth error response\" で接続が失敗する問題を修正しました。"
+        },
+        {
+          "title": "画像添付メッセージの Rewind 表示修正",
+          "description": "画像添付があるメッセージで Rewind オーバーレイが \"(no prompt)\" と表示していた問題を修正しました。"
+        },
+        {
+          "title": "自動モードがプランモードを上書きする問題修正",
+          "description": "矛盾する \"Execute immediately\" 指示により、自動モードがプランモードを上書きしていた問題を修正しました。"
+        },
+        {
+          "title": "`PostToolUse` 非同期フックの空エントリ修正",
+          "description": "応答ペイロードを出さない非同期 `PostToolUse` フックが、セッションの文字起こしに空のエントリを書き込んでいた問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントタスク通知のスピナー残留修正",
+          "description": "キュー内で孤立したサブエージェントタスク通知があると、スピナーが消えない問題を修正しました。"
+        },
+        {
+          "title": "`@` ファイルタブ補完のプロンプト置換バグ修正",
+          "description": "絶対パスを含むスラッシュコマンド内で `@` ファイルタブ補完を使用すると、プロンプト全体が置き換えられる問題を修正しました。"
+        },
+        {
+          "title": "macOS Terminal 起動時の余計な `p` 修正",
+          "description": "Docker または SSH 経由で macOS Terminal.app を起動した際、プロンプト先頭に不要な `p` 文字が表示される問題を修正しました。"
+        },
+        {
+          "title": "MCP ヘッダーの環境変数プレースホルダー置換修正",
+          "description": "HTTP/SSE/WebSocket MCP サーバーの `headers` 内の `${ENV_VAR}` がリクエスト前に置換されていなかった問題を修正しました。"
+        },
+        {
+          "title": "`--client-secret` の送信漏れ修正",
+          "description": "`--client-secret` で保存された MCP OAuth クライアントシークレットが、`client_secret_post` を要求するサーバーへのトークン交換時に送信されていなかった問題を修正しました。"
+        },
+        {
+          "title": "`/skills` の Enter キー動作修正",
+          "description": "`/skills` で Enter キーを押すとダイアログが閉じてしまい、`/<skill-name>` がプロンプトに事前入力されなかった問題を修正しました。"
+        },
+        {
+          "title": "`/agents` 詳細表示のツール誤表示修正",
+          "description": "サブエージェントで利用できない組み込みツールが `/agents` の詳細ビューで \"Unrecognized\" と誤って表示されていた問題を修正しました。"
+        },
+        {
+          "title": "Windows でのプラグイン MCP サーバー起動不具合修正",
+          "description": "プラグインキャッシュが不完全な場合、Windows でプラグインからの MCP サーバーが起動しない問題を修正しました。"
+        },
+        {
+          "title": "`/export` のモデル表示修正",
+          "description": "`/export` が会話で実際に使われたモデルではなく、現在のデフォルトモデルを表示していた問題を修正しました。"
+        },
+        {
+          "title": "詳細出力設定の永続化不具合修正",
+          "description": "再起動後に verbose 出力設定が保持されない問題を修正しました。"
+        },
+        {
+          "title": "`/usage` プログレスバーとラベルの重なり修正",
+          "description": "`/usage` のプログレスバーが \"Resets …\" ラベルと重なる問題を修正しました。"
+        },
+        {
+          "title": "プラグイン MCP サーバーのオプショナル設定参照バグ修正",
+          "description": "`${user_config.*}` が空白のオプションフィールドを参照した際に、プラグイン MCP サーバーが失敗していた問題を修正しました。"
+        },
+        {
+          "title": "リスト項目の末尾番号改行バグ修正",
+          "description": "文末の数字を含むリスト項目で、番号が別行に折り返されていた問題を修正しました。"
+        },
+        {
+          "title": "`/plan` 系コマンドが既存プランを無視する問題修正",
+          "description": "プランモードに入る際、`/plan` と `/plan open` が既存のプランに対して動作しなかった問題を修正しました。"
+        },
+        {
+          "title": "自動コンパクション前のスキル再実行バグ修正",
+          "description": "自動コンパクション前に呼び出されたスキルが、次のユーザーメッセージに対して再度実行されていた問題を修正しました。"
+        },
+        {
+          "title": "`/reload-plugins` と `/doctor` の無効プラグインエラー誤報修正",
+          "description": "無効化されたプラグインに対して、`/reload-plugins` と `/doctor` がロードエラーを誤って報告していた問題を修正しました。"
+        },
+        {
+          "title": "`isolation: \"worktree\"` エージェントツールの作業ツリー再利用修正",
+          "description": "`isolation: \"worktree\"` を持つエージェントツールが、前回セッションの古い作業ツリーを再利用していた問題を修正しました。"
+        },
+        {
+          "title": "`/status` の無効 MCP サーバー表示修正",
+          "description": "無効化された MCP サーバーが `/status` に \"failed\" と表示されていた問題を修正しました。"
+        },
+        {
+          "title": "`TaskList` のタスク順序修正",
+          "description": "`TaskList` がタスクを ID でソートせず、ファイルシステムの任意順で返していた問題を修正しました。"
+        },
+        {
+          "title": "誤った GitHub API レートリミットヒントの除去",
+          "description": "`gh` の出力に \"rate limit\" を含む PR タイトルがあると、誤って \"GitHub API rate limit exceeded\" ヒントが表示されていた問題を修正しました。"
+        },
+        {
+          "title": "SDK/bridge `read_file` のサイズ上限適用修正",
+          "description": "SDK/bridge の `read_file` が、サイズが増大するファイルに対して正しく上限を適用していなかった問題を修正しました。"
+        },
+        {
+          "title": "git worktree 使用時の PR リンク付け修正",
+          "description": "git worktree 内で作業中に PR がセッションにリンクされていなかった問題を修正しました。"
+        },
+        {
+          "title": "`/doctor` の MCP サーバー上書き警告修正",
+          "description": "`/doctor` が、優先度の高いスコープによって上書きされた MCP サーバーエントリについて警告を出していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:16:30.892Z"
+}

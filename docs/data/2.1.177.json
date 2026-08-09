@@ -1,0 +1,16 @@
+{
+  "version": "2.1.177",
+  "tagName": "v2.1.177",
+  "publishedAt": "2026-06-13T01:25:15Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.177",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [],
+  "translatedAt": "2026-08-09T13:30:09.859Z"
+}

@@ -1,0 +1,26 @@
+{
+  "version": "2.1.107",
+  "tagName": "v2.1.107",
+  "publishedAt": "2026-04-14T06:11:20Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.107",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 1,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "考慮中ヒントの早期表示",
+          "description": "長時間の操作中に、思考ヒントを従来より早く表示するようになりました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:13:26.340Z"
+}

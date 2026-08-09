@@ -1,0 +1,130 @@
+{
+  "version": "2.1.2",
+  "tagName": "v2.1.2",
+  "publishedAt": "2026-01-09T00:04:33Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.2",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 6,
+    "改善": 3,
+    "その他": 5,
+    "バグ修正": 7
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "Windows 管理設定パスの非推奨化",
+          "description": "Windows の管理設定ファイルパス `C:\\ProgramData\\ClaudeCode\\managed-settings.json` が非推奨となり、管理者は `C:\\Program Files\\ClaudeCode\\managed-settings.json` へ移行する必要があります。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "ターミナルへの画像ドラッグ時にソースパスメタデータを追加",
+          "description": "画像をターミナルにドラッグすると、その画像の元ファイルパスがメタデータとして付与され、Claude が画像の出所を把握できるようになりました。"
+        },
+        {
+          "title": "OSC 8 対応ターミナルでファイルパスをクリック可能に",
+          "description": "iTerm など OSC 8 をサポートするターミナル上のツール出力に、ファイルパスがクリック可能なハイパーリンクとして表示されます。"
+        },
+        {
+          "title": "Windows Package Manager (winget) のインストールサポート",
+          "description": "Windows Package Manager (`winget`) を用いたインストールが可能になり、自動検出と更新手順が提供されます。"
+        },
+        {
+          "title": "Plan モードで Shift+Tab で「自動受諾」選択",
+          "description": "Plan モードに Shift+Tab キーボードショートカットが追加され、\\\"auto-accept edits\\\" オプションを素早く選択できます。"
+        },
+        {
+          "title": "`FORCE_AUTOUPDATE_PLUGINS` 環境変数の追加",
+          "description": "`FORCE_AUTOUPDATE_PLUGINS` 環境変数を設定すると、メインの自動アップデートが無効化されている場合でもプラグインの自動更新が有効になります。"
+        },
+        {
+          "title": "`SessionStart` フックに `agent_type` を追加",
+          "description": "`SessionStart` フックの入力に `agent_type` が含まれるようになり、`--agent` オプションが指定された場合にその値が設定されます。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "macOS の Option-as-Meta ヒントを改善",
+          "description": "macOS で Option-as-Meta のヒントが、iTerm2、Kitty、WezTerm などのネイティブ CSIu ターミナル向けにターミナル固有の手順を表示するよう改善されました。"
+        },
+        {
+          "title": "SSH 経由の画像貼り付けエラーメッセージを改善",
+          "description": "SSH 経由で画像を貼り付けた際のエラーメッセージが、クリップボードショートカットのヒントが不適切であることを指摘し、代わりに `scp` の使用を提案する内容に改善されました。"
+        },
+        {
+          "title": "権限説明を改良し日常的な開発フローをリスク対象外に",
+          "description": "権限説明が、git fetch/rebase、npm install、テスト、プルリクエストなどの一般的な開発作業を中リスクとしてフラグしないように改善されました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "大きな Bash コマンド出力をファイル保存へ変更",
+          "description": "サイズが大きい Bash コマンドの出力は切り詰められる代わりにディスクに保存され、Claude が完全な内容を読むことが可能になりました。"
+        },
+        {
+          "title": "大きなツール出力をファイル保存へ変更",
+          "description": "大容量のツール出力も切り詰められずにディスクに永続化され、ファイル参照を通じて全出力にアクセスできます。"
+        },
+        {
+          "title": "`/plugins` インストールタブでプラグインと MCP を統合",
+          "description": "`/plugins` のインストールタブが、スコープベースのグルーピングでプラグインと MCP を統一表示するよう変更されました。"
+        },
+        {
+          "title": "[SDK] 最低 zod ピア依存を ^4.0.0 に変更",
+          "description": "[SDK] の最低ピア依存である `zod` のバージョンが ^4.0.0 に更新されました。"
+        },
+        {
+          "title": "[VSCode] 手動コンパクト後に使用状況表示が更新されなかった問題を修正",
+          "description": "[VSCode] で手動コンパクトを行った後に使用状況の表示が更新されない不具合が修正されました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Bash コマンド処理のコマンドインジェクション脆弱性を修正",
+          "description": "不正な入力により任意のコマンドが実行され得た Bash コマンド処理のコマンドインジェクション脆弱性が修正されました。"
+        },
+        {
+          "title": "tree-sitter のメモリリークを修正",
+          "description": "tree-sitter のパースツリーが解放されず、長時間セッションで WASM メモリが無制限に増大するメモリリークが修正されました。"
+        },
+        {
+          "title": "`@include` 指令でバイナリファイルがメモリに誤って取り込まれる問題を修正",
+          "description": "CLAUDE.md ファイルで `@include` ディレクティブを使用した際、画像や PDF などのバイナリファイルが誤ってメモリに含まれる問題が修正されました。"
+        },
+        {
+          "title": "アップデート時のインストール競合誤検知を修正",
+          "description": "アップデート実行時に別のインストールが進行中であると誤って判定される不具合が修正されました。"
+        },
+        {
+          "title": "監視ディレクトリ内のソケットファイルが原因でクラッシュする問題を修正",
+          "description": "監視対象ディレクトリにソケットファイルが存在した際に発生するクラッシュ（EOPNOTSUPP エラーに対する防御層）を修正しました。"
+        },
+        {
+          "title": "`/tasks` コマンド使用時のリモートセッション URL とテレポート不具合を修正",
+          "description": "`/tasks` コマンド使用時にリモートセッションの URL およびテレポート機能が正しく動作しない問題が修正されました。"
+        },
+        {
+          "title": "MCP ツール名が分析イベントで漏洩する問題を修正",
+          "description": "ユーザー固有のサーバー設定をサニタイズすることで、MCP ツール名が分析イベントに露出する問題が修正されました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T12:56:24.012Z"
+}

@@ -1,0 +1,120 @@
+{
+  "version": "2.1.163",
+  "tagName": "v2.1.163",
+  "publishedAt": "2026-06-04T21:52:51Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.163",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 0,
+    "その他": 7,
+    "バグ修正": 12
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "バージョン範囲設定の追加",
+          "description": "`requiredMinimumVersion` と `requiredMaximumVersion` の管理設定を追加しました。Claude Code はバージョンが許可範囲外の場合に起動を拒否し、承認済みバージョンへの案内を行います。"
+        },
+        {
+          "title": "`/plugin list` コマンドの追加",
+          "description": "インストール済みプラグインを一覧表示する `/plugin list` コマンドを追加し、`--enabled` および `--disabled` フィルタが使用可能です。"
+        },
+        {
+          "title": "`/btw` のコピーショートカット追加",
+          "description": "`/btw` に「c to copy」ショートカットを追加し、原文の Markdown 回答をクリップボードにコピーして、他所へ貼り付けた際に書式が保持されます。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Stop/​SubagentStop フックの拡張",
+          "description": "Stop と SubagentStop フックが `hookSpecificOutput.additionalContext` を返せるようになり、Claude にフィードバックを提供し、フックエラーとしてラベル付けされずにターンを継続できます。"
+        },
+        {
+          "title": "スキルの `$` エスケープ構文追加",
+          "description": "コマンド本文中で数字の前にリテラル `$` を含めるためのエスケープ構文 `\\$` をスキルに追加しました。"
+        },
+        {
+          "title": "MCP サーバーへのセッションID共有",
+          "description": "stdio MCP サーバーは `--resume` 時に hooks/Bash と同じ `CLAUDE_CODE_SESSION_ID` を受け取ります。"
+        },
+        {
+          "title": "バックグラウンドエージェントの自動更新",
+          "description": "バックグラウンドエージェントセッションは新しい Claude Code バージョンへバックグラウンドで更新され、アップデート後にセッションを開いてもコールドリスタート待ちが不要になりました。"
+        },
+        {
+          "title": "/ メニューの説明強化",
+          "description": "組み込みコマンドとスキルの説明が / メニュー内でより明確になりました。"
+        },
+        {
+          "title": "サブスクリプション切替提案の表示位置変更",
+          "description": "サブスクリプション切替の提案がトーストではなく、起動時のアナウンススロットに表示されるようになりました。"
+        },
+        {
+          "title": "`claude agents` のディレクトリ起点起動改善",
+          "description": "`claude agents` がステートグループビューからディスパッチされると、エージェントビューが開かれたディレクトリでセッションが開始されます。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`claude -p` のハングアップ修正",
+          "description": "バックグラウンドコマンドが終了しない場合に、`claude -p` が最終結果取得後に無限ハングする問題を修正しました。標準入力が閉じた後、約5秒でバックグラウンドシェルが停止します。"
+        },
+        {
+          "title": "`claude -p` の APIキーエラーメッセージ修正",
+          "description": "`CI=true` で Anthropic API キーが設定されていない環境（Bedrock/Vertex/Foundry）で、`claude -p` が \\\"ANTHROPIC_API_KEY required\\\" エラーで失敗する問題を修正しました。"
+        },
+        {
+          "title": "Bazel/EDR 環境での bash コマンド失敗修正",
+          "description": "bazel や EDR 保護された Go ワークフローで bash コマンドが失敗する問題を修正しました。`$TMPDIR` がサンドボックス外のコマンドにも `/tmp/claude-{uid}` に上書きされていた回帰（2.1.154）を解消しました。"
+        },
+        {
+          "title": "Windows の Bash コマンドでの EEXIST エラー修正",
+          "description": "セッション環境ディレクトリが読み取り専用属性付与されているか OneDrive 配下にある場合に、Windows で Bash コマンドが \\\"EEXIST: file already exists\\\" エラーで失敗する問題を修正しました。"
+        },
+        {
+          "title": "組織管理設定のセッション適用不具合修正",
+          "description": "新規設定ディレクトリで起動時に管理設定取得が完了した場合、組織管理のパーミッションルールがセッション全体に適用されない問題を修正しました。"
+        },
+        {
+          "title": "`claude agents` のバックグラウンドタスク保持修正",
+          "description": "Claude Code アップデート後に再接続した際、`claude agents` のバックグラウンドセッションが実行中のバックグラウンドタスクを失う問題を修正しました。"
+        },
+        {
+          "title": "エージェントビュー終了時の端末ズレとハング修正",
+          "description": "Esc キーでエージェントビューを終了した際に端末がずれ、数秒間ハングする問題を修正しました。"
+        },
+        {
+          "title": "デスクトップアプリのバックグラウンドタスクチップ停止修正",
+          "description": "デスクトップアプリでバックグラウンドタスクチップの Stop をクリックしても、基になるプロセスが既に終了している場合にチップがクリアされない問題を修正しました。"
+        },
+        {
+          "title": "貼り付け後のキーボード入力不応問題修正",
+          "description": "端末が貼り付け操作の終了マーカーを失った際に、キーボード入力が永続的に反応しなくなる問題を修正しました。"
+        },
+        {
+          "title": "`if: \"Bash(...)\"` フック条件の誤作動修正",
+          "description": "`if: \"Bash(...)\"` フックが `$()` や `$VAR` を含むすべての Bash コマンドで発火していた問題を修正し、パターンはサブシェルやバッククオート内のコマンドにも正しくマッチします。"
+        },
+        {
+          "title": "ホームディレクトリパスの deny ルール適用修正",
+          "description": "`Read(~/Desktop/**)` などの deny ルールが、`$HOME` 経由でパスを参照する Bash コマンドをブロックしなかった問題を修正しました。"
+        },
+        {
+          "title": "パネルダイアログ閉鎖後の余分な行削除",
+          "description": "/mcp や /plugins などのパネルダイアログを閉じた後、トランスクリプトに残る余分な \\\"(no content)\\\" 行を削除しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:28:16.149Z"
+}

@@ -1,0 +1,26 @@
+{
+  "version": "2.1.185",
+  "tagName": "v2.1.185",
+  "publishedAt": "2026-06-20T20:59:19Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.185",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 1,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "ストリームスタルトヒントは、\"Waiting for API response · will retry in …\" と表示され、以前の \"No response from API · Retrying in …\" ではなくなり、トリガーは10秒の無音から20秒の無音に変更されました。",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:31:24.309Z"
+}

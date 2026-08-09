@@ -1,0 +1,60 @@
+{
+  "version": "2.1.38",
+  "tagName": "v2.1.38",
+  "publishedAt": "2026-02-10T00:53:32Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.38",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 1,
+    "その他": 1,
+    "バグ修正": 5
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "ヒアドック区切り文字の解析改善",
+          "description": "ヒアドックのデリミタ解析を改善し、コマンドのスミグリングを防止しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`.claude/skills` ディレクトリへの書き込みをブロック",
+          "description": "サンドボックスモードでは `.claude/skills` ディレクトリへの書き込みがブロックされます。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "VS Code ターミナルのトップスクロールの回帰バグ修正",
+          "description": "2.1.37で導入された VS Code ターミナルのスクロール時にトップへ戻る問題を修正しました。"
+        },
+        {
+          "title": "Tab キーがスラッシュコマンドをキューイングするバグ修正",
+          "description": "Tab キーが自動補完ではなくスラッシュコマンドをキューに入れてしまう問題を修正しました。"
+        },
+        {
+          "title": "環境変数ラッパー使用時の bash パーミッションマッチング修正",
+          "description": "環境変数ラッパーでラップされたコマンドに対する bash のパーミッションマッチングの問題を修正しました。"
+        },
+        {
+          "title": "ツール使用間のテキストが消えるバグ修正",
+          "description": "ストリーミングを使用しない場合に、ツール使用間のテキストが消失する問題を修正しました。"
+        },
+        {
+          "title": "VS Code 拡張機能での再開時の重複セッション修正",
+          "description": "VS Code 拡張機能で再開した際に重複したセッションが生成される問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:00:01.744Z"
+}

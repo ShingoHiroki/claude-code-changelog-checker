@@ -1,0 +1,2568 @@
+{
+  "generatedAt": "2026-08-09T13:41:53.423Z",
+  "latest": "2.1.226",
+  "versions": [
+    {
+      "version": "2.1.226",
+      "tagName": "v2.1.226",
+      "publishedAt": "2026-08-08T02:48:05Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.226",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.225",
+      "tagName": "v2.1.225",
+      "publishedAt": "2026-08-08T01:09:26Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.225",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 1,
+        "その他": 3,
+        "バグ修正": 8
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.224",
+      "tagName": "v2.1.224",
+      "publishedAt": "2026-08-07T04:00:59Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.224",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 7,
+        "改善": 3,
+        "その他": 7,
+        "バグ修正": 13
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.223",
+      "tagName": "v2.1.223",
+      "publishedAt": "2026-08-06T00:52:37Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.223",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 0,
+        "その他": 4,
+        "バグ修正": 12
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.222",
+      "tagName": "v2.1.222",
+      "publishedAt": "2026-08-04T22:39:55Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.222",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 0,
+        "改善": 3,
+        "その他": 1,
+        "バグ修正": 16
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.221",
+      "tagName": "v2.1.221",
+      "publishedAt": "2026-08-04T00:14:23Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.221",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 3,
+        "改善": 5,
+        "その他": 13,
+        "バグ修正": 17
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.220",
+      "tagName": "v2.1.220",
+      "publishedAt": "2026-07-25T01:35:55Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.220",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.219",
+      "tagName": "v2.1.219",
+      "publishedAt": "2026-07-24T17:14:23Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.219",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 9,
+        "改善": 3,
+        "その他": 4,
+        "バグ修正": 10
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.218",
+      "tagName": "v2.1.218",
+      "publishedAt": "2026-07-22T21:24:56Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.218",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 4,
+        "その他": 6,
+        "バグ修正": 23
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.217",
+      "tagName": "v2.1.217",
+      "publishedAt": "2026-07-21T21:35:10Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.217",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 1,
+        "その他": 3,
+        "バグ修正": 13
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.216",
+      "tagName": "v2.1.216",
+      "publishedAt": "2026-07-20T22:14:00Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.216",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 6,
+        "その他": 4,
+        "バグ修正": 29
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.215",
+      "tagName": "v2.1.215",
+      "publishedAt": "2026-07-19T02:56:01Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.215",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.214",
+      "tagName": "v2.1.214",
+      "publishedAt": "2026-07-18T01:20:30Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.214",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 7,
+        "改善": 1,
+        "その他": 4,
+        "バグ修正": 35
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.212",
+      "tagName": "v2.1.212",
+      "publishedAt": "2026-07-17T00:26:27Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.212",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 3,
+        "改善": 4,
+        "その他": 12,
+        "バグ修正": 28
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.211",
+      "tagName": "v2.1.211",
+      "publishedAt": "2026-07-15T23:02:35Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.211",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 5,
+        "その他": 7,
+        "バグ修正": 24
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.210",
+      "tagName": "v2.1.210",
+      "publishedAt": "2026-07-14T23:45:25Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.210",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 3,
+        "その他": 6,
+        "バグ修正": 22
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.209",
+      "tagName": "v2.1.209",
+      "publishedAt": "2026-07-14T06:36:28Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.209",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.208",
+      "tagName": "v2.1.208",
+      "publishedAt": "2026-07-14T01:10:42Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.208",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 1,
+        "その他": 12,
+        "バグ修正": 28
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.207",
+      "tagName": "v2.1.207",
+      "publishedAt": "2026-07-11T00:52:10Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.207",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 2,
+        "その他": 5,
+        "バグ修正": 17
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.206",
+      "tagName": "v2.1.206",
+      "publishedAt": "2026-07-10T01:45:26Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.206",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 2,
+        "その他": 6,
+        "バグ修正": 17
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.205",
+      "tagName": "v2.1.205",
+      "publishedAt": "2026-07-08T21:22:06Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.205",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 3,
+        "その他": 4,
+        "バグ修正": 15
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.204",
+      "tagName": "v2.1.204",
+      "publishedAt": "2026-07-08T00:27:50Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.204",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.203",
+      "tagName": "v2.1.203",
+      "publishedAt": "2026-07-07T21:06:12Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.203",
+      "counts": {
+        "破壊的変更": 2,
+        "新機能": 3,
+        "改善": 2,
+        "その他": 4,
+        "バグ修正": 26
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.202",
+      "tagName": "v2.1.202",
+      "publishedAt": "2026-07-06T22:51:16Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.202",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 2,
+        "その他": 1,
+        "バグ修正": 13
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.201",
+      "tagName": "v2.1.201",
+      "publishedAt": "2026-07-03T23:50:35Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.201",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.200",
+      "tagName": "v2.1.200",
+      "publishedAt": "2026-07-03T16:52:33Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.200",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 2,
+        "その他": 2,
+        "バグ修正": 13
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.199",
+      "tagName": "v2.1.199",
+      "publishedAt": "2026-07-02T23:35:18Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.199",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 4,
+        "バグ修正": 20
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.198",
+      "tagName": "v2.1.198",
+      "publishedAt": "2026-07-01T20:45:36Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.198",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 2,
+        "改善": 3,
+        "その他": 9,
+        "バグ修正": 18
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.197",
+      "tagName": "v2.1.197",
+      "publishedAt": "2026-06-30T17:56:37Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.197",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.196",
+      "tagName": "v2.1.196",
+      "publishedAt": "2026-06-29T23:27:32Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.196",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 3,
+        "その他": 5,
+        "バグ修正": 16
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.195",
+      "tagName": "v2.1.195",
+      "publishedAt": "2026-06-26T21:29:42Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.195",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 3,
+        "その他": 0,
+        "バグ修正": 8
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.193",
+      "tagName": "v2.1.193",
+      "publishedAt": "2026-06-25T21:45:57Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.193",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 6,
+        "改善": 4,
+        "その他": 0,
+        "バグ修正": 5
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.191",
+      "tagName": "v2.1.191",
+      "publishedAt": "2026-06-24T21:58:12Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.191",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 5,
+        "その他": 2,
+        "バグ修正": 12
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.190",
+      "tagName": "v2.1.190",
+      "publishedAt": "2026-06-24T15:53:56Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.190",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.187",
+      "tagName": "v2.1.187",
+      "publishedAt": "2026-06-23T21:03:48Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.187",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 3,
+        "その他": 1,
+        "バグ修正": 14
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.186",
+      "tagName": "v2.1.186",
+      "publishedAt": "2026-06-22T20:37:34Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.186",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 5,
+        "改善": 4,
+        "その他": 4,
+        "バグ修正": 20
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.185",
+      "tagName": "v2.1.185",
+      "publishedAt": "2026-06-20T20:59:19Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.185",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.183",
+      "tagName": "v2.1.183",
+      "publishedAt": "2026-06-19T01:20:50Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.183",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 3,
+        "改善": 1,
+        "その他": 1,
+        "バグ修正": 11
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.181",
+      "tagName": "v2.1.181",
+      "publishedAt": "2026-06-17T22:07:41Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.181",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 4,
+        "その他": 3,
+        "バグ修正": 29
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.179",
+      "tagName": "v2.1.179",
+      "publishedAt": "2026-06-16T20:22:14Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.179",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 1,
+        "その他": 0,
+        "バグ修正": 8
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.178",
+      "tagName": "v2.1.178",
+      "publishedAt": "2026-06-15T21:35:55Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.178",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 4,
+        "その他": 5,
+        "バグ修正": 12
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.177",
+      "tagName": "v2.1.177",
+      "publishedAt": "2026-06-13T01:25:15Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.177",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.176",
+      "tagName": "v2.1.176",
+      "publishedAt": "2026-06-12T21:53:27Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.176",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 1,
+        "その他": 2,
+        "バグ修正": 18
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.175",
+      "tagName": "v2.1.175",
+      "publishedAt": "2026-06-12T04:23:51Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.175",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.174",
+      "tagName": "v2.1.174",
+      "publishedAt": "2026-06-12T01:16:36Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.174",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 11
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.173",
+      "tagName": "v2.1.173",
+      "publishedAt": "2026-06-11T05:41:54Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.173",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 2
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.172",
+      "tagName": "v2.1.172",
+      "publishedAt": "2026-06-10T20:44:15Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.172",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 3,
+        "その他": 8,
+        "バグ修正": 17
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.170",
+      "tagName": "v2.1.170",
+      "publishedAt": "2026-06-09T17:23:09Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.170",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.169",
+      "tagName": "v2.1.169",
+      "publishedAt": "2026-06-08T21:57:18Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.169",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 3,
+        "その他": 9,
+        "バグ修正": 14
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.168",
+      "tagName": "v2.1.168",
+      "publishedAt": "2026-06-06T23:41:53Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.168",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.167",
+      "tagName": "v2.1.167",
+      "publishedAt": "2026-06-06T01:33:35Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.167",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.166",
+      "tagName": "v2.1.166",
+      "publishedAt": "2026-06-06T00:55:18Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.166",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 0,
+        "その他": 5,
+        "バグ修正": 14
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.165",
+      "tagName": "v2.1.165",
+      "publishedAt": "2026-06-05T05:45:06Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.165",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.163",
+      "tagName": "v2.1.163",
+      "publishedAt": "2026-06-04T21:52:51Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.163",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 0,
+        "その他": 7,
+        "バグ修正": 12
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.162",
+      "tagName": "v2.1.162",
+      "publishedAt": "2026-06-03T21:31:35Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.162",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 0,
+        "改善": 1,
+        "その他": 11,
+        "バグ修正": 15
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.161",
+      "tagName": "v2.1.161",
+      "publishedAt": "2026-06-02T21:58:22Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.161",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 2,
+        "その他": 6,
+        "バグ修正": 14
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.160",
+      "tagName": "v2.1.160",
+      "publishedAt": "2026-06-02T02:10:25Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.160",
+      "counts": {
+        "破壊的変更": 2,
+        "新機能": 1,
+        "改善": 3,
+        "その他": 3,
+        "バグ修正": 18
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.159",
+      "tagName": "v2.1.159",
+      "publishedAt": "2026-05-31T19:42:49Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.159",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.158",
+      "tagName": "v2.1.158",
+      "publishedAt": "2026-05-30T02:42:16Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.158",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.157",
+      "tagName": "v2.1.157",
+      "publishedAt": "2026-05-29T20:20:38Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.157",
+      "counts": {
+        "破壊的変更": 2,
+        "新機能": 3,
+        "改善": 1,
+        "その他": 12,
+        "バグ修正": 15
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.156",
+      "tagName": "v2.1.156",
+      "publishedAt": "2026-05-29T01:42:23Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.156",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.154",
+      "tagName": "v2.1.154",
+      "publishedAt": "2026-05-28T18:00:55Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.154",
+      "counts": {
+        "破壊的変更": 2,
+        "新機能": 1,
+        "改善": 1,
+        "その他": 19,
+        "バグ修正": 21
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.153",
+      "tagName": "v2.1.153",
+      "publishedAt": "2026-05-28T00:52:08Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.153",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 0,
+        "その他": 12,
+        "バグ修正": 23
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.152",
+      "tagName": "v2.1.152",
+      "publishedAt": "2026-05-27T01:30:59Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.152",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 0,
+        "その他": 13,
+        "バグ修正": 16
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.150",
+      "tagName": "v2.1.150",
+      "publishedAt": "2026-05-23T04:03:51Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.150",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.149",
+      "tagName": "v2.1.149",
+      "publishedAt": "2026-05-22T22:09:29Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.149",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 1,
+        "その他": 4,
+        "バグ修正": 21
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.148",
+      "tagName": "v2.1.148",
+      "publishedAt": "2026-05-22T01:16:52Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.148",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.147",
+      "tagName": "v2.1.147",
+      "publishedAt": "2026-05-21T20:39:22Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.147",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 2,
+        "その他": 3,
+        "バグ修正": 28
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.146",
+      "tagName": "v2.1.146",
+      "publishedAt": "2026-05-21T01:51:52Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.146",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 2,
+        "その他": 2,
+        "バグ修正": 12
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.145",
+      "tagName": "v2.1.145",
+      "publishedAt": "2026-05-19T21:31:07Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.145",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 1,
+        "その他": 5,
+        "バグ修正": 12
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.144",
+      "tagName": "v2.1.144",
+      "publishedAt": "2026-05-19T00:48:51Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.144",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 2,
+        "その他": 16,
+        "バグ修正": 30
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.143",
+      "tagName": "v2.1.143",
+      "publishedAt": "2026-05-15T22:28:22Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.143",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 0,
+        "その他": 12,
+        "バグ修正": 18
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.142",
+      "tagName": "v2.1.142",
+      "publishedAt": "2026-05-14T22:55:10Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.142",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 1,
+        "改善": 2,
+        "その他": 4,
+        "バグ修正": 16
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.141",
+      "tagName": "v2.1.141",
+      "publishedAt": "2026-05-13T23:19:16Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.141",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 2,
+        "その他": 12,
+        "バグ修正": 43
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.140",
+      "tagName": "v2.1.140",
+      "publishedAt": "2026-05-12T21:09:45Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.140",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 2,
+        "その他": 1,
+        "バグ修正": 10
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.139",
+      "tagName": "v2.1.139",
+      "publishedAt": "2026-05-11T18:43:42Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.139",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 7,
+        "改善": 0,
+        "その他": 11,
+        "バグ修正": 32
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.138",
+      "tagName": "v2.1.138",
+      "publishedAt": "2026-05-09T06:33:25Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.138",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.137",
+      "tagName": "v2.1.137",
+      "publishedAt": "2026-05-09T00:11:04Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.137",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.136",
+      "tagName": "v2.1.136",
+      "publishedAt": "2026-05-08T18:39:08Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.136",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 2,
+        "その他": 2,
+        "バグ修正": 46
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.133",
+      "tagName": "v2.1.133",
+      "publishedAt": "2026-05-07T23:49:04Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.133",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 2,
+        "その他": 3,
+        "バグ修正": 9
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.132",
+      "tagName": "v2.1.132",
+      "publishedAt": "2026-05-06T22:08:13Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.132",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 2,
+        "その他": 0,
+        "バグ修正": 23
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.131",
+      "tagName": "v2.1.131",
+      "publishedAt": "2026-05-06T07:47:56Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.131",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 2
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.129",
+      "tagName": "v2.1.129",
+      "publishedAt": "2026-05-06T01:40:18Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.129",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 0,
+        "その他": 8,
+        "バグ修正": 16
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.128",
+      "tagName": "v2.1.128",
+      "publishedAt": "2026-05-04T23:01:47Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.128",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 1,
+        "その他": 11,
+        "バグ修正": 25
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.126",
+      "tagName": "v2.1.126",
+      "publishedAt": "2026-05-01T02:05:23Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.126",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 14,
+        "バグ修正": 18
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.123",
+      "tagName": "v2.1.123",
+      "publishedAt": "2026-04-29T03:29:13Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.123",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.122",
+      "tagName": "v2.1.122",
+      "publishedAt": "2026-04-28T22:05:15Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.122",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 0,
+        "その他": 6,
+        "バグ修正": 11
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.121",
+      "tagName": "v2.1.121",
+      "publishedAt": "2026-04-28T00:31:31Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.121",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 1,
+        "その他": 17,
+        "バグ修正": 18
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.119",
+      "tagName": "v2.1.119",
+      "publishedAt": "2026-04-23T23:24:19Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.119",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 0,
+        "その他": 18,
+        "バグ修正": 31
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.118",
+      "tagName": "v2.1.118",
+      "publishedAt": "2026-04-23T00:42:21Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.118",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 0,
+        "その他": 9,
+        "バグ修正": 21
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.117",
+      "tagName": "v2.1.117",
+      "publishedAt": "2026-04-22T00:04:40Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.117",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 2,
+        "その他": 13,
+        "バグ修正": 13
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.116",
+      "tagName": "v2.1.116",
+      "publishedAt": "2026-04-20T22:18:28Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.116",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 1,
+        "その他": 11,
+        "バグ修正": 12
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.114",
+      "tagName": "v2.1.114",
+      "publishedAt": "2026-04-18T01:34:30Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.114",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.113",
+      "tagName": "v2.1.113",
+      "publishedAt": "2026-04-17T19:34:41Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.113",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 2,
+        "その他": 13,
+        "バグ修正": 22
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.112",
+      "tagName": "v2.1.112",
+      "publishedAt": "2026-04-16T19:55:41Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.112",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.111",
+      "tagName": "v2.1.111",
+      "publishedAt": "2026-04-16T15:18:45Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.111",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 5,
+        "改善": 2,
+        "その他": 18,
+        "バグ修正": 10
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.110",
+      "tagName": "v2.1.110",
+      "publishedAt": "2026-04-15T22:07:18Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.110",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 2,
+        "その他": 8,
+        "バグ修正": 19
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.109",
+      "tagName": "v2.1.109",
+      "publishedAt": "2026-04-15T04:02:13Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.109",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 1,
+        "その他": 0,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.108",
+      "tagName": "v2.1.108",
+      "publishedAt": "2026-04-14T19:12:01Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.108",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 3,
+        "その他": 3,
+        "バグ修正": 14
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.107",
+      "tagName": "v2.1.107",
+      "publishedAt": "2026-04-14T06:11:20Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.107",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.105",
+      "tagName": "v2.1.105",
+      "publishedAt": "2026-04-13T21:53:13Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.105",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 9,
+        "その他": 1,
+        "バグ修正": 24
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.104",
+      "tagName": "v2.1.104",
+      "publishedAt": "2026-04-13T01:45:26Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.104",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.101",
+      "tagName": "v2.1.101",
+      "publishedAt": "2026-04-10T19:03:41Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.101",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 12,
+        "その他": 2,
+        "バグ修正": 30
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.100",
+      "tagName": "v2.1.100",
+      "publishedAt": "2026-04-10T05:16:35Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.100",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.98",
+      "tagName": "v2.1.98",
+      "publishedAt": "2026-04-09T19:18:28Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.98",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 7,
+        "改善": 10,
+        "その他": 3,
+        "バグ修正": 37
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.97",
+      "tagName": "v2.1.97",
+      "publishedAt": "2026-04-08T21:52:34Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.97",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 5,
+        "改善": 13,
+        "その他": 0,
+        "バグ修正": 28
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.96",
+      "tagName": "v2.1.96",
+      "publishedAt": "2026-04-08T04:37:36Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.96",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.94",
+      "tagName": "v2.1.94",
+      "publishedAt": "2026-04-07T21:18:51Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.94",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 1,
+        "その他": 5,
+        "バグ修正": 15
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.92",
+      "tagName": "v2.1.92",
+      "publishedAt": "2026-04-04T00:42:02Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.92",
+      "counts": {
+        "破壊的変更": 2,
+        "新機能": 3,
+        "改善": 1,
+        "その他": 4,
+        "バグ修正": 11
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.91",
+      "tagName": "v2.1.91",
+      "publishedAt": "2026-04-02T23:45:35Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.91",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 2,
+        "その他": 3,
+        "バグ修正": 5
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.90",
+      "tagName": "v2.1.90",
+      "publishedAt": "2026-04-01T23:41:31Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.90",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 3,
+        "改善": 4,
+        "その他": 2,
+        "バグ修正": 9
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.89",
+      "tagName": "v2.1.89",
+      "publishedAt": "2026-04-01T01:07:06Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.89",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 5,
+        "改善": 4,
+        "その他": 13,
+        "バグ修正": 30
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.87",
+      "tagName": "v2.1.87",
+      "publishedAt": "2026-03-29T02:17:02Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.87",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.86",
+      "tagName": "v2.1.86",
+      "publishedAt": "2026-03-27T21:42:09Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.86",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 1,
+        "その他": 9,
+        "バグ修正": 14
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.85",
+      "tagName": "v2.1.85",
+      "publishedAt": "2026-03-26T22:52:12Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.85",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 3,
+        "その他": 6,
+        "バグ修正": 17
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.84",
+      "tagName": "v2.1.84",
+      "publishedAt": "2026-03-26T00:31:05Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.84",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 8,
+        "改善": 5,
+        "その他": 13,
+        "バグ修正": 14
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.83",
+      "tagName": "v2.1.83",
+      "publishedAt": "2026-03-25T06:08:12Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.83",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 7,
+        "改善": 6,
+        "その他": 14,
+        "バグ修正": 31
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.81",
+      "tagName": "v2.1.81",
+      "publishedAt": "2026-03-20T22:24:50Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.81",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 5,
+        "その他": 4,
+        "バグ修正": 16
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.80",
+      "tagName": "v2.1.80",
+      "publishedAt": "2026-03-19T22:08:48Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.80",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 5,
+        "改善": 4,
+        "その他": 2,
+        "バグ修正": 6
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.79",
+      "tagName": "v2.1.79",
+      "publishedAt": "2026-03-18T22:29:36Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.79",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 2,
+        "その他": 5,
+        "バグ修正": 9
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.78",
+      "tagName": "v2.1.78",
+      "publishedAt": "2026-03-17T23:42:55Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.78",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 1,
+        "その他": 5,
+        "バグ修正": 16
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.77",
+      "tagName": "v2.1.77",
+      "publishedAt": "2026-03-17T00:28:12Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.77",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 5,
+        "その他": 10,
+        "バグ修正": 28
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.76",
+      "tagName": "v2.1.76",
+      "publishedAt": "2026-03-14T01:23:58Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.76",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 7,
+        "改善": 8,
+        "その他": 1,
+        "バグ修正": 19
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.75",
+      "tagName": "v2.1.75",
+      "publishedAt": "2026-03-13T17:09:08Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.75",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.74",
+      "tagName": "v2.1.74",
+      "publishedAt": "2026-03-12T00:34:23Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.74",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 0,
+        "その他": 3,
+        "バグ修正": 12
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.73",
+      "tagName": "v2.1.73",
+      "publishedAt": "2026-03-11T18:26:43Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.73",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 2,
+        "改善": 6,
+        "その他": 2,
+        "バグ修正": 15
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.72",
+      "tagName": "v2.1.72",
+      "publishedAt": "2026-03-10T00:43:03Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.72",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 7,
+        "改善": 7,
+        "その他": 10,
+        "バグ修正": 30
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.71",
+      "tagName": "v2.1.71",
+      "publishedAt": "2026-03-07T00:12:46Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.71",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 4,
+        "改善": 5,
+        "その他": 0,
+        "バグ修正": 18
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.70",
+      "tagName": "v2.1.70",
+      "publishedAt": "2026-03-06T01:20:02Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.70",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 3,
+        "その他": 6,
+        "バグ修正": 20
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.69",
+      "tagName": "v2.1.69",
+      "publishedAt": "2026-03-05T00:26:21Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.69",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 20,
+        "改善": 13,
+        "その他": 13,
+        "バグ修正": 57
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.68",
+      "tagName": "v2.1.68",
+      "publishedAt": "2026-03-04T10:11:14Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.68",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 2,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.66",
+      "tagName": "v2.1.66",
+      "publishedAt": "2026-03-04T01:19:19Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.66",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.63",
+      "tagName": "v2.1.63",
+      "publishedAt": "2026-02-28T03:45:37Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.63",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 5,
+        "改善": 2,
+        "その他": 3,
+        "バグ修正": 16
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.62",
+      "tagName": "v2.1.62",
+      "publishedAt": "2026-02-27T01:56:19Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.62",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.61",
+      "tagName": "v2.1.61",
+      "publishedAt": "2026-02-26T22:34:32Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.61",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.59",
+      "tagName": "v2.1.59",
+      "publishedAt": "2026-02-26T00:59:24Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.59",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 3,
+        "その他": 1,
+        "バグ修正": 2
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.58",
+      "tagName": "v2.1.58",
+      "publishedAt": "2026-02-25T20:00:11Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.58",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.56",
+      "tagName": "v2.1.56",
+      "publishedAt": "2026-02-25T06:27:48Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.56",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.55",
+      "tagName": "v2.1.55",
+      "publishedAt": "2026-02-25T03:15:51Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.55",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.53",
+      "tagName": "v2.1.53",
+      "publishedAt": "2026-02-25T00:13:48Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.53",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 8
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.52",
+      "tagName": "v2.1.52",
+      "publishedAt": "2026-02-24T06:39:56Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.52",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.51",
+      "tagName": "v2.1.51",
+      "publishedAt": "2026-02-24T01:40:58Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.51",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 1,
+        "その他": 4,
+        "バグ修正": 4
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.50",
+      "tagName": "v2.1.50",
+      "publishedAt": "2026-02-20T23:48:57Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.50",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 5,
+        "改善": 3,
+        "その他": 4,
+        "バグ修正": 13
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.49",
+      "tagName": "v2.1.49",
+      "publishedAt": "2026-02-19T23:28:27Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.49",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 6,
+        "その他": 4,
+        "バグ修正": 9
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.47",
+      "tagName": "v2.1.47",
+      "publishedAt": "2026-02-18T21:38:45Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.47",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 6,
+        "その他": 10,
+        "バグ修正": 49
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.45",
+      "tagName": "v2.1.45",
+      "publishedAt": "2026-02-17T18:53:52Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.45",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 3,
+        "その他": 1,
+        "バグ修正": 7
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.44",
+      "tagName": "v2.1.44",
+      "publishedAt": "2026-02-16T21:35:03Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.44",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.42",
+      "tagName": "v2.1.42",
+      "publishedAt": "2026-02-13T19:56:33Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.42",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 1,
+        "その他": 0,
+        "バグ修正": 2
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.41",
+      "tagName": "v2.1.41",
+      "publishedAt": "2026-02-13T06:08:49Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.41",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 2,
+        "その他": 0,
+        "バグ修正": 11
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.39",
+      "tagName": "v2.1.39",
+      "publishedAt": "2026-02-10T23:11:36Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.39",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 1,
+        "その他": 0,
+        "バグ修正": 4
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.38",
+      "tagName": "v2.1.38",
+      "publishedAt": "2026-02-10T00:53:32Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.38",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 1,
+        "その他": 1,
+        "バグ修正": 5
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.37",
+      "tagName": "v2.1.37",
+      "publishedAt": "2026-02-07T19:10:10Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.37",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.36",
+      "tagName": "v2.1.36",
+      "publishedAt": "2026-02-07T18:02:15Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.36",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.34",
+      "tagName": "v2.1.34",
+      "publishedAt": "2026-02-06T14:26:47Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.34",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 2
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.33",
+      "tagName": "v2.1.33",
+      "publishedAt": "2026-02-06T01:47:21Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.33",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 1,
+        "その他": 4,
+        "バグ修正": 7
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.32",
+      "tagName": "v2.1.32",
+      "publishedAt": "2026-02-05T17:47:50Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.32",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 1,
+        "その他": 6,
+        "バグ修正": 3
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.31",
+      "tagName": "v2.1.31",
+      "publishedAt": "2026-02-04T00:44:13Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.31",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 2,
+        "改善": 2,
+        "その他": 1,
+        "バグ修正": 5
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.30",
+      "tagName": "v2.1.30",
+      "publishedAt": "2026-02-03T18:05:59Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.30",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 6,
+        "改善": 2,
+        "その他": 3,
+        "バグ修正": 8
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.29",
+      "tagName": "v2.1.29",
+      "publishedAt": "2026-01-31T23:37:51Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.29",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.27",
+      "tagName": "v2.1.27",
+      "publishedAt": "2026-01-30T20:38:53Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.27",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 0,
+        "その他": 6,
+        "バグ修正": 3
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.25",
+      "tagName": "v2.1.25",
+      "publishedAt": "2026-01-29T21:13:33Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.25",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.23",
+      "tagName": "v2.1.23",
+      "publishedAt": "2026-01-29T01:09:51Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.23",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 1,
+        "その他": 3,
+        "バグ修正": 6
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.22",
+      "tagName": "v2.1.22",
+      "publishedAt": "2026-01-28T06:59:58Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.22",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.21",
+      "tagName": "v2.1.21",
+      "publishedAt": "2026-01-28T02:25:23Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.21",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 2,
+        "その他": 2,
+        "バグ修正": 5
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.20",
+      "tagName": "v2.1.20",
+      "publishedAt": "2026-01-27T01:35:35Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.20",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 5,
+        "改善": 4,
+        "その他": 8,
+        "バグ修正": 12
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.19",
+      "tagName": "v2.1.19",
+      "publishedAt": "2026-01-23T21:56:32Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.19",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 0,
+        "その他": 4,
+        "バグ修正": 8
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.17",
+      "tagName": "v2.1.17",
+      "publishedAt": "2026-01-22T21:46:31Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.17",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.16",
+      "tagName": "v2.1.16",
+      "publishedAt": "2026-01-22T20:09:21Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.16",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 0,
+        "その他": 3,
+        "バグ修正": 3
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.15",
+      "tagName": "v2.1.15",
+      "publishedAt": "2026-01-21T22:01:11Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.15",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 1,
+        "その他": 0,
+        "バグ修正": 2
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.14",
+      "tagName": "v2.1.14",
+      "publishedAt": "2026-01-20T23:09:30Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.14",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 1,
+        "その他": 1,
+        "バグ修正": 11
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.12",
+      "tagName": "v2.1.12",
+      "publishedAt": "2026-01-17T16:18:21Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.12",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.11",
+      "tagName": "v2.1.11",
+      "publishedAt": "2026-01-17T01:39:18Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.11",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.9",
+      "tagName": "v2.1.9",
+      "publishedAt": "2026-01-16T02:19:31Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.9",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 6,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 3
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.7",
+      "tagName": "v2.1.7",
+      "publishedAt": "2026-01-14T00:04:17Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.7",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 3,
+        "改善": 1,
+        "その他": 3,
+        "バグ修正": 8
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.6",
+      "tagName": "v2.1.6",
+      "publishedAt": "2026-01-13T02:26:03Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.6",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 6,
+        "改善": 4,
+        "その他": 3,
+        "バグ修正": 11
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.5",
+      "tagName": "v2.1.5",
+      "publishedAt": "2026-01-12T18:48:25Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.5",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.4",
+      "tagName": "v2.1.4",
+      "publishedAt": "2026-01-11T00:28:28Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.4",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.3",
+      "tagName": "v2.1.3",
+      "publishedAt": "2026-01-09T23:32:39Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.3",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 2,
+        "改善": 2,
+        "その他": 3,
+        "バグ修正": 6
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.2",
+      "tagName": "v2.1.2",
+      "publishedAt": "2026-01-09T00:04:33Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.2",
+      "counts": {
+        "破壊的変更": 1,
+        "新機能": 6,
+        "改善": 3,
+        "その他": 5,
+        "バグ修正": 7
+      },
+      "hasBreakingChanges": true
+    },
+    {
+      "version": "2.1.1",
+      "tagName": "v2.1.1",
+      "publishedAt": "2026-01-07T21:31:02Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.1",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.0.76",
+      "tagName": "v2.0.76",
+      "publishedAt": "2026-01-07T20:37:13Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.0.76",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 0,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.0.74",
+      "tagName": "v2.0.74",
+      "publishedAt": "2025-12-19T22:13:25Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.0.74",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 5,
+        "改善": 1,
+        "その他": 2,
+        "バグ修正": 5
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.0.73",
+      "tagName": "v2.0.73",
+      "publishedAt": "2025-12-19T00:59:32Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.0.73",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 4,
+        "改善": 3,
+        "その他": 1,
+        "バグ修正": 1
+      },
+      "hasBreakingChanges": false
+    }
+  ]
+}

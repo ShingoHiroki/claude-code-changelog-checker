@@ -1,0 +1,144 @@
+{
+  "version": "2.1.117",
+  "tagName": "v2.1.117",
+  "publishedAt": "2026-04-22T00:04:40Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.117",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 2,
+    "その他": 13,
+    "バグ修正": 13
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "モデル選択の永続化",
+          "description": "/model コマンドでのモデル選択が再起動後も保持され、プロジェクトが別のモデルをピン留めしていても持続します。また、起動ヘッダーにアクティブモデルがプロジェクトまたは managed-settings のピンから来ているかが表示されます。"
+        },
+        {
+          "title": "起動速度の向上",
+          "description": "ローカルと claude.ai の MCP サーバーが両方設定されている場合、同時接続がデフォルトになることで起動が速くなります。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "フォークサブエージェント有効化",
+          "description": "`CLAUDE_CODE_FORK_SUBAGENT=1` を設定することで、外部ビルドでもフォークされたサブエージェントを有効にできるようになりました。"
+        },
+        {
+          "title": "エージェントフロントマターの mcpServers 読み込み",
+          "description": "`--agent` で起動したメインスレッドのエージェントセッションで、エージェントフロントマターの `mcpServers` がロードされます。"
+        },
+        {
+          "title": "/resume コマンドの要約提案",
+          "description": "`/resume` コマンドが、古く大きなセッションを再読込する前に要約するオプションを提示し、既存の `--resume` 動作と一致します。"
+        },
+        {
+          "title": "プラグイン再インストール時の依存関係処理",
+          "description": "既にインストール済みのプラグインに対して `plugin install` を実行すると、\\\"already installed\\\" で止まらず足りない依存関係をインストールします。"
+        },
+        {
+          "title": "プラグイン依存エラーの改善と自動解決",
+          "description": "プラグイン依存エラーが \\\"not installed\\\" と表示されインストールヒントが付くようになり、`claude plugin marketplace add` が設定済みマーケットプレイスから欠損依存関係を自動解決します。"
+        },
+        {
+          "title": "Managed‑settings のマーケットプレイス制限の適用",
+          "description": "`blockedMarketplaces` と `strictKnownMarketplaces` がプラグインのインストール、更新、リフレッシュ、オートアップデート時に強制されます。"
+        },
+        {
+          "title": "Advisor Tool（実験的）改善",
+          "description": "ダイアログに \\\"experimental\\\" ラベルと Learn‑more リンク、起動時通知が表示され、セッションが \\\"Advisor tool result content could not be processed\\\" エラーで詰まらなくなります。"
+        },
+        {
+          "title": "cleanupPeriodDays の保持対象拡大",
+          "description": "`cleanupPeriodDays` による保持期間のスイープが `~/.claude/tasks/`, `~/.claude/shell-snapshots/`, `~/.claude/backups/` も対象に含めるようになりました。"
+        },
+        {
+          "title": "OpenTelemetry の拡張",
+          "description": "`user_prompt` イベントにスラッシュコマンド用の `command_name` と `command_source` が追加され、`cost.usage`, `token.usage`, `api_request`, `api_error` にモデルが effort レベルをサポートしている場合 `effort` 属性が含まれます。カスタム/MCP コマンド名は `OTEL_LOG_TOOL_DETAILS=1` が設定されていない限りマスクされます。"
+        },
+        {
+          "title": "macOS/Linux のネイティブビルドで検索ツール置換",
+          "description": "macOS と Linux のネイティブビルドで `Glob` と `Grep` ツールが組み込みの `bfs` と `ugrep` に置き換えられ、Bash ツール経由で高速検索が可能になり、別ツールへの往復が不要になります（Windows と npm インストール版は変更なし）。"
+        },
+        {
+          "title": "Windows の where.exe キャッシュ",
+          "description": "プロセスごとに `where.exe` の実行ファイル検索結果がキャッシュされ、サブプロセス起動が高速化します。"
+        },
+        {
+          "title": "Pro/Max サブスクライバーのデフォルト effort 変更",
+          "description": "Opus 4.6 と Sonnet 4.6 における Pro/Max サブスクライバーのデフォルト effort が `medium` から `high` に変更されました。"
+        },
+        {
+          "title": "[VSCode] 大規模マーケットプレイス設定時のプラグイン管理パネル修正",
+          "description": "複数の大規模マーケットプレイスが設定されている場合に \\\"Manage Plugins\\\" パネルが壊れる問題を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Plain-CLI OAuth セッションのトークン自動更新",
+          "description": "アクセストークンがセッション途中で期限切れになった際に \\\"Please run /login\\\" が出る問題を修正し、401 応答時にトークンがリアクティブにリフレッシュされるようになりました。"
+        },
+        {
+          "title": "WebFetch の大容量 HTML ハング対策",
+          "description": "非常に大きな HTML ページで `WebFetch` がハングする問題を、HTML‑to‑markdown 変換前に入力を切り詰めることで解決しました。"
+        },
+        {
+          "title": "プロキシが HTTP 204 を返す際のクラッシュ修正",
+          "description": "プロキシが HTTP 204 No Content を返したときに `TypeError` が発生していた問題を修正し、明確なエラーが表示されるようにしました。"
+        },
+        {
+          "title": "/login が環境変数 CLAUDE_CODE_OAUTH_TOKEN で起動した際に無効になる問題修正",
+          "description": "`CLAUDE_CODE_OAUTH_TOKEN` が期限切れになったときでも、`/login` が正しく機能するように修正しました。"
+        },
+        {
+          "title": "プロンプト入力の Undo が正しく動作しない問題",
+          "description": "`Ctrl+_` による入力取り消しが直後に何もしない、またはステップごとに状態をスキップしていた問題を修正しました。"
+        },
+        {
+          "title": "NO_PROXY が Bun 実行時に無視される問題",
+          "description": "Bun 上でリモート API リクエスト時に `NO_PROXY` が正しく適用されるように修正しました。"
+        },
+        {
+          "title": "遅延接続時のキー名誤動作修正",
+          "description": "キー名が遅い接続で結合テキストとして届く際に稀に発生する誤ったエスケープ/リターンが起きる問題を修正しました。"
+        },
+        {
+          "title": "SDK の reload_plugins がシリアル接続する問題",
+          "description": "`reload_plugins` がすべてのユーザー MCP サーバーに対して直列に再接続していた問題を修正しました。"
+        },
+        {
+          "title": "Bedrock の application‑inference‑profile リクエスト失敗修正",
+          "description": "Opus 4.7 で思考が無効になっている状態で Bedrock の application‑inference‑profile リクエストが 400 エラーになる問題を修正しました。"
+        },
+        {
+          "title": "MCP elicitation/create の自動キャンセル問題",
+          "description": "プリント/SDK モードでサーバーがターン途中に接続完了すると `elicitation/create` リクエストが自動キャンセルされていた問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントのモデル違いによる誤検知修正",
+          "description": "メインエージェントとは異なるモデルで動作するサブエージェントが、ファイル読み取りをマルウェア警告として誤ってフラグ付けしていた問題を修正しました。"
+        },
+        {
+          "title": "バックグラウンドタスク時のアイドル再描画ループ修正",
+          "description": "バックグラウンドタスクが存在する際のアイドル時再描画ループを修正し、Linux でのメモリ増加を抑制しました。"
+        },
+        {
+          "title": "Opus 4.7 セッションのコンテキスト比率と自動圧縮の不具合",
+          "description": "`/context` パーセンテージが過大表示され、早期自動圧縮が起きる問題を修正しました。Claude Code は 200K コンテキストウィンドウを基に計算していましたが、Opus 4.7 の 1M ネイティブウィンドウに合わせました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:15:37.405Z"
+}

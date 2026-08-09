@@ -1,0 +1,221 @@
+{
+  "version": "2.1.101",
+  "tagName": "v2.1.101",
+  "publishedAt": "2026-04-10T19:03:41Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.101",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 12,
+    "その他": 2,
+    "バグ修正": 30
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/team-onboarding` コマンド追加",
+          "description": "ローカルの Claude Code 使用状況からチームメイト向けのラップアップガイドを生成します。"
+        },
+        {
+          "title": "OS の CA 証明書ストアをデフォルトで信頼",
+          "description": "エンタープライズ TLS プロキシが追加設定なしで動作します。`CLAUDE_CODE_CERT_STORE=bundled` を設定するとバンドルされた CA のみを使用します。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "brief モードの再試行改善",
+          "description": "Claude がプレーンテキストで応答した場合、1回再試行するようになりました。"
+        },
+        {
+          "title": "focus モードの要約改善",
+          "description": "最終メッセージのみ見えることを考慮し、より自己完結型の要約を書きます。"
+        },
+        {
+          "title": "ツール利用不可エラーの説明強化",
+          "description": "ツールが存在するが現在のコンテキストで利用できない理由と対処法を示します。"
+        },
+        {
+          "title": "レートリミット再試行メッセージの詳細化",
+          "description": "どのリミットが超えたかとリセット時間を表示し、曖昧な秒数カウントダウンを廃止しました。"
+        },
+        {
+          "title": "拒否エラーの説明追加",
+          "description": "利用可能な場合、API が提供する説明文をエラーメッセージに含めます。"
+        },
+        {
+          "title": "`claude -p --resume` の名前受け入れ改善",
+          "description": "`/rename` や `--name` で設定したセッションタイトルも指定可能です。"
+        },
+        {
+          "title": "settings.json のフック名不認識時の耐性向上",
+          "description": "認識できないフックイベント名があってもファイル全体が無視されなくなります。"
+        },
+        {
+          "title": "管理設定で強制有効化されたプラグインフックの実行改善",
+          "description": "`allowManagedHooksOnly` が設定されても実行されます。"
+        },
+        {
+          "title": "`/plugin` と `claude plugin update` の警告表示追加",
+          "description": "マーケットプレイスの更新に失敗した場合、ステイルバージョンとして黙って報告せず警告を表示します。"
+        },
+        {
+          "title": "プランモードのオプション非表示改善",
+          "description": "ユーザーの org や認証設定で Claude Code のウェブアクセスができない場合、\"Refine with Ultraplan\" オプションが隠れます。"
+        },
+        {
+          "title": "ベータトレースで OTEL 環境変数尊重",
+          "description": "`OTEL_LOG_USER_PROMPTS`、`OTEL_LOG_TOOL_DETAILS`、`OTEL_LOG_TOOL_CONTENT` が有効になり、オプトインしない限り機密属性は出力されません。"
+        },
+        {
+          "title": "SDK `query()` のクリーンアップ改善",
+          "description": "`for await` から `break` したり `await using` を使った場合にもサブプロセスや一時ファイルを削除します。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/ultraplan` などリモートセッション機能の自動クラウド環境作成",
+          "description": "Web 設定なしでデフォルトのクラウド環境が自動作成されます。"
+        },
+        {
+          "title": "[VSCode] ファイル添付クリアバグ修正",
+          "description": "チャット入力下のファイル添付が、最後のエディタタブを閉じたときにクリアされない問題を修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "POSIX `which` フォールバックのコマンドインジェクション脆弱性修正",
+          "description": "LSP バイナリ検出で使用される `which` のフォールバックでの脆弱性を修正しました。"
+        },
+        {
+          "title": "長時間セッションでのメモリリーク修正",
+          "description": "仮想スクロールでメッセージリストの過去コピーが多数保持される問題を解消しました。"
+        },
+        {
+          "title": "`--resume`/`--continue` の会話コンテキスト喪失修正",
+          "description": "大規模セッションでローダーがデッドエンドブランチに固定される問題を修正しました。"
+        },
+        {
+          "title": "`--resume` のチェーン復旧バグ修正",
+          "description": "サブエージェントメッセージがメインチェーンの書き込みギャップ付近にあると、無関係なサブエージェント会話にブリッジする問題を修正しました。"
+        },
+        {
+          "title": "`--resume` 時の Edit/Write ツール結果クラッシュ修正",
+          "description": "`file_path` が欠如した永続化ツール結果でクラッシュしていた問題を修正しました。"
+        },
+        {
+          "title": "ハードコードされた 5 分タイムアウト修正",
+          "description": "`API_TIMEOUT_MS` に関係なく、遅いバックエンドでタイムアウトする問題を解消しました。"
+        },
+        {
+          "title": "`permissions.deny` が PreToolUse フックの `ask` を上書きしないバグ修正",
+          "description": "拒否ルールがプロンプトに降格されるのを防ぎました。"
+        },
+        {
+          "title": "`--setting-sources` のバックグラウンドクリーンアップバグ修正",
+          "description": "`cleanupPeriodDays` が無視され、30 日以上前の会話履歴が削除される問題を修正しました。"
+        },
+        {
+          "title": "Bedrock SigV4 認証 403 エラー修正",
+          "description": "`ANTHROPIC_AUTH_TOKEN`、`apiKeyHelper`、`ANTHROPIC_CUSTOM_HEADERS` が Authorization ヘッダーを設定した際に失敗していた問題を修正しました。"
+        },
+        {
+          "title": "`claude -w <name>` の既存ディレクトリエラー修正",
+          "description": "以前のセッションの作業ツリークリーンアップが残したスタイルディレクトリが原因で起きていたエラーを修正しました。"
+        },
+        {
+          "title": "動的に注入されたサーバーからの MCP ツール継承バグ修正",
+          "description": "サブエージェントが MCP ツールを受け継がなかった問題を修正しました。"
+        },
+        {
+          "title": "分離作業ツリーのサブエージェントのファイルアクセス権限修正",
+          "description": "自作業ツリー内のファイルへの Read/Edit が拒否されていた問題を修正しました。"
+        },
+        {
+          "title": "サンドボックス Bash の `mktemp` エラー修正",
+          "description": "新規ブート後に `mktemp: No such file or directory` が発生していた問題を修正しました。"
+        },
+        {
+          "title": "`claude mcp serve` のツール呼び出し失敗修正",
+          "description": "`outputSchema` を検証する MCP クライアントで \"Tool execution failed\" が出る問題を修正しました。"
+        },
+        {
+          "title": "`RemoteTrigger` ツールの `run` アクション空ボディ送信バグ修正",
+          "description": "サーバーが空ボディを拒否していた問題を修正しました。"
+        },
+        {
+          "title": "`/resume` ピッカーの複数問題修正",
+          "description": "デフォルトビューが狭く他プロジェクトのセッションを隠す、Windows Terminal のプレビューが届かない、作業ツリーで cwd が不正、stderr にエラーが出ない、ターミナルタイトル未設定、ヒントが入力と重なる等を修正しました。"
+        },
+        {
+          "title": "Grep ツールの ENOENT バグ修正",
+          "description": "VS Code 拡張自動更新や macOS App Translocation で埋め込み ripgrep パスが古くなるとシステム `rg` にフォールバックし、セッション中に自己修復するようにしました。"
+        },
+        {
+          "title": "`/btw` が会話全体を書き出すバグ修正",
+          "description": "使用毎にディスクへコピーを書き込む問題を解消しました。"
+        },
+        {
+          "title": "`/context` の空き容量とメッセージ内訳表示不一致修正",
+          "description": "ヘッダーのパーセンテージと実際の数値が合わない問題を修正しました。"
+        },
+        {
+          "title": "プラグイン関連複数バグ修正",
+          "description": "重複 `name:` フロントマターでスラッシュコマンドが誤プラグイン解決、`/plugin update` が ENAMETOOLONG で失敗、Discover が既インストールプラグインを表示、ディレクトリソースプラグインが古いキャッシュから読み込む、スキルが `context: fork` と `agent` フロントマターを無視する問題を修正しました。"
+        },
+        {
+          "title": "`/mcp` メニューの OAuth アクション表示修正",
+          "description": "`headersHelper` が設定された MCP サーバーでは、OAuth 固有の項目が出ず、代わりに Reconnect が提供されます。"
+        },
+        {
+          "title": "Ctrl キーバインディングが発火しないバグ修正",
+          "description": "Terminal.app、デフォルト iTerm2、xterm で生の C0 制御バイトを送るターミナルでキーが機能しない問題を修正しました。"
+        },
+        {
+          "title": "`/login` の OAuth URL パディング表示修正",
+          "description": "マウス選択がしやすいように余計なパディングを削除しました。"
+        },
+        {
+          "title": "非フルスクリーン時の描画フリッカー等修正",
+          "description": "可視領域上部の内容変化でのちらつき、長セッション中のスクロールバック消失、プロンプトにマウススクロールエスケープシーケンスが混入する問題を修正しました。"
+        },
+        {
+          "title": "`settings.json` の環境変数が数値のときのクラッシュ修正",
+          "description": "数値型でも安全に処理できるようにしました。"
+        },
+        {
+          "title": "アプリ内設定書き込みのスナップショット未更新バグ修正",
+          "description": "ディレクトリ削除がセッション中に反映されるようになりました。"
+        },
+        {
+          "title": "カスタムキーバインディングがサードパーティプロバイダーで読み込まれないバグ修正",
+          "description": "Bedrock、Vertex 等でも `~/.claude/keybindings.json` が有効になります。"
+        },
+        {
+          "title": "`claude --continue -p` のセッション継続バグ修正",
+          "description": "`-p` または SDK で作成したセッションを正しく継続できるようにしました。"
+        },
+        {
+          "title": "Remote Control の複数問題修正",
+          "description": "セッションクラッシュ時に作業ツリーが削除される、接続失敗がトランスクリプトに残らない、ローカルセッションの brief mode で誤った \"Disconnected\" 表示、`/remote-control` が SSH で失敗する（`CLAUDE_CODE_ORGANIZATION_UUID` のみ設定時）等を修正しました。"
+        },
+        {
+          "title": "`/insights` のレポートファイルリンク省略バグ修正",
+          "description": "レスポンスにレポートファイルへのリンクが必ず含まれるようにしました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-09T13:13:09.063Z"
+}
