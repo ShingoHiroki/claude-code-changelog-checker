@@ -1,0 +1,165 @@
+{
+  "version": "2.1.229",
+  "tagName": "v2.1.229",
+  "publishedAt": "2026-08-12T20:56:22Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.229",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 4,
+    "その他": 7,
+    "バグ修正": 18
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "サーバー提供 Claude Code フックのサポート追加",
+          "description": "自己ホストランナーセッションでサーバー提供の Claude Code フックをサポートし、マネージド環境と同様の動作を実現した。"
+        },
+        {
+          "title": "SSE キープアライブ Ping の追加",
+          "description": "長時間の思考停止中にゲートウェイのストリーミング応答に SSE キープアライブ Ping を送信し、Vertex と Bedrock の上流でのアイドルタイムアウト切断を防止した。"
+        },
+        {
+          "title": "プラグインマーケットプレイス `command` ソースの追加",
+          "description": "ローカルコマンド（例: IDE）がプラグインディレクトリを出力し、各セッションで再解決して再起動なしで適用できる。`mode: \"link\"` を使用するとその場所を直接リンクとして利用する。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "ワークフローファンアウトのステガリング改善",
+          "description": "同一プレフィックスを持つ兄弟エージェントの実行をずらして、後続エージェントがキャッシュされたプロンプトプレフィックスを読み取れるようにした。`CLAUDE_CODE_WORKFLOW_PREFIX_STAGGER_MS=0` で無効化できる。"
+        },
+        {
+          "title": "\"プロンプトが長すぎます\" エラーの説明強化",
+          "description": "自動圧縮が失敗した理由を説明し、単に `/compact` の提案だけでなく回復できなかった原因を示すようにした。"
+        },
+        {
+          "title": "サンドボックスの IPv6 表記改善",
+          "description": "ネットワークドメインリストの IPv6 リテラルを角括弧で囲む（例: `[::1]:443`）ようにし、曖昧な表記は失敗させて `/doctor` でフラグ付けするようにした。"
+        },
+        {
+          "title": "`/login` 警告メッセージの更新",
+          "description": "`CLAUDE_CODE_OAUTH_TOKEN` の上書き警告をログイン成功後にも再表示するようにした。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`claude remote-control --continue` のドキュメント化",
+          "description": "最新のリモートコントロールセッションを再開するための `claude remote-control --continue` コマンドを文書化した。"
+        },
+        {
+          "title": "`ListAgents` のセッション状態表示追加",
+          "description": "`ListAgents` が切断されたリモートコントロールセッションを `offline` と表示し、クラウドセッションには `cloud` ラベルを付与するようになった。"
+        },
+        {
+          "title": "危険フラグの自動承認停止",
+          "description": "`git/gh` コマンドで危険なフラグ（`--force`, `--amend`, `--no-verify` など）を使用した場合、`/commit-push-pr` が自動承認しないように変更した。"
+        },
+        {
+          "title": "Windows 起動時に `--base-dir` が必須に",
+          "description": "Windows で自己ホストランナーを起動する際、明示的に `--base-dir` を指定する必要があり、デフォルトのチェックアウトディレクトリは無くなった。"
+        },
+        {
+          "title": "VSCode の「問題を報告」 と `/bug` がフィードバックダイアログを開く",
+          "description": "`Report a problem` と `/bug` が廃止されたアンケートリンクではなく組み込みのフィードバックダイアログを開くようにした。"
+        },
+        {
+          "title": "VSCode の `/btw` パネルをリサイズ可能に",
+          "description": "サイドドックまたはスタックレイアウトの両方で、`/btw` のサイド質問パネルを境界をドラッグしてサイズ変更できるようにした。"
+        },
+        {
+          "title": "VSCode のセッショングループ機能追加",
+          "description": "サイドバーにセッショングループを追加し、右クリックで作成・名前変更・削除、Cmd/Ctrl または Shift クリックで複数セッションを同時に移動できるようにした。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "長いストリーミング応答の欠落と二重出力を修正",
+          "description": "長文応答がストリーミング中に一部消失したり、端末に二回出力される問題を修正した。"
+        },
+        {
+          "title": "ツール呼び出しで非文字列値が原因のクラッシュを修正",
+          "description": "`glob`, `file_path`, `command` が文字列でない場合にエラースクリーンへクラッシュする問題（`--resume` でも）が修正された。"
+        },
+        {
+          "title": "狭い端末でのプログレスバー・テーブル描画時の RangeError を修正",
+          "description": "非常に狭い端末ウィンドウでプログレスバーや Markdown テーブルが描画されると RangeError が発生し、`claude --continue`/`--resume` 起動時にクラッシュする問題を修正した。"
+        },
+        {
+          "title": "Windows の拡張長パスや UNC パス参照時のクラッシュを修正",
+          "description": "ツール呼び出しやメッセージで `\\\\?\\` 形式や UNC パスを使用した際に Windows でクラッシュする問題を修正した。"
+        },
+        {
+          "title": "属性ヘッダー無効化時の auto モード失敗を修正",
+          "description": "`CLAUDE_CODE_ATTRIBUTION_HEADER` で属性ヘッダーを無効にしたユーザーで、全ツール呼び出しで auto モードが失敗していた問題を修正した。"
+        },
+        {
+          "title": "`/model` がカスタムゲートウェイで Sonnet/Opus 1M を拒否する問題を修正",
+          "description": "`ANTHROPIC_BASE_URL` をカスタムに設定した claude.ai サブスクライバーが `/model` で Sonnet/Opus 1M を利用できなかった問題を修正した。"
+        },
+        {
+          "title": "MCP OAuth のリダイレクト URI を 127.0.0.1 に変更",
+          "description": "厳格な認可サーバー向けに、MCP OAuth のリダイレクト URI に `localhost` の代わりに `127.0.0.1` を使用するよう修正した。"
+        },
+        {
+          "title": "Remote Control クライアントのスピナーが停止しない問題を修正",
+          "description": "ラップトップ端末でスラッシュコマンド入力後、Remote Control クライアントの作業スピナーが固まって表示され続けるバグを修正した。"
+        },
+        {
+          "title": "GitHub App インストール後のレビュー投稿が行われない問題を修正",
+          "description": "`/install-github-app` により生成された Claude Code Review ワークフローがプルリクエストにレビューを投稿せずに完了していた問題を修正した。"
+        },
+        {
+          "title": "大量 IDE 診断編集時の UI 停滞を修正",
+          "description": "IDE 拡張が接続された状態で、数千件の診断情報を含むファイルを編集すると数秒間 UI が止まる問題を修正した。"
+        },
+        {
+          "title": "一回限りの `claude plugin` コマンドで残るライブネスファイルを修正",
+          "description": "一度だけ実行する `claude plugin` コマンドが不要なライブネスファイルを残し、古いプラグインバージョンのクリーンアップを妨げる問題を修正した。"
+        },
+        {
+          "title": "CPU 制限コンテナ内の動的ワークフローでコア数取得を修正",
+          "description": "CPU 制限コンテナ内で動的ワークフローがホストマシンのコア数を使用していた問題を、コンテナの CPU 制限に合わせて取得するよう修正した。"
+        },
+        {
+          "title": "ファイルウォッチャーのハンドルリークと Windows の未捕捉エラーを修正",
+          "description": "原子的なファイル置換後にファイルウォッチャーがハンドルをリークし、ネットワークや仮想ファイルシステムでスケジュールドタスクウォッチャーが失敗した際に Windows で未捕捉エラーが発生する問題を修正した。"
+        },
+        {
+          "title": "`--input-format stream-json` セッションで空白メッセージ送信時の 400 エラーを修正",
+          "description": "SDK および `--input-format stream-json` セッションで、空白のみのメッセージを送信すると 400 API エラーが返る問題を修正した。"
+        },
+        {
+          "title": "32 MB 超過会話のコンパクション失敗時の挙動を修正",
+          "description": "メッセージだけで API の 32 MB リクエスト上限を超える会話で、画像やドキュメントを除去できない場合に再コンパクションを試みていたが、明確なエラーメッセージで一度失敗するようにした。"
+        },
+        {
+          "title": "Claude Desktop の OpenTelemetry エクスポート拒否問題を修正",
+          "description": "Desktop 管理ゲートウェイがテレメトリエンドポイントでもある場合、Claude Desktop セッションの OpenTelemetry エクスポートが拒否されていた問題を修正した。"
+        },
+        {
+          "title": "managed-mcp.json 配備時の MCP サーバー起動時クラッシュを修正",
+          "description": "self‑hosted runner やリモートセッションが起動時に `managed-mcp.json` が配置されサーバーが提供する MCP サーバーに遭遇すると終了していたが、警告を出すだけでスキップするようにした。"
+        },
+        {
+          "title": "Git Credential Manager プロンプトでリポジトリ準備がハングする問題を修正",
+          "description": "self‑hosted runner のリポジトリ準備時に Git Credential Manager のプロンプトが表示されハングしていたが、認証情報が無い場合は git が迅速に失敗するようにした。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-12T23:47:38.079Z"
+}
