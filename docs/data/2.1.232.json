@@ -1,0 +1,238 @@
+{
+  "version": "2.1.232",
+  "tagName": "v2.1.232",
+  "publishedAt": "2026-08-13T23:29:59Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.232",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 3,
+    "改善": 3,
+    "その他": 23,
+    "バグ修正": 19
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "カスタムサブエージェントの作成を提案するスタートアップチップと、`/powerup` ツアーの対応するナッジを削除しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/config` に「Dialog expiry」および「Messages from your other sessions」（クロスセッションの受信 accept/hold/refuse 用）の行を追加しました",
+          "description": ""
+        },
+        {
+          "title": "GitLab トークンファミリー（`glrt-`, `gloas-`, `glptt-`, `glagent-`, `glimt-`, `glsoat-`, `glcbt-`, `glft-`, `glffct-`）のシークレットマスキングと、ルーティング可能な `glpat-`/`gldt-` トークンの完全マスキングを追加しました；`glab` CLI の設定ストアも `gh` と同様のサンドボックスとクレデンシャルパス保護を受けます",
+          "description": ""
+        },
+        {
+          "title": "プラグインマーケットプレイスに GitLab 対応を追加しました：ベアな `gitlab.com` リポジトリ URL（ネストされたサブグループを含む）は `github.com` URL と同様にクローンでき、クローン認証失敗時のヒントは実際の git ホスト名を表示します",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "全画面ストリーミングを改善しました：長時間セッションでも、毎回全会話を再正規化しなくなったため応答性が保たれます",
+          "description": ""
+        },
+        {
+          "title": "管理設定承認ダイアログを改善しました：エンドポイント URL を表示し、テレメトリのみの変更については分かりやすい表現にし、日常的な OpenTelemetry オプションを省略し、サーバー管理のサンドボックスバイナリ上書き（`sandbox.bwrapPath`, `sandbox.socatPath`, `sandbox.ripgrep`）には承認が必要になります",
+          "description": ""
+        },
+        {
+          "title": "エージェントパネルを更新しました：完了したサブエージェントは `/tasks` フッターのヒントと共に即座に非表示になり、\"↓ N more\" のオーバーフローインジケータを左側へ移動して可視性を向上させました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "サブエージェントフォーキングがデフォルトで有効になりました：`subagent_type: \"fork\"` のサブエージェントは会話全体とプロンプトキャッシュを継承し、対話セッションでの非チームメイトエージェントの生成はデフォルトでバックグラウンドで実行されます",
+          "description": ""
+        },
+        {
+          "title": "プロンプトで `@` と入力すると、名前で別の Claude セッションにメンションできます；Claude は `SendMessage` を使ってそのセッションへ直接届くようになります",
+          "description": ""
+        },
+        {
+          "title": "`SendMessage` は、参照で確認を求める代わりに、実行中のセッションと完全一致するベアな名前へ直接送信するようになりました",
+          "description": ""
+        },
+        {
+          "title": "同一マシン上の対話セッションは一意の名前を保持します：既に使用中の名前でセッションを開始またはリネームしようとすると `name-word-word` の変種が付与され、通知されます",
+          "description": ""
+        },
+        {
+          "title": "設定で `additionalMarketplaces` と `allowedMarketplaces` が、`extraKnownMarketplaces` と `strictKnownMarketplaces` のより分かりやすいエイリアスとして受け入れられるようになりました",
+          "description": ""
+        },
+        {
+          "title": "エンタープライズポリシー：ベアなリポジトリ URL 用の URL 型 `blockedMarketplaces` エントリは、CLI が git clone と判定した際にその URL を引き続きブロックします",
+          "description": ""
+        },
+        {
+          "title": "Gateway：`desktop:` オーバーレイが、リリースされたすべての Desktop 設定（以前は 11 件の手動リスト）を受け入れ、起動時に Desktop のスキーマで検証されます；未知または無効なキーは起動に失敗します",
+          "description": ""
+        },
+        {
+          "title": "Gateway：空の `managed.policies[].match.groups` / `admin.admin_groups` エントリや、形式がおかしい `email_domain` 値（空、`@` を含む、空白やカンマがある）は、無視されて誰にもマッチしないまたは管理者権限を付与する代わりに、起動時に失敗するようになりました",
+          "description": ""
+        },
+        {
+          "title": "Fable 5 が、Fable アクセスを持つ組織向けに `/advisor` で再びアドバイザーとして提供され、使用クレジットの同意は `/model fable` で設定できます",
+          "description": ""
+        },
+        {
+          "title": "Remote Control：claude.ai またはアプリからセッションが削除された会話を再開すると、ログインに関するエラーメッセージで失敗する代わりに代替セッションが開始されます（v2.1.227 で回帰）",
+          "description": ""
+        },
+        {
+          "title": "Claude が応答中に `/feedback` と `/bug` を呼び出すと、ターン完了を待たずに即座に開くようになりました",
+          "description": ""
+        },
+        {
+          "title": "`/plugin install plugin@marketplace` は、まずマーケットプレイスを更新するようになり、新規公開プラグインを手動でマーケットプレイスを更新せずにインストールできます",
+          "description": ""
+        },
+        {
+          "title": "`/code-review` の high、xhigh、max 努力レベルは、他のレベルと同様にバックグラウンドエージェントで実行されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "貼り付けやクリップボードからの画像は、イベントループをブロックせずに読み取られます",
+          "description": ""
+        },
+        {
+          "title": "Remote Control は、ネットワークの瞬断後約30分間再接続を試み、1時間に散在する数回の瞬断で切断されなくなりました",
+          "description": ""
+        },
+        {
+          "title": "Remote Control：同一マシン上で別の Claude Code が保持している Remote Control を、会話再開時に黙って奪わなくなりました；移動したい場合はその側で `/remote-control` を実行してください",
+          "description": ""
+        },
+        {
+          "title": "Remote Control：端末がセッションが別デバイスに乗っ取られた、別アプリから終了された、または削除されたかを表示し、元に戻す再接続を提案しなくなりました",
+          "description": ""
+        },
+        {
+          "title": "Bash の入力リダイレクション（`< file`）は、すべてのプラットフォームで引数表記と同様に権限チェックされるようになりました",
+          "description": ""
+        },
+        {
+          "title": "完了したバックグラウンドエージェントを再開した際に表示されるメッセージを短くしました",
+          "description": ""
+        },
+        {
+          "title": "Cowork セッションは、ユーザースコープのメモリファイルからの外部 @-インポートをインラインしなくなりました",
+          "description": ""
+        },
+        {
+          "title": "共有 `/tmp` 上の自動生成されたクロスセッションメッセージングソケットディレクトリを強化し、事前に配置されたシンボリックリンクや他ユーザーのディレクトリは使用せずに拒否されます",
+          "description": ""
+        },
+        {
+          "title": "Linux ファイルシステムサンドボックスを、保護パスバイパスに対して強化しました",
+          "description": ""
+        },
+        {
+          "title": "`sandbox.ripgrep` は、ユーザー、管理、`--settings` 設定からのみ有効となり、プロジェクト設定ではサンドボックスの ripgrep バイナリを上書きできなくなりました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "変数書き込みパラメータが `$PSDefaultParameterValues` を静かに上書きし、その後のコマンドのファイルアクセスをリダイレクトできる PowerShell の権限バイパスを修正しました",
+          "description": ""
+        },
+        {
+          "title": "Git Bash が Cygwin 風シンボリックリンクをたどり、パス検証で通常ファイルとして扱われていた Windows の権限バイパスを修正しました；それらを介した書き込みは権限承認が必要になります",
+          "description": ""
+        },
+        {
+          "title": "ネストした git リポジトリが親ディレクトリから信頼を継承していた問題を修正し、各リポジトリが個別に信頼確認を行うようにしました",
+          "description": ""
+        },
+        {
+          "title": "サーバーが応答しない、またはプロトコルバージョン probe に対して不正な応答を返した場合に、MCP 接続が 30 秒の接続タイムアウト全体でハングする問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "クラウドセッション内のブリッジがホストする Remote Control セッションが、そのセッションのトランスクリプトやクレデンシャルを継承していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Claude Desktop または IDE から開始された Remote Control セッションが、ローカルセッションを再開するたびに新しい claude.ai セッションとして表示されていた問題を修正し、既存のセッションに再接続するようにしました",
+          "description": ""
+        },
+        {
+          "title": "アイドル状態の Remote Control セッションが、新しく接続したクライアントから到達不能に見える問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Remote Control ブリッジセッションが、セッションワーカー再起動時に会話履歴を復元しない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Cloud ゲートウェイの `/login` が、管理設定の読み込み失敗時に「Press Enter to continue」の後で黙って終了したり、端末が応答しなくなる問題を修正し、原因が表示されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "ネイティブビルドの音声モードで、音声サービスが接続を拒否した際に “listening…” で固まっていた問題を修正し、拒否が即座に表示されるようにしました",
+          "description": ""
+        },
+        {
+          "title": "mTLS クライアント証明書のローテーションに再起動が必要だった問題を修正し、Claude Code は接続エラー時に自動でローテートされた証明書と鍵を再読み込みします",
+          "description": ""
+        },
+        {
+          "title": "不正な形式の AWS または Vertex リージョン値がリクエスト URL 構築に使用されていた問題を修正し、デフォルトリージョンにフォールバックするようになりました",
+          "description": ""
+        },
+        {
+          "title": "Bedrock、Vertex、ゲートウェイデプロイで、ストリームのアイドルタイムアウトエラーがリクエストを失敗させる代わりに回復しない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "コンテンツサイズのオーバーレイで、切り取られたテキストが1列分広く描画される、または先頭が切り取られたテキストが省略記号に収縮する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "長いシェルコマンドやエージェント説明プレビューが絵文字の途中で切れた際に、余計な文字化けが入っていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`known_marketplaces.json` への同時書き込みにより、プラグインマーケットプレイスが黙って登録解除される可能性があった起動レースコンディションを修正しました",
+          "description": ""
+        },
+        {
+          "title": "再起動後も継続する作業が実行中のときに、`/update` と `/tui` が再起動を拒否していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "SDK とリモートセッションで利用できないスラッシュコマンドを提案していた使用制限ガイダンスを修正しました",
+          "description": ""
+        },
+        {
+          "title": "インタラクティブな `--advisor fable` 起動時の同意メッセージが、終了したばかりのインタラクティブセッションで `/model fable` を実行するよう指示していた問題を修正しました",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-13T23:47:59.414Z"
+}
