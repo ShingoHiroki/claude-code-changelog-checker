@@ -1,0 +1,117 @@
+{
+  "version": "2.1.233",
+  "tagName": "v2.1.233",
+  "publishedAt": "2026-08-14T22:20:57Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.233",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 5,
+    "その他": 4,
+    "バグ修正": 7
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "GitLab マージリクエスト URL のサポートを追加",
+          "description": "`--worktree` フラグと `claude agents` ビューで GitLab のマージリクエスト URL をサポートし、MR は `!N` と表示されます。"
+        },
+        {
+          "title": "`forward_user_identity` 設定を追加",
+          "description": "Anthropic 上流でオプトイン可能な `forward_user_identity` アプリゲートウェイ設定を追加し、サインインユーザーの ID をヘッダーとして送信することで、ゲートウェイ背後のプロキシがユーザーごとの使用量を帰属できます。"
+        },
+        {
+          "title": "Bash ツールコマンド用メモリ cgroup サポートを追加",
+          "description": "Linux で Bash ツールコマンドに対しオプトインのメモリ cgroup サポート（`CLAUDE_CODE_TOOL_MEMORY_LIMIT`）を追加し、ビルドの暴走でセッションが停止しないようにしました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` 環境変数を追加",
+          "description": "`CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` 環境変数を追加し、WebFetch セッション URL キャッシュの TTL を設定可能にしました（デフォルトは変更なしで 15 分）。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`claude self-hosted-runner` の起動時間を改善",
+          "description": "`claude self-hosted-runner` セッション開始を改善し、作業ツリーを書き換えずにセッションブランチを作成し、2 回のサーバ往復がエージェント起動をブロックしなくなりました。"
+        },
+        {
+          "title": "アプリゲートウェイのエラー転送を改善",
+          "description": "Vertex、Foundry、Claude Platform の AWS 上流からの 400/413 エラーが上流自身のメッセージを含むようになり、アプリゲートウェイの自動コンパクトに関するバグを修正しました。"
+        },
+        {
+          "title": "`claude plugin validate` を強化",
+          "description": "`claude plugin validate` が空の `.claude/skills` ディレクトリもチェックし、フロントマターの解析に失敗した SKILL.md ファイルを報告するようになりました。"
+        },
+        {
+          "title": "スクリーンリーダーモードを改善",
+          "description": "`/effort` セレクタが番号付きリストと数値入力プロンプトで表示され、ヒントやダイアログテキストが切れなくなりました。"
+        },
+        {
+          "title": "印刷モード診断を改善",
+          "description": "認識できないモデル ID へのリクエスト時に `[claude-code:unrecognized_model]` 行が stderr に出力され、`modelOverrides` でマッピングすれば抑制できます。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "GitHub アプリ設定ヒントの表示条件を変更",
+          "description": "origin リモートが gitlab.com または bitbucket.org のリポジトリでは GitHub アプリ設定ヒントが表示されなくなり、エンタープライズマーケットプレイスのヒントが非 GitHub の内部 Git ホストも対象となります。"
+        },
+        {
+          "title": "Todo/タスクトラッキングツールの利用制限",
+          "description": "Opus 4.8、Sonnet 5、Fable 5、Mythos 5 以降のモデルでは Todo/タスクトラッキングツール (TaskCreate/Get/Update/List, TodoWrite) が利用できなくなり、`CLAUDE_CODE_ENABLE_TODO_TOOLS=1` を設定すると再び有効化できます。"
+        },
+        {
+          "title": "Windows のオートモードでの手動承認停止バグを修正",
+          "description": "Windows で通常の `cd <dir> && <command> > file` Bash コマンド実行時にオートモードが繰り返し手動承認で停止していた (2.1.232 のリグレッション) 問題を修正しました。"
+        },
+        {
+          "title": "Windows の Bash 権限変更を元に戻す",
+          "description": "Windows の Cygwin スタイルシンボリックリンクや入力リダイレクト (`< file`) に対する 2.1.232 の Bash 権限変更を元に戻し、限定版が後のリリースで再導入されます。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "クラウドセッションが失われたと誤判定される問題を修正",
+          "description": "Claude が権限プロンプト待ち中に環境がシャットダウンした際、クラウドセッションがたまに失われたとマークされる問題を修正しました。"
+        },
+        {
+          "title": "MCP v2 のストリーム再接続バグを修正",
+          "description": "長時間保持されたストリームが固定タイムアウトで切断されるサーバー（例: サーバーレスホスト）に対し、MCP v2 接続がサブスクリプション/リッスンストリームを無限に再オープンしていた問題を修正しました。"
+        },
+        {
+          "title": "通知フックが権限プロンプトで作動しない問題を修正",
+          "description": "Claude Desktop または VS Code 上で実行中の権限プロンプト時に通知フックが発火しない問題を修正しました。"
+        },
+        {
+          "title": "Linux のアイドルセッションで CPU 使用率が高止まりするバグを修正",
+          "description": "サンドボックス有効時、Linux のアイドルセッションが時々 1 コアを 100% 使用し続ける問題を修正しました。"
+        },
+        {
+          "title": "バンドルスキルエイリアスのコマンド未認識バグを修正",
+          "description": "ユーザーやプロジェクトスキルがバンドルスキル (`/checkup`, `/review` など) を上書きした際、`-p` モードやプラグイン/MCP がロードされていると \"Unknown command\" と報告されていた問題を修正しました。"
+        },
+        {
+          "title": "スキル/コマンド引数置換の再展開バグを修正",
+          "description": "スキル/コマンド引数の置換で、引数値がテンプレートマーカーとして再展開される問題を防止しました。"
+        },
+        {
+          "title": "Windows の NT `\\\\??\\\\` パスバリデーション回避バグを修正",
+          "description": "NT `\\\\??\\\\` デバイスプレフィックスで記述された Windows パスが UNC パス検証をバイパスする問題を修正し、NTLM 資格情報漏洩のベクトルを遮断しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-14T23:26:27.928Z"
+}
