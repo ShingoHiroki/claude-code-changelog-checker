@@ -1,7 +1,21 @@
 {
-  "generatedAt": "2026-08-17T23:27:21.658Z",
-  "latest": "2.1.234",
+  "generatedAt": "2026-08-18T23:26:20.695Z",
+  "latest": "2.1.235",
   "versions": [
+    {
+      "version": "2.1.235",
+      "tagName": "v2.1.235",
+      "publishedAt": "2026-08-18T20:38:54Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.235",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 1,
+        "改善": 4,
+        "その他": 5,
+        "バグ修正": 9
+      },
+      "hasBreakingChanges": false
+    },
     {
       "version": "2.1.234",
       "tagName": "v2.1.234",
