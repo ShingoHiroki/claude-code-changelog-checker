@@ -1,0 +1,193 @@
+{
+  "version": "2.1.238",
+  "tagName": "v2.1.238",
+  "publishedAt": "2026-08-20T20:33:51Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.238",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 5,
+    "その他": 8,
+    "バグ修正": 23
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`keybindingFlavor` 設定を追加",
+          "description": "`keybindingFlavor` を設定できるようになり、`\"readline\"` にするとプロンプトで Ctrl+W が Bash と同様に前の空白まで削除し、既定の `\"classic\"` は変更なし。"
+        },
+        {
+          "title": "`--defer-shutdown-max-min` オプションを追加",
+          "description": "`claude self-hosted-runner` に `--defer-shutdown-max-min <minutes>` を指定すると、SIGTERM 受信後も接続中セッションを維持し、指定分経過後に残りをパークして終了する。"
+        },
+        {
+          "title": "プロキシ認証オプションを追加",
+          "description": "`claude self-hosted-runner` に `--proxy-authorization-command` と `--proxy-authorization-file` を追加し、外部プロキシが接続ごとに新しい `Proxy-Authorization` ヘッダーを必要とする場合に対応。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "macOS での起動を高速化",
+          "description": "macOS で `claude` を何も指定せず起動した際の開始が以前より速くなった。"
+        },
+        {
+          "title": "Bash ツールの権限チェックを改善",
+          "description": "zsh 固有の構文が含まれるシェル条件式に対しても Bash ツールの権限チェックが正しく行われるようになった。"
+        },
+        {
+          "title": "Remote Control の接続耐性向上",
+          "description": "ネットワークエッジ、VPN、プロキシからの一時的な HTTP 403 拒否を最大 3 分間許容し、ブロックが継続する場合は拒否元を表示するようになった。"
+        },
+        {
+          "title": "起動時の自動アップデートチェックを遅延",
+          "description": "自動アップデートチェックが起動後約10秒で実行され、CPU 競合を回避して起動応答性が向上した。"
+        },
+        {
+          "title": "`claude-api` スキルを更新",
+          "description": "Managed Agents の 8 月 19 日リリース向けに同梱の `claude-api` スキルを更新し、自己ホスト型サンドボックスでのウェブ検索/取得ドメイン設定とメモリストアをサポートした。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "プラグインマーケットプレイスの `headersHelper`",
+          "description": "`headersHelper` が URL マーケットプレイスやカタログエントリで実行され、カタログや同一オリジンアーカイブ取得のために HTTP ヘッダー（例: 短命トークン）を生成する。"
+        },
+        {
+          "title": "カタログエントリの `headersHelper` の実行タイミング",
+          "description": "`headersHelper` はプラグインのインストールまたは更新時にのみ実行され、コマンド表示後に実行される。`claude plugin install/update` は `[y/N]` を尋ね、`-y` で自動承認できる。"
+        },
+        {
+          "title": "クロスセッションメッセージ送信時の拒否通知",
+          "description": "受信側が inbound メッセージを拒否 (`crossSessionInbound: \"refuse\"`) した場合、送信側に \"refused\" と報告し、サイレント成功にならない。"
+        },
+        {
+          "title": "メッセージドロップ時の通知",
+          "description": "受信側の受信箱がレートリミットやキュー満杯でメッセージを捨てた場合、送信側にその旨を通知し、サイレントに消失しない。"
+        },
+        {
+          "title": "全画面モードでの Ctrl+L / Cmd+K 挙動変更",
+          "description": "全画面で Ctrl+L と Cmd+K が常に再描画だけを行うようになり、二重押し `/clear` ショートカットが削除され、1 行 nvim ターミナルで自動 `/clear` ループが発生しなくなった。"
+        },
+        {
+          "title": "`claude mcp list/get` の無効サーバー表示変更",
+          "description": "無効化されたサーバーは接続チェックを行わず `⊘ Disabled` と表示されるようになった。"
+        },
+        {
+          "title": "プロジェクト `.mcp.json` の MCP `headersHelper` の信頼ダイアログ要件",
+          "description": "プロジェクト `.mcp.json`、インライン MCP サーバー、`--add-dir` エージェントファイルでの `headersHelper` は、そのフォルダの信頼ダイアログが承認されている必要がある（`claude -p` でも適用）。"
+        },
+        {
+          "title": "`headersHelper` のクレデンシャル継承除外",
+          "description": "プロジェクト `.mcp.json`、プラグイン、エージェントファイルから実行される MCP `headersHelper` は環境変数の認証情報を継承せず、ユーザー・マネージド・claude.ai スコープのヘルパーは Claude 設定ディレクトリから実行される。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "長時間対話でのメモリ増大修正",
+          "description": "サブエージェントツール結果が表示ウィンドウ外になると解放され、メモリ無制限増加が防止された。"
+        },
+        {
+          "title": "出力スタイルがデフォルトに戻る問題修正",
+          "description": "カスタム・プロジェクト・プラグインの出力スタイルがセッション途中でデフォルト音声に戻るバグを修正。"
+        },
+        {
+          "title": "`CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION` の挙動修正",
+          "description": "使用量制限付近でアカウントが上限未超でもプロンプト提案が無効になる問題を修正。"
+        },
+        {
+          "title": "worktree-isolation Bash のリダイレクト誤報修正",
+          "description": "コマンドにリダイレクトが無いにも関わらず、worktree-isolation が削除指示を出す誤りを修正。"
+        },
+        {
+          "title": "自己ホストランナーの誤除去修正",
+          "description": "単一の遅延または失われたポーリングでサーバーがランナーを削除し、健康なセッションを別ランナーに渡す問題を修正。"
+        },
+        {
+          "title": "長い URL の MCP エリケーションダイアログ表示修正",
+          "description": "4,096文字超の URL が空表示になるバグと、端末幅に収まらないプロジェクトパスで「再度確認しない」オプションが消える問題を修正。"
+        },
+        {
+          "title": "Bash コマンド中断時の残存 `/tmp/claude-*-cwd` ファイル削除",
+          "description": "コマンドが殺された・タイムアウト・中断された際に残る一時ディレクトリを削除するように修正。"
+        },
+        {
+          "title": "大量キーストローク時の Backspace 無視修正",
+          "description": "大量バーストで Ctrl+H を Backspace と送る端末で、保持された Backspace が無視される問題を修正。"
+        },
+        {
+          "title": "権限プロンプト diff のテキスト折り返し修正",
+          "description": "絵文字やタブを含む行が切り取られずに正しく表示されるようにした。"
+        },
+        {
+          "title": "中断セッション (Ctrl+Z) 終了時の端末モード修正",
+          "description": "終了後に端末がブラケット貼り付けモードになりカーソルが隠れる問題を修正。"
+        },
+        {
+          "title": "stdio MCP サーバーの `server/discover` 受信順序修正",
+          "description": "`initialize` 前に `server/discover` が来ても、レイジーサーバーが毎回バックエンドを起動しないようにした。"
+        },
+        {
+          "title": "プロキシ拒否のエラーメッセージ修正",
+          "description": "接続拒否が汎用ネットワークエラーではなく、プロキシ名が表示されるようにした。"
+        },
+        {
+          "title": "`/model` / `/effort` キャッシュミス警告修正",
+          "description": "プロンプトキャッシュが既に期限切れでも警告が出る問題を修正。"
+        },
+        {
+          "title": "Remote Control タスクパネルの Stop が機能しない問題修正",
+          "description": "CLI でホストされたセッションに対し、タスクパネルの Stop が無効だったバグを修正。"
+        },
+        {
+          "title": "無効ロールのユーザーメッセージでリモートセッションが終了するバグ修正",
+          "description": "クライアントがロール不正のユーザーメッセージを送信してもセッションが落ちないようにした。"
+        },
+        {
+          "title": "Remote Control セッションの環境変数継承修正",
+          "description": "`claude remote-control` で開始したセッションが起動シェルのセッションスコープ環境変数を継承しないようにした。"
+        },
+        {
+          "title": "クラッシュした Remote Control セッションの再利用修正",
+          "description": "プロセスがクラッシュしたセッションが `claude remote-control` 再起動まで利用不可になる問題を修正し、次回メッセージ時に再利用可能にした。"
+        },
+        {
+          "title": "Claude がターン中の Remote Control メッセージ消失修正",
+          "description": "ウェブやデスクトップから送信されたメッセージがターン終了後に transcript から消えないようにした。"
+        },
+        {
+          "title": "Remote Control のモデル選択が端末に反映されない問題修正",
+          "description": "モデル選択が電話やウェブで行われても端末上の表示が更新されるようにした。"
+        },
+        {
+          "title": "ログイン期限切れ時の自動再接続修正",
+          "description": "短いネットワーク遅延でサインイン更新が遅れた際、\"login expired\" で切断せず再試行し接続を維持するようにした。"
+        },
+        {
+          "title": "サインアウト時の Remote Control 再接続失敗通知修正",
+          "description": "サインアウト時にセッションが終了し、明確なメッセージで通知されるようにした。"
+        },
+        {
+          "title": "`ListAgents`/`SendMessage` の接続エラー表示修正",
+          "description": "`claude remote-control` (サーバーモード) や Desktop/IDE ホストで実行した際に、エージェントが正しくリモートコントロールピアをリストし接続できるように修正。"
+        },
+        {
+          "title": "エージェントビューのアイドルワーカー露出修正",
+          "description": "`ListAgents` と `SendMessage` が次のバックグラウンドセッション用に事前ウォームされたアイドルワーカーを表示しないようにし、タスク取得時のみ表示されるようにした。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-20T23:29:54.069Z"
+}
