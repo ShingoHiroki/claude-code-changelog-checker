@@ -1,0 +1,241 @@
+{
+  "version": "2.1.239",
+  "tagName": "v2.1.239",
+  "publishedAt": "2026-08-21T19:54:23Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.239",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 1,
+    "その他": 18,
+    "バグ修正": 38
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Bedrock、Vertex、Foundry など、従来除外されていた環境で、ワンタイムのフルスクリーンレンダラーオファーを追加しました。新規インストール時はフルスクリーンで開始します",
+          "description": ""
+        },
+        {
+          "title": "`/claude-api upgrade` を追加し、Python プロジェクトを `anthropic` 0.x から 1.x へ移行できるようにしました。また、スキルの Python リファレンスを 1.x 用に更新しました（タイムアウトは `anthropic.Timeout` を使用し、`httpx.Timeout` ではありません）",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "コンパクション後に表示されるリマインダーを改善し、スキルの元の引数が新しいリクエストとして再実行されないようにしました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "コスト見積もり（`/cost`、ステータスライン、`--max-budget-usd`）は、データ居住性ワークスペース向けの米国限定推論プレミアム 1.1× を含むようになりました",
+          "description": ""
+        },
+        {
+          "title": "クラウドセッション: claude.ai から同期されたプラグインは `name@synced` と表示され、`claude plugin enable/disable <name>@synced` で操作でき、同名のローカルインストールプラグインを上書きしません",
+          "description": ""
+        },
+        {
+          "title": "Alpine/musl ビルド: ネイティブ画像貼り付け、クリップボード、オーディオキャプチャのアドオンがロードできるようになりました（ランタイムで拒否されていた glibc ビルドの代わりに musl ビルドのバイナリを使用）",
+          "description": ""
+        },
+        {
+          "title": "月間支出上限が使い切れたときに表示される使用制限メッセージに、セッションまたは週間上限がリセットされる時間も表示されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "ツール使用行の長いファイルパスは、途中で省略して1行に収まるようになりました",
+          "description": ""
+        },
+        {
+          "title": "リモートセッションは、長時間の `SessionStart` や `Setup` フックが実行中でもキープアライブを送り続け、フック途中でコンテナがアイドル状態で削除されないようにします",
+          "description": ""
+        },
+        {
+          "title": "`/goal`: 長時間実行中のバックグラウンド作業に対するチェックインの繰り返し間隔が、30分ごとから30分、1時間、2時間ごとに徐々に間引かれるようになりました",
+          "description": ""
+        },
+        {
+          "title": "`/goal`: `claude --resume` ピッカーからセッションを再開すると、アクティブなゴールが復元されます",
+          "description": ""
+        },
+        {
+          "title": "`ListAgents` がセッション自身の名前（ピアがメッセージ送信に使用する名前）を返すようになり、`SendMessage` で自分の名前に送ると \"no agent named …\" と表示されずにその旨が通知されます",
+          "description": ""
+        },
+        {
+          "title": "`ListAgents` と `/list-agents` が、ライブのチームメイトを一覧表示するようになりました（以前はサブエージェントや他セッションのみで、到達可能なチームメイトが表示されませんでした）",
+          "description": ""
+        },
+        {
+          "title": "`keybindingFlavor: \"readline\"` が Bash の単語移動キーにも対応し、Alt+F と Ctrl/Option+→ が単語の末尾で止まり、Alt+D がその単語まで削除し（Ctrl+Y で貼り戻し）、句読点で単語が区切られます",
+          "description": ""
+        },
+        {
+          "title": "永続リトライモード（`CLAUDE_CODE_RETRY_WATCHDOG`）は、組織の支出上限やクレジット不足エラー時に即座に失敗し、リセットを無期限に待たないようになりました",
+          "description": ""
+        },
+        {
+          "title": "Chrome の Claude: `/clear` がセッションの Chrome タブグループを閉じ、空になったグループは `/resume` 時と Claude Code 終了時に閉じられます",
+          "description": ""
+        },
+        {
+          "title": "リモートセッション: モバイルからアップロードされた画像に保存されたファイルパスが含まれ、Claude がそれらを作成するファイルにコピーできるようになりました",
+          "description": ""
+        },
+        {
+          "title": "Web の Claude Code: Bash やその他ツールから非 API の anthropic.com ホスト（例: www、docs）へのリクエストがセッションのネットワークプロキシを通るようになり、環境の許可ドメインが適用されます",
+          "description": ""
+        },
+        {
+          "title": "リモートコントロール: アカウントでリモートコントロールが有効化されていない場合のメッセージと `claude doctor` の文言を改善しました",
+          "description": ""
+        },
+        {
+          "title": "Windows: クロスセッションメッセージングが利用可能になり、MacOS や Linux と同様に、複数マシン間の Claude Code セッションが `SendMessage` で相互にメッセージをやり取りし、`ListAgents` で相手を見つけられます",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 使用制限バナーの \"View usage\" が警告テキストと同一行に配置され、バナー中央に浮かぶことはなくなりました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "プロキシで応答の Content-Type ヘッダーが除去される Bedrock ストリーミングを修正しました。この問題により、非ストリーミングで毎ターン再実行され、課金 API 呼び出しが裏で2倍になっていました",
+          "description": ""
+        },
+        {
+          "title": "Bedrock と SSO プロファイル、`awsAuthRefresh` を使用している際に HTTPS プロキシ越しで起動時に Claude Code がハングする問題を修正し、認証情報の事前チェックが `HTTPS_PROXY` を尊重するようになりました",
+          "description": ""
+        },
+        {
+          "title": "存在しないディレクトリから Claude Code を起動したときに発生していた生クラッシュダンプを修正し、明確なメッセージを出力するようにしました",
+          "description": ""
+        },
+        {
+          "title": "Claude Code プラグインが接続されている JetBrains IDE ターミナルで、Edit と Write 呼び出しが約5秒間一時停止する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "プロンプトがキューにある状態で Esc を押すと、次のターンが早く終了し、Claude が作業中でもセッションがアイドル状態になり、後続の再送で同じ操作が繰り返される競合状態を修正しました",
+          "description": ""
+        },
+        {
+          "title": "WebFetch が期限切れのページ内容をセッション全体でメモリに保持し続ける問題を修正し、意図された15分間に限定しました",
+          "description": ""
+        },
+        {
+          "title": "クラウドセッション（Web、デスクトップ、モバイルアプリの Claude Code）が、アイドル状態のワーカー再起動後にプラン外モードで再開してしまう問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "フルスクリーンモードでターミナルより高い MCP 誘導フォームが切り取られる問題を修正し、フォームがウィンドウにフィットし、スクロールで隠れたフィールドにアクセスでき、Accept/Decline が常に表示されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "クラウドセッションや SDK の `setMcpServers()` で、セッション中の再接続時に一時的な 5xx エラーが起きた後、リモート MCP サーバーが失敗状態のままになる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "リネーム後に約64KB以上の会話が書き込まれると、カスタムセッションタイトルが `/resume` から消えてしまう問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`claude -c`/resume が、`_`、`-`、`.` だけが異なる別ディレクトリのセッションを誤って取得していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/resume` とエージェントビューで、セッションのファイルがタッチされただけ、または再オープンされただけで「最近変更された」と表示され再配置されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "すべてのプロジェクトモードで `/resume` が削除されたディレクトリ（例: 削除された worktree）へ `cd` するよう指示する問題を修正し、現在のディレクトリでセッションが再開されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "`dark-ansi` テーマで、フルスクリーンモードの拡張ツール結果が背景と同色のテキストで表示される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "回答できないフルスクリーンレンダラープロンプトが起動のたびに再表示される問題を修正し、3回表示された後は停止するようになりました",
+          "description": ""
+        },
+        {
+          "title": "`**/` で始まる `.worktreeinclude` パターンが、gitignore 対象ディレクトリ内の対象に対して何もマッチしない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "UTF-8 BOM で始まる `.md` ファイルを持つエージェント、スキル、コマンドが無視されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "一部のモデルで `/insights` が応答に文字通りの `<message>` タグをエコーしていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Marketplace の `metadata.pluginRoot` が無効だった問題を修正し、ドキュメント通りにベアプラグインソース名がその下で解決されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "ブラウザベースのターミナルでマウス移動時に、マウスレポートが分割されて書き込まれると \"35;150;7M\" というテキストがプロンプトに挿入される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "effort/ultracode ステータスバッジの色に対するカスタムテーマ上書きが無視されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "OpenTelemetry のトレース断片化を修正し、`PreToolUse` フックで遅延されたツール実行が新しいトレースを開始せず、元のターンのトレースで再開されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "エージェントビューの vim モードを修正し、Escape がプロンプトをクリアせずに NORMAL モードに切り替えてテキストを保持するようにしました",
+          "description": ""
+        },
+        {
+          "title": "`selection:copy` キーバインドが Shift+矢印キーで拡張されたテキスト選択を黙って破棄していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`voice.enabled` 設定で音声入力が有効化された後も `/voice` の起動ヒントが表示され続けていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "シェルモード（`!`）のタブ補完で `./script` パスから `./` が削除され、シェルがコマンドを実行できなくなる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "フルスクリーンモードで、ターミナルウィンドウをクリックしてフォーカスを戻すだけで、許可プロンプトに回答したりボタンが押されたりしていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "フルスクリーンモードでスラッシュコマンドパネル（例: `/config`、`/model`）が最新メッセージを覆い隠す問題を修正し、会話がパネルの上部に固定されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "Claude が応答中に `/workflows` の詳細ダイアログを開くと、端末をはみ出してヘッダーが画面外になる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Linux サンドボックスが存在しない",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-21T23:29:19.371Z"
+}
