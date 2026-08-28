@@ -1,0 +1,233 @@
+{
+  "version": "2.1.248",
+  "tagName": "v2.1.248",
+  "publishedAt": "2026-08-27T22:12:20Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.248",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 7,
+    "改善": 5,
+    "その他": 7,
+    "バグ修正": 30
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`--restricted` オプション追加",
+          "description": "`--restricted`（または `CLAUDE_CODE_RESTRICTED=1`）を追加。組み込みツール（コマンド実行やコード実行、`WebFetch`）を除去し（`--tools` で明示的に指定したものは除く）、作業ディレクトリ内のファイルツールは保持。`bypassPermissions` を拒否し、ユーザー・プロジェクト・ローカル設定ファイルは無視する。"
+        },
+        {
+          "title": "`experimental.cacheTtl` 追加",
+          "description": "エージェントの frontmatter に `experimental.cacheTtl`（例：`\"5m\"` または `\"1h\"`）を追加。サブエージェントに TTL 設定が無い場合に使用される、エージェント単位のプロンプトキャッシュ有効期限を指定できる。"
+        },
+        {
+          "title": "`--client-label` オプション追加",
+          "description": "`claude self-hosted-runner --client-label <label>`（または環境変数 `SELF_HOSTED_RUNNER_CLIENT_LABEL`）を追加。ランナーが登録するラベルをデフォルト（ホスト名）から任意の `<label>` に上書きできる。"
+        },
+        {
+          "title": "サーバー管理設定診断を追加",
+          "description": "設定ロード失敗時に起動警告を表示し、`/doctor` と `/status` がロード失敗理由や取得できなかった原因（Bedrock/Vertex/サードパーティプロバイダー、カスタム `ANTHROPIC_BASE_URL` など）を説明する診断情報を追加。"
+        },
+        {
+          "title": "`/web-setup` のスコープ警告追加",
+          "description": "GitHub CLI トークンに `workflow` スコープが無い場合、非常に大きなリポジトリへのプッシュが拒否されることがあるため、`/web-setup` で警告を表示するようにした。"
+        },
+        {
+          "title": "`/usage-credits` コマンド追加",
+          "description": "AWS Marketplace 経由で請求される Enterprise、セルフサービス Enterprise、Enterprise トライアル向けに `/usage-credits` を追加。メンバーは管理者に対し利用上限引き上げを要求できる。"
+        },
+        {
+          "title": "クロスセッションメッセージングを追加",
+          "description": "Bedrock、Vertex、Foundry の同一マシン上のセッション間で、テレメトリが無効化されている場合も含め、`SendMessage`／`ListAgents` によるクロスセッションメッセージングを実装した。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Workflow ツールのプロンプトサイズ縮小",
+          "description": "Workflow ツールのプロンプト文字数を約5.7kトークンから約1kトークンに削減。スクリプト作成の参照はバンドルされた `workflow-authoring` スキルに移動した。"
+        },
+        {
+          "title": "PR バッジ更新頻度を最適化",
+          "description": "プルリクエストが変更されていない間、プロンプトフッターの PR バッジが GitHub をチェックする頻度を低減。プッシュまたは `gh pr` コマンドで即座に更新される。"
+        },
+        {
+          "title": "管理設定のプロンプトトリガー緩和",
+          "description": "クライアント側タイムアウト、MCP スタートアップモード、ストリームウォッチドッグ環境変数が設定承認プロンプトを呼び出さなくなった。"
+        },
+        {
+          "title": "`/ultrareview` の事前チェック強化",
+          "description": "起動前に、Claude アカウントに紐付く GitHub アカウントが対象リポジトリにアクセス可能か確認し、問題があれば修正方法を説明するようにした。クラウドセッション開始後に失敗することはなくなった。"
+        },
+        {
+          "title": "クロスセッションメッセージのフォールバック追加",
+          "description": "デフォルトのディレクトリが使用できない場合、プライベートなユーザー毎の `/tmp` ディレクトリへフォールバックし、通知と `/status` に該当ディレクトリを表示して対処方法を示すようにした。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Windows で `claude agents` キーボード応答バグ修正",
+          "description": "Windows 環境でセッションからデタッチした後や win32-input-mode のタブで起動した際に、`claude agents` リストがキーボード入力に反応しなくなる問題を修正した。"
+        },
+        {
+          "title": "VSCode チャットタブのセッション未保存時バグ修正",
+          "description": "VSCode でチャットタブが「No conversation found」で止まる問題を修正。セッションが保存されていなかった場合は新しい会話を自動的に開始するようにした。"
+        },
+        {
+          "title": "エージェントビューの Shift+Enter/Ctrl+Enter 動作変更",
+          "description": "エージェントビューで入力送信時のショートカットを変更。Shift+Enter が改行挿入（プロンプトと同様）に、Ctrl+Enter が送信＆添付に割り当てられた。"
+        },
+        {
+          "title": "`/loop` のモード常時利用可能化",
+          "description": "`/loop` コマンドで自己調整ダイナミックモードとプロンプト不要の自律デフォルトが、Bedrock、Vertex、Foundry でも常に利用できるようにした。"
+        },
+        {
+          "title": "テレメトリ失敗ログレベル変更",
+          "description": "Anthropic テレメトリのエクスポート失敗を、`[3P telemetry] OTEL diag error` からデバッグレベルの `[Anthropic telemetry]` に変更。OTel コレクタの障害と誤認されないようにした。"
+        },
+        {
+          "title": "Linux 名前空間のクロスセッション信頼制限",
+          "description": "Linux ユーザー名前空間におけるクロスセッションメッセージングで、未マッピングオーナーに対するルート相当の信頼を、正規システムディレクトリに限定した。"
+        },
+        {
+          "title": "`SendMessage` の返信対象変更",
+          "description": "サブエージェントから別セッションへ送る `SendMessage` の結果表示を変更。返信がサブエージェントではなく、親セッションの会話に配信される旨を記載するようにした。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "長時間セッションでのプロンプトキャッシュミス修正",
+          "description": "OAuth トークンリフレッシュ後にツール定義が再描画され、約1時間ごとにプロンプトキャッシュが欠落し拡張思考コンテキストが失われる問題を修正した。"
+        },
+        {
+          "title": "使用超過時の `ScheduleWakeup` 定義変化バグ修正",
+          "description": "使用超過で `ScheduleWakeup` ツール定義がセッションと `--resume` 間で変化し、再開セッションの最初のターンでキャッシュミスが起きる問題を修正した。"
+        },
+        {
+          "title": "Desktop と Cowork セッションの30日削除バグ修正",
+          "description": "30日経過でデスクトップやCowork セッションが消える問題を修正。トランスクリプトクリーンアップはアプリ内で書かれたセッションは保持し、`desktopSessionCleanupPeriodDays` 設定で例外期間を上限設定できるようにした。"
+        },
+        {
+          "title": "トークンリフレッシュロック競合時のログイン画面遷移バグ修正",
+          "description": "別プロセスがトークンリフレッシュロックを保持している間にセッショントークンが期限切れになると、ログイン画面へ遷移していた問題を修正。リクエストはリトライ可能エラーで失敗するようになった。"
+        },
+        {
+          "title": "Console サインイン失敗時のフォールバック修正",
+          "description": "`/login` で推奨される Console サインインが OAuth エラーで失敗し、サインイン URL が表示されないケース（例：`ANTHROPIC_API_KEY` が設定されている等）で、API キーサインインへフォールバックするようにした。"
+        },
+        {
+          "title": "モデル名表示のコード化バグ修正",
+          "description": "`/model` と高速モード切替通知でモデル名がコードとしてレンダリングされず、`[1m]` などのサフィックスがリンク化されていた問題を修正。文字通り表示されるようにした。"
+        },
+        {
+          "title": "`CI` 環境変数時の workspace trust プロンプトスキップ修正",
+          "description": "`CI` 環境変数が設定されていると `claude agents` がワークスペース信頼プロンプトをスキップしていた問題を修正した。"
+        },
+        {
+          "title": "PR ステータスキャッシュの不正エントリでのクラッシュ修正",
+          "description": "`claude agents` 起動時に PR ステータスキャッシュが不正なエントリを保持していたためクラッシュしていた問題を修正した。"
+        },
+        {
+          "title": "停止セッション復元時の表示修正",
+          "description": "マシンがオフだった数週間前のバックグラウンドセッションをエージェントビューで復元すると、実際の終了時点で停止していることを正しく表示し、再開前に確認ダイアログを出すようにした。"
+        },
+        {
+          "title": "新規セッション開始時の古い会話オープンバグ修正",
+          "description": "エージェントビューで新しいセッションを開始した際に、古い会話が開かれ、入力したプロンプトが失われる問題を修正した。"
+        },
+        {
+          "title": "別ターミナルで再開中のセッション二重起動防止",
+          "description": "既に別ターミナルで再開済みの停止セッションを `claude agents` で開くと二重プロセスが起動していた問題を修正。行には「別ターミナルで開いている」旨が表示される。"
+        },
+        {
+          "title": "マージ済みブランチの削除拒否バグ修正",
+          "description": "`claude agents` と `claude rm` が、作業ツリーブランチがデフォルトブランチ（例：ローカル `main`）にマージ済みでも未プッシュの場合に「コミットが未プッシュ」として削除を拒否していた問題を修正した。"
+        },
+        {
+          "title": "無効なフック回答時のサイレント待機バグ修正",
+          "description": "`PermissionRequest` または `PreToolUse` フックが無効な回答を出力した際、バックグラウンドセッションがサイレントに待機していた問題を修正。行にフック名とスキーマエラーが表示されるようになった。"
+        },
+        {
+          "title": "フック stdout の JSON 解析エラー報告修正",
+          "description": "フックが stdout に `{…}` 形式のオブジェクトを出力したが有効な JSON でない場合、プレーンテキストとして扱われていた問題を修正。解析エラーメッセージとしてフックエラーが報告されるようになった。"
+        },
+        {
+          "title": "`.mcp.json` エントリのスコープ表示修正",
+          "description": "`/mcp` がプロジェクトの `.mcp.json` エントリを信頼された \"claude.ai\" 見出しの下に表示していたが、実際のスコープ（例：`claude.ai` コネクタ）に正しく表示されるよう修正した。"
+        },
+        {
+          "title": "`headersHelper` の 401 ハンドリング修正",
+          "description": "MCP サーバーで `headersHelper` が `Authorization` ヘッダーを付与したとき、401 応答で OAuth ディスカバリに入らず、ヘルパーを再実行してリトライするように修正した。"
+        },
+        {
+          "title": "`/login` のゲートウェイハングバグ修正",
+          "description": "管理設定のセキュリティ承認ダイアログが必要な際に、Claude アプリゲートウェイへの `/login` がハングしていた問題を修正した。"
+        },
+        {
+          "title": "ゲートウェイモデルディスカバリ未実行バグ修正",
+          "description": "`apiKeyHelper` が唯一の認証情報である場合に、`CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY` が有効でもゲートウェイモデルディスカバリが実行されない問題を修正した。"
+        },
+        {
+          "title": "`claude logs` の端末状態復元バグ修正",
+          "description": "`claude logs` 実行後にマウス追跡、括弧貼り付け、代替画面モードが端末に残っていた問題を修正した。"
+        },
+        {
+          "title": "リポジトリ権限ルール表示の文字化け修正",
+          "description": "信頼ダイアログで長いリポジトリ権限ルールが絵文字の途中で切れ、文字化けして表示されていた問題を修正した。"
+        },
+        {
+          "title": "Shift+Tab 後のモードインジケータ表示バグ修正",
+          "description": "Ctrl+C 後に Shift+Tab を押すと、\"Press Ctrl-C again to exit\" ヒントの背後に権限モードインジケータが隠れていた問題を修正した。"
+        },
+        {
+          "title": "`/ultrareview` のローカルファイルアップロード防止修正",
+          "description": "`/ultrareview` とローカルでシードされたクラウドセッションが、未コミットの `prod.env` 系や `*.tfvars`、credential ファイルのスワップ・一時・バックアップコピー（例：`key.pem.tmp`、`id_rsa.swo`）をアップロードしていた問題を修正。これらはローカルに留まるようにした。"
+        },
+        {
+          "title": "リモートコントロールセッションのプロンプト表示バグ修正",
+          "description": "リモートコントロールセッションで、CLI がサイレント再接続した後にデバイス側で権限プロンプトや最新メッセージが表示されないことがあった問題を修正した。"
+        },
+        {
+          "title": "コンテナクレデンシャル読み取りタイミングバグ修正",
+          "description": "クラウドセッション起動時に、コンテナ内のセッションクレデンシャルがまだ読み取れない状態で失敗することがあった問題を修正した。"
+        },
+        {
+          "title": "`claude remote-control` のフラグ競合バグ修正",
+          "description": "`claude remote-control` がグローバルフラグやラッパー注入オプションの前にサブコマンドが来た場合、`--spawn` や `--name` など自分のフラグを拒否していた問題を修正した。"
+        },
+        {
+          "title": "起動警告のレイアウトずれ修正",
+          "description": "起動警告（例：\"N MCP servers need authentication\"）がトランスクリプトの他行より右に1列ずれて表示されていた問題を修正した。"
+        },
+        {
+          "title": "バックグラウンド作業ツリーセッションのチェックアウト保持修正",
+          "description": "バックグラウンドで実行中の作業ツリーセッションがチェックアウト情報を失う問題を修正。バックグラウンドセッションは作業ツリーのロックを保持し、`git worktree remove` しても影響しないようにした。"
+        },
+        {
+          "title": "非ラテン文字名の @ メンション一致バグ修正",
+          "description": "非ラテン文字（例：韓国語 IME）で入力したセッション名に対する @ メンションが一致しない問題を修正した。"
+        },
+        {
+          "title": "無効な `crossSessionInbound` 設定の警告化",
+          "description": "`crossSessionInbound` の無効な値がサイレントに無視されていた問題を修正。設定がユーザー設定の場合は警告しメッセージを保留、管理設定の場合は拒否して警告を出すようにした。"
+        },
+        {
+          "title": "利用制限・高速モードメッセージのコマンド非表示バグ修正",
+          "description": "組織で `/usage-credits` が利用できない（`DISABLE_EXTRA_USAGE_COMMAND` で隠されている）場合でも、レートリミット・使用量・高速モードメッセージが `/usage-credits` 実行を促す文言を表示していた問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-28T06:50:18.620Z"
+}

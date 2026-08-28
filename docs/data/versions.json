@@ -1,7 +1,35 @@
 {
-  "generatedAt": "2026-08-27T04:26:44.297Z",
-  "latest": "2.1.247",
+  "generatedAt": "2026-08-28T06:50:22.687Z",
+  "latest": "2.1.250",
   "versions": [
+    {
+      "version": "2.1.250",
+      "tagName": "v2.1.250",
+      "publishedAt": "2026-08-28T00:49:16Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.250",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 0,
+        "改善": 0,
+        "その他": 1,
+        "バグ修正": 0
+      },
+      "hasBreakingChanges": false
+    },
+    {
+      "version": "2.1.248",
+      "tagName": "v2.1.248",
+      "publishedAt": "2026-08-27T22:12:20Z",
+      "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.248",
+      "counts": {
+        "破壊的変更": 0,
+        "新機能": 7,
+        "改善": 5,
+        "その他": 7,
+        "バグ修正": 30
+      },
+      "hasBreakingChanges": false
+    },
     {
       "version": "2.1.247",
       "tagName": "v2.1.247",
