@@ -1,0 +1,326 @@
+{
+  "version": "2.1.251",
+  "tagName": "v2.1.251",
+  "publishedAt": "2026-08-28T18:19:32Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.251",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 5,
+    "改善": 10,
+    "その他": 15,
+    "バグ修正": 40
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "6言語のシンタックスハイライト削除",
+          "description": "1c、gml、isbl、mathematica、maxima、sqf のシンタックスハイライトを削除し、バイナリサイズが 2.5 MB 小さくなりました。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`PreModelSwitch` と `PostModelSwitch` フック追加",
+          "description": "モデル切り替え前後に `PreModelSwitch` と `PostModelSwitch` フックイベントが追加され、ブロック・確認・注釈付けが可能になりました。また、`SessionStart` の再開フックはセッションの古さと推定再キャッシュコストを受け取ります。"
+        },
+        {
+          "title": "フォアグラウンドサブエージェントのツール呼び出しをライブストリーミング",
+          "description": "フォアグラウンドサブエージェントのツール呼び出しと結果が Remote Control クライアントにリアルタイムで配信されます。バックグラウンドサブエージェントは従来通りステータスのみ表示です。"
+        },
+        {
+          "title": "`/usage` に Spend limit バーを追加",
+          "description": "Spend limit バーが `/usage` に表示され、Claude apps ゲートウェイで Spend limit が設定された開発者向けに `rate_limits.spend_limit` ステータスラインフィールドが追加されました。"
+        },
+        {
+          "title": "`/cost` にセッション単位のプロンプトキャッシュ行を追加",
+          "description": "`/cost` にヒット率・ミス・再キャッシュトークン数・warm/cold の情報を含むセッションごとのプロンプトキャッシュ行が表示され、ステータスラインスクリプト用の `prompt_cache` オブジェクトも提供されます。"
+        },
+        {
+          "title": "`claude --help` に新コマンドを追加",
+          "description": "`attach`、`logs`、`stop`、`respawn`、`rm` が `claude --help` に掲載され、バックグラウンドセッション実行中の `--resume` メッセージは正確な `claude attach <id>` コマンド名を示すようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "インタラクティブセッションの CPU 使用率改善",
+          "description": "ターン中の不要な UI 再描画を削減し、CPU 使用率を低減しました。"
+        },
+        {
+          "title": "インストールサイズを約5 MB縮小",
+          "description": "ネイティブバイナリのサイズが約5 MB 小さくなりました。"
+        },
+        {
+          "title": "クラウドセッションの接続エラー情報を詳細化",
+          "description": "Bash コマンド実行中にネットワークプロキシが切断された場合、ツール結果にホスト名と理由が表示され、単なる \"connection reset\" ではなくなります。"
+        },
+        {
+          "title": "`/schedule` のエラーメッセージを改善",
+          "description": "Claude Code で設定された MCP サーバーはクラウドルーティンにアタッチできない旨を、単なる \"No MCP connectors\" ではなく説明付きで表示します。"
+        },
+        {
+          "title": "サブエージェントからのメッセージのフレーミング改善",
+          "description": "自分のサブエージェントからのメッセージは、同一セッション内のワーカーから送られたと Claude に伝わり、無関係な Claude セッションからの送信と誤認されません。"
+        },
+        {
+          "title": "プロンプトプレースホルダーを \"Message @name…\" に変更",
+          "description": "バックグラウンドサブエージェントやフォークトランスクリプトをサブエージェントパネルや `/tasks` から開いたとき、プロンプトのプレースホルダーが \"Message @name…\" と表示されます。"
+        },
+        {
+          "title": "MCP サーバー名のサニタイズを改善",
+          "description": "エラーメッセージ、メニュー、コマンド結果内での MCP サーバー名のサニタイズが強化されました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST` 下での Bedrock セッション開始を改善",
+          "description": "Bedrock のモデル ID や ARN が指定されたセッションが、推論プロファイルの検出を待たずに開始できるようになりました（例：Claude Desktop）。"
+        },
+        {
+          "title": "管理設定承認ダイアログが変更分のみ表示するよう改善",
+          "description": "最後に承認した以降に変更された設定だけが承認ダイアログに一覧表示されます。"
+        },
+        {
+          "title": "ツール呼び出しの不正出力を除外してリトライを改善",
+          "description": "モデルのツール呼び出しが不正な場合、破損出力はリトライコンテキストから除外され、Bedrock、Vertex、Foundry でも同様に動作します。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`/radio` が Bedrock などで利用可能に変更",
+          "description": "`/radio` が Bedrock、Vertex AI、Foundry、AWS 上の Claude Platform、テレメトリ無効時でも使用できるようになりました。"
+        },
+        {
+          "title": "Chrome の Claude が常に権限チェックを通すよう変更",
+          "description": "Chrome 上の Claude は、テレメトリが無効でもブラウザ操作が常に Claude Code の権限チェックを経由するようになり、以前は拡張機能独自のプロンプトが使われていました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_SUBAGENT_MODEL` のデフォルト設定を変更",
+          "description": "デフォルトはサブエージェントモデルの設定だけになるよう変更され、エージェント定義の `model:` や明示的なスパーンモデルが優先されます。"
+        },
+        {
+          "title": "デフォルトのコミットトレーラを変更",
+          "description": "アクティブモデルが認識された Claude モデルでない場合（例：カスタム `ANTHROPIC_BASE_URL` 背後のサードパーティモデル）に、デフォルトのコミットトレーラが `Co-Authored-By: Claude Code` となります。"
+        },
+        {
+          "title": "エンタープライズシートベースのデフォルトモデルを Opus 5 に変更",
+          "description": "シートベース Enterprise サブスクリプションのデフォルトモデルが他のプレミアムプランと同様に Opus 5 に統一されました。"
+        },
+        {
+          "title": "`/effort` がモデル別にデフォルト努力レベルを保存",
+          "description": "`/effort` はモデルごとにデフォルトの努力レベルを保持し、モデル切替時に設定が引き継がれます。"
+        },
+        {
+          "title": "アナリティクスがサインイン前にオフになるのを停止",
+          "description": "管理設定でゲートウェイログインが必要な場合でも、サインイン前にアナリティクスが自動でオフになることはなく、サインイン後にオフに設定できます（`DISABLE_TELEMETRY` でも可）。"
+        },
+        {
+          "title": "フッタ PR バッジが GitHub API 直接呼び出しに変更",
+          "description": "Bedrock、Vertex、Foundry、テレメトリオフ時のフッタ PR バッジは `gh auth token`、`GH_TOKEN`、`GITHUB_TOKEN` を用いて GitHub API を直接呼び出すようになり、`gh pr view` を使用しません。"
+        },
+        {
+          "title": "サンドボックス内 Bash 出力ファイルの作成・読み取り方法を変更",
+          "description": "サンドボックスで実行された Bash コマンドの出力ファイルは、リダイレクトや置換ができないように作成・読み取りが制御されます。"
+        },
+        {
+          "title": "プラグイン/LSP 提案が入力送信まで待機するよう変更",
+          "description": "プラグインや LSP のインストール提案、オートモードのデフォルト提供は、プロンプトを送信またはクリアするまで待機し、Enter キーでの送信が提案に回答されることを防ぎます。"
+        },
+        {
+          "title": "サンドボックス設定変更に承認を必須に変更",
+          "description": "TLS 終了、プロキシ経由、認証情報注入、サンドボックス分離緩和といったサーバー管理設定は、適用前に承認が必要となります。"
+        },
+        {
+          "title": "`ANTHROPIC_CUSTOM_HEADERS` の承認要件を拡大",
+          "description": "資格情報、org/tenant、ルーティング、API 動作ヘッダー（例：`Authorization`、`Host`）を設定する際、`ANTHROPIC_CUSTOM_HEADERS` は承認が必要になります。"
+        },
+        {
+          "title": "プロジェクト `.claude/settings.json` の `env` がディレクトリ変数を設定しなくなり",
+          "description": "`CLAUDE_CONFIG_DIR`、`CLAUDE_CODE_TMPDIR`、`TMPDIR`/`TMP`/`TEMP` はプロジェクトレベル `env` からは設定されず、シェル、ユーザー、または管理設定で設定してください。"
+        },
+        {
+          "title": "[VSCode] サインイン画面のボタンリンク修正",
+          "description": "サインイン画面の \"Bedrock, Foundry, or Vertex\" ボタンがページ上部ではなく、サードパーティプロバイダー設定セクションを開くようになりました。"
+        },
+        {
+          "title": "[VSCode] Remote Control バナーをフッターピルに変更",
+          "description": "Remote Control バナーがフッターピルに変更され、セッションを claude.ai/code で開くリンクを提供します。`/remote-control` で表示・非表示を切り替え可能です。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "シンボリックリンク後のファイルツールが外部を読めるバグ修正",
+          "description": "作業ディレクトリ内でシンボリックリンクが権限チェック後に入れ替えられた場合でも、Read、Write、Edit ツールが承認外の場所を読んだり書いたりしないよう修正しました。"
+        },
+        {
+          "title": "プラグインコマンドのディレクトリ越えを防止",
+          "description": "マーケットプレイスエントリで宣言されたプラグインコマンドがプラグインディレクトリ外を指すことができなくなり、パストラバーサルエラーで拒否されます。"
+        },
+        {
+          "title": "ベータトレースと生APIログの不正有効化を修正",
+          "description": "プロジェクト設定で詳細ベータトレースや生APIボディロギングが有効になるバグを修正し、管理設定やホストアプリが固定した OTLP コレクタを迂回できなくしました。"
+        },
+        {
+          "title": "Workflow ツールの scriptPath 読み取りバグ修正",
+          "description": "Workflow ツールが permission check 前に session が読めない `scriptPath` を読み取らないように修正しました。"
+        },
+        {
+          "title": "Grep と Glob がシンボリックリンク経由のファイルに deny ルールを適用しない問題を修正",
+          "description": "シンボリックリンクされた検索パス経由で到達したファイルに対して `Read(...)` の deny ルールが正しく適用されるようにしました。"
+        },
+        {
+          "title": "空テキストブロックエラーで会話がスタックするバグ修正",
+          "description": "モデルが \"thinking\" のみ生成したターン後に \"text content blocks must be non-empty\" エラーが出ても会話が停止しないよう修正しました。"
+        },
+        {
+          "title": "初回起動時のデフォルトモード選択バグ修正",
+          "description": "自動モードがデフォルト設定のアカウントで、初回インストール後にデフォルトモードで起動していた問題を修正し、正しく自動モードで開始します。"
+        },
+        {
+          "title": "Opus 5 の effort エラーを修正",
+          "description": "effort が xhigh/max で thinking がオフの場合に \"effort … is not supported when thinking is disabled\" が発生していたのを、effort を `high` に送るよう修正しました。"
+        },
+        {
+          "title": "別セッションからのメッセージ受信バグ修正",
+          "description": "Claude Desktop が別セッションから送られたメッセージに対し `SendMessage` が \"not reachable\" で失敗していたのを、Desktop 経由で正しく配信できるよう修正しました。"
+        },
+        {
+          "title": "多数サブエージェントでの TUI ラグを修正",
+          "description": "多数のパラレルサブエージェントがあるときの TUI で、進捗ティックが積み重なる代わりに毎秒置き換えられるようにしました。"
+        },
+        {
+          "title": "エージェントチームでの最終回答未送信バグ修正",
+          "description": "チームリーダーに対してメンバーの最終回答が届かず \"available\" 通知になる問題を修正し、正しくアイドル通知に到達します。"
+        },
+        {
+          "title": "無名サブエージェントからの返信バグ修正",
+          "description": "バックグラウンドサブエージェントが名前のない兄弟または親エージェントからのメッセージに返信できなかった `from` がエージェントタイプだった問題を修正しました。"
+        },
+        {
+          "title": "mid‑session の disableAutoMode が即時反映しないバグ修正",
+          "description": "管理設定 `disableAutoMode` がセッション途中で届いた際、既に走っている auto‑mode セッションがデフォルトモードに戻らなかった問題を修正しました。"
+        },
+        {
+          "title": "Opus 1M のコンテキストヒント誤表示バグ修正",
+          "description": "現在の Opus モデルがすでに 1M コンテキストを持っている場合でも、\"switch to Opus 1M for 5x more context\" のヒントが出る問題を修正しました。"
+        },
+        {
+          "title": "Claude apps ゲートウェイでの Anthropic プロファイル誤使用バグ修正",
+          "description": "保存された Anthropic プロファイルがアクティブとみなされ、`/status` に表示されたり 401 リトライに使用されたりしていた問題を修正しました。"
+        },
+        {
+          "title": "クラウドセッションでモデル変更誤報告バグ修正",
+          "description": "ホストがセッションの初期モデルだけを設定した際に、クラウドセッションがモデル変更を報告していた問題を修正しました。"
+        },
+        {
+          "title": "組織ポリシーで Remote Control が失敗しても過剰通知しないよう修正",
+          "description": "組織のポリシーで Remote Control が無効化された場合、失敗を静かな通知だけに抑えました。"
+        },
+        {
+          "title": "Remote Control の MCP 再接続エラー詳細表示バグ修正",
+          "description": "`/mcp reconnect` がサーバーが別セッションで無効化されたときに、実際の対処法ではなく汎用エラーを表示していた問題を修正しました。"
+        },
+        {
+          "title": "`--input-format stream-json` のメッセージ ID 欠落バグ修正",
+          "description": "クライアントが注入したアシスタントツールコールがメッセージ ID を持たない場合、最初のメッセージにマージされ結果が失われていた問題を修正しました。"
+        },
+        {
+          "title": "セッションディレクトリ移動でトランスクリプト上書きバグ修正",
+          "description": "ディレクトリ変更で同一 ID の既存トランスクリプト上にセッションが移動した際、トランスクリプトが静かに上書きされていた問題を修正しました。"
+        },
+        {
+          "title": "git worktree 内のファイル編集バグ修正",
+          "description": "バックグラウンドセッションとそのサブエージェントが `git worktree add` で作成した worktree 内のファイルを編集できなかった問題を修正しました。"
+        },
+        {
+          "title": "プラグインマーケットプレイス更新時のバックグラウンドセッション開始バグ修正",
+          "description": "別プロセスがプラグインマーケットプレイスをリフレッシュ中にバックグラウンドセッションがプラグインスキルなしで開始され、そのまま残っていた問題を修正しました。"
+        },
+        {
+          "title": "tmux 上のバックグラウンドセッションでテキスト選択がコピーされないバグ修正",
+          "description": "SSH 経由の tmux で開いたバックグラウンドセッション内のテキスト選択が OSC 52 ではなく tmux バッファにコピーされるよう修正しました。"
+        },
+        {
+          "title": "SDK MCP ハンドシェイクタイムアウトバグ修正",
+          "description": "SDK MCP サーバーのハンドシェイク ACK が失われた際、無期限にハングしていた問題を 70 秒でタイムアウトし、そのサーバーのみ失敗とマークするよう修正しました。"
+        },
+        {
+          "title": "セルフホストランナーでの Bash ツールプロセス残留バグ修正",
+          "description": "セッションが強制停止された後も、セルフホストランナー上で Bash ツールプロセスが残っていた問題を修正しました。"
+        },
+        {
+          "title": "`/usage-credits` が $0 上限で正しく応答しないバグ修正",
+          "description": "組織の使用クレジット上限が $0 の場合、管理者に問い合わせるオプションを提示し、キャップに達したとだけ表示していた問題を修正しました。"
+        },
+        {
+          "title": "GitLab origin の `--worktree --tmux` が GitHub フェッチを試みるバグ修正",
+          "description": "GitLab.com の origin で `--worktree --tmux` にマージリクエスト番号を指定した際、まず GitHub スタイルのフェッチを試みて失敗していた問題を、直接 GitLab ref を取得するよう修正しました。"
+        },
+        {
+          "title": "Emacs/ micro の `/dev/tty` 使用時に Ctrl+G がクラッシュするバグ修正",
+          "description": "バックグラウンドセッションで `/dev/tty` を開くエディタ（例：`emacs -nw`、`micro`）で Ctrl+G が \"Emacs quit unexpectedly\" とクラッシュしていた問題を修正しました。"
+        },
+        {
+          "title": "`additionalDirectories` に Null バイトがあると起動失敗するバグ修正",
+          "description": "SDK ホスト、IDE、フックから渡された `additionalDirectories` エントリに Null バイトが含まれると起動時にクラッシュしたり `/add-dir` が機能しなくなる問題を、エントリをスキップするよう修正しました。"
+        },
+        {
+          "title": "MCP サーバーメニューのコピーショートカット表示バグ修正",
+          "description": "コピーショートカットが常に成功と表示していたのを、実際にサインイン URL がコピーされたかどうかを正しく表示するよう修正しました。"
+        },
+        {
+          "title": "GNU screen と tmux のイタリックテキストがハイライト表示されるバグ修正",
+          "description": "セッション要約行などのイタリックテキストが GNU screen や `screen` ターミナルタイプの tmux でハイライトブロックとして表示されていた問題を修正しました。"
+        },
+        {
+          "title": "`claude mcp add --header` と `claude mcp add-json` のヘルプが誤った transport 表示を修正",
+          "description": "ヘルプテキストが間違った transport 名を示していた問題を修正しました。"
+        },
+        {
+          "title": "`claude ultrareview` が失敗時に 30 分待機するバグ修正",
+          "description": "クラウドセッション起動失敗時に `claude ultrareview` と `/ultrareview` がフル 30 分待機していたのを、早期に停止し原因を報告するよう修正しました。"
+        },
+        {
+          "title": "Bash 変数代入の算術式が自動承認されるバグ修正",
+          "description": "整数シェル変数に算術式（例：`OPTIND=1/0`、`RANDOM=2+2`）を代入するコマンドが自動承認されていたのを、承認プロンプトが表示されるよう修正しました。"
+        },
+        {
+          "title": "バックグラウンドセッションで Vertex/Bedrock ゲートウェイ環境変数が失われるバグ修正",
+          "description": "`←`、`/background`、`--bg` で開始したセッションがシェルでエクスポートされた `ANTHROPIC_*_BASE_URL` と `CLAUDE_CODE_SKIP_*_AUTH` を失い、全リクエストが失敗していた問題を修正しました。"
+        },
+        {
+          "title": "`claude --bg --model fable` がクレジットチェックを誤認するバグ修正",
+          "description": "Max プランでバックグラウンドセッションが Fable のクレジット残量をチェックし続け、同一アカウントのインタラクティブセッションは正しく利用できていた問題を修正しました。"
+        },
+        {
+          "title": "無人セッションでの自動モードデフォルトオファー誤表示バグ修正",
+          "description": "エージェントチームの仲間ウィンドウなどの無人セッションで、一度だけ表示されるはずの \"make auto mode your default\" オファーが誤って残り、キー入力で受け入れられる問題を修正しました。"
+        },
+        {
+          "title": "管理設定承認プロンプトが再サインインで再表示されるバグ修正",
+          "description": "同じ Claude apps ゲートウェイに再サインインした際、設定が変更されていなくても承認プロンプトが再び表示されていた問題を修正しました。"
+        },
+        {
+          "title": "`/bug` と `/share` が無効でも `/feedback` が推奨されるバグ修正",
+          "description": "組織ポリシーや環境変数で `/feedback` が無効化されている場合、`/bug` と `/share` がそれを無効と誤って報告し、ヘルプや拒否メッセージで `/feedback` を提案しないよう修正しました。"
+        },
+        {
+          "title": "GitHub 接続失敗後のクラウドセッション作成メッセージを修正",
+          "description": "一時的な GitHub 接続失敗時に、クラウドセッション作成が GitHub 設定を指示していたメッセージを、再試行すべき旨に変更しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-08-28T20:46:43.326Z"
+}
