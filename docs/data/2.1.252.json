@@ -1,0 +1,38 @@
+{
+  "version": "2.1.252",
+  "tagName": "v2.1.252",
+  "publishedAt": "2026-08-31T19:46:55Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.252",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 4
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Bashコマンドの失敗修正",
+          "description": "Some Macsで \"task output swap refused (tasks dir moved or linked)\" が発生していたBashコマンドの失敗を修正しました。"
+        },
+        {
+          "title": "\"always allow\"設定の保存不具合修正",
+          "description": ".claude/settings.local.json がまだ存在しないプロジェクトで \"always allow\" が保存されなかった問題を修正しました。"
+        },
+        {
+          "title": "リモートコントロールセッションのスタック修正",
+          "description": "Claude DesktopまたはVS CodeでホストされたRemote Controlセッションが、claude.aiへの接続が低下した際にツール完了後数分間停止する問題を修正しました。"
+        },
+        {
+          "title": "大量失敗出力時のバックグラウンドタスク通知修正",
+          "description": "大きな失敗出力（例: ディスク容量不足によるgitエラー）が原因で会話がAPIリクエストサイズ上限を超えるバックグラウンドタスク通知の問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-01T01:43:50.661Z"
+}
