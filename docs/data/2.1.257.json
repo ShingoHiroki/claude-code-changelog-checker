@@ -1,0 +1,51 @@
+{
+  "version": "2.1.257",
+  "tagName": "v2.1.257",
+  "publishedAt": "2026-09-01T17:53:52Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.257",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 8,
+    "改善": 11,
+    "その他": 21,
+    "バグ修正": 63
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "Bash および PowerShell の権限プロンプトでの Ctrl+E コマンド説明を削除しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude Fable 5.1 (`claude-fable-5-1`) を追加し、デフォルトの Fable モデルにしました — 1M コンテキスト、$10/$50 per Mtok、キャッシュ読み取りは $0.25/Mtok",
+          "description": ""
+        },
+        {
+          "title": "\"Time format\" (`timeFormat`) と `timeZone` 設定を追加：12 時間制、24 時間制、24 時間制 UTC、または strftime パターンでターン終了時計とトランスクリプト表示のタイムスタンプを指定可能",
+          "description": ""
+        },
+        {
+          "title": "自動モードに Containment Escape ルールを追加し、クラウドメタデータ資格情報取得、外部への回避、テナント間アクセスが、環境で期待とマークされていない限り自動承認されなくなりました",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_SUBAGENT_MODEL_FORCE` を追加し、`CLAUDE_CODE_SUBAGENT_MODEL`（またはメインモデル）をすべてのサブエージェントに適用し、スポーンごとやエージェント定義でのモデル上書きを無視します",
+          "description": ""
+        },
+        {
+          "title": "`/effort` に `s` を追加し、現在のセッションだけの effort を変更できるようにし、`/model`",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-02T00:55:43.658Z"
+}
