@@ -1,0 +1,185 @@
+{
+  "version": "2.1.259",
+  "tagName": "v2.1.259",
+  "publishedAt": "2026-09-02T22:33:51Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.259",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 5,
+    "その他": 2,
+    "バグ修正": 26
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`managedMcpServers` 設定の追加",
+          "description": "組織が HTTP/SSE MCP サーバーを全ユーザーに提供できるように `managedMcpServers` 管理設定を追加しました。エントリ形式は `.mcp.json` と同じで、コマンド名を指定したエントリはスキップされます。"
+        },
+        {
+          "title": "`--permission-prompts none` オプションの追加",
+          "description": "対話なしのヘッドレスホスト向けに `--permission-prompts none` を追加。プロンプトが出る操作は自動的に拒否され、現在のパーミッションモード（auto も含む）は引き続き判断を行います。"
+        },
+        {
+          "title": "GitLab MR コマンドの認識追加",
+          "description": "`glab mr create/merge/close/reopen/note/update` を認識するようにし、GitLab のマージリクエストが折りたたみツールサマリ内で `MR !N` と表示され、フッターの MR バッジも更新されるようになりました。"
+        },
+        {
+          "title": "`claude plugin validate` に `--json` オプションを追加",
+          "description": "`claude plugin validate` コマンドに `--json` を追加し、機械可読な検証レポートを出力できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "端末リサイズと初回描画の性能改善",
+          "description": "長い応答に対し、テキスト測定結果を再利用することで端末リサイズと初回描画のパフォーマンスを向上させました。"
+        },
+        {
+          "title": "`/workflows` エージェント詳細の改善",
+          "description": "`/workflows` のエージェント詳細で、JSON の結果が構文ハイライトと実際の改行で整形表示され、長い結果は展開トグルで折りたたまれるようになりました。"
+        },
+        {
+          "title": "ヘッドレス/SDK セッション開始の高速化",
+          "description": "MCP サーバーの接続が完了した際、最初のターンが最大 50 ms 早く開始されるようにヘッドレスおよび SDK セッションの起動を改善しました。"
+        },
+        {
+          "title": "`/install-github-app` の説明強化",
+          "description": "`/install-github-app` が GitHub 専用であることを明示し、GitLab リポジトリ内で実行された場合は GitLab CI/CD ドキュメントへのリンクを表示するよう改善しました。"
+        },
+        {
+          "title": "ネストされたバックグラウンドサブエージェント結果の保存改善",
+          "description": "入れ子のバックグラウンドサブエージェント結果を親サブエージェントのトランスクリプトに保存し、再開時に結果が保持され、共有トランスクリプトで配信が表示されるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "`allowedMcpServers` の動作変更",
+          "description": "`allowedMcpServers` がユーザーが追加したサーバーのみ管理するよう変更されました。以前は除外対象だった文字列 `managed-mcp.json` サーバーがアップグレード時にロードされます。オフにしたい場合は `deniedMcpServers` を使用してください。"
+        },
+        {
+          "title": "[VSCode] セッションサイドバーにクイックフィルタとステータスフィルタを追加",
+          "description": "VSCode 用に、セッションリストサイドバーに「Active」クイックフィルタとステータスフィルタメニュー（Needs input、Working、Completed）を追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "同時セッションでの `~/.claude.json` 競合修正",
+          "description": "同時に多数のセッションを実行した際、`~/.claude.json` の変更が相互に上書きされる問題を修正し、ワークスペーストラストのリセットや MCP/プロジェクト状態の喪失が起きなくなりました。"
+        },
+        {
+          "title": "思考拒否の再発バグ修正",
+          "description": "一度拒否された会話の思考が、以降のすべてのターンで再度拒否される問題を修正しました。"
+        },
+        {
+          "title": "Bash `Read()` 拒否ルールの範囲拡大修正",
+          "description": "`Read()` の拒否ルールが `--ignore-revs-file=.env`、`-f.env`、`@file` などオプション値のファイルや `git diff`/`git grep` のファイル引数、`cd DIR && cat FILE` の複合コマンドをカバーしていなかった問題を修正し、拒否されたファイルを含むディレクトリでの `grep -r`/`cp -r` が確認プロンプトを表示するようにしました。"
+        },
+        {
+          "title": "OAuth トークン更新時のプロンプトキャッシュ無効化バグ修正",
+          "description": "テレメトリ無効化セッションで OAuth トークンが更新された際にプロンプトキャッシュが不必要に無効化される問題を修正しました。"
+        },
+        {
+          "title": "フルスクリーンモードでの会話消失バグ修正",
+          "description": "ツール呼び出しが数百件に及ぶ長いターンの後、フルスクリーンモードで会話が空白になる問題を修正しました。"
+        },
+        {
+          "title": "auto モードでの非対応モデル実行バグ修正",
+          "description": "コマンドやスキルの frontmatter `model:` が指定された場合でも、auto モードがサポート外のモデルでターンを実行していた問題を修正し、セッションモデルが維持されるようにしました。"
+        },
+        {
+          "title": "`CLAUDE_CODE_MAX_CONTEXT_TOKENS` の無視バグ修正",
+          "description": "Claude Code が認識しない Vertex スタイルのモデル ID（`@YYYYMMDD` サフィックス）に対し、`CLAUDE_CODE_MAX_CONTEXT_TOKENS` が無視されていた問題を修正しました。"
+        },
+        {
+          "title": "シェルコマンドライブプレビューの行折り返しバグ修正",
+          "description": "実行中シェルコマンドのライブ出力プレビューで、以前の行が折り返された際に最新行が隠れてしまう問題を修正しました。"
+        },
+        {
+          "title": "GitHub 背景接続チェックの頻度削減",
+          "description": "claude.ai ユーザーで起動時に毎回実行されていたバックグラウンドの GitHub 接続チェックを修正し、結果が起動間で保持されるようにしました。"
+        },
+        {
+          "title": "`--resume` / `--continue` の添付ファイル無効化バグ修正",
+          "description": "保存されたセッションにペイロードのない添付エントリが含まれる場合、`--resume` が失敗し、`--continue` が空の会話を開く問題を修正しました。"
+        },
+        {
+          "title": "カスタムコマンド・スキルの frontmatter `model:` 無視バグ修正",
+          "description": "インタラクティブセッションで、カスタムコマンドやスキルの frontmatter に記載された `model:` が無視されていた問題を修正しました。"
+        },
+        {
+          "title": "Artifact 発行時の `note` パラメータエラー修正",
+          "description": "古いバージョンから継続された会話で、Artifact の公開が「unexpected parameter `note`」エラーで一度失敗する問題を修正しました。"
+        },
+        {
+          "title": "`forceRemoteSettingsRefresh` が起動時に無視されるバグ修正",
+          "description": "MDM や管理設定ファイルで構成されたポリシーヘルパーが既に実行された場合、起動時に管理設定 `forceRemoteSettingsRefresh` が無視されていた問題を修正しました。"
+        },
+        {
+          "title": "ワークツリー分離時のフック作成ワークツリー拒否バグ修正",
+          "description": "`git rev-parse` が「not a git repository」以外のエラーメッセージで失敗するマシンで、フックによって作成されたワークツリーが分離機能に拒否されていた問題を修正しました。"
+        },
+        {
+          "title": "OpenTelemetry 属性欠落バグ修正",
+          "description": "クラウドセッションから送信される OpenTelemetry のメトリクスとイベントで `user.email`、`organization.id`、`user.account_uuid` が欠落していた問題を修正しました。"
+        },
+        {
+          "title": "起動時 MCP サーバー切断時の状態表示バグ修正",
+          "description": "起動時にツール一覧取得中に MCP サーバーが切断された場合、エラーを報告せずに「接続済みだがツールなし」と表示されていた問題を修正しました。"
+        },
+        {
+          "title": "ファイル編集権限ダイアログの行切断バグ修正",
+          "description": "ファイル編集権限ダイアログで、変更行が途中で切れたまま表示され、何も示されないことがある問題を修正しました。"
+        },
+        {
+          "title": "リポジトリ検出の一時的失敗後の ID 消失バグ修正",
+          "description": "一時的な git プローブ失敗後、既知のリポジトリ識別子が失われていた問題を修正しました。"
+        },
+        {
+          "title": "管理設定の解析失敗時の無効化バグ修正",
+          "description": "管理設定ファイル、ドロップイン、MDM plist、HKLM 値のいずれかが解析できない場合、設定が黙って無効になる問題を修正し、Claude Code は起動を拒否し原因を表示します。"
+        },
+        {
+          "title": "リモート制御セッションでの Stop 動作バグ修正",
+          "description": "リモート制御セッションで Stop がバックグラウンドエージェントやワークフローを停止しない問題を修正し、終了したタスクはプロセスが終了するまで可視化され再度停止可能になります。"
+        },
+        {
+          "title": "ワークフロー再開時の重複実行バグ修正",
+          "description": "前回の停止中ワークフローがまだ終了していない状態で再開した際、エージェントが重複して実行される可能性があった問題を修正しました。"
+        },
+        {
+          "title": "Marketplace リポジトリ URL の末尾スラッシュ・クエリ文字バグ修正",
+          "description": "github.com の Marketplace リポジトリ URL が末尾スラッシュや `?`/`#` が付いていると、利用できない `.git` クローン URL になる問題を修正しました。"
+        },
+        {
+          "title": "Stop フックによるターン情報欠損バグ修正",
+          "description": "Stop フックでブロックされた後のターンで、当該ターンのモデル推論が失われ、一部モデルでプロンプトキャッシュが欠落する問題を修正しました。"
+        },
+        {
+          "title": "リモートセッションでのターン開始遅延バグ修正",
+          "description": "ブラウザでホストされた MCP サーバーのページが切れた後、リモート（claude.ai）セッションがターン開始に最大 60 秒かかっていた問題を修正しました。"
+        },
+        {
+          "title": "ワークツリー分離セッションでの Bash ループ等拒否バグ修正",
+          "description": "worktree-isolated セッションが、メインチェックアウトに到達できない一般的な Bash ループ、xargs パイプライン、ランチャー経由コマンドを拒否していた問題を修正しました。"
+        },
+        {
+          "title": "リモート・スケジュールセッションのパウズ後プロンプト承認バグ修正",
+          "description": "セッションが一時停止中にコネクターツールの権限プロンプトが承認された後、リモートおよびスケジュールセッションが何も動作しない問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-03T01:01:53.543Z"
+}
