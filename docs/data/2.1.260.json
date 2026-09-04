@@ -1,0 +1,182 @@
+{
+  "version": "2.1.260",
+  "tagName": "v2.1.260",
+  "publishedAt": "2026-09-03T23:48:12Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.260",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 6,
+    "改善": 10,
+    "その他": 17,
+    "バグ修正": 32
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "サブエージェントが開始したバックグラウンドコマンドの1時間の制限を削除しました。これらは終了するか停止されるまで実行され、メインセッションと同様になります。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "フルスクリーンモードで会話の横に diff パネルを開く機能を追加し、Claude が編集する際の未コミット変更を表示します。`/diff` で切り替えできます。",
+          "description": ""
+        },
+        {
+          "title": "`/cost` とステータスラインの `prompt_cache` フィールドに、プロンプトキャッシュミスの考えられる原因（例：ツール定義やシステムプロンプトの変更、TTL を超えてアイドル状態）が表示されるようにしました。",
+          "description": ""
+        },
+        {
+          "title": "ヘッドレスセッションに `/reload-plugins` を追加し、Claude Code Desktop と SDK のコマンドリストに表示されるようにしました。",
+          "description": ""
+        },
+        {
+          "title": "デスクトップアプリ、Remote Control、その他のヘッドレス（`-p` / Agent SDK）セッション向けに、テキスト形式の `/advisor`（`/advisor`, `/advisor <model>`, `/advisor off`）を追加しました。",
+          "description": ""
+        },
+        {
+          "title": "IdP がリフレッシュ時に `openid` を再度要求したときのみ id_token を返す場合に備えて、Claude apps ゲートウェイに `oidc.scope_on_refresh` を追加しました。",
+          "description": ""
+        },
+        {
+          "title": "`desktop` ポリシーブロックでの新しい Claude Desktop キーをサポートするため、Claude apps ゲートウェイに `userPluginMarketplacesEnabled` と `userPluginUploadsEnabled` を含めました。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "構造化出力を改善しました：Workflow `agent({schema})` が満たすことのできない JSON Schema を事前に拒否し、リトライ上限エラーに最後の検証失敗が含まれるようになりました。",
+          "description": ""
+        },
+        {
+          "title": "ワークツリーに未プッシュコミットがあるバックグラウンドセッションの削除を改善しました。メッセージにブランチ名とコミット数が表示され、再度削除するとワークツリーが破棄されます。",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイのリフレッシュ失敗ログに、失敗したステップ名が記載されるようにしました。",
+          "description": ""
+        },
+        {
+          "title": "非対話型（`-p` / SDK）セッションのアイドル時 CPU 使用率を改善しました。",
+          "description": ""
+        },
+        {
+          "title": "Amazon Bedrock 上の Claude apps ゲートウェイを改善しました。中止されたリクエストの入力トークンが、1トークンリクエストではなく AWS の無料 CountTokens API（`bedrock:CountTokens` 権限）でカウントされます。",
+          "description": ""
+        },
+        {
+          "title": "`Edit(C:\\\\dir\\\\(name)\\\\**)` のようなルールで、`\\(` がパス区切りではなくエスケープされた括弧として解釈される設定エラーを改善し、曖昧でない記述を提案するようにしました。",
+          "description": ""
+        },
+        {
+          "title": "1M コンテキストモデルの自動圧縮を改善しました。Opus と Fable のセッションは 1M トークン制限直前に圧縮され、非常に大きなコンテキストのリカバリ圧縮が 10 分でタイムアウトしなくなりました。",
+          "description": ""
+        },
+        {
+          "title": "`/ultrareview` と `claude ultrareview` が、長時間実行されるクラウドレビューに対して最大 45 分（従前は 30 分）待機するように改善しました。",
+          "description": ""
+        },
+        {
+          "title": "Claude Fable 5.1 の `/effort` を改善し、セッション途中で effort を変更してもプロンプトキャッシュが無効にならないようにしました。",
+          "description": ""
+        },
+        {
+          "title": "バンドルされた `claude-api` スキルを更新し、Go、Java、C# のサンプルが最新世代のモデル ID を使用するようにし、より安価なワーカーやサブエージェントモデルも最新世代であるべきことを明確にしました。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Glob/Grep: パーミッションチェック前に検索パスがディスクで調査されていた問題を修正しました。欠損パスはパーミッションが決定された後に、Read が行うように報告されます。",
+          "description": ""
+        },
+        {
+          "title": "`Read()` の拒否ルールを Bash 引数に適用した 2.1.259 の変更を元に戻しました。これにより、すべてのモードで `Read(./**/build/**)` ルールが `npm run build` を拒否し、auto モードでも `cd … && grep` がプロンプトされていた問題が解消されました。",
+          "description": ""
+        },
+        {
+          "title": "フルスクリーンモードで `ctrl+l` / `cmd+k` を端末の `clear` のようにトランスクリプトビューをクリアするよう変更しました。過去のメッセージはスクロールアップで確認できます。",
+          "description": ""
+        },
+        {
+          "title": "閉じ括弧の後にテキストがあるパーミッションルール（例：`Bash(ls) x`）はマッチしないため、無視されずに無効な設定として報告するよう変更しました。",
+          "description": ""
+        },
+        {
+          "title": "サーバー管理設定を変更し、管理下の CLAUDE.md（`claudeMd`）がセキュリティ承認ダイアログを起動しなくなりました。hooks、shell-command、sandbox、unsafe `env` 設定は依然として承認が必要です。",
+          "description": ""
+        },
+        {
+          "title": "Chrome の Claude を組織の Claude in Chrome 管理設定に従うよう変更しました。管理者がオフにすると、`--chrome`、`/chrome`、ブラウザツールは利用できません。",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイが `orgPluginSettings` を Claude Desktop 1.15200.0 以降が読み取るリスト形式で送信するよう変更しました。古いデスクトップは無視します。",
+          "description": ""
+        },
+        {
+          "title": "`desktop` ポリシーで `managedMcpServers` や `orgPluginSettings` のネストされたオブジェクトのフィールド名が誤字の場合、開始を拒否し、該当フィールド名を示すよう Claude apps ゲートウェイを変更しました。",
+          "description": ""
+        },
+        {
+          "title": "`!` bash モードプロンプトで入力したコマンドは、厳格サンドボックスモード（`sandbox.allowUnsandboxedCommands: false`）でも自分の端末に入力するかのようにサンドボックス外で実行されるよう変更しました。",
+          "description": ""
+        },
+        {
+          "title": "セルフホストランナーの `--kill-session-after-min` を、ユーザー待機中（一時停止中、次のメッセージで再開可能）だけのセッションを強制終了せずに解放し、失敗として報告しないよう変更しました。",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] フッターモデルピルに選択された effort レベルを表示し、モデル切替後の古い effort レベルを修正、フッターピルを以前のコンパクトサイズに戻しました。",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] セッション一覧のステータスフィルタメニューに Open と Closed を追加しました。",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Remote Control が自動的にオンになる新規セッションで、ウェルカム画面が消える問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 既に別タブで開かれているセッションをセッション履歴ピッカーで再度読み込むと二重に表示されていた問題を修正し、該当タブに切り替えるようにしました。",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] タブのビューがリロード中に Rename コマンドが無音で無効になる問題を修正し、常に適用されるようにしました。",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Claude Code がドロップされた応答をリトライした後、途中で切れたメッセージ、空のツールカード、余分な \"Thought for\" 行が画面に残る問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] トグル切り替え時に起動中だったセッションタブへ \"Enable Remote Control for all sessions\" が適用されなかった問題を修正しました。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "パスに括弧を含む `Edit`/`Write`/`Read` パーミッションルールが Bash サンドボックスで無効または無視",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-04T00:54:22.227Z"
+}
