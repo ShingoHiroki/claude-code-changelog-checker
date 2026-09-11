@@ -1,0 +1,236 @@
+{
+  "version": "2.1.268",
+  "tagName": "v2.1.268",
+  "publishedAt": "2026-09-10T20:30:54Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.268",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 7,
+    "改善": 11,
+    "その他": 40,
+    "バグ修正": 38
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude アプリゲートウェイに追加: `gateway.yaml` の `pricing:` が設定されている場合、サインインした Claude Code クライアントは管理設定を通じて同じ料金を受け取り、`/cost` とテレメトリが支出メーターと一致します",
+          "description": ""
+        },
+        {
+          "title": "`access_control.allow_cidrs` が空の場合にゲートウェイ向けの起動警告を追加し、パブリックアドレスから初めてリクエストが来たときに一度だけ警告を表示します",
+          "description": ""
+        },
+        {
+          "title": "`gatewayInternalNetworks` 管理設定を追加し、管理者が自組織のパブリック IPv4 ブロックから Claude アプリゲートウェイへの `/login` を許可できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "`claude self-hosted-runner --remove-session-state`（デフォルトオフ）を追加: セッション終了時に `<base-dir>/_sessions/` 以下の各セッション用ディレクトリを削除します",
+          "description": ""
+        },
+        {
+          "title": "`claude auth status --json` の出力に `configDirectory` を追加しました",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin install`、`uninstall`、`update`、`enable`、`disable` に `--json` を追加し、`claude plugin list --json` の各行に `errorDetails`/`noteDetails` を追加しました",
+          "description": ""
+        },
+        {
+          "title": "公開アーティファクトに対して、ページごとに Claude が選んだブラウザタブアイコンを追加しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "フルスクリーンモードを改善: プロンプト行の追加・削除（Shift+Enter）が文字入力と同じ速度で再描画されるようになり、可視トランスクリプトの再レンダリングが不要になりました",
+          "description": ""
+        },
+        {
+          "title": "`--continue` / `--resume` を改善: 会話が即座に表示され、SessionStart フック待ちや最初のメッセージが全トランスクリプトを再読することがなくなりました",
+          "description": ""
+        },
+        {
+          "title": "ツールが多いターンでの応答性を改善: 隠れたツールバッチリマインダーのためにトランスクリプトを再描画しなくなりました",
+          "description": ""
+        },
+        {
+          "title": "`.claude/workflows/` スクリプトがあるプロジェクトの起動時間を改善: スクリプト一覧取得時に各スクリプトを解析しなくなりました",
+          "description": ""
+        },
+        {
+          "title": "Auto モードの拒否メッセージを改善: Claude が受け取るメッセージにブロックしたルール名が記載され、より安全な方法を試すよう促し、関連しない作業を完了させてから質問を停止します",
+          "description": ""
+        },
+        {
+          "title": "Chrome での Claude を改善: 長いページ読取がファイルに保存されて再読込される代わりに、インラインで保持されます",
+          "description": ""
+        },
+        {
+          "title": "MEMORY.md の切り詰め警告を改善: 切り取られた行数と開始位置を表示します",
+          "description": ""
+        },
+        {
+          "title": "アーティファクトに対するターミナル権限プロンプトを改善: 質問の文言が先頭に表示されます",
+          "description": ""
+        },
+        {
+          "title": "プロンプトフッターを改善: エディタや `/diff` の選択がプロンプト入力内に表示され、フルスクリーンモードではヘッダーに Remote Control ステータスが表示されます",
+          "description": ""
+        },
+        {
+          "title": "「1M コンテキストに必要な使用クレジット」メッセージを改善: セッション途中で使用クレジットをオンにした場合、Claude Code の再起動後に有効になる旨が表示されます",
+          "description": ""
+        },
+        {
+          "title": "`/plugin` を改善: プラグインのインストール・有効化・無効化はメニューを閉じた時点で反映され、以降 `/reload-plugins` は不要になりました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Bedrock、Vertex、Foundry のシステムプロンプトを変更し、環境・モデル・設定の詳細を添付として提供、ファーストパーティセッションと同様にしました",
+          "description": ""
+        },
+        {
+          "title": "Bedrock、Vertex、Foundry のセッションで、会話中にツールリストがバイト単位で安定するように変更（遅れて接続するツールは再書き込みせずに遅延ロード），ファーストパーティセッションと一致させました",
+          "description": ""
+        },
+        {
+          "title": "タスクトラッキングツール（TaskCreate/Get/Update/List、TodoWrite）を Claude 3.x、Opus 4.0–4.7、Sonnet 4.0–4.6、Haiku 4.5 のみで提供するよう変更しました。別環境では `CLAUDE_CODE_ENABLE_TODO_TOOLS=1` を設定してください",
+          "description": ""
+        },
+        {
+          "title": "ターミナルのアーティファクトデータ編集許可プロンプトを、ドキュメント数と開けるユーザーを示すカードに変更しました",
+          "description": ""
+        },
+        {
+          "title": "ローカル Cowork セッションで全承認をスキップする設定に変更しました。Artifact ツールはセッションフォルダー外やシンボリックリンク先のローカルファイルを、確認せずに読み込む代わりに拒否します",
+          "description": ""
+        },
+        {
+          "title": "単純な `WebFetch` の deny と ask ルールが Artifact ツールの読み取り・更新に適用されないように変更しました。ブロックやゲートするには `Artifact` ルール（または `WebFetch(domain:claude.ai)`）を使用してください",
+          "description": ""
+        },
+        {
+          "title": "「N MCP サーバーは認証が必要です」起動通知を、起動ごとにではなく各サーバーごとに1回だけ通知するよう変更しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] `CLAUDE_CONFIG_DIR` が設定ファイルや `environmentVariables` 設定で指定されている場合の、セッションリスト、設定トグル、チャットタブの不具合を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] ログイン・ログアウト・アカウント切替後、開いているタブでモデルピル・モデルピッカー・コマンドメニューが数秒間空白になる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] プロジェクトやローカル設定が `~/.claude/settings.json` で指定されたモデルを上書きした際に、新しいタブやリロード直後の会話でモードピッカーから Auto が消える問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] SessionStart フックが設定されている場合、ウィンドウリロード後にセッション名が最後のプロンプトに戻ってしまう問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 同一ウィンドウ内の別タブが起動中でも、新しいタブの Claude プロセスが開始するまでフッターのモデルピルと Remote Control ピルが待機していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] セッションタブの起動が設定読み込み後0.5秒以上遅れた場合に、2つ目の Claude プロセスがフルスタートアップを通過してしまう問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] セッションリストからのセッション再開時に `claudeCode.preferredLocation: \"sidebar\"` が無視され（常にパネルが開かれ）る問題と、プログラム的に開く際にその設定が \"panel\" にリセットされる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Windows の問題を修正：WSL が未インストールのマシンで WSL インストールプロンプトが表示されなくなり、WSL がインストールされている場合は Windows ファイルの IDE 診断が正しく返されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] `CLAUDE_CONFIG_DIR` が設定で指定された際に、CLI が読まないフォルダーにユーザーレベルのスタイルを保存していたカスタムスタイルビルダーの問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] キーボード・スクリーンリーダー利用者向けに、常に許可する権限ルールの保存場所を変更するための左右矢印キーを追加しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] キーボード・スクリーンリーダー利用者向けに、会話の最新メッセージにキーボードフォーカスを移動させる \"Claude Code: Focus last message\" コマンドを追加しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] プラグイン管理ダイアログを変更し、インストール・有効化・無効化・アンインストールを再起動せずに開いているセッションに適用できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 一部のアーティファクト権限プロンプトから「再度聞かない」選択肢を省略し、ターミナルと同じ挙動に変更しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Code on the web] 約 6 時間以上実行されたクラウドセッションで、永続化セッションフォルダーに保存されたファイルが黙って失われる問題を修正しました。保存は最大で 1 日まで保持されます",
+          "description": ""
+        },
+        {
+          "title": "[Claude Code on the web] 管理者がモデルの effort を上限設定している組織で、ルーチンがセッションを再開したり、努力レベルが設定されていない状態でセッションが開始された際に発生する \"Invalid effort level\" エラーを修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Code on the web] 会話からのルーチン作成を改善しました。新しいルーチンにコネクタが無い場合、Claude がその旨と追加方法を説明するようになり、単に確認するだけではなくなりました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] 管理設定ページが読み込みスケルトンでハングしたり、一時的な読み込み失敗後に空白になる問題を修正しました。読み込みに失敗したセクションにはリトライボタンが表示されます",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack チャンネルの設定ページに、組織の Claude へ戻るリンクを Slack 管理設定に追加しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack Enterprise Grid のチャンネルが管理者により別ワークスペースへ移動された際に、Claude の設定（リポジトリ、環境、アクセス）が失われる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] ブロックされたアクションの説明を改善し、権限チェック、Claude の先行確認の決定、またはアクセス欠如のどれが原因かを明示するようになりました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] 応答速度を改善し、Claude が複数の読み取り専用検索（Slack 検索、スレッド読み取り、人物検索）を同時に実行するようにしました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] 比較のフォーマットを改善し、文長の比較は横にスクロールする広いテーブルではなくリストとして表示され、長いテーブルセルは折り返されます",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] 独自セッションを持つスレッドで `@Claude !restart` を実行した際、時折「このスレッドはチャンネルセッションが処理しています」と矛盾した通知が表示される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Claude アカウントが Slack ワークスペースと異なる組織にある場合に表示されるメッセージを改善し、ワークスペースを組織に接続する方法を説明するようにしました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] URL が角括弧で囲まれた Markdown リンクが、Slack でクリック可能なリンクではなく文字列として表示される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] ゲストが Claude を使用できるチャンネルで、ワークスペ",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-11T00:54:26.688Z"
+}
