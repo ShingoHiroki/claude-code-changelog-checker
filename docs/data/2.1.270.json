@@ -1,0 +1,26 @@
+{
+  "version": "2.1.270",
+  "tagName": "v2.1.270",
+  "publishedAt": "2026-09-12T19:45:44Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.270",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 1
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Bash の read-only git コマンドが権限を要求",
+          "description": "Bash で read-only git コマンドが、セッションをしばらく実行した後に予期せず権限を要求する不具合を修正しました（2.1.269 での回帰）"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-13T00:42:29.837Z"
+}
