@@ -1,0 +1,160 @@
+{
+  "version": "2.1.271",
+  "tagName": "v2.1.271",
+  "publishedAt": "2026-09-14T22:12:54Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.271",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 8,
+    "改善": 16,
+    "その他": 32,
+    "バグ修正": 40
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Added fast mode in Claude Code Remote sessions (cloud and self-hosted runners): the host's fast-mode setting or `/fast` typed in the session applies where your organization allows it",
+          "description": ""
+        },
+        {
+          "title": "Added mouse support to the `/config` panel in fullscreen mode: the wheel scrolls the settings list, a click on a setting's value changes it, and the row under the pointer is highlighted",
+          "description": ""
+        },
+        {
+          "title": "Added `claude self-hosted-runner --drain-marker-file <path>`: when that file exists at a SIGTERM drain, the runner reports its exit to the server as a host drain (telemetry only)",
+          "description": ""
+        },
+        {
+          "title": "Added per-command `allowed_domains` to Bash, PowerShell and Monitor in auto mode with sandboxing: the hosts a command needs are reviewed with it and opened for it alone; other hosts are refused",
+          "description": ""
+        },
+        {
+          "title": "Added `omitClaudeMd` to agent frontmatter and `--agents` JSON, letting custom and plugin subagents run without user, project and local CLAUDE.md files; managed policy files still load",
+          "description": ""
+        },
+        {
+          "title": "Added `--accept-command <sha256>` to `claude plugin install` and `claude plugin update` to accept exactly the command a previous `--json` run displayed, instead of `-y`",
+          "description": ""
+        },
+        {
+          "title": "Added support for a `multiplier` above 1, up to 10, in the `modelPricing` managed setting and the Claude apps gateway `pricing` block, for marked-up internal chargeback rates",
+          "description": ""
+        },
+        {
+          "title": "Added a spinner tip pointing Bedrock, Vertex AI, Foundry and LLM gateway users to the Claude desktop app; the claude.ai desktop app tip now suggests `/desktop`, which offers to download the app",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Improved terminal rendering performance: large diffs and long transcripts render faster, with fewer slow frames",
+          "description": ""
+        },
+        {
+          "title": "Improved startup time slightly by skipping a redundant validation of built-in model data on every launch",
+          "description": ""
+        },
+        {
+          "title": "Improved hook feedback: while a SessionStart, UserPromptSubmit, PreToolUse or SessionEnd hook runs, the spinner says so with elapsed time, and Esc cancels a prompt waiting on a SessionStart hook",
+          "description": ""
+        },
+        {
+          "title": "Improved the spinner status during long thinking: it now reads \"deep in thought\" after 45s, and shows \"picking the thought back up\" while recovering from the output-token limit",
+          "description": ""
+        },
+        {
+          "title": "Improved dynamic workflows to pause when you hit your usage limit and continue automatically when it resets, instead of dropping the affected agents",
+          "description": ""
+        },
+        {
+          "title": "Improved Remote Control to leave fewer empty sessions on claude.ai when setup fails on a flaky network",
+          "description": ""
+        },
+        {
+          "title": "Improved the Claude in Chrome message in cloud sessions when the browser can't be reached: it now says the computer may be asleep before it suggests an install",
+          "description": ""
+        },
+        {
+          "title": "Improved `claude mcp serve`: a running tool call now sends a progress update every 30 seconds, so clients show it is still running and idle timeouts don't abort a long command that prints nothing",
+          "description": ""
+        },
+        {
+          "title": "Improved Foundry and Claude Platform on AWS sessions: an `alwaysLoad` MCP server that finishes connecting mid-conversation is usable on the next turn without a tool-search round trip",
+          "description": ""
+        },
+        {
+          "title": "Improved Markdown files published as artifacts: they now render as styled document pages (title header, document typography, syntax-highlighted code)",
+          "description": ""
+        },
+        {
+          "title": "Improved Artifact tool publish errors: a publish with no file now says to write the page to a file first, and an unsupported file type is reported before a missing favicon",
+          "description": ""
+        },
+        {
+          "title": "Improved the Artifact tool's error when a page declares a capability its contract version lacks: it now lists every supported capability and notes when a newer contract version has it",
+          "description": ""
+        },
+        {
+          "title": "Improved artifact watching: a session can now watch up to 10 published artifacts at once for republishes made elsewhere, up from 5",
+          "description": ""
+        },
+        {
+          "title": "Improved PDF @-mentions to say \"page count unknown\" instead of a page count guessed from the file size when pdfinfo cannot count the pages",
+          "description": ""
+        },
+        {
+          "title": "Improved `/mobile` to show a single QR code for claude.ai/mobile, which opens the right app store for your phone",
+          "description": ""
+        },
+        {
+          "title": "Updated the bundled `claude-api` skill to enable `eager_input_streaming` on streaming custom tools, and to start deliverable-shaped Managed Agents work with `user.define_outcome`",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Changed auto mode so that a skill's or slash command's inline `!` shell commands follow default-mode permission rules instead of the classifier; a command no rule decides runs as a reviewed tool call",
+          "description": ""
+        },
+        {
+          "title": "Changed auto mode so a subagent reports back to its caller through a dedicated hand-back call that the safety classifier reviews, instead of its last message being reviewed after the fact",
+          "description": ""
+        },
+        {
+          "title": "Changed Monitor watches to always have a deadline (at most 30 minutes; 10 in single-prompt `-p` runs) and notify Claude to re-arm, replacing the no-timeout `persistent` option",
+          "description": ""
+        },
+        {
+          "title": "Changed the IDE selection indicator in the prompt to a `[⧉ …]` pill that wraps with the text instead of squeezing multi-line prompts; delete it with Backspace to leave the selection out",
+          "description": ""
+        },
+        {
+          "title": "Changed the default dynamic workflow size to small on Pro plans and lowered the medium size guideline from 15 to 10 agents",
+          "description": ""
+        },
+        {
+          "title": "Changed Claude apps gateway, Bedrock, Vertex AI, and Foundry sessions so that they no longer refresh a leftover claude.ai login that the session does not use",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Added an Attach Open File setting that, when turned off, stops the open file from being added to messages; selected text is still attached",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Fixed the Hooks and Permission rules dialogs reporting a save that landed as failed, and the Hooks dialog going blank under a plugin-only policy lock or showing color",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-15T01:18:17.162Z"
+}
