@@ -1,0 +1,172 @@
+{
+  "version": "2.1.273",
+  "tagName": "v2.1.273",
+  "publishedAt": "2026-09-15T20:23:03Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.273",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 12,
+    "その他": 30,
+    "バグ修正": 19
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "LLM gateways 用の `x-claude-code-request-class`、`x-claude-code-agent-type`、`x-claude-code-prev-tool-durations`、`x-claude-code-compaction`、`x-claude-code-context-compacted` リクエストヘッダーを追加しました。`CLAUDE_CODE_GATEWAY_HINT_HEADERS=1` でオプトインできます",
+          "description": ""
+        },
+        {
+          "title": "MCP サーバーがセッション途中で切断され、再接続が失敗したときに `/mcp` を指す通知を追加しました",
+          "description": ""
+        },
+        {
+          "title": "`claude --remote-control` または `/remote-control` で開始したセッションを Claude アプリからフォークできるようにしました。フォークはコンピュータ上でバックグラウンドセッションとして実行されます",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "長時間セッションでの応答性を改善しました。フックの進捗やサブエージェントの活動が、毎回全会話を再処理しなくなりました",
+          "description": ""
+        },
+        {
+          "title": "Artifact ツールで、公開に含まれるファイルタイプがサポート外の場合のエラーを改善しました。Claude に提供可能なタイプと代替手段が示され、ターミナルにはシンプルな1行が表示されます",
+          "description": ""
+        },
+        {
+          "title": "Artifact ツールのページ読み取りを改善し、ページが持つ機能やデータベースルールを、公開可能なユーザーに示すようにしました",
+          "description": ""
+        },
+        {
+          "title": "アーティファクトデータベースの書き込みを改善しました。更新時にドキュメント全体を書き換えるのではなく、単一フィールドの削除が可能になりました",
+          "description": ""
+        },
+        {
+          "title": "アーティファクトの公開を改善しました。claude.ai に到達した後に接続が切れた場合でも、安全に再送され、失敗したり重複バージョンが作成されたりしなくなりました",
+          "description": ""
+        },
+        {
+          "title": "IP 許可リスト、停止されたアプリインストール、または SAML シングルサインオンが原因のクラウドセッション GitHub エラーが、一般的なインストールヒントではなく原因を表示するようになりました",
+          "description": ""
+        },
+        {
+          "title": "`/autofix-pr` を改善しました。`gh pr view` が失敗したとき、汎用的な終了コード行ではなく、gh のエラー（サインイン、SAML、レートリミット）を表示します",
+          "description": ""
+        },
+        {
+          "title": "`/autofix-pr` が、GitHub webhook 配信が PR に設定できなかった理由（例: リンクされた GitHub アカウントがない）を、一般的な警告ではなく具体的に示すようにしました",
+          "description": ""
+        },
+        {
+          "title": "`/web-setup` のエラーを改善しました。拒否された GitHub トークンは考えられる原因と対策を列挙し、接続失敗は設定されたプロキシまたは TLS 証明書の問題を示します",
+          "description": ""
+        },
+        {
+          "title": "セッション内の SSL 証明書とプロキシ接続エラーを改善し、エラーコードと修正方法（例: 信頼できない社内 CA の場合は `NODE_EXTRA_CA_CERTS`）を表示します",
+          "description": ""
+        },
+        {
+          "title": "Claude のログインが期限切れまたは取り消されたためにクラウドセッションが作成できない場合のエラーを改善し、`/login` を実行するよう指示します",
+          "description": ""
+        },
+        {
+          "title": "MCP サーバーのサインインがセッション途中で期限切れになった際に表示されるエラーを改善し、再認証方法（`/mcp`）を案内します",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "2.1.268 の変更で、パーミッションチェッカーが解析できない Bash 行（`eval`、`env -C`）の Read と Edit の拒否ルールをチェックしていたものを元に戻しました。`time -p make build` のようなコマンドは、拒否される代わりに再びプロンプトが表示されます",
+          "description": ""
+        },
+        {
+          "title": "Bedrock、Vertex、Foundry のオートモードを当面はローカル分類器をデフォルトで使用するよう変更しました。プラットフォーム側のサーバー分類器を使用したい場合は `CLAUDE_CODE_AUTO_MODE_SERVER=1` を設定してください",
+          "description": ""
+        },
+        {
+          "title": "`OTEL_LOG_TOOL_DETAILS=1` を変更し、コストとトークンメトリクスに実際のエージェント、スキル、プラグイン、MCP サーバー名も含めるようにしました",
+          "description": ""
+        },
+        {
+          "title": "Claude アカウントでのサインイン時に、claude.ai のプラグインへのアクセスも要求するよう変更しました",
+          "description": ""
+        },
+        {
+          "title": "`/bug` と `/feedback` のレポートを、直近の API リクエストからモデル動作パラメータ（model、system prompt、tools）のみを含むよう変更し、リクエストメタデータや `CLAUDE_CODE_EXTRA_BODY` フィールドは省きました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 製品フィードバックが無効化されている組織で、\"Report a problem\" が表示され続け、`/bug` / `/feedback` がレポートフォームを開く問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Windows でターン完了後に表示されていた赤い \"Claude Code process exited with code 4294967295\" バナーを修正しました",
+          "description": ""
+        },
+        {
+          "title": "Windows: `--add-dir` でマップされたネットワークドライブが追加された際の UNC パスに対するネットワークパス権限チェックを改善しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Code on the web] 管理者が組織コネクタを削除して再追加した後、ルーチンがコネクタへのアクセスを失い、古いコネクタを呼び続けていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Code on the web] 組織設定からセルフホスト環境を作成する際、サーバーエラーで失敗し半端な環境が残ってしまう問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Code on the web] 管理者の \"Share cloud sessions\" 設定を Claude Code ページから Data and privacy セクションへ移動し、Data and privacy 管理者が管理できるように変更しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Code on the web] 新規ルーチンページやルーチン編集ダイアログで、入力したルーチン名・プロンプト・編集内容を破棄する前に \"Discard unsaved changes?\" 確認ダイアログを追加しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Code on the web] クラウド環境を持たない新規ユーザーが Mac と Windows で見ていたフルページのデスクトップアプリダウンロード画面を削除し、直接セットアップに進むようにしました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Code on the web] ルーチン詳細ページを改善し、パンくずリストにメニューとリネーム、トップにオン/オフスイッチと Run ボタン、ルーチン設定の横に実行履歴を配置しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Enterprise Grid が切断されたもののワークスペースのひとつが接続されたままで、アプリ再インストール後に数分間 Claude が無音になる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] 組織共有プライベート Slack チャンネルで設定されたスケジュールタスクが投稿されずに無音になる問題を修正し、作成されたスレッド内で継続して実行されるようにしました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Claude がタスク途中の状態で古い Slack スレッドに返信した際に、タスクが最初からやり直され未プッシュの作業が失われていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] アカウントトークンが更新された直後に、誤った \"couldn't find a Claude Code environment\" メッセージが時折表示されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Budgets、Savings Plans、WAF Classic、Import/Export などリージョンがないエンドポイントを AWS 接続が拒否していた問題を修正し、Global Accelerator のリクエストも正しく署名されるようにしました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] AWS 接続失敗",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-16T01:12:16.255Z"
+}
