@@ -1,0 +1,112 @@
+{
+  "version": "2.1.274",
+  "tagName": "v2.1.274",
+  "publishedAt": "2026-09-17T00:12:02Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.274",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 8,
+    "改善": 9,
+    "その他": 48,
+    "バグ修正": 43
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "メモリ使用量が臨界状態になったときに、メモリを解放する手順または安全に再起動する手順を示す可視的な警告を追加しました",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_MCP_STARTUP_WAIT_MS` を追加し、最初の非対話型ターンが MCP サーバー接続を待つ時間を制限できるようにしました（`0` = 待たない）",
+          "description": ""
+        },
+        {
+          "title": "`claude_code.llm_request` の OpenTelemetry トレーススパンに `effort` 属性を追加し、`api_request` イベントと一致させました",
+          "description": ""
+        },
+        {
+          "title": "`claude_code.managed_settings_resolved` OTel イベントを追加しました：管理設定のソースとポリシーヘルパーの状態；`OTEL_LOG_MANAGED_SETTINGS=1` で設定とダイジェストがマスクされます",
+          "description": ""
+        },
+        {
+          "title": "Claude apps gateway の設定に `store.connect_timeout_seconds` を追加し、PostgreSQL の接続タイムアウトを延長できるようにしました（デフォルト 5 秒）。また、データベースに接続できない際の起動エラーを改善し、`store.postgres_url` と設定されたタイムアウトを指すようにしました",
+          "description": ""
+        },
+        {
+          "title": "テレメトリの Claude Desktop と Cowork が Claude apps gateway 経由で送信するデータに、IdP のサブジェクトである `enduser.sub` を追加しました",
+          "description": ""
+        },
+        {
+          "title": "レプリカが同時に上流へ送信できる 256 件を超えるリクエストを開いている場合に、Claude apps gateway が警告を出すようにし、起動時のログ行でその上限を表示するようにしました",
+          "description": ""
+        },
+        {
+          "title": "フルスクリーンモードで折りたたまれたチームメイトおよびエージェントのメッセージをクリックで展開できるようにしました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`--input-format stream-json` セッションの起動を改善しました：最初のターンで、ツール検索が遅延している接続中の MCP サーバーを最大 2 秒待つことがなくなり、後続のターンで到着します",
+          "description": ""
+        },
+        {
+          "title": "Monitor ツールの通知を改善しました：スクリプトの最終出力と終了ステータスが別々ではなく 1 つの通知に統合され、モデルターンを削減します",
+          "description": ""
+        },
+        {
+          "title": "Artifact ツールのエラーを改善しました：claude.ai にサインインしていない場合、ターミナルが最初の試行でその旨を表示し、Claude が拒否された呼び出しのリトライを早めに停止するよう指示されます",
+          "description": ""
+        },
+        {
+          "title": "アーティファクトの公開を改善しました：古いバージョンで作成された公開は送信前に中止され、マージすべき新しいページが提示されます",
+          "description": ""
+        },
+        {
+          "title": "サブモジュールのチェックアウトを含むエージェントの作業ツリーを削除する前の安全チェックを改善しました",
+          "description": ""
+        },
+        {
+          "title": "`OTEL_LOG_RAW_API_BODIES=file:<dir>` の出力を改善しました：新しい `index.jsonl` と `request_body_id` / `message.id` イベント属性が各レスポンスをリクエストファイルおよびトランスクリプトメッセージに紐付けます",
+          "description": ""
+        },
+        {
+          "title": "Claude apps gateway の起動を改善しました：最初の PostgreSQL 接続を最大 3 回試行してから終了するようになり、数秒遅れて到達したデータベースでも起動失敗しなくなります",
+          "description": ""
+        },
+        {
+          "title": "負荷下での Claude apps gateway の支出上限チェックを改善しました：往復回数を 4 回から 1 回に減らし、混雑したゲートウェイでのタイムアウトを減少させます",
+          "description": ""
+        },
+        {
+          "title": "Claude apps gateway のサインインレートリミットエラーを改善しました：`/login` が拒否理由を説明し、ゲートウェイログにどのリミットがヒットしたか、変更すべき設定が記載されます",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Bedrock、Vertex、Foundry、テレメトリ無効インストールを、デフォルトで v2 MCP クライアントと直接 HTTP サーバーとの MCP 2026-07-28 ネゴシエーションを使用するよう変更しました。他のインストールはすでに同様です（オプトアウト: `MCP_SDK_GENERATION=v1` または `MCP_PROTOCOL_NEGOTIATION=legacy`）",
+          "description": ""
+        },
+        {
+          "title": "`/code-review` が、独自のチューニング設定を持たないすべてのモデルに対して、複数のレビューサブエージェントを生成する代わりに、より簡潔なインラインレビュー・プロンプトを使用するよう変更しました",
+          "description": ""
+        },
+        {
+          "title": "`.mcp.json`、settings、plugins、agent ファイル内の `\"type\": \"",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-17T01:14:02.938Z"
+}
