@@ -1,0 +1,35 @@
+{
+  "version": "2.1.278",
+  "tagName": "v2.1.278",
+  "publishedAt": "2026-09-19T03:10:40Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.278",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 0,
+    "その他": 1,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Auto mode server 行を /status に追加",
+          "description": "このセッションの auto mode classifier がサーバー上で動作しているかを示す `Auto mode server` 行を `/status` に追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "自動モードのデフォルトをサーバー側分類器に変更",
+          "description": "Claude API と Enterprise ユーザー、及び Bedrock、Vertex、Foundry、ゲートウェイ上での auto mode をデフォルトでサーバー側分類器に変更しました。この分類器は classifier overhead の課金が発生せず、Bedrock、Vertex、Foundry、ゲートウェイでは `CLAUDE_CODE_AUTO_MODE_SERVER=0` を設定するとオプトアウトできます。課金が発生するフォールバック時には警告が表示されます。詳細は https://code.claude.com/docs/en/auto-mode-classifier-billing を参照してください。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-19T07:52:27.517Z"
+}
