@@ -1,0 +1,345 @@
+{
+  "version": "2.1.280",
+  "tagName": "v2.1.280",
+  "publishedAt": "2026-09-22T16:38:14Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.280",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 16,
+    "その他": 41,
+    "バグ修正": 53
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude Opus 5.5 を追加",
+          "description": "`claude-opus-5-5` を追加し、デフォルトの Opus モデルに設定。コンテキストは 1M、料金は $4/$20 per Mtok、キャッシュリードは $0.20/Mtok。"
+        },
+        {
+          "title": "フルスクリーンモードでのマウス操作を拡張",
+          "description": "フルスクリーン時に `/skills` リストでホイールスクロールが可能になり、`/plugin` のスキル状態オプションをクリックできるようにした。"
+        },
+        {
+          "title": "MCP ツール記述長上限変更フラグを追加",
+          "description": "`CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH` を追加し、セッション内の全 MCP サーバーのツール記述とサーバー指示の 2,048 文字上限を変更できるようにした。"
+        },
+        {
+          "title": "フック実行完了イベントにサイズ情報を追加",
+          "description": "`hook_execution_complete` OpenTelemetry イベントにフック出力サイズと、サイズ超過した出力がファイルに保存された数を追加した。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "/permissions のフォーカスとデフォルト設定を改善",
+          "description": "ルール一覧表示後にフォーカスがルールリストに戻り、削除確認とディレクトリ削除確認のデフォルトが No になるようにした。"
+        },
+        {
+          "title": "/permissions タブ切替の操作性向上",
+          "description": "ルールリストで ←/→ または Tab を押すとタブバーにフォーカスが移動せずにタブが切り替わるようにした。"
+        },
+        {
+          "title": "/cost のキャッシュミス表示を改善",
+          "description": "キャッシュミスが思考モード名と表示に影響するようにした。"
+        },
+        {
+          "title": "Artifact ツールのエラーメッセージを明示",
+          "description": "Claude が読めないアーティファクトリンクが与えられた場合、続行前にユーザーに通知するようにした。"
+        },
+        {
+          "title": "/install-github-app のキャンセル表示を追加",
+          "description": "GitHub CLI のチェックとリポジトリ選択ステップで \"Esc to cancel\" が表示されるようにした。"
+        },
+        {
+          "title": "/artifacts と /workflows のスクロールバー表示",
+          "description": "長いリストの右端にスクロールバーを表示し、隠れている項目量と現在位置を示すようにした。"
+        },
+        {
+          "title": "ワークフロー進行ツリーの表示を簡素化",
+          "description": "実行中のエージェントとフェーズは回転アイコン ⟳ の代わりに薄暗い点で表示されるようにした。"
+        },
+        {
+          "title": "/plugin のマーケットプレイス追加フォーム改良",
+          "description": "フルスクリーン時に枠が描画されず、テキストとキー表示が `/plugin` の他部分と揃うようにした。"
+        },
+        {
+          "title": "/workflows 詳細ビューの余計な水平線を削除",
+          "description": "フルスクリーン時にペインの区切り下に二つ目の水平線が描画されないようにした。"
+        },
+        {
+          "title": "言語未指定コードブロックの色付けを統一",
+          "description": "言語が指定されていないコードブロックはインラインコードと同様に色付けされ、コマンドが目立つようにした。"
+        },
+        {
+          "title": "ツール実行中の /btw 質問の認識を改善",
+          "description": "ツールがまだ実行中の場合、サイド質問は進行中の呼び出しとして扱い、失敗として解釈しないようにした。"
+        },
+        {
+          "title": "UserPromptSubmit フックのタイムアウト通知を拡充",
+          "description": "タイムアウトしたフックコマンド名とデバッグログに表示するようにした。"
+        },
+        {
+          "title": "@ ファイルサジェストの順位付けを改善",
+          "description": "クエリを名前に含むファイルが、フォルダー名のみ一致するものより上位に表示されるようにした。"
+        },
+        {
+          "title": "アーティファクトページの UI を簡素化",
+          "description": "Print ボタンや確認ダイアログを除去し、メール・電話情報をテキストで表示、ダークモードがフォームコントロールとスクロールバーまで適用されるようにした。"
+        },
+        {
+          "title": "/ultrareview アップロードのコピー保持を改善",
+          "description": "`id_rsa copy` や `kubeconfig (1).yaml` などのコピーがローカルに残るようにした。"
+        },
+        {
+          "title": "クロスセッションメッセージ警告の説明を追加",
+          "description": "`--debug-file` が指定パスにデバッグログを書き込む旨を警告文で説明するようにした。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Self‑hosted runner のライフサイクルフック署名不具合を修正",
+          "description": "`--configure-git` 使用時にライフサイクルフックのコミットが署名に失敗する問題を修正した。"
+        },
+        {
+          "title": "Windows のバックグラウンドクリーンアップでシンボリックリンク削除を防止",
+          "description": "`~/.claude/session-env`、`image‑cache` などの再配置に使われるシンボリックリンクやジャンクションが誤って削除されるのを防いだ。"
+        },
+        {
+          "title": "Self‑hosted runner の turn 終了時シグナルロスを修正",
+          "description": "`--retire-at` リリース直後の turn が終了シグナルを失う問題を修正し、セッション停止前に短時間待機してシグナルを受信するようにした。"
+        },
+        {
+          "title": "フルスクリーンモードでの transcript クリアを元に戻す",
+          "description": "2.1.260 で追加された `ctrl+l` / `cmd+k` による transcript クリアを無効化し、画面を再描画するようにした。"
+        },
+        {
+          "title": "Pro と Team Standard のデフォルトモデルを Sonnet から Opus に変更",
+          "description": "Max、Team Premium、Enterprise のデフォルトと合わせて、デフォルトモデルを Opus に統一した。"
+        },
+        {
+          "title": "/effort の保存レベルが新モデルに適用されないように変更",
+          "description": "以前保存されたレベルが Opus 5.5 などの新モデルに引き継がれず、デフォルトレベルで開始されるようにした。"
+        },
+        {
+          "title": "旧モデルの launch‑default effort が /effort に残らないように変更",
+          "description": "Opus 4.7、4.8 と Fable 5 が `-p`、Agent SDK、プロジェクト、`--settings` の effortLevel、またはモデル別レベルでデフォルト effort を保持しないようにした。"
+        },
+        {
+          "title": "/autocompact のフッターヒントをキー表示に変更",
+          "description": "←/→ キーで他の順序付値を調整できることをフッターヒントに記載した。"
+        },
+        {
+          "title": "/fast のフッターヒントを Space に変更",
+          "description": "Space キーがトグルキーである旨をフッターヒントに記載した。"
+        },
+        {
+          "title": "Self‑hosted runner のライフサイクルフック git 設定を緩和",
+          "description": "ライフサイクルフック内の git がフックフォルダーやランナー共有 git ファイルで指定されたプログラムを無視し、`git://` リモートには `GIT_ALLOW_PROTOCOL` が必要になるようにした。"
+        },
+        {
+          "title": "予約済みマーケットプレイス名を模倣するプラグインの追加を拒否",
+          "description": "名前が予約済みマーケットプレイス名に似ているプラグインは追加時に拒否され、既に追加されている場合はロードしないようにした。"
+        },
+        {
+          "title": "PermissionRequest フックの実行対象を変更",
+          "description": "エージェントタイプのフックは実行されず、代わりにコマンドまたは http フックへのエラーが表示されるようにした。"
+        },
+        {
+          "title": "[VSCode] /status ダイアログを追加",
+          "description": "`/status` コマンドでセッションのバージョン、アカウント、モデル、サーバー情報を表示するステータスダイアログを追加した。"
+        },
+        {
+          "title": "[VSCode] Sandbox ダイアログを追加",
+          "description": "サンドボックスモード、サンドボックス解除フォールバック、除外コマンド用のダイアログをパネルメニューまたは `/sandbox` で開けるようにした。"
+        },
+        {
+          "title": "[VSCode] Chrome ダイアログを追加",
+          "description": "Chrome 拡張機能のステータス、インストール、再接続、権限ページ、既定有効設定を表示するダイアログをパネルメニューまたは `/chrome` で開くようにした。"
+        },
+        {
+          "title": "[VSCode] 会話エクスポート機能を追加",
+          "description": "`/export` コマンドで会話をプレーンテキストとしてコピーまたは保存できるようにした。"
+        },
+        {
+          "title": "[VSCode] スキル情報を Slash コマンドダイアログに表示",
+          "description": "各スキルのソース、トークン見積もり、ON/OFF 状態を表示し、クリックで状態を変更できるようにし、`/skills` でダイアログを開くようにした。"
+        },
+        {
+          "title": "[VSCode] /plan コマンドを追加",
+          "description": "`/plan` でプランモードに切り替え、最初のプランニングプロンプトを送信するか、セッションのプランを表示できるようにした。"
+        },
+        {
+          "title": "[VSCode] ペーストテキストのハンドリングを改善",
+          "description": "800文字超または改行が2行以上の貼り付けはマークされ、Claude が手入力と区別できるようにした。"
+        },
+        {
+          "title": "[VSCode] プロンプトテキストのクリーニングを改善",
+          "description": "貼り付けテキストから不可視 Unicode フォーマットやタグ文字を削除し、通知を表示、送信前に他のテキストからも同様に除去するようにした。"
+        },
+        {
+          "title": "[VSCode] \"Open in New Tab\" の動作を変更",
+          "description": "新しいタブで開く代わりに、編集中のエディタグループの横に Claude を表示するようにした。"
+        },
+        {
+          "title": "[VSCode] effort チップの表示不具合を修正",
+          "description": "保存された古い effort レベルが表示されず、現在のセッション実行レベルが正しく表示されるようにした。"
+        },
+        {
+          "title": "[VSCode] Python 拡張がハングした際の起動失敗を修正",
+          "description": "Python 拡張が起動中にハングしても、60 秒後に Python 環境なしで Claude Code が開始されるようにした。"
+        },
+        {
+          "title": "[VSCode] プラン承認カードの auto モードオプションを修正",
+          "description": "auto モードが利用可能なとき、最初のオプションが \"Yes, and use auto mode\" になるようにした。"
+        },
+        {
+          "title": "[VSCode] セッション一覧の矢印キー操作の不具合を修正",
+          "description": "キーボードでアーカイブ/非アーカイブした後も矢印キーでのナビゲーションが継続できるようにした。"
+        },
+        {
+          "title": "[VSCode] セッション再開後の貼り付けマーカー表示を修正",
+          "description": "再開時に自分のメッセージに貼り付けマーカーラインが残らないようにした。"
+        },
+        {
+          "title": "[Claude Code on the web] 管理者設定のルーチンオン／オフ位置を変更",
+          "description": "Admin settings → Capabilities → Remote sessions 配下に移動し、管理ページからリンクできるようにした。"
+        },
+        {
+          "title": "[Claude Code on the web] GitHub Enterprise のトークン自動更新を修正",
+          "description": "クラウドセッションで GitHub Enterprise Server リポジトリに対する `gh` と API 呼び出しが約8時間で失敗する問題を修正し、トークンが自動更新されるようにした。"
+        },
+        {
+          "title": "[Claude Code on the web] 既存セッションの名前更新後のルーチン再開バグを修正",
+          "description": "スケジュール開始直前に名前やプロンプトが編集された既存セッションが、古い情報で再開される問題を修正した。"
+        },
+        {
+          "title": "[Claude Code on the web] 外部ディレクトリ参照リンクの安全化",
+          "description": "セッション作業ディレクトリ外へのファイルリンクが無効化され、理由が表示されるようにした。"
+        },
+        {
+          "title": "[Claude Code on the web] auto モードのツール呼び出し再試行拒否バグを修正",
+          "description": "期限切れや上書きされた承認プロンプトが「拒否」と記録されて再試行が阻害される問題を修正した。"
+        },
+        {
+          "title": "[Claude Code on the web] Claude アプリでのクラウドセッションファイル保存を改善",
+          "description": "Claude アプリが開ける場所にユーザー向けファイルを保存するようにした。"
+        },
+        {
+          "title": "[Claude Code on the web] GitHub が無効化された組織での空リポジトリピッカーを削除",
+          "description": "組織で管理者が GitHub をオフにした際に表示される空のリポジトリ選択画面を削除した。"
+        },
+        {
+          "title": "[Claude Tag] Slack の作業インジケータと停止ボタンを追加",
+          "description": "Slack のスレッドで Claude の作業中インジケータ、Stop ボタン、スレッドタイトルを表示し、作業完了までインジケータが残り、Stop がタスクを中断できるようにした。"
+        },
+        {
+          "title": "[Claude Tag] ゲスト参加/退出時の通知を追加",
+          "description": "Restrict または Channel only ゲスト設定下で、ゲストが参加または最後のゲストが退出した際に Claude の応答方式が変わる旨の短い通知を Slack チャンネルに表示するようにした。"
+        },
+        {
+          "title": "[Claude Tag] スケジュールルーチンの実行失敗を修正",
+          "description": "Enterprise Grid に参加した後に接続された Slack ワークスペースで、以前接続されたルーチンが黙って失敗する問題を修正した。"
+        },
+        {
+          "title": "[Claude Tag] 一時的なファイルスキャン障害時の再アップロード要求を修正",
+          "description": "スキャン障害が原因で再アップロードを求められた際、スキャンを再試行し、スキャナが停止中であることを通知するようにした。"
+        },
+        {
+          "title": "[Claude Tag] +、-、* で始まる箇条書きのレンダリングバグを修正",
+          "description": "Slack 返信でテキストが +、-、* で始まると空の箇条書きとなっていた問題を、文字を保持した単一箇条書きとして表示するようにした。"
+        },
+        {
+          "title": "[Claude Tag] クラウド環境セットアップスクリプト失敗通知を詳細化",
+          "description": "失敗時の通知が汎用的な \"mention me to retry\" から、対象スクリプト名を明示し、先に修正が必要である旨を伝えるように変更した。"
+        },
+        {
+          "title": "[Claude Tag] GitHub バナーに接続不備理由を表示",
+          "description": "GitHub が未接続の理由（サインイン未、アプリ未リンク/未インストール、サインイン期限切れ、SSO 未承認）をバナーに表示するようにした。"
+        },
+        {
+          "title": "[Code Review] REVIEW.md のサイズ超過時の通知を改善",
+          "description": "サイズ上限を超えてカットされたり省略された REVIEW.md の指示がある場合、対象ファイル名と上限サイズを明示するようにした。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "シンボリックリンク経由の書き込み判定バグを修正",
+          "description": "シンボリックリンク先のパスがツリー内綴りで評価されていた問題を修正し、プロンプトで実際の書き込み先を示し、`acceptEdits`、allow ルール、auto モードが外部への書き込みを承認しないようにした。"
+        },
+        {
+          "title": "安全チェックで拒否された際の auto モードリトライを修正",
+          "description": "安全チェックがレビューを拒否したときに auto モードが同动作を繰り返すのを止め、1回だけ拒否しリトライは無意味である旨を通知するようにした。"
+        },
+        {
+          "title": "安全チェック無回答時の auto モードリトライ停止",
+          "description": "安全チェックが回答しない場合に auto モードが無限にアクションを拒否し続けるのを止め、リトライはバックオフし、10 回連続で失敗したらターンを停止してメッセージを表示するようにした。"
+        },
+        {
+          "title": "Write 呼び出しのパラメータ名不一致を修正",
+          "description": "モデルが `path`、`file_text`、`file_content`、`description` などを送信したときにバリデーションが失敗していた問題を修正し、`file_path` と `content` が必要になるようにした。"
+        },
+        {
+          "title": "Ctrl+C / Ctrl+D の二度押しでダイアログが終了するバグを修正",
+          "description": "多数のダイアログ (`/model`、`/effort` など) で二度の Ctrl+C/D が Claude Code 全体の終了につながっていた問題を修正し、ダイアログが閉じるようにした。"
+        },
+        {
+          "title": "クリックがウィンドウ前面表示と同時に項目発火するバグを修正",
+          "description": "検索ピッカー、タブバー、エージェント/ワークフロー行、スラッシュコマンドリンク、サジェストドロップダウンで、ウィンドウを前面に持ってくるクリックが下の項目まで発火していたのを修正した。"
+        },
+        {
+          "title": "誤った `n` と `y` キーでのダイアログ操作を修正",
+          "description": "`n` がダイアログを閉じ、`y` が確定する誤動作を修正し、Enter と Esc がそれぞれ確定・キャンセルになるようにした。（`keybindings.json` で `y`/`n` を `confirm:yes`/`confirm:no` にバインドすれば元に戻せる）"
+        },
+        {
+          "title": "テキストフィールドでのキー入力ロスを修正",
+          "description": "ダイアログのテキストフィールドで文字、数字、Space が同名キーのバインディングに奪われて失われるバグを修正した。"
+        },
+        {
+          "title": "Windows ターミナルでプロンプト行が乱れる問題を修正",
+          "description": "Enter で不可視文字が除去された後、プロンプト行が乱れたまま残っていたのを、画面を再描画して正確な送信テキストを確認できるようにした。"
+        },
+        {
+          "title": "ゼロ幅非結合文字のクリーミングバグを修正",
+          "description": "ペルシア語・アラビア語でラテン文字や数字に接尾辞を付ける際に使われる zero‑width non‑joiner が削除されていた問題を修正した。"
+        },
+        {
+          "title": "音声入力停止が効かないバグを修正",
+          "description": "Ctrl+C で音声入力が止まらずマイクが録音し続ける、Esc が処理中の transcript をキャンセルしない、Space が transcript ビューや vim NORMAL モードからの dictation を開始する問題を修正した。"
+        },
+        {
+          "title": "ホストアプリからのモデル切替でキャッシュミスが発生するバグを修正",
+          "description": "Claude Desktop、VS Code、SDK などのホストアプリからモデル切替を行うと、次のプロンプトでキャッシュミスが起きる問題を修正した。"
+        },
+        {
+          "title": "再開した fork サブエージェントがツールリストを再構築するバグを修正",
+          "description": "再開時に最初に使用したツールリストを再送信せずに再構築してしまい、プロンプトキャッシュが壊れる問題を修正した。"
+        },
+        {
+          "title": "サブエージェントのハンドバックメッセージ表示を修正",
+          "description": "詳細モード外で展開した際に内部の provenance 前文が表示されていた問題を修正した。"
+        },
+        {
+          "title": "installed_plugins.json が古いコミット情報を保持するバグを修正",
+          "description": "GitHub リポジトリや git URL でプラグインを更新した際、ブランチやタグを追跡していてもインストール時のコミット情報が残っていた問題を修正した。"
+        },
+        {
+          "title": "スキルが .trash ディレクトリへ移動するバグを修正",
+          "description": "`~/.claude/skills/` 内のスキルが `~/.claude/skills/.trash/` に移動してしまう問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-23T01:21:47.909Z"
+}
