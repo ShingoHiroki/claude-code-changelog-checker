@@ -1,0 +1,59 @@
+{
+  "version": "2.1.281",
+  "tagName": "v2.1.281",
+  "publishedAt": "2026-09-23T19:19:15Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.281",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 9,
+    "改善": 32,
+    "その他": 44,
+    "バグ修正": 90
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "コマンドメニューと `/help` から残っていた \"(removed)\" の `/agents` エントリを削除しました。`/agents` と入力すると、ウィザードがどこへ行ったかが説明されます",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`desktop` ポリシーブロックで新しい Claude Desktop キーをサポートする Claude apps gateway を追加しました。`blockReadsOutsideWorkingDirectories` と `disableBypassPermissionsMode` を含みます",
+          "description": ""
+        },
+        {
+          "title": "Claude apps gateway の Bedrock アップストリームに `assume_role` を追加しました。ゲートウェイは STS を介して引き受ける IAM ロールとして Bedrock を呼び出し、必要に応じて別の AWS アカウントでも使用でき、開発者ごとにオプションでセッションを 1 つ作成します",
+          "description": ""
+        },
+        {
+          "title": "Claude apps gateway の Bedrock アップストリームに `guardrail: {id, version}` を追加し、送信されるすべてのリクエストに Amazon Bedrock ガードレールを適用できるようにしました（すべての Bedrock アップストリームに設定するか、設定しないかのいずれかです）",
+          "description": ""
+        },
+        {
+          "title": "`telemetry.resource_attributes` を Claude apps gateway の設定に追加し、Claude Desktop と `/login` セッションのテレメトリに固定ラベルを付与できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "`settings.json` に `\"attribution\": false` を追加し、すべてのコミットと PR の帰属情報を非表示にしました。古い CLI バージョンはそれを含む設定ファイルをスキップするため、バージョン間で共有されるファイルではオブジェクト形式のままにしてください",
+          "description": ""
+        },
+        {
+          "title": "2026-07-28 プロトコル接続で MCP URL モードの引き出しを追加し、サーバーが Claude Code にブラウザベースのフローを開くよう要求できるようにしました。サーバーが完了を確認できない場合、画面に待機ダイアログは残りません",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin validate` に MCP",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-24T01:16:28.572Z"
+}
