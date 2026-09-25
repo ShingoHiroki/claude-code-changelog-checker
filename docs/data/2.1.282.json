@@ -1,0 +1,333 @@
+{
+  "version": "2.1.282",
+  "tagName": "v2.1.282",
+  "publishedAt": "2026-09-24T18:38:05Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.282",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 5,
+    "改善": 7,
+    "その他": 30,
+    "バグ修正": 44
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "maxProseWidth 設定を追加",
+          "description": "`maxProseWidth` 設定を追加し、幅の広い端末で Claude の文章幅を制限し、テーブルとコードブロックは全幅のままにします。"
+        },
+        {
+          "title": "起動時通知とステータスコマンドを追加",
+          "description": "起動時に通知を表示し、`/status` と `claude doctor` エントリを追加。プロジェクト設定ファイル内で無視されたテレメトリ変数やテレメトリがオフになっている項目を一覧表示します。"
+        },
+        {
+          "title": "Chrome での管理設定を追加",
+          "description": "`allowClaudeInChromeWithManagedMcp` 管理設定を追加し、`claude --chrome` を排他的な `managed-mcp.json` と同時に実行できるようにしました。Chrome がブロックされたときのエラーメッセージにその旨が表示されます。"
+        },
+        {
+          "title": "readiness_grace_seconds を追加",
+          "description": "Claude アプリゲートウェイに `store.readiness_grace_seconds` を追加し、短時間の Postgres 障害（例: データベースフェイルオーバー）でも `/readyz` が Ready 状態を維持できるようにしました。"
+        },
+        {
+          "title": "フィードバックドラフトリストにスクロールバーを追加",
+          "description": "全画面モードで `/feedback` のドラフト一覧にスクロールバーを追加。マウスがリスト上にある間に表示されます。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "大規模セッションの再開時間を改善",
+          "description": "非常に大きなセッションや、これまで圧縮されていなかったセッションの再開時間を改善しました。"
+        },
+        {
+          "title": "Windows での再開エラーを改善",
+          "description": "セッションが再開できず transcript ファイルが読めない (EBADF) 場合のエラー表示を改善し、考えられる原因と対処法を提示します。"
+        },
+        {
+          "title": "Desktop のモデルエラー提案を改善",
+          "description": "Claude Desktop の不明なモデルエラーに、別のモデルに切り替える提案を追加しました。"
+        },
+        {
+          "title": "Unicode 表示を改善",
+          "description": "権限プロンプトでの異常 Unicode 表示を改善しました。"
+        },
+        {
+          "title": "/artifacts の表示を改善",
+          "description": "`/artifacts` でタイトルが同一列に整列し、詳細は途中で切れずに全体が表示されます。リストは PgUp/PgDn、Home/End、マウスホイール、クリックにも対応しています。"
+        },
+        {
+          "title": "claude-api スキルの課金リンクを更新",
+          "description": "`claude-api` スキルを更新し、出力前の拒否に関する課金ページへのリンクを追加。ストリーム中の拒否は通常料金で課金され、出力前の拒否はレートリミットにカウントされます。"
+        },
+        {
+          "title": "Managed Agents のバージョン管理を推奨",
+          "description": "`claude-api` スキルを更新し、Managed Agents のリソースをバージョン管理ファイルとして保持するために `ant apply` の使用を推奨しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Vertex AI のウェブ検索対応を修正",
+          "description": "Claude Code がまだ認識していない新リリースモデルでも、Vertex AI のウェブ検索が提供されない問題を修正しました。"
+        },
+        {
+          "title": "自動モードの分類器を変更",
+          "description": "テレメトリがオフの場合（`CLAUDE_CODE_AUTO_MODE_SERVER=0`）、直接 Anthropic API 接続時にサーバー側分類器をデフォルトで使用するよう変更しました。"
+        },
+        {
+          "title": "sandbox.excludedCommands の設定範囲を変更",
+          "description": "`sandbox.excludedCommands` が、`allowUnsandboxedCommands: false` や `allowManagedDomainsOnly: true` が設定された場合に、プロジェクトおよびローカル設定エントリを無視するよう変更しました。"
+        },
+        {
+          "title": "OpenTelemetry 変数の無視を変更",
+          "description": "プロジェクトおよびローカル設定で、テレメトリ有効化やエンドポイント設定、コンテンツ取得を行う OpenTelemetry 変数（例: `CLAUDE_CODE_ENABLE_TELEMETRY`、`OTEL_LOG_*`）を無視するように変更しました。"
+        },
+        {
+          "title": "Windows/WSL の管理設定の優先順位を変更",
+          "description": "管理設定が存在するが無効または読み取れない場合（HKLM の `managed-settings.json`）、ユーザー書き込み可能な HKCU と WSL の `/etc/claude-code` が適用され続けるように変更しました。"
+        },
+        {
+          "title": "Skill の許可ルールを限定",
+          "description": "`Skill(anthropic-skills:*)` と `Skill(claude-ai:*)` の許可ルールが、claude.ai から同期されたスキルのみに適用され、プラグインや同名の他スキルには適用されないように変更しました。"
+        },
+        {
+          "title": "Skill フォルダーとコマンドのロードを停止",
+          "description": "`anthropic-skills` または `claude-ai` 名前空間内のスキルフォルダー、コマンドファイル、ワークフローコマンドはロードされなくなりました。プラグインとして同名であってもロードは続きますが、同期スキル名と結び付けられます。"
+        },
+        {
+          "title": "MCP サーバーのスキル一覧表示を変更",
+          "description": "`anthropic-skills` または `claude-ai` 名義で設定された MCP サーバーは、スキルやプロンプトを一覧表示しません（ツールは引き続き利用可）。一覧を復元するには MCP 設定でサーバー名を変更してください。"
+        },
+        {
+          "title": "/effort のビジュアルを変更",
+          "description": "`/effort` とプロンプト入力の `ultracode` ビジュアルをプレーンスタイルに変更し、リップルやボーダー装飾、キーワードの光彩を削除しました。また、動的ワークフローのスピナーチップも削除しました。"
+        },
+        {
+          "title": "Clawd マスコットの足位置を調整",
+          "description": "起動バナーに表示される Clawd マスコットの足が、体の角の下に来るよう位置を変更しました。"
+        },
+        {
+          "title": "VSCode: 長文返信の再解析バグを修正",
+          "description": "長い返信がストリームの後ろに遅れる問題を修正し、パネルが毎回全体を再解析しなくなりました。"
+        },
+        {
+          "title": "VSCode: 音声入力ボタンがスクロールバーを覆うバグを修正",
+          "description": "音声入力マイクボタンが、入力がスクロール可能になるほど高さがある場合にメッセージ入力のスクロールバーを覆っていた問題を修正しました。"
+        },
+        {
+          "title": "VSCode: リモートコントロールセッションのリンク修正",
+          "description": "このコンピュータで開始されたリモートコントロールセッションが、セッションリストの Web エントリから開かずローカル会話が開かれる問題を修正しました。"
+        },
+        {
+          "title": "VSCode: サインイン画面のハングアップを修正",
+          "description": "エディタタブのサインイン画面が拡張機能ホスト再起動後に黙ってハングする問題を修正し、\"応答なし\" 通知も表示されるようにしました。"
+        },
+        {
+          "title": "Cloud セッション: GitHub App ステータスを追加",
+          "description": "Settings › Connectors › GitHub に Claude GitHub App のインストール・接続状態と、接続・インストール・再接続手順を表示するようにしました。"
+        },
+        {
+          "title": "Cloud セッション: リポジトリメニューにリンクを追加",
+          "description": "GitHub 以外の Git サーバーでホストされているリポジトリを使用しているクラウドセッションのリポジトリメニューに「Open repository」および「Open compare page」リンクを追加しました。"
+        },
+        {
+          "title": "Cloud セッション: 別オーナーのリポジトリを添付可能に",
+          "description": "Fork の upstream など、別 GitHub オーナーのリポジトリを、すでに接続されているクラウドセッションに添付できるようにし、Slack から開始したセッションにも対応しました。"
+        },
+        {
+          "title": "Cloud セッション: 時差による実行時間表示バグを修正",
+          "description": "インドなどの 30 分単位のタイムゾーンで、時間ベースのルーティンの次回実行時間が 30 分ずれて表示されていた問題を修正しました。"
+        },
+        {
+          "title": "Cloud セッション: Routines ページの読み込みを高速化",
+          "description": "過去に多数のチェックインリマインダーがスケジュールされたアカウントにおいて、Routines ページとサイドバーの Scheduled リストの読み込み速度を向上させました。"
+        },
+        {
+          "title": "Claude Tag: ワークスペース限定の自動参加パターンを修正",
+          "description": "Enterprise Grid 全体インストール時に、1 つのワークスペースで保存された自動参加チャンネルパターンが無視されていた問題を修正し、Claude が該当する新規チャンネルに参加するようにしました。"
+        },
+        {
+          "title": "Claude Tag: 別ワークスペースからのタグバージョン無視バグを修正",
+          "description": "Enterprise Grid の 2 つのワークスペースで共有されているチャンネルで、タグバージョンが別ワークスペースから保存されていた場合に Claude が応答しなくなる問題を修正しました。"
+        },
+        {
+          "title": "Claude Tag: GitHub Enterprise Server の PR ボタンを修正",
+          "description": "Slack の Claude for GitHub Enterprise Server リポジトリ向けプログレスカードがリポジトリ名を表示せず、Create PR ボタンが機能しなかった問題を修正し、リポジトリ名を表示し動作するボタンを提供します。"
+        },
+        {
+          "title": "Claude Tag: 退役モデルのスレッド自動フォールバックを修正",
+          "description": "退役モデルが設定された Slack スレッドで、各返信ごとに別モデルへフォールバックし続け、遅延とフォールバックノートが毎回表示されていた問題を修正し、スレッドが動作可能なモデルに移行するようにしました。"
+        },
+        {
+          "title": "Claude Tag: テーブル付きキャプションの表示を修正",
+          "description": "Claude が Slack にアップロードしたファイルのキャプションにテーブルが含まれていても表示できなかった問題を修正し、返信と同様の書式でキャプションがレンダリングされます。"
+        },
+        {
+          "title": "Claude Tag: エージェントビューのスレッド表示を修正",
+          "description": "Slack の Agents & tools ビューで Claude のスレッドが最初のメッセージの下に表示されることがあった問題を修正し、名前変更後もリストが更新されます。"
+        },
+        {
+          "title": "Claude Tag: アクセスバンドルのリポジトリタブ保存失敗を修正",
+          "description": "GitHub 組織の権限を削除した後、アクセスバンドルの Repositories タブで保存が失敗する問題を修正しました。"
+        },
+        {
+          "title": "Claude Tag: 共有チャンネルでのエラーメッセージを改善",
+          "description": "Claude が Grid ワークスペースに追加されていない共有チャンネルで常に \"Couldn't check this channel just now\" と返答していた問題を修正し、どのワークスペースが必要かを示すようにしました。"
+        },
+        {
+          "title": "Claude Tag: フッターのコスト表示バグを修正",
+          "description": "クラウドワーカー再起動後、Claude の返信フッターに表示されるコストとトークン合計が実際より大幅に高くなる問題を修正しました。"
+        },
+        {
+          "title": "Claude Tag: カード幅をデフォルトで広く変更",
+          "description": "Slack の Claude 返信で使用される枠付きカード（プラン、テーブル、詳細）が、従来の狭幅ではなくデフォルトで広幅になるよう変更しました。"
+        },
+        {
+          "title": "Claude Tag: 新規接続ワークスペースのデフォルトモデルを統一",
+          "description": "新たに接続された Slack ワークスペースが、接続時のデフォルトモデルを保持せず、現在のデフォルトモデルを使用するように変更しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Web 検索結果暗号化エラーでの 400 エラーを修正",
+          "description": "履歴に API が復号できない Web 検索結果が含まれる会話で、すべてのリクエストが 400 エラーになる問題を修正しました。"
+        },
+        {
+          "title": "--continue/--resume でのメッセージ再送バグを修正",
+          "description": "`--continue`、`--resume` で続行・再開したセッションが、変更された形の以前メッセージを再送し、API が Claude の以前の推論をドロップするケースを修正しました。"
+        },
+        {
+          "title": "即時コマンド使用時の拡張思考ドロップを修正",
+          "description": "`/model`、`/rename`、`/artifacts` などの即時スラッシュコマンド実行中に、拡張思考がドロップされていた問題を修正しました。"
+        },
+        {
+          "title": "--tools 変更時の思考喪失バグを修正",
+          "description": "`--tools` リストに以前会話で提供された組み込みツールが含まれていない状態で再開した場合、以前の拡張思考が失われる問題を修正しました。"
+        },
+        {
+          "title": "redacted_thinking エラーを自動リトライ",
+          "description": "\"Invalid `data` in `redacted_thinking` block\" エラーでセッションが毎ターン失敗していた問題を修正し、会話の思考ブロックを削除して 1 回リトライするようにしました。"
+        },
+        {
+          "title": "要約拒否時のコンパクション失敗を修正",
+          "description": "要約リクエストが拒否された際にコンパクションが失敗していた問題を修正し、フォールバックモデルでリトライするようにしました。"
+        },
+        {
+          "title": "effort 高設定での安全モデル切替エラーを修正",
+          "description": "思考オフかつ effort が high 以上のセッションで、安全関連モデルへ切替後に \"Effort 'xhigh' isn't available with thinking turned off\" エラーが出ていた問題を修正しました。"
+        },
+        {
+          "title": "Fable 使用クレジットプロンプトの未回答バグを修正",
+          "description": "SDK ホスト環境（例: Claude Desktop）で Fable 使用クレジットプロンプトが未回答のままモデル切替が起こり、ターンが続く問題を修正し、ターンが終了し Remote Control クライアントにモデル切替通知が表示されるようにしました。"
+        },
+        {
+          "title": "/model での Fable プラン不足時のエラーを修正",
+          "description": "フル Fable モデル ID を指定した `/model` が、プランで使用クレジットが有効化されていない場合に API エラーで止まっていた問題を修正し、使用クレジットプロンプトが開くようにしました。"
+        },
+        {
+          "title": "ログインリフレッシュエラーのリトライを修正",
+          "description": "別プロセスが途中で終了した後に \"another Claude Code process is refreshing it\" エラーが最大 1 分間続く問題を修正し、リトライできるようにしました。"
+        },
+        {
+          "title": "サインインポリシー取得のリトライを修正",
+          "description": "別ウィンドウでサインインリフレッシュ中に開始されたセッションが、組織ポリシー取得をリトライしなかった問題を修正しました。"
+        },
+        {
+          "title": "シンボリックリンク経由の CLAUDE.md 読み込みを修正",
+          "description": "macOS の `/Network` や `/.vol` パス、または `/home` へのシンボリックリンク経由でリポジトリの CLAUDE.md とルールが起動時に正しく読み込まれなかった問題を修正しました。"
+        },
+        {
+          "title": "Bash 許可ルールのパターンスキップを修正",
+          "description": "設定ファイルで中間パターン `:*` を含む Bash 許可ルールがスキップされていたが、`--allowedTools` がそれらを尊重していた問題を修正し、全ソースで機能し、起動時にマッチ方法を警告します。"
+        },
+        {
+          "title": "復元された権限プロンプトの二重実行を修正",
+          "description": "復元された権限プロンプトで承認されたコマンドが、リモートセッションのワーカー再起動時に 2 回実行されていた問題を修正しました。"
+        },
+        {
+          "title": "ブールロックキーのタイプミス無視バグを修正",
+          "description": "`disableClaudeAiConnectors` や `allowManagedPermissionRulesOnly` などのブールロックキーのタイプミスが無視されていた問題を修正し、ロックが適用され、起動時にキー名を表示します。"
+        },
+        {
+          "title": "無効値でブロック設定全体が無視されるバグを修正",
+          "description": "`permissions`、`autoMode`、`worktree`、`attribution` 設定ブロック内に 1 つでも無効な値があると、ブロック全体が無視されていた問題を修正し、他の有効な設定は適用されます。"
+        },
+        {
+          "title": "スキルの自己承認バグを修正",
+          "description": "リポジトリ、ユーザー、`--add-dir` スキルやコマンド、スキルディレクトリプラグインマニフェストが、管理設定の `allowManagedPermissionRulesOnly` 配下で `allowed-tools` により自分自身のツールを事前承認していた問題を修正しました。"
+        },
+        {
+          "title": "Amazon Bedrock のブロックメッセージに ID を追加",
+          "description": "Amazon Bedrock と Bedrock Mantle のサンドボックスブロックメッセージに、リクエスト ID が表示されていなかった問題を修正し、メッセージ ID も表示されるようにしました。"
+        },
+        {
+          "title": "ディスククオータエラーの表示を改善",
+          "description": "Bash と PowerShell がフルディスククオータエラーを \"Exit code 1\" のみで表示し、大量の出力ファイルが一時領域に残っていた問題を修正しました。"
+        },
+        {
+          "title": "ツール入力検証エラーの詳細表示を改善",
+          "description": "ツール入力で複数パラメータが無効な場合、以前は未知・欠如・タイプミスの1つだけが表示されていたが、すべての無効パラメータが列挙されるように修正しました。"
+        },
+        {
+          "title": "ブラケットペーストモードリセット後の貼り付けバグを修正",
+          "description": "端末のブラケットペーストモードがセッション途中でリセットされた際に、複数行テキストの貼り付けが行ごとに送信されていた問題を修正しました。"
+        },
+        {
+          "title": "SessionStart フックでの例示テキスト表示バグを修正",
+          "description": "`SessionStart` フックがあるプロジェクトで、プロンプトの例示テキストが点滅して消える問題を修正しました。"
+        },
+        {
+          "title": "全画面起動時のブランク画面フラッシュを修正",
+          "description": "全画面モードで開始した際に、最初のフレーム前にブランク画面がフラッシュする問題を修正しました。"
+        },
+        {
+          "title": "非全画面レンダラーの行ずれバグを修正",
+          "description": "端末より短くなったがまだ高い状態で画面が短くなると、非全画面レンダラーで行が乱れたり位置がずれたりする問題を修正しました（例: プロンプト行削除中にシェルコマンドがストリーム出力）。"
+        },
+        {
+          "title": "CJK 文字ラップ時の差分表示バグを修正",
+          "description": "再描画行の CJK 文字や絵文字が次行に折り返された際、diff の最終列に残っていた古い文字を削除しました。"
+        },
+        {
+          "title": "タブ含むプロンプト履歴復元時のカーソル位置バグを修正",
+          "description": "タブを含むプロンプトを履歴から呼び出したとき、カーソルがプロンプト末尾の前に止まっていた問題を修正しました。"
+        },
+        {
+          "title": "ctrl+enter ヒント表示バグを修正",
+          "description": "端末が ctrl+enter を改行として送信する (Windows Terminal <1.25) 環境で、送信ヒントが ctrl+enter と表示されていた問題を修正し、代わりに ctrl+x ctrl+s を表示します。"
+        },
+        {
+          "title": "remote-control --debug エラーを修正",
+          "description": "`claude remote-control --debug` が \"Unknown argument: --debug\" と失敗していた問題を修正しました。Remote Control の適格性エラーは `--debug` で実行するよう指示します。"
+        },
+        {
+          "title": "/install-github-app キャンセル後の残り処理を修正",
+          "description": "`/install-github-app` で \"cancelled\" と表示された後もブランチのプッシュや API キーシークレット保存が続いていた問題を修正し、キャンセルで残りのステップが停止し、実行済み項目を報告します。"
+        },
+        {
+          "title": "/feedback 等のキャンセル後の保存バグを修正",
+          "description": "Bedrock、Vertex、その他サードパーティプロバイダーで、/feedback、/bug、/share のレポート保存中にキャンセルしてもファイルが残っていた問題を修正しました。"
+        },
+        {
+          "title": "プラグインアンインストール時の設定削除バグを修正",
+          "description": "プラグインの設定ファイルが有効のまま、または読み取れない状態でアンインストールした際に、成功メッセージが出て設定やオプションが削除されていた問題を修正し、削除せずにファイル名を表示して停止します。"
+        },
+        {
+          "title": "プラグインリスト読み取り失敗時のオプション保持バグを修正",
+          "description": "プラグインのインストールリストが読めなかった場合でも、アンインストール時に保存されたオプションやシークレットが削除されていた問題を修正し、保持したままアンインストール完了を報告します。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-25T01:17:48.043Z"
+}
