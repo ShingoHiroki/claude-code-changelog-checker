@@ -1,0 +1,349 @@
+{
+  "version": "2.1.283",
+  "tagName": "v2.1.283",
+  "publishedAt": "2026-09-25T21:50:12Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.283",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 9,
+    "改善": 15,
+    "その他": 33,
+    "バグ修正": 37
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`x-claude-code-prompt-id` ヘッダー追加",
+          "description": "LLMゲートウェイが同一ユーザープロンプトに対するリクエストをグルーピングできるよう、ゲートウェイヒントヘッダーに `x-claude-code-prompt-id` を追加。`CLAUDE_CODE_GATEWAY_HINT_HEADERS=1` で有効化。"
+        },
+        {
+          "title": "`availableModelsMatch` 設定追加",
+          "description": "`availableModelsMatch` 管理設定を追加。`\"exact\"` を指定すると、`availableModels` エントリはその名前が付いたモデルバージョンのみ許可し、新リリースはリストに入るまでブロックされる。"
+        },
+        {
+          "title": "`deniedModels` 設定追加",
+          "description": "`deniedModels` 管理設定を追加し、`availableModels` で許可されていても特定モデルをブロックできるようにした。"
+        },
+        {
+          "title": "OpenTelemetry にツール出力を追加",
+          "description": "`OTEL_LOG_TOOL_CONTENT=1` を設定すると、MCP ツール、WebFetch、WebSearch の出力が `tool.output` OpenTelemetry スパンイベントに含まれるようになった。"
+        },
+        {
+          "title": "`/doctor prompt-audit` コマンド追加",
+          "description": "`/doctor prompt-audit`（別名 `/checkup prompt-audit`）を追加し、CLAUDE.md ファイル、スキル、エージェント、コマンドを旧モデル向けプロンプトパターンについて監査できるようにした。"
+        },
+        {
+          "title": "フルスクリーンモードでメッセージをクリックで展開",
+          "description": "他のセッションからの短縮メッセージをフルスクリーンモードでクリックすると展開できるようにした。"
+        },
+        {
+          "title": "`--plugin-dir` のエラーログにパスを追加",
+          "description": "`stream-json` の `system/init` `plugin_errors` に、読み込みに失敗したプラグインディレクトリの `path` が記録されるようにした。"
+        },
+        {
+          "title": "ロードテストモードのオプトインブロック追加",
+          "description": "Claude アプリのゲートウェイ構成に `load_test_mode` ブロックを追加。リクエストは組み立て・署名されるが upstream へ送信されず、クライアントは固定返信を受け取るため、デプロイのロードテストが可能になる。"
+        },
+        {
+          "title": "Mantle プロバイダーを追加",
+          "description": "Claude アプリのゲートウェイに Amazon Bedrock の Mantle エンドポイント用 `mantle` 上流プロバイダーを追加した。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "/mcp ツールリストの表示向上",
+          "description": "/mcp ツールリストが一度により多くのツールを表示し、ページキーやマウスでスクロールでき、組織がブロックしたツールは警告アイコンで表示されるようになった。"
+        },
+        {
+          "title": "MCP ツール結果の画像保存",
+          "description": "MCP ツールが返す画像がファイルにも保存され、Bash、Read などのツールが画像を開けるようになった。"
+        },
+        {
+          "title": "/tasks の UI 改善",
+          "description": "/tasks の行にステータスアイコンが表示され、名前と全ファクト、タイトルとキーヒントが多数タスクでも画面に残り、リストにページキー、マウスホイール、クリック操作が追加された。"
+        },
+        {
+          "title": "各種ピッカーリストの操作性向上",
+          "description": "/help、/hooks、/copy、/chrome、/memory、/ide、/release-notes、/rewind、/diff、/remote-env、/plugin などのピッカーリストにページキー、マウスホイール、クリックでの操作を可能にした。"
+        },
+        {
+          "title": "検索ボックス横のリストのハイライト調整",
+          "description": "/skills や /artifacts など検索ボックス横のリストでは、検索ボックスがフォーカス中はポインタが薄暗く表示され、ハイライトは検索ボックス側だけになるようにした。"
+        },
+        {
+          "title": "コンパクションスピナーの表示変更",
+          "description": "コンパクション開始時にタイマーが始まり、トークンがストリームされるたびに要約トークン数をカウントするようにし、パーセンテージバーを置き換えた。"
+        },
+        {
+          "title": "MCP サーバーサインイン後のブラウザページ改善",
+          "description": "サインイン後に表示されるブラウザページをセンターレイアウト・ダークモード・新しいアートワークで改善した。"
+        },
+        {
+          "title": "ロードできなかったプラグインのスキル応答改善",
+          "description": "プラグインの読み込みに失敗した場合、Skill ツールの応答が「プラグインがロードできませんでした」と表示され、スキルがアンインストールされたと誤認しないようにした。"
+        },
+        {
+          "title": "`prompt-audit` のレポート項目強化",
+          "description": "Claude Code 設定での `prompt-audit` が、古いパスや古いコマンド、矛盾する指示ファイルをレポート先頭に表示し、Claude Code が文書化した思考キーワードは保持されるようにした。"
+        },
+        {
+          "title": "`installed_plugins.json` 読み取り失敗時の復旧改善",
+          "description": "`installed_plugins.json` が読めない場合、その内容を隣のファイルに保存してから再構築し、`claude plugin list` がそのファイル名を表示するようにした。"
+        },
+        {
+          "title": "アーティファクトデータベースのページ読み取り改善",
+          "description": "フルページを返す順序付きクエリは、結果が1ページであることと、残りのページを読む方法を示すようになった。"
+        },
+        {
+          "title": "最初の応答レイテンシ改善",
+          "description": "セッション最初の応答の最後に行っていたパターンコンパイルステップを、応答がストリーミング中に並行して実行するようにした。"
+        },
+        {
+          "title": "最初のリクエストレイテンシ改善",
+          "description": "事前接続された API 接続を再利用することで、最初のリクエストレイテンシを改善した。"
+        },
+        {
+          "title": "起動時の UI とロードの遅延削減",
+          "description": "`claude -p` と Claude Code Remote がインタラクティブ UI をロードしなくなり、auto-mode classifier のルールと Artifact ツールは初回使用時にロードされるようにした。"
+        },
+        {
+          "title": "Artifact ツール機能未確認時の起動遅延削減",
+          "description": "claude.ai アカウントで Artifact ツール機能が未確認の場合、初回実行時にプロンプトが機能確認のために最大1.5秒待機しなくなり、必要に応じて最初のメッセージだけ待機するようにした。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Windows PowerShell ツールの安全修正",
+          "description": "PowerShell ツールが `cmd /c rd`、`rmdir`、`del`、`erase` でドライブルートやホームフォルダ、`Remove-Item` が拒否するフォルダを削除できていた問題を修正した。"
+        },
+        {
+          "title": "サードパーティプロバイダーの自動モード開始条件変更",
+          "description": "サードパーティプロバイダーやテレメトリ無効時のインタラクティブセッションは、パーミッションモードが未設定の場合に自動モードで開始するように変更。`permissions.defaultMode` が依然として優先する。"
+        },
+        {
+          "title": "`/ultrareview` ダイアログ文言変更",
+          "description": "ローカルブランチのレビューがトラッキングファイルの未コミット変更をアップロードする可能性がある旨をダイアログに表示するように変更した。"
+        },
+        {
+          "title": "`/model` ピッカーの Opus 表示調整",
+          "description": "Opus 行と Default モデル名から“(1M context)” の表記を削除。コンテキストウィンドウ自体は変更なし。"
+        },
+        {
+          "title": "ターミナルのプロンプト提案頻度調整",
+          "description": "連続で20回使用されなかったプロンプト提案は表示頻度を下げ、1回使用すると再び表示されるようにした。"
+        },
+        {
+          "title": "`--system-prompt` と `--append-system-prompt` の同時使用",
+          "description": "テキスト形式と `-file` 形式を同時に指定できるようにし、ファイルのテキストが先に適用されるようにした。"
+        },
+        {
+          "title": "Skill デニールール拡張",
+          "description": "`Skill(anthropic-skills:<name>)` デニールールが Claude Desktop がプラグインとして提供する場合もブロックし、`Skill(skill:<name>)` デニールールはスキルのエイリアスと表示名にもマッチするようにした。"
+        },
+        {
+          "title": "`/rewind` と `/diff` リストのキー割り当て統一",
+          "description": "`/rewind` と `/diff` のリストが他のリストと同じ `select:*` キーバインディングで操作できるようにし、従来の `messageSelector:*`/`diff:*` のリバインドも機能させた。"
+        },
+        {
+          "title": "`/workflows` 実行リストのサイズ調整",
+          "description": "`/workflows` の実行リストが端末内インラインの半分の幅で表示され、プロンプトが下にある際もタイトルが画面に固定されるようにした。"
+        },
+        {
+          "title": "`claude plugin eval` の Git バージョン要件",
+          "description": "`claude plugin eval` が Git 2.31 以降がインストールされていることを必須条件とし、古いバージョンの場合はバージョン名を示すメッセージで拒否するようにした。"
+        },
+        {
+          "title": "アーティファクト監視の自動解除",
+          "description": "自動的に武装されたウォッチが3.5時間無活動で自動終了するようにし、再度パブリッシュや監視を行うと再武装されるようにした。"
+        },
+        {
+          "title": "Self‑hosted runner の Git フック調整",
+          "description": "Self‑hosted runner のライフサイクルフックで、リポジトリの Git LFS `pre‑push` フックをスキップし、書き込み可能なシステム `core.hooksPath` を無視し、`--configure-git` が無い場合はコミットに署名しないようにした。"
+        },
+        {
+          "title": "Self‑hosted runner の SSL 環境変数挙動変更",
+          "description": "Anthropic 管理下の Git で `GIT_SSL_CAINFO` と `GIT_SSL_NO_VERIFY` の取り扱いを変更し、ランナー自身の Git は常に Anthropic の Git ルートを検証し、警告行に適用箇所を示すようにした。"
+        },
+        {
+          "title": "`claude-ai` 名の予約取り消しを元に戻す",
+          "description": "2.1.282 で予約された `claude-ai` 名を復元し、スキル・コマンド・ワークフロー・MCP サーバーのスキル・プロンプトが再度ロードでき、`Skill(claude-ai:*)` ルールは通常のプレフィックスルールになるようにした。"
+        },
+        {
+          "title": "VSCode セッションモード指標の不具合修正",
+          "description": "自動スイッチ失敗後にセッションが auto または bypass モードで走り続け、指標が Default を示す問題を修正し、スイッチが成功するまでリトライするようにした。"
+        },
+        {
+          "title": "Web からテレポートされたセッションのメッセージ欠落修正",
+          "description": "Web セッションがテレポートされた際に、Claude が作業中に送信したメッセージが失われていた問題を修正した。"
+        },
+        {
+          "title": "VSCode で空のローカルコピーが原因でセッションが非表示になる不具合修正",
+          "description": "古いバージョンで空のローカルコピーが保存された結果、セッションリストから隠れ、代わりに空のチャットが開く問題を修正した。"
+        },
+        {
+          "title": "再オープン時のターン分割バグ修正",
+          "description": "再オープンされたセッションが、Claude がターン途中で受信したメッセージでターンを分割してしまう問題を修正した。"
+        },
+        {
+          "title": "再読込時のリワインドターン表示バグ修正",
+          "description": "リロードされたセッションがリワインドされたターンや、圧縮前の行だけを表示する問題を修正した。"
+        },
+        {
+          "title": "VSCode フッターのエージェントアイコン位置修正",
+          "description": "フッターのエージェントピルが狭いパネルでアイコンがオフセンターになり、ステータスドットが端に貼り付く問題を修正した。"
+        },
+        {
+          "title": "VSCode 入力欄のテキスト位置バグ修正",
+          "description": "長いプロンプトに改行付きで貼り付けた際、チャット入力欄のテキストがカーソルより少し下に表示され、選択がずれる問題を修正した。"
+        },
+        {
+          "title": "クラウドセッションへのリポジトリ追加改善",
+          "description": "クラウドセッションにプライベートリポジトリ（読み取りは可でもプッシュは不可）を添付できるようにし、読み取り用に接続できるようにした。"
+        },
+        {
+          "title": "クラウドセッションでの重複ステップ実行バグ修正",
+          "description": "サーバー側再起動から復帰した際、既に完了したステップ（例: 重複コメント投稿やプッシュ）が再度実行されることがたまに起きていた問題を修正した。"
+        },
+        {
+          "title": "新規ルーチンのスケジュール既定時間変更",
+          "description": "新規ルーチンのスケジュール既定を「時刻ちょうど」から「時刻数分後」に変更し、時刻ちょうどの設定は数分遅れる可能性がある旨を注記した。"
+        },
+        {
+          "title": "Claude Tag の検索対象チャンネル設定追加",
+          "description": "管理者設定に「Channels Claude can search」を追加し、組織・ワークスペース・チャンネル単位で Claude の Slack 検索をパブリックチャンネルのみに限定できるようにした。"
+        },
+        {
+          "title": "Claude 接続後の Slack 戻りボタン追加",
+          "description": "Claude アカウント接続後に表示されるページに「Back to Slack」ボタンを追加し、開始したスレッドに戻れるようにした。"
+        },
+        {
+          "title": "チャネル設定ページでコネクタ・プラグイン未表示バグ修正",
+          "description": "チャネルがアクセサブルバンドルを attach ルールで取得した際、設定ページにコネクタやプラグインが表示されなかった問題を修正し、ルール付与バンドルが正しく表示されるようにした。"
+        },
+        {
+          "title": "GitHub App のリポジトリ検索バグ修正",
+          "description": "GitHub App インストールが限定リポジトリリストの場合、アクセサブルバンドルのリポジトリ検索でリポジトリが欠落していた問題を修正した。"
+        },
+        {
+          "title": "Claude の重複返信バグ修正",
+          "description": "新規メッセージが Claude の返信途中に割り込んだ際、同じ返信が二回送信されることがたまに起きていた問題を修正した。"
+        },
+        {
+          "title": "プライベートチャンネルの ID 変更後のルーチン停止バグ修正",
+          "description": "Slack Connect で共有後にプライベートチャンネルの ID が変わった場合に、古い ID に紐付いたルーチンが停止していた問題を修正した。"
+        },
+        {
+          "title": "「Channel only」設定チャンネルでの終了バグ修正",
+          "description": "「Channel only」設定のチャンネルで、非ゲストメンバーが参加し Slack が遅延して確認した際に全会話が終了してしまう問題を修正した。"
+        },
+        {
+          "title": "Code Review の GitHub PR 取得失敗時のリトライ追加",
+          "description": "`@claude review` が GitHub でプルリクエスト取得に失敗した場合、一度リトライし、再失敗時はコメントで説明するようにした。"
+        },
+        {
+          "title": "Code Review の課金バグ修正",
+          "description": "レビューが時間上限で停止し検証が行われなかった場合、未完了として表示され課金されず、一回リトライされるようにした。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "SDK セッションでツール呼び出しが失われるバグ修正",
+          "description": "ターンが早期終了した際に、遅延ツール呼び出しや完了したツール結果、ワーカー再起動後の保留承認プロンプト、非ストリーミングフォールバックの `result.usage` が失われていた問題を修正した。"
+        },
+        {
+          "title": "MCP 進捗通知が失われるバグ修正",
+          "description": "長時間実行ツール呼び出しがバックグラウンドに移行した際、進捗通知が破棄されていた問題を修正し、バックグラウンドタスクが最新の進捗を表示するようにした。"
+        },
+        {
+          "title": "stdio MCP サーバーの終了時残存バグ修正",
+          "description": "セッションが終了した際に、開始途中だった stdio MCP サーバーが残ってしまう問題を修正した。"
+        },
+        {
+          "title": "ステートレス遠隔 MCP サーバーの一時 404 バグ修正",
+          "description": "ステートレス遠隔 MCP サーバーで短時間の HTTP 404 が発生すると、そのサーバーがセッション残り全体で使用不能になる問題を修正し、接続状態の表示も正しく保つようにした。"
+        },
+        {
+          "title": "URL 不正な MCP サーバーのサインインバグ修正",
+          "description": "有効な URL を持たないサーバーへの MCP サインインが不透明な SDK エラーで失敗していた問題を修正し、`/mcp` がそのようなサーバーに対して Authenticate オプションを提供しなくなった。"
+        },
+        {
+          "title": "Telemetry 無効時の Fable 上限表示バグ修正",
+          "description": "Telemetry が無効の際、`/usage` と VS Code の使用メーターに週間 Fable 上限が表示されていなかった問題を修正した。"
+        },
+        {
+          "title": "`/model` が Sonnet バージョンを誤認するバグ修正",
+          "description": "`/model` が日付や `-v1:0` サフィックス付きの ID でも、プレーン ID が拒否された場合に Sonnet 4.6 や Sonnet 5 を `[1m]` として受け入れていた問題を修正した。"
+        },
+        {
+          "title": "`/model` ピッカーの Haiku バージョン表示バグ修正",
+          "description": "`ANTHROPIC_DEFAULT_HAIKU_MODEL` が別モデルに固定している場合でも、`/model` ピッカーがハードコードされた Haiku バージョンと価格を表示していた問題を修正した。"
+        },
+        {
+          "title": "モデルフォールバック時の動的ワークフロー実行バグ修正",
+          "description": "モデルフォールバック中に開始された動的ワークフローが、フォールバックモデル上の全エージェントを走らせてしまい、設定されたモデルで再試行しなかった問題を修正した。"
+        },
+        {
+          "title": "`DISABLE_PROMPT_CACHING_HAIKU` が無効になるバグ修正",
+          "description": "Haiku がセッションの主要モデルの場合に `DISABLE_PROMPT_CACHING_HAIKU` が効果を持たなかった問題を修正した。"
+        },
+        {
+          "title": "`claude plugin validate` の Marketplace 名バリデーション修正",
+          "description": "`claude plugin validate` が、Claude Code がプラグインや Marketplace 名を受け入れ可能だと誤って判定し、インストールできない名前でも成功していた問題を修正し、`marketplace.json` 内のそのような名前はバリデーションで失敗するようにした。"
+        },
+        {
+          "title": "`claude plugin validate` のパス欠損バリデーション修正",
+          "description": "`outputStyles`、`themes`、`monitors`、`lspServers` のパスが欠損しているかプラグインディレクトリ外を指すプラグインが、`claude plugin validate` で合格していた問題を修正した。"
+        },
+        {
+          "title": "`claude plugin details` の MCP サーバー表示バグ修正",
+          "description": "`plugin.json` でサーバーを宣言しているプラグインの詳細表示で MCP サーバー数が 0 と表示されていた問題を修正した。"
+        },
+        {
+          "title": "`claude plugin marketplace remove` の削除対象表示修正",
+          "description": "Marketplace からプラグインを削除した際、どのインストール済みプラグインがアンインストールされたかを示すメッセージが欠けていた問題を修正し、対象プラグインを一覧表示するようにした。"
+        },
+        {
+          "title": "プラグイン ID 大小文字違いでの削除バグ修正",
+          "description": "2つのプラグイン ID が大文字小文字のみで異なる場合、`claude plugin uninstall` がオプションやシークレットまで含めて、指定しなかった方のプラグインを誤って削除していた問題を修正した。"
+        },
+        {
+          "title": "バージョン未指定プラグインの復元バグ修正",
+          "description": "バージョンが宣言されていないプラグインが、キャッシュファイルが欠損した際にソースの最新コミット版で黙って復元され、インストール済みバージョンではなくなっていた問題を修正した。"
+        },
+        {
+          "title": "ホーム/設定ディレクトリ移動後のプラグインロードバグ修正",
+          "description": "ホームまたは設定ディレクトリが移動された（例: bind‑mount された devcontainer）後に、ユーザーインストールプラグインや Marketplace が \"cache‑miss\" エラーでロードに失敗していた問題を修正した。"
+        },
+        {
+          "title": "無効なプラグイン ID の `installed_plugins.json` 表示バグ修正",
+          "description": "無効なプラグイン ID が記録されている `installed_plugins.json` がプラグイン非表示になるバグを修正し、ファイルが再度読み込めるようにした。"
+        },
+        {
+          "title": "`installed_plugins.json` の再書き込み時ロスバグ修正",
+          "description": "このバージョンが読めないレコードを保持した `installed_plugins.json` が上書きされ、レコードが失われていた問題を修正し、`claude plugin` コマンドが該当レコード名と復旧方法を表示するようにした。"
+        },
+        {
+          "title": "スクリーンリーダーモードの権限ダイアログ読み上げバグ修正",
+          "description": "スクリーンリーダーモードで権限ダイアログが、引用されたコマンドやパスをダイアログ本文と誤って読み上げていた問題を修正した。"
+        },
+        {
+          "title": "`/context` が MCP サーバー指示をカウントしないバグ修正",
+          "description": "`/context` が MCP サーバーからの指示をトークンカウントに含めていなかった問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-26T01:20:03.310Z"
+}
