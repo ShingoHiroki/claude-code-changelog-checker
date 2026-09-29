@@ -1,0 +1,329 @@
+{
+  "version": "2.1.284",
+  "tagName": "v2.1.284",
+  "publishedAt": "2026-09-28T18:02:03Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.284",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 9,
+    "改善": 13,
+    "その他": 39,
+    "バグ修正": 39
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude Sonnet 5.5 の追加",
+          "description": "Claude Sonnet 5.5 (`claude-sonnet-5-5`) を追加し、Anthropic API のデフォルト Sonnet モデルにしました。コンテキストは 1 M、料金は $2/$10 per Mtok、キャッシュ読み取りは $0.20/Mtok です。"
+        },
+        {
+          "title": "「次回再度尋ねる」回答の追加",
+          "description": "作業ディレクトリ外の読み取り前に自動モードのプロンプトに「はい、でも次回はもう一度尋ねる」回答を追加し、１回の読み取りは許可しつつ後続の読み取りは引き続き確認できるようにしました。"
+        },
+        {
+          "title": "支出上限表示にドル額を追加",
+          "description": "`/usage` とステータスラインに Claude アプリゲートウェイの支出上限をドル額で表示するようにしました（例: \"$271.40 / $500.00 spent this month\"）。ステータスラインの `rate_limits.spend_limit` には `used_usd`、`limit_usd`、`period` が追加されます。"
+        },
+        {
+          "title": "`effortSlider` キーバインドの追加",
+          "description": "`effortSlider:decreaseEffort`、`increaseEffort`、`toggleUltracode` アクションを追加し、`/effort` スライダーの矢印キーや Tab キーを `keybindings.json` で再割り当てできるようにしました。"
+        },
+        {
+          "title": "`/rate-limit-options` コマンドの追加",
+          "description": "claude.ai サブスクライバー向けに `/help` とコマンドメニューに `/rate-limit-options` を追加し、利用制限通知が指すコマンドをすぐに見つけられるようにしました。"
+        },
+        {
+          "title": "`/mcp reconnect all` の追加",
+          "description": "対話型ターミナルに `/mcp reconnect all` を追加し、接続に失敗した、または認証が必要なすべての MCP サーバーを一括で再接続できるようにしました。"
+        },
+        {
+          "title": "管理ポリシー警告の追加",
+          "description": "Claude アプリゲートウェイ起動時に、管理ポリシーの `availableModels` が空の場合や、`model` や `enforceAvailableModels` が設定されていない状態で開始モデルが決まらない場合に警告を出すようにしました。"
+        },
+        {
+          "title": "`auth: { google: {} }` の追加",
+          "description": "Claude アプリゲートウェイの `telemetry.forward_to` 宛先に `auth: { google: {} }` を追加し、ゲートウェイの Google Cloud 資格情報を使ってテレメトリを直接 Google Cloud の OTLP エンドポイントへ転送できるようにしました。"
+        },
+        {
+          "title": "証明書クライアント認証の導入",
+          "description": "Claude アプリゲートウェイと ID プロバイダー間で証明書クライアント認証 (`private_key_jwt`) をサポートし、クライアントシークレットではなく証明書資格情報を発行する ID プロバイダーに対応しました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "利用制限待機表示の改善",
+          "description": "利用制限待機中の状態とカウントダウンが `usage‑credits` オプションと共にプロンプト下に 1 ブロックとして表示され、制限メッセージがカウントダウンを繰り返さなくなりました。"
+        },
+        {
+          "title": "Chrome ツールエラーの改善",
+          "description": "プレフィックスなしで呼び出された Chrome ツールで \"No such tool available\" エラーが出た際、呼び出すべきツール名を提示するようにしました。"
+        },
+        {
+          "title": "Monitor イベント行の表示改善",
+          "description": "各イベントが出力した内容を行に表示し、説明文の繰り返しをやめ、\"Waiting for N … to finish\" の固定行も重複しなくなりました。"
+        },
+        {
+          "title": "Workflow ツールのサンドボックス強化",
+          "description": "非同期スクリプトフックでスローされるエラーに対するサンドボックスの堅牢性を向上させました。"
+        },
+        {
+          "title": "設定スキーマのビルド最適化",
+          "description": "使用している設定ファイルが実際に参照するスキーマ部分だけをビルドすることで、起動時間とメモリ使用量を削減しました。"
+        },
+        {
+          "title": "`/claude‑api` の改善",
+          "description": "`hillclimb` が評価できないほど小さなプロンプトリワーディングにラウンドを消費しなくなり、`report.html` の隣に要求した余分なページはネットワークにアクセスせずローカルファイルとして単一に構築されます。"
+        },
+        {
+          "title": "リスト表示の整列改善",
+          "description": "`/tasks`、`/copy`、`/hooks` などのリストで、各項目名の後の詳細が列揃えできる場合は同一列に、そうでなければ右端に配置されます。"
+        },
+        {
+          "title": "`claude plugin marketplace add` の通知改善",
+          "description": "同名で別ソースから既に追加されているマーケットプレイスを上書きする際に、置換された旨と取り消し方法を明示します。"
+        },
+        {
+          "title": "起動時の認証要求メッセージ改善",
+          "description": "`forceLoginMethod` や `forceLoginOrgUUID` が設定され、API キーやトークンが構成されている場合、使用中の認証情報とその設定場所、削除方法を明示して拒否します。"
+        },
+        {
+          "title": "自動メモリ読み込みの改善",
+          "description": "`MEMORY.md` 内の見えない文字や Claude Code のマークアップに似たタグを中和し、メモリノートが Claude に渡る前に無害化します。"
+        },
+        {
+          "title": "`claude remote‑control` の信頼確認改善",
+          "description": "信頼していないフォルダーで操作した場合、端末上でワークスペースの信頼確認を求め、即座に終了しなくなります。"
+        },
+        {
+          "title": "アーティファクトページの改善",
+          "description": "Claude がデザインプランを書き込むのをページ本文に変更し、ページタイトルに既に付けた名前を使用します。"
+        },
+        {
+          "title": "Artifact ツールのリンク取得改善",
+          "description": "Claude が claude.ai のチャット・プロジェクトリンク、チャットからのアーティファクト、または単体のアーティファクト ID を受け取ったときに、正しいリンクまたはコンテンツを求め、処理を中断しないようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "自動モード開始の既定変更",
+          "description": "対話型ターミナルと VS Code セッションは、権限モードが設定されていない場合に全プラン・プロバイダーで自動モードで開始されるように変更しました。`permissions.defaultMode` が優先します。"
+        },
+        {
+          "title": "Ultracode トグル化",
+          "description": "`/effort` の Ultracode が独立したトグル (Tab または `/effort ultracode [on|off]`) となり、任意の努力レベルでも xhigh 努力を強制しなくなりました。"
+        },
+        {
+          "title": "切断後リトライ予算共有の変更",
+          "description": "レスポンス途中で接続が切れた後のリトライは、残りのリクエストのリトライと同一予算を共有するように変更し、失敗リクエストが早期に諦めるようになりました。"
+        },
+        {
+          "title": "Sonnet モデルの安全フラグ通知変更",
+          "description": "Sonnet モデルで安全フラグが発動した際の通知が、理由説明と編集・再試行のオプションを含む形に変更されました。"
+        },
+        {
+          "title": "安全スイッチのモデル選択ロジック変更",
+          "description": "`ANTHROPIC_DEFAULT_OPUS_MODEL` や `modelOverrides` でピン留めされた Opus モデルに対し、Anthropic API がフラグ種別ごとに適切な切り替えモデルを自動選択するようになり、固定モデルに頼らなくなりました。"
+        },
+        {
+          "title": "非対話的最初のターン待機時間の変更",
+          "description": "`--allowedTools` や `mcp_tool` フックで名前付き MCP サーバーへ接続する際、`CLAUDE_CODE_MCP_STARTUP_WAIT_MS` が `0` でも最大 2 秒待機するようにしました。"
+        },
+        {
+          "title": "`/recap` のチャット転送時拒否変更",
+          "description": "`/recap` がチャットスレッド（自身含む）やルーチン・Webhook からリレーされた場合、短い通知で拒否します。端末、Claude アプリ、Remote Control、`-p`、SDK ホストからの実行は従来通り動作します。"
+        },
+        {
+          "title": "`/artifacts` のフィルタタブ表示変更",
+          "description": "`/artifacts` のフィルタタブがタイトル横に「All」「Mine」「Shared」の一語ラベルで表示され、`/config` と `/plugin` と同じタブバーを使用します。"
+        },
+        {
+          "title": "ネットワーク共有ファイルの公開制限",
+          "description": "`\\host\\share` パスや `/net` 自動マウントのネットワーク共有ファイルは、`--add-dir` でマッピングされたドライブ上にない限り、公開が拒否されます。"
+        },
+        {
+          "title": "[VSCode] プロンプト上部にタイムスタンプ表示",
+          "description": "各プロンプトとレスポンスの上部にオプションで時刻を表示し、日付が変わる箇所に日付行を挿入する設定 (Claude Code: Show Message Timestamps) を追加しました。デフォルトはオフです。"
+        },
+        {
+          "title": "[VSCode] プラグインロードエラー表示",
+          "description": "プラグイン管理行にロードエラーとメモを表示し、ポップアップから無効化・アンインストール・エラー内容コピーが可能になりました。"
+        },
+        {
+          "title": "[VSCode] Ultracode スイッチの UI 変更",
+          "description": "Effort スライダー下に Ultracode on/off スイッチを追加し、スライダー上の Ultracode 停止点を置き換えました。モデルピルは任意の努力レベルで \"· Ultracode\" を表示します。"
+        },
+        {
+          "title": "[VSCode] メモリダイアログのリロード修正",
+          "description": "Memory ダイアログから Claude を再ロードした際、編集済みファイルが保存される前に再起動が起こる問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] タブ復元時の競合回避",
+          "description": "復元されたタブが別の Claude プロセスで開かれている会話に接続しようとしたとき、事前に確認ダイアログを表示するようにしました。"
+        },
+        {
+          "title": "[VSCode] フォーカスビューの自動閉鎖修正",
+          "description": "サブエージェントが作業中またはセクションの最初のステップがビューからトリミングされた際に、手動で展開したセクションが自動で閉じる問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] `/model` コマンドの入力バグ修正",
+          "description": "`/model` と Enter を入力した際にチャットに使用量テキストが出力される代わりに、モデル選択ダイアログが開くように修正しました。"
+        },
+        {
+          "title": "[VSCode] Vertex/Bedrock/Foundry の `/feedback` 修正",
+          "description": "`/feedback` が送信後に拒否されていた問題を解消し、レポートが端末と同様にローカルに保存されるようにしました。"
+        },
+        {
+          "title": "[VSCode] Python 拡張のサインイン待機時間修正",
+          "description": "ウィンドウリロード後、Python 拡張がサインインを最大 1 分間待機していた問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] 再起動後のタブ復元修正",
+          "description": "Extensions を再起動した後に停止した Claude Code のタブが、会話を保持したまま再開するようにしました。"
+        },
+        {
+          "title": "[VSCode] 他エージェントからのメッセージ表示修正",
+          "description": "送信者が記録されていないエージェントからのメッセージが、チャットに生の XML として表示されていた問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] リロード後のメッセージ消失修正",
+          "description": "他エージェント、セッション、チャンネルからのメッセージがリロード時に消える問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] `/mcp`/`/config`/`/settings` のコマンド影響修正",
+          "description": "拡張機能のダイアログがユーザー自身の `/mcp`、`/config`、`/settings` コマンドを覆い隠す問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] Escape キーの挙動修正",
+          "description": "Turn が実行中でない場合に Escape を押すと、すべてのバックグラウンドエージェントが停止していた問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] プラグインインストールリンクの競合修正",
+          "description": "同名の既存マーケットプレイスがある場合に、プラグインインストールリンクがそれを上書きしていた問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] 大容量テキスト添付時のプロンプト長エラー修正",
+          "description": "大きなテキストファイルをメッセージに添付した後に圧縮で \"Prompt is too long\" エラーが出る問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] 非ASCII文字パスのファイルリンク修正",
+          "description": "非 ASCII 文字、スペース、角括弧を含むパスのファイルリンクが開かない問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] `CLAUDE_CONFIG_DIR` のパス処理変更",
+          "description": "`claudeCode.environmentVariables` 設定の `CLAUDE_CONFIG_DIR` は絶対パスの場合のみ適用され、チャットを続行する端末にも渡されます。"
+        },
+        {
+          "title": "[Cloud sessions] ルーチン操作時のオフライン表示修正",
+          "description": "オフライン時にルーチンの Edit と Duplicate コントロールが \"still loading\" と表示していた問題を、\"you're offline\" と正しく表示するように変更しました。"
+        },
+        {
+          "title": "[Claude Tag] モデルファミリー選択肢追加",
+          "description": "スレッド、チャンネルデフォルト、DM で \"Opus (latest)\" などのファミリー選択肢を追加し、最新モデルが自動的に選択されるようにしました。"
+        },
+        {
+          "title": "[Claude Tag] 組織全体の支出グラフに組織上限を追加",
+          "description": "分析用支出予測チャートに組織全体の上限にカウントされる支出と、上限の使用率を表示するようにしました。"
+        },
+        {
+          "title": "[Claude Tag] Slack 進捗カードとリンクプレビューの修正",
+          "description": "GitHub Enterprise のホスト名にアンダースコアが含まれると、Slack アプリのプログレスカードとリンクプレビューでリポジトリや PR 作成ボタンが欠落していた問題を修正しました。"
+        },
+        {
+          "title": "[Claude Tag] 環境起動失敗時の通知改善",
+          "description": "環境が起動を拒否したチャンネルで Claude が黙っている問題を、管理者への連絡を促す通知を一度だけ出すのではなく、@メンションごとに通知し、再度 @ されるとリトライするように変更しました。"
+        },
+        {
+          "title": "[Claude Tag] 未接続ユーザーへのサインイン通知変更",
+          "description": "Claude アカウント未接続のユーザーが @メンションされるたびにプライベートサインイン通知を投稿するようにし、最初の 1 回だけで静かになる挙動を廃止しました。"
+        },
+        {
+          "title": "[Claude Tag] メンバー通知機能の拡張",
+          "description": "管理設定の \"Notify members now\" が Enterprise Grid で組織が請求したすべてのワークスペースに一括で届き、大規模ワークスペースのメンバーにも広く通知できるようになりました。"
+        },
+        {
+          "title": "[Claude Tag] 自己ホスト環境のランナーメッセージ改善",
+          "description": "オンデマンドランナー付き自己ホスト環境で Claude の待機通知が、ランナーが起動中、再試行予定、または起動しないかを明示するようになりました。"
+        },
+        {
+          "title": "[Claude Tag] チャンネルマネージャ追加エラー表示改善",
+          "description": "Slack ワークスペースが組織に接続されているか確認できずチャンネルマネージャ追加が失敗した際のエラーメッセージを改善しました。"
+        },
+        {
+          "title": "[Claude Tag] アクセスリスト表示改善",
+          "description": "管理設定のアクセスリストで、オートジョインパターンが付与するコネクタ、リポジトリ、プラグインとそれぞれの出所を表示するようにしました。"
+        },
+        {
+          "title": "[Claude Tag] リポジトリ追加時の GitHub サインイン促進",
+          "description": "GitHub でリポジトリ管理者であることが確認できない場合、リポジトリマネージャ追加ページが GitHub でのサインインを促すように変更しました。"
+        },
+        {
+          "title": "[Code Review] 未提出レビュー時の失敗回避",
+          "description": "GitHub App の未提出レビューがプルリクエストに残っていると Code Review が途中で終了していた問題を、投稿前に再試行するように修正しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "破損したレスポンスストリームの復元",
+          "description": "\"JSON Parse error\" や \"undefined is not an object\" などの生エラーが表示されたり、\"undefined\" が回答に書き込まれたりするストリーム破損を、再試行または中断レスポンスとして正しく処理するように修正しました。"
+        },
+        {
+          "title": "思考ブロック直後のサーバーエラー再試行",
+          "description": "ターン終了時の思考ブロック直後に過負荷やサーバーエラーが発生した場合、再試行できるようにしました。"
+        },
+        {
+          "title": "\"Prompt is too long\" エラーの二回目以降対応",
+          "description": "コンパクト後もリクエストが長すぎる場合、さらに 1 回コンパクトし、直近の会話をより少なく保つことでエラーを防止します。"
+        },
+        {
+          "title": "モデル不可時の適切なエラーメッセージ",
+          "description": "利用可能なフォールバックモデルが無くなったセッションで、単なる \"is currently unavailable\" や \"Something went wrong\" ではなく、モデル不可の通知と Learn more リンクを表示するように修正しました。"
+        },
+        {
+          "title": "画像ソースの不正形式への対処",
+          "description": "Agent SDK セッションでユーザー投稿画像の `source` が不正な場合にクラッシュしていた問題を、画像を説明ノートに置き換えてクラッシュを防止しました。"
+        },
+        {
+          "title": "MCP ツール呼び出しの接続待機",
+          "description": "再開セッションで MCP ツールがサーバー接続中に \"No such tool available\" を返していたのを、最大 10 秒待機するように変更しました。"
+        },
+        {
+          "title": "利用量エンドポイントのレートリミット時のバックオフ",
+          "description": "plan‑usage エンドポイントがレートリミットやログイン拒否で繰り返し呼び出されていた問題を、`/usage`、`/extra-usage`、IDE の使用量ビューがバックオフして再要求しないように修正しました。"
+        },
+        {
+          "title": "`claude mcp add` の制限設定遵守",
+          "description": "管理設定で MCP サーバーがプラグインに限定されている場合、`claude mcp add` が成功と報告してサーバーを保存していた問題を、拒否し対処方法を提示するように変更しました。"
+        },
+        {
+          "title": "`/plugin` 設定画面の UI 改善",
+          "description": "ブールオプションがテキスト入力になっていたのを true/false の選択に、数値オプションが無効な入力を受け付けるのを拒否するように、左右矢印でフィールドを変更できるように修正しました。"
+        },
+        {
+          "title": "`ANTHROPIC_FOUNDRY_RESOURCE` のバリデーション",
+          "description": "Foundry エンドポイントホストに `ANTHROPIC_FOUNDRY_RESOURCE` が未検証で埋め込まれる問題を、プレーンなリソース名でない場合は拒否するように修正しました。"
+        },
+        {
+          "title": "Claude Desktop の 1M コンテキストオプション付与",
+          "description": "Claude アプリゲートウェイ経由で Claude Desktop が 1M コンテキストを利用できない問題を、ゲートウェイが自動で 1M 対応モデルにマークするように修正しました。"
+        },
+        {
+          "title": "シェルモードでの非表示背景選択バグ修正",
+          "description": "シェルモードで `↓` が非表示背景を選択していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-29T02:32:25.404Z"
+}
