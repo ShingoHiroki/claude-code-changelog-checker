@@ -1,0 +1,345 @@
+{
+  "version": "2.1.285",
+  "tagName": "v2.1.285",
+  "publishedAt": "2026-09-29T19:27:30Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.285",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 6,
+    "改善": 15,
+    "その他": 55,
+    "バグ修正": 60
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "WebFetch 無効化環境変数の追加",
+          "description": "`CLAUDE_CODE_DISABLE_WEB_FETCH` 環境変数を追加し、WebFetch ツールをオフにできるようにしました。"
+        },
+        {
+          "title": "デスクトップアプリ起動オプションの追加",
+          "description": "`claude --desktop` を追加し、現在のディレクトリで Claude デスクトップアプリを開くか、`--continue` / `--resume <id>` と組み合わせてセッションで開くことができるようにしました。"
+        },
+        {
+          "title": "プラグイン設定表示・保存コマンドの追加",
+          "description": "`claude plugin configure <plugin>` を追加し、プラグインのオプションと未設定項目を表示したり、`--values-stdin` で標準入力から新しい値を保存できるようにしました。"
+        },
+        {
+          "title": "プラグインインストール時の設定指定機能追加",
+          "description": "`claude plugin install --config` に `<server>.<key>=<value>` 形式を追加し、バンドルされた `.mcpb` MCP サーバーの設定をインストール時に指定でき、`/plugin` → Configure にアクセスせずに起動できるようにしました。"
+        },
+        {
+          "title": "利用可能APIプロバイダー制限設定の追加",
+          "description": "`allowedProviders` 管理設定を追加し、マシンが利用できる API プロバイダー（Anthropic API、カスタムエンドポイント、Bedrock、Mantle、Vertex AI、Foundry、Claude Platform on AWS、または Cloud gateway）を限定できるようにしました。"
+        },
+        {
+          "title": "タイムアウト再送上限環境変数の追加",
+          "description": "`CLAUDE_CODE_NONSTREAMING_TIMEOUT_RETRIES` 環境変数を追加し、タイムアウトした非ストリーミングフォールバックリクエストの再送回数を上限設定できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Chrome でのコンピュータ名報告改善",
+          "description": "Claude の Chrome ネイティブホストがコンピュータ名を報告するようになり、接続されたブラウザが \"Browser 1\" / \"Browser 2\" ではなくコンピュータ名で表示されます。"
+        },
+        {
+          "title": "Bedrock/Vertex AI のフォールバックモデル選択改善",
+          "description": "管理者がデフォルトモデルへのアクセスを削除した場合、同じティアの古い利用可能モデルへ自動的に切り替えるようになり、セッションタイトルと要約もそれに追随します。"
+        },
+        {
+          "title": "プラグインマーケットプレイスエラーメッセージ改善",
+          "description": "Git アドレスが拒否された理由を企業ポリシーではなく具体的な原因として表示するように改善しました。"
+        },
+        {
+          "title": "プラグイン・マーケットプレイスの Git URL 検証強化",
+          "description": "プラグイン、マーケットプレイス、現在のリポジトリのリモートに対する Git URL のバリデーションを改善しました。"
+        },
+        {
+          "title": "Artifact ツールの結果提示改善",
+          "description": "Artifact ツールの結果が、ページの作成または編集と同時に公開を提案するようになり、往復操作が削減されます。"
+        },
+        {
+          "title": "Remote Control のサイド質問表示改善",
+          "description": "アプリ（例: Claude Desktop）でホストされたセッションに対し `/btw` のサイド質問を行うと、最後に完了したターンだけでなく進行中のターンも表示されます。"
+        },
+        {
+          "title": "画像プレビュー機能の拡充",
+          "description": "Claude が BMP、HEIC、HEIF、AVIF、TIFF ファイルを送信した際、Claude アプリでプレビューが表示され、Claude Code が変換できるようになりました。"
+        },
+        {
+          "title": "自動モードのサブエージェント終了タイミング改善",
+          "description": "サブエージェントがレポートを呼び出し元に返した時点で即座に実行を終了し、不要な余分ターンを取らなくなりました。"
+        },
+        {
+          "title": "モデル起動チェックのキャッシュ期間延長",
+          "description": "Bedrock と Vertex の起動時に利用不可モデルのチェック結果を最大 1 日保持し、毎回再チェックしないようにしました。"
+        },
+        {
+          "title": "Artifact 公開時のトークン使用量削減",
+          "description": "Artifact ツールの公開結果メッセージが短くなり、更新通知が簡潔化、アーティファクトの所在案内が繰り返し表示されなくなりました。"
+        },
+        {
+          "title": "非ストリーミングフォールバック時の SDK ライブネス改善",
+          "description": "部分メッセージが有効な場合、Anthropic API、Claude Platform on AWS、ゲートウェイ向けに 30 秒ごとに `ping` ストリームイベントが送られるようになりました。"
+        },
+        {
+          "title": "バックグラウンドセッションの /resume 動作改善",
+          "description": "バックグラウンドで実行中のセッションに対する `/resume` と `claude --resume` がセッションを開くようになり、`claude --resume <id> \"prompt\"` で渡したプロンプトが次のターンとして送信されます。"
+        },
+        {
+          "title": "多数の権限拒否ルールと MCP ツール設定時の性能改善",
+          "description": "多数の権限拒否ルールや MCP ツールが設定されている場合のターンごとのパフォーマンスが向上しました。"
+        },
+        {
+          "title": "フルスクリーン描画オフ時のトランスクリプト離脱応答性改善",
+          "description": "長時間セッションで ctrl+o のトランスクリプトビューを離れた際の応答性が改善されました。"
+        },
+        {
+          "title": "User-Agent などヘッダー統一化",
+          "description": "Bedrock、Vertex、Mantle の起動時モデルチェックが、通常リクエストと同様に同一の User-Agent、x-app、セッション ID ヘッダーを送信するようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "WSL の Ultrareview パス名バグ修正",
+          "description": "WSL 環境で `/ultrareview` が、コロンや末尾がドット・スペースのファイル名を含むチェックアウトを Linux ボリューム上でアップロードできない問題を修正しました。"
+        },
+        {
+          "title": "Windows の Ultrareview リンクされた作業ツリー対応",
+          "description": "Windows 環境で `/ultrareview` が、ホームフォルダーをルートに持つリポジトリのリンクされた作業ツリーをアップロードできなかったケースを修正しました。"
+        },
+        {
+          "title": "MCP ツールの alwaysLoad 設定変更の保持",
+          "description": "MCP ツールが自身の `_meta['anthropic/alwaysLoad']` を false に設定した場合、`--mcp-config`、Agent SDK、プラグインサーバーが `alwaysLoad` に設定されていても遅延状態を維持するよう変更しました。"
+        },
+        {
+          "title": "バックグラウンド Bash/PowerShell コマンドのタイムリミット導入",
+          "description": "バックグラウンドで実行される Bash および PowerShell コマンドは、`run_in_background` の `timeout`（デフォルト 30 分、最大 2 時間）で制限され、停止時に Claude に通知されます。"
+        },
+        {
+          "title": "Code Review の Pull Request 実行条件変更",
+          "description": "`disableWorkflows` がオンの場合でも、レビューを実行するマシンが管理者（MDM または managed‑settings ファイル）によって設定されていなければ、Code Review のプルリクエストレビューと `/ultrareview` が実行されます。"
+        },
+        {
+          "title": "カスタム ANTHROPIC_BASE_URL のコンテキスト拡張",
+          "description": "`ANTHROPIC_BASE_URL` をカスタム設定したセッションは、1M コンテキストウィンドウを持つモデル（Opus 4.7 以降、Sonnet 5 以降、Fable など）を自動で使用します。必要に応じて `/autocompact 200k` を実行してください。"
+        },
+        {
+          "title": "組織ポリシー読み込み待ちの WebFetch 遅延表示",
+          "description": "Team、Enterprise、またはサインインプランが不明なセッションは、起動時に組織ポリシーがロードできなかった場合、ポリシーがロードされるまで WebFetch を保留します。"
+        },
+        {
+          "title": "/memory の Auto‑memory 設定制限",
+          "description": "バックグラウンドセッションや Claude Code のツールが開始したセッションから Auto‑memory をオンにできなくなり、オフにする操作は引き続き可能です。"
+        },
+        {
+          "title": "自動モードデフォルト表示のプロバイダー拡大",
+          "description": "自動モードがデフォルト権限モードになる一回限りのオファーが、サードパーティプロバイダーおよびテレメトリオフ時にも表示され、ユーザー設定で別モードがデフォルトの場合でも適用されます。"
+        },
+        {
+          "title": "第三者プロバイダーでの -p オプション自動モード開始",
+          "description": "`claude -p` と Python Agent SDK セッションが、テレメトリオフまたはサードパーティプロバイダーで権限モード未設定の場合、対話型セッション同様に自動モードで開始されます（`--permission-mode` が優先）。"
+        },
+        {
+          "title": "非デフォルトポートの SigV4 Host ヘッダー修正",
+          "description": "Bedrock、Mantle、Claude Platform on AWS が非デフォルトポートのベース URL を使用する際、SigV4 署名の Host ヘッダーにポート番号が含まれるよう変更しました。"
+        },
+        {
+          "title": "cloud セッションでの widgets サーバー名予約",
+          "description": "クラウドセッションやセルフホストランナーで `widgets` サーバー名が予約され、同名または類似名（例: `widgets_`）のサーバーはロードされなくなったため、名前を変更してください。"
+        },
+        {
+          "title": "macOS/Linux の Ultrareview シンボリックリファレンス除外",
+          "description": "macOS と Linux で `/ultrareview` がシンボリックリファレンスを持つブランチのチェックアウトをアップロードしようとすると、説明付きで拒否されます。"
+        },
+        {
+          "title": "Windows の環境変数設定見直し",
+          "description": "Windows でプロジェクトとローカル設定の `env` が `ALLUSERSPROFILE`、`SystemDrive`、`CommonProgramFiles` を設定しなくなり、ユーザーまたは管理設定で設定するよう変更しました。"
+        },
+        {
+          "title": "/tasks のシステムタスク折りたたみ表示",
+          "description": "`/tasks` が Claude Code が自動で実行するバックグラウンド作業を「System tasks」行に折りたたみ、Enter キーで展開できるように変更しました。"
+        },
+        {
+          "title": "macOS/Linux の Ultrareview Git バージョン要件",
+          "description": "macOS と Linux の `/ultrareview` がローカルリポジトリをアップロードする際、git 2.31 以上が必須となり、`--separate-git-dir` を使用したチェックアウトは拒否されます。"
+        },
+        {
+          "title": "部分クローンのアップロード方法変更",
+          "description": "macOS と Linux の `/ultrareview` が git 2.31 以上で部分クローンを作業ツリーのスナップショットとして送信し、古い git バージョンではフォールバックや拒否が行われていた挙動を統一しました。"
+        },
+        {
+          "title": "古い git での部分クローン欠落ファイル拒否",
+          "description": "古い git バージョンで部分クローンに作業ツリーの一部ファイルが欠けている場合、取得せずにアップロードを拒否するよう変更しました（`--filter` なしのクローンはアップロード対象）。"
+        },
+        {
+          "title": "モデルチェックの Claude Code 同一化",
+          "description": "Bedrock、Vertex、Mantle の起動時モデルチェックが、他の Claude Code リクエストと同様に自らを Claude Code として識別するよう変更しました。"
+        },
+        {
+          "title": "claude mcp get の機密情報隠蔽",
+          "description": "`claude mcp get` がプラグイン提供の stdio MCP サーバーのコマンド、引数、環境値を非表示にし、変数名のみを表示するよう変更しました。"
+        },
+        {
+          "title": "/claude‑api の Remote Control からの実行制限",
+          "description": "`/claude‑api` が Remote Control クライアントから実行できないように変更しました。"
+        },
+        {
+          "title": "/config chrome=true の挙動変更",
+          "description": "`/config chrome=true` がデフォルトで Chrome に Claude を有効化せず、設定パネルへ案内するように変更し、`/config chrome=false` は有効時にオフにします。"
+        },
+        {
+          "title": "サンドボックス設定の厳格化",
+          "description": "プロジェクト設定が管理者必須のサンドボックスを緩めたりオフにしたり、管理拒否リストのプロキシ置換、許可リスト拡張、管理読み取り拒否の再開を行えないように変更しました。"
+        },
+        {
+          "title": "VSCode 復元タブのメッセージ付加",
+          "description": "ウィンドウリロードで中断されたタブの最後のメッセージに注記を追加し、再開されない旨を表示するようにしました。"
+        },
+        {
+          "title": "VSCode プラグインオプション入力フォーム追加",
+          "description": "Manage plugins でオプション付きプラグインをインストールすると未設定項目の入力を求め、行右側の歯車で後から変更できるようにしました。"
+        },
+        {
+          "title": "VSCode パネルのオンデマンド診断ツール追加",
+          "description": "Claude がパネルで Problems パネルの現在のエラー・警告を任意のタイミングで読み取れる診断ツールを追加しました。"
+        },
+        {
+          "title": "VSCode スラッシュコマンドでのメニュー誤選択修正",
+          "description": "Enter キーでスラッシュコマンドを実行した際、ファジーマッチで無関係なメニュー項目が選択されたり何も起こらないバグを修正しました。"
+        },
+        {
+          "title": "VSCode エージェントトランスクリプトのメッセージ欠損修正",
+          "description": "長時間セッションでエージェントの新しいメッセージが失われる問題を修正しました。"
+        },
+        {
+          "title": "VSCode タグ引用テキスト切れバグ修正",
+          "description": "Claude Code または IDE タグで引用されたメッセージが、テキストの残り部分を失う不具合を修正しました。"
+        },
+        {
+          "title": "VSCode 送信メッセージ消失バグ修正",
+          "description": "Claude が作業中に送信したメッセージが、セッション再開後に会話から消える問題を修正しました。"
+        },
+        {
+          "title": "VSCode アカウント切替後の Web タブ表示修正",
+          "description": "アカウント切替後にセッション一覧の Web タブが前のアカウントのセッションを表示し続けるバグを修正しました。"
+        },
+        {
+          "title": "VSCode 中断ターン再開設定の復元バグ修正",
+          "description": "`CLAUDE_CODE_RESUME_INTERRUPTED_TURN` が設定された状態で VS Code を起動した際、復元タブが中断したターンを再実行しないようにし、Continue After Reload がオフでも正しく動作させました。"
+        },
+        {
+          "title": "VSCode Escape キーの挙動修正",
+          "description": "コマンドメニュー内の行をクリックした後、Escape キーで実行中のターンが停止せずにコマンドメニューが閉じるように修正しました。"
+        },
+        {
+          "title": "VSCode 過去会話の開き方バグ修正",
+          "description": "過去の会話を開くとライブ会話が保存コピーに置き換わっていた問題を修正しました。"
+        },
+        {
+          "title": "VSCode タブリロード後の空白表示修正",
+          "description": "拡張機能再起動後に Claude タブをリロードすると空白になる問題を修正し、復旧手順を表示するようにしました。"
+        },
+        {
+          "title": "VSCode 重複会話オープン時の警告追加",
+          "description": "別ウィンドウやアプリで既に開かれている会話を再度開くと、二重コピーが作成されるのを防ぐため、事前に確認ダイアログを表示するように変更しました。"
+        },
+        {
+          "title": "VSCode フック理由消失バグ修正",
+          "description": "ウィンドウリロード後にプロンプトをブロックまたは停止したフックの理由が消えるバグを修正しました。"
+        },
+        {
+          "title": "VSCode 再開不可会話のエラーメッセージ改善",
+          "description": "再開できない会話に対し、エラーがその旨を表示し、新規会話開始を提案するようにしました。"
+        },
+        {
+          "title": "VSCode ファイル操作の長時間スタール修正",
+          "description": "エディタが自動保存に応答しない状態でツールが実行されると、Read/Write/Edit が 10 分間スタックしスキップされる問題を修正しました。"
+        },
+        {
+          "title": "VSCode エージェントマップのモデル表示修正",
+          "description": "サブエージェントが `CLAUDE_CODE_SUBAGENT_MODEL_FORCE` やエージェント独自の `model` を使用している場合でも、エージェントマップがセッションのモデル名でラベル付けされるバグを修正しました。"
+        },
+        {
+          "title": "VSCode プラグインアンインストールの対象修正",
+          "description": "Manage plugins ダイアログからプラグインをアンインストールした際、誤ったインストールが削除されたり、プロジェクト用にインストールされたプラグインの削除に失敗する問題を修正しました。"
+        },
+        {
+          "title": "VSCode サインインフローのステップ固定バグ修正",
+          "description": "サインイン時に認証コードステップで戻って同じサインイン方法を選択すると、ステップが進まないバグを修正しました。"
+        },
+        {
+          "title": "VSCode 長時間セッションのトリム時のスタール修正",
+          "description": "長時間セッションで最古の行がトリムされる際に、チャットパネルがスタックする問題を修正しました。"
+        },
+        {
+          "title": "VSCode 多数エージェント実行時の会話消失修正",
+          "description": "多数のエージェントが走ると、セッションから会話が消えるバグを修正しました。"
+        },
+        {
+          "title": "VSCode セッション名変更後のタブ名保持修正",
+          "description": "/rename、SessionStart フック、または claude.ai でセッション名が変更された後、エディタタブが古い名前を保持し続ける問題を修正しました。"
+        },
+        {
+          "title": "VSCode エージェントマップのトランスクリプト表示漏れ修正",
+          "description": "実行中エージェントへのメッセージがエージェントマップのトランスクリプトビューから抜け落ちていた問題を修正しました。"
+        },
+        {
+          "title": "VSCode プラグインダイアログの失敗通知改善",
+          "description": "プラグイン操作が失敗した際にポップアップで原因と解決策（該当する場合）を提示するように改善しました。"
+        },
+        {
+          "title": "VSCode プラグイン削除時の確認ダイアログ追加",
+          "description": "Marketplace プラグインの削除や、プロジェクト共有の `.claude/settings.json` で有効化されたプラグインのオフに際して、実行前に確認を求めるよう変更しました。"
+        },
+        {
+          "title": "Cloud セッションの Run 失敗メッセージ統一",
+          "description": "Routine が開始前に拒否された場合、内部エラー文ではなく routine の失敗通知と同じ説明が表示されるように修正しました。"
+        },
+        {
+          "title": "Cloud 環境での MCP_DISCOVERY_CACHE 挙動変更",
+          "description": "`MCP_DISCOVERY_CACHE=1` をクラウド環境変数に設定すると、セッション再起動後にコネクタのツールリストが再利用され、他の MCP サーバーはキャッシュされず起動時に接続されます。"
+        },
+        {
+          "title": "Claude Tag のメンバー直接メッセージ追加",
+          "description": "Enterprise プランの Standard または Usage‑Based Chat シートで Cowork を持つメンバーが Claude に直接メッセージを送れるようにし、Claude Code を含むシートは不要になりました。"
+        },
+        {
+          "title": "Claude Tag のデフォルトモデル設定バグ修正",
+          "description": "管理者設定やチャンネルの Configure ページで、組織が使用できないモデルが提示される問題を修正し、保存や新規セッション作成の失敗を防止しました。"
+        },
+        {
+          "title": "Claude Tag の Slack メッセージ注記消失修正",
+          "description": "フォールバックモデルで回答した旨の注記が、Claude が後でメッセージを編集した際に消える問題を修正しました。"
+        },
+        {
+          "title": "Code Review の組織メニュー表示拡張",
+          "description": "Code Review の \"Add a repository\" ダイアログで組織メニューが一部しか表示されなかった問題を修正し、スクロールでさらに多くの組織がロードされるようにしました。"
+        },
+        {
+          "title": "Code Review のチェックラン通知改善",
+          "description": "Code Review のチェックランが、巨大なプルリクエストや REVIEW.md がシンボリックリンクの場合に適用されなかった旨を明示的に表示するよう改善しました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`claude -p` のサブエージェント呼び出しバグ修正",
+          "description": "`claude -p` を `CLAUDE_CODE_FORK_SUBAGENT=1` と併用した際、サブエージェント自身の Agent 呼び出しが正しく実行されなかった問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-09-30T01:54:52.044Z"
+}
