@@ -1,0 +1,63 @@
+{
+  "version": "2.1.287",
+  "tagName": "v2.1.287",
+  "publishedAt": "2026-10-01T18:00:22Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.287",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 5,
+    "改善": 16,
+    "その他": 35,
+    "バグ修正": 50
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude Mods を追加: プラグインがより深い動作を変更できるようになりました",
+          "description": ""
+        },
+        {
+          "title": "You should know を追加。サイドエージェントがあなたをサポートし、あなたや Claude が見逃す可能性のある事項にフラグを立てる組み込みモッドです。`/plugin enable cc-plugin-you-should-know@builtin` で有効化できます（テレメトリがオンのファーストパーティセッション向け）",
+          "description": ""
+        },
+        {
+          "title": "`n:<text>` フィルタをエージェントビューに追加。セッション名やタスクにマッチし、フィルタは折りたたみセクション内で一致項目を表示し、Enter で最初の一致項目を開きます",
+          "description": ""
+        },
+        {
+          "title": "`prompt_text` を OpenTelemetry の `user_prompt` イベントに追加しました。`prompt` のコピーで、ドット区切りキーをネストするバックエンド向けです。`prompt` を削除またはマスクする場所で同様に `prompt_text` も削除またはマスクしてください (anthropics/claude-code#70763)",
+          "description": ""
+        },
+        {
+          "title": "2025-11-25 プロトコルの MCP サーバーからの URL プロンプトを追加（例: サインイン）。このアップデート後にサーバーが接続できなくなった場合は、MCP 設定エントリに `\"bareElicitationCapability\": true` を追加してください",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/config` を改善: 循環設定が ‹ › を表示し、←/→ で前後にステップ、狭い端末では各ラベルの下に値を積み重ね、PgUp/PgDn でリストをページングします",
+          "description": ""
+        },
+        {
+          "title": "プラグインマーケットプレイスのエラーを改善し、なぜマーケットプレイスが無視または拒否されたかを平易に説明し、対処方法を示します",
+          "description": ""
+        },
+        {
+          "title": "プラグイン一覧を改善し、依存関係が未インストールの場合に注記し、プラグイン更新時に未完了のインストールを再試行するようにしました",
+          "description": ""
+        },
+        {
+          "title": "Amazon Bedrock がモデル ID を拒否した際の Claude apps ゲート",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-02T02:05:49.663Z"
+}
