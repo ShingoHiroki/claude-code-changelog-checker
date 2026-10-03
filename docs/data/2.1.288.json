@@ -1,0 +1,104 @@
+{
+  "version": "2.1.288",
+  "tagName": "v2.1.288",
+  "publishedAt": "2026-10-02T20:19:57Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.288",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 7,
+    "改善": 9,
+    "その他": 15,
+    "バグ修正": 58
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`$.ui.selection()` をモッド用に追加しました: フルスクリーンモードで最後に選択したテキストを返し、選択が1つのトランスクリプト行内にある場合はその行を返します",
+          "description": ""
+        },
+        {
+          "title": "GitHub CLI が含まれていないイメージのクラウドセッションに組み込みの `gh api` を追加し、ファイル名、jq フィルタ、GitHub エラーから端末への制御文字送信の組み込みバグを修正しました",
+          "description": ""
+        },
+        {
+          "title": "Ctrl+C でクリアされたプロンプトの復元機能を追加しました: 空のプロンプトで ↑ を押すとドラフトが復元され、貼り付けたテキストや画像も含まれます",
+          "description": ""
+        },
+        {
+          "title": "ツール呼び出し中に MCP サーバーが追加の OAuth スコープを要求した際に、再認証プロンプトを表示するようにしました",
+          "description": ""
+        },
+        {
+          "title": "/code-review に `--max-findings <n>|all` を追加し、通常の上限より多くまたは少なく検出項目を報告できるようにしました。`--max-findings default` を指定するまでその選択が再利用されます",
+          "description": ""
+        },
+        {
+          "title": "Ctrl+F でセッション名検索、Alt+↑/↓ でエージェントビューのグループ間移動ができるようにしました。これらおよび名前変更は keybindings.json で再割り当て可能です",
+          "description": ""
+        },
+        {
+          "title": "計画を承認した際に新しい権限モードを読み上げモードで通知するようにし、Shift+Tab でも同様に announcements がされます",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "オートモードを改善しました: 会話がクライアント側の安全性分類器のレビュー可能長を超えると、各ツール呼び出しでプロンプトを表示したり失敗したりする代わりに、会話が自動で圧縮されます",
+          "description": ""
+        },
+        {
+          "title": "スクリーンリーダーモードを改善しました: 削除された単語など短いアナウンスが、次のキー入力または画面上部の変化があるまで表示されたままになります",
+          "description": ""
+        },
+        {
+          "title": "スクリーンリーダーモードで、質問ダイアログ内の回答済み質問に「answered」の表示がボックス横に付くようになりました",
+          "description": ""
+        },
+        {
+          "title": "組織で使用クレジット要求がオフになっている Team・Enterprise メンバー向けに、`/usage-credits` メッセージを改善しました",
+          "description": ""
+        },
+        {
+          "title": "クラウドセッションを改善し、新しい会話の最初のターンが `alwaysLoad: false` に設定された stdio MCP サーバーを待たなくなりました",
+          "description": ""
+        },
+        {
+          "title": "「You should know」ノートを改善し、決定に関わった主体に応じて「we」「the main agent」または「you」と表記します",
+          "description": ""
+        },
+        {
+          "title": "アーティファクトデータベースがサイズ上限で書き込み拒否された際のエラーメッセージを改善し、上限値と空き領域を確保する方法を示すようにしました",
+          "description": ""
+        },
+        {
+          "title": "Bash の権限プロンプトを改善し、コマンドの一部が実行前にチェックできない場合に、理由を短く表示します",
+          "description": ""
+        },
+        {
+          "title": "Remote Control が期限切れサーバークレデンシャルから回復する際の挙動を改善し、更新中もセッションは接続されたままで、サーバー障害後に諦めても保持されます",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Self-hosted runner: 組み込み `gh api` を改善しました: 拒否された gh コマンドはその `gh api` 相当を出力し、`--paginate` がリポジトリリストの全ページを追跡し、入れ子の `claude` がそれを削除しなくなります",
+          "description": ""
+        },
+        {
+          "title": "バックグラウンドコマンド",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-03T01:49:51.109Z"
+}
