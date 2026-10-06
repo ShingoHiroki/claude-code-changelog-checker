@@ -1,0 +1,30 @@
+{
+  "version": "2.1.291",
+  "tagName": "v2.1.291",
+  "publishedAt": "2026-10-06T03:55:19Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.291",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 0,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 2
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "2.1.290 の回帰修正",
+          "description": "クラウドセッションで権限プロンプトへの回答が失われる回帰バグを修正しました。"
+        },
+        {
+          "title": "2.1.288 の回帰修正",
+          "description": "セッションを終了した際に、最後のメッセージが失われる回帰バグを修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-06T09:51:29.014Z"
+}
