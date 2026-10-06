@@ -1,0 +1,115 @@
+{
+  "version": "2.1.290",
+  "tagName": "v2.1.290",
+  "publishedAt": "2026-10-05T23:33:17Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.290",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 11,
+    "改善": 15,
+    "その他": 52,
+    "バグ修正": 112
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`serverToolUses` を mod の `turn.step` フックの結果に追加しました: ツールは自分自身で実行した API（advisor）を呼び出し、各呼び出しに id、name、input、start、end が含まれます",
+          "description": ""
+        },
+        {
+          "title": "`tool.check` イベントのプラグインフックに `agentId` を追加しました。これにより、フックはサブエージェントの権限チェックとメインセッションのものを区別できます",
+          "description": ""
+        },
+        {
+          "title": "mod の `tool.check` フックが読む質問と判定に `ceiling` を追加し、ツールに対して組織が要求する承認レベルを名前で指定できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "プラグインフックの型定義に `ThemeKey` と `Color` タイプを追加しました。これにより、エディタは mod の描画が指定できるテーマカラーを一覧表示します",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin validate` に、mod がゲートサイトで登録した各フックが `.catch` を持つかどうかを一覧表示する機能を追加しました（`--json` の `gatingHooks`）",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイのサインイン承認ページに Deny ボタンを追加しました。これにより保留中のサインインが終了し、待機中の端末が数秒で停止します",
+          "description": ""
+        },
+        {
+          "title": "`claude attach <name>` と `claude logs <name>` を追加しました。セッション名の一部で ID の代わりに使用できます",
+          "description": ""
+        },
+        {
+          "title": "`/claude-api managed-agents-onboard <url>` を追加し、ページで `ant apply` ファイルとして説明されている Managed Agents パターンを設定できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "`/claude-api managed-agents-onboard <quickstart-name>` を追加し、`ant` CLI を使って `deep-researcher` などのコンソールクイックスタートテンプレートを作成できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "管理設定ファイルが管理設定フォルダ外のファイルへのリンクである場合に警告を表示するようにしました",
+          "description": ""
+        },
+        {
+          "title": "管理設定がユーザー設定の sandbox allowRead パスや許可ドメインを無視したときに /status と doctor 警告を追加しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "ネットワークプロキシ背後での MCP 起動を改善しました: プロキシがブロックするサーバー (HTTP 403) が 3 回再試行されなくなりました",
+          "description": ""
+        },
+        {
+          "title": "バックグラウンドエージェントからの権限プロンプトを改善し、すべてのバックグラウンドエージェントを停止する Ctrl+X Ctrl+K ショートカットを表示するようにしました",
+          "description": ""
+        },
+        {
+          "title": "組み込みの `plugin-authoring` スキルを改善しました。Claude は、他の人が実行してインストールするコマンドを提供し、README のインストールセクションに記載します",
+          "description": ""
+        },
+        {
+          "title": "デスクトップアプリの Code タブで `/plugin` に対する応答を改善し、プラグインのインストール先と管理場所を示すようにしました",
+          "description": ""
+        },
+        {
+          "title": "Bash の changed-files ビューを改善しました: 連鎖コマンドに git merge、pull、checkout が含まれる場合、完全な diff ではなくファイル一覧だけを表示します",
+          "description": ""
+        },
+        {
+          "title": "上流のクラウド認証情報や接続が失敗したときの Claude apps ゲートウェイのログを改善し、警告の最後に根本原因を記載するようにしました",
+          "description": ""
+        },
+        {
+          "title": "claude.ai へのサインインなしでクラウドセッションを開始したときに表示されるエラーを改善し、`claude auth login` と /login を示し、API キー認証を非難しなくなりました",
+          "description": ""
+        },
+        {
+          "title": "バイナリファイルに対する Read ツールのメッセージを改善し、Claude にその形式を読み取れるスキルまたはシェルコマンドを提示します",
+          "description": ""
+        },
+        {
+          "title": "`/ultrareview` アップロードを git 設定ファイルが阻止したときのエラーを改善し、長さを約半分に減らし、問題のファイル種別を示します",
+          "description": ""
+        },
+        {
+          "title": "`/ultrareview` アップロードがチェックアウトを拒否したときのエラーを改善し、既知の原因ごとに個別のメッセージと修正方法を提供します",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイを改善し、ID プロバイダーに提示する証明書の有効期限が切れる 30 日前に警告をログ",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-06T02:49:09.469Z"
+}
