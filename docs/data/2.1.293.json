@@ -1,0 +1,237 @@
+{
+  "version": "2.1.293",
+  "tagName": "v2.1.293",
+  "publishedAt": "2026-10-07T18:10:20Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.293",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 5,
+    "その他": 15,
+    "バグ修正": 33
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude Haiku 5.5 (`claude-haiku-5-5`) を追加しました。Anthropic API のデフォルト Haiku モデルになりました — 1M コンテキスト、$0.10/$0.50 per Mtok（100K 超のプロンプトは $0.50/$2.50）。",
+          "description": ""
+        },
+        {
+          "title": "`subagentStatusLine` ペイロードに `agentType` を追加し、スクリプトがカスタムサブエージェントのタイプを識別できるようにしました。",
+          "description": ""
+        },
+        {
+          "title": "mods 用に `$.tool.register` に `isDeferred` を追加しました。`false` に設定すると、ツール検索の裏ではなく、最初からプロンプトにツールのスキーマが表示されます。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Team および Enterprise 組織の起動を改善しました：ポリシーと管理設定の取得を早め、スタックしたリクエストは 3 秒後に再試行されます。",
+          "description": ""
+        },
+        {
+          "title": "Chrome 上の Claude を改善しました：ブラウザがタブ情報の報告に遅れる場合のページアクションの拒否が減少しました。",
+          "description": ""
+        },
+        {
+          "title": "クラウドセッションでブラウザに接続できない場合の Chrome 上の Claude メッセージを改善しました：複数組織に所属している場合、拡張機能は同じ組織にサインインしている必要があることと、変更方法が表示されるようになりました。",
+          "description": ""
+        },
+        {
+          "title": "Bash 編集差分ノートを改善し、コマンド実行中に一覧のファイルが変更されたこと（他プロセスによる書き込みを含む）を示すようにしました。",
+          "description": ""
+        },
+        {
+          "title": "アーティファクトを改善しました：Claude がライブラリを正確に 2 週間以上前のバージョンに固定します。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Windows: ステータスライン、フック、シェルコマンドの停止が、同じプロセスIDが付与された無関係なプロセスを終了させてしまう問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "2.1.281 で導入された自動モードの拒否メッセージ変更（拒否が結果全体をカバーする旨）を元に戻しました。",
+          "description": ""
+        },
+        {
+          "title": "コンテナ再起動後に保留中の `/loop` 起床やスケジュールタスクが失われ、クラウドセッションがスリープ状態のままになるという 2.1.290 の修正を元に戻しました。Claude に通知されず、セッションはスリープのままです。",
+          "description": ""
+        },
+        {
+          "title": "claude.ai のスキル同期を、セッション未使用時に 10 分ごとから約 40 分ごとに変更しました。",
+          "description": ""
+        },
+        {
+          "title": "エージェントリストとモデルに通知される MCP サーバーの順序を変更しました：ASCII 文字以外を含む名前は ASCII 名の後にソートされます。",
+          "description": ""
+        },
+        {
+          "title": "OpenTelemetry の `claude_code.at_mention` ロギングを変更し、プロンプトが読み込まれるたびに最大 100 件のエージェントイベントと 100 件の MCP リソースイベントのみを出力するようにしました。",
+          "description": ""
+        },
+        {
+          "title": "セルフホストランナー: オーケストレータのポーリング間隔を一定の 5 秒から 4〜6 秒のスリープに変更し、同一環境の複数レプリカが同時にポーリングを停止しないようにしました。",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack の Claude が、Slack が接続されていないワークスペースでメッセージにラベル付けした際に、Enterprise Grid で共有されるチャンネルが設定されていないと誤って表示していた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] 管理者がチャンネルのコネクタ、プラグイン、スキル、ルールを変更した際に、Slack の Claude がタスク途中で停止していた問題を修正しました。変更は Claude が終了した後に適用されます。",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack で Claude にスレッドのルーチン実行を依頼した際、追加ノートが別の実行を開始し、結果が戻せなかった問題を修正しました。実行はそのスレッド内で継続されます。",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] アクセスバンドルの「Add a connector」ダイアログが、Google に一度サインインしただけで全ての Google コネクタが接続済みと表示されていた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Claude Tag 管理設定で、まだ接続されていない Enterprise Grid を「Connect」ボタン付きで一覧表示するよう改善しました。",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack の Claude が、管理者のみが投稿できるアナウンスチャンネルに参加する際に自己紹介を投稿しないよう変更しました。",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Claude Tag 管理設定におけるチャンネルルールの上限を、各ワークスペースおよび組織全体の Slack ページで 20 から 50 に変更しました。",
+          "description": ""
+        },
+        {
+          "title": "[Code Review] 「Add a repository」ダイアログを改善し、追加できなかったリポジトリとその理由（例：GitHub の書き込み権限がない）を個別に一覧表示できるようにしました。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Claude がコンテキスト圧縮前の直前のアクションを、実行後と誤認し、完了した作業を取り消したりやり直したりすることがあった問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "HTTP MCP 接続が送信したすべてのリクエストをクローズまで保持していたメモリリークを修正しました。",
+          "description": ""
+        },
+        {
+          "title": "Claude が作業中に送信されたメッセージが、`←` によってセッションがバックグラウンドに移された際に失われていた問題を修正しました。キューに入ったメッセージが移動できない場合、`←` はそのまま止まり、理由を表示します。",
+          "description": ""
+        },
+        {
+          "title": "`/model` の effort が上下限を超えてラップするバグを修正しました。これにより、誤って Low がモデルのデフォルト effort として保存されることがありました。",
+          "description": ""
+        },
+        {
+          "title": "`/tui` が `--chrome` で開始したセッションで Chrome 上の Claude を切断し、`--no-chrome` を無視していた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "ホスト、権限ルール、または `--tools` リストでツールが除外されている場合でも、セッション（再開セッション含む）で Claude が `SendMessage` によってサブエージェントに続行やメッセージ送信を指示される問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "サブエージェントや `--agent` セッションで、組み込みツールがセッション全体で無効化されたと誤って通知されていた問題を修正しました。実際にはそれぞれのツールリストから除外されていただけです。",
+          "description": ""
+        },
+        {
+          "title": "claude.ai と同期されたスキルの編集された説明が、新しい会話を開始するか `/clear` するまでモデルに反映されないことがあった問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "`claude logs`、`stop`、`kill`、`rm` および `claude daemon status`、`stop`、`uninstall` が、ログインの有効期限が切れた、または切れそうなときに誤ってサインアウトさせていた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "セッションフォルダーの読み取りが一時的に失敗した（例：ファイルが開きすぎ）際に、フッターのエージェント数が消える問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "`worker` というカスタムエージェントが起動時に「Agent」と表示され、エージェントが終了した後にエージェント詳細ダイアログのタイトルからエージェントタイプが消える問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "Artifact ツールのトランスクリプト行が、publish 呼び出しがストリーミング中に一瞬 `Artifact(\"(unprintable path)\")` と表示されていた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "Linux 上の `/ultrareview` アップロードが、サンドボックス化されたコマンド実行中に \"could not be parsed\" と表示される設定ファイルのため、別のチェックアウト内にあるリポジトリなどを誤って拒否していた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "`/ultrareview` アップロードが、split-index ファイルに対して git がインデックスを読み取れなくなるコマンドを助言してしまい、アップロードを拒否していた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "非常に長い Remote Control およびクラウドセッションで、返信がブロック単位で表示され、ストリーミングされないことがあった問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "Remote Control が、認証情報復旧のたびにセッション開始時の履歴を再度アップロードしていた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "`claude remote-control` で開始したセッションで、PushNotification が \"Remote Control inactive\" と報告していた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "プラグインフックワーカーの再起動中に、mod の `classic.*` イベントフックがスキップされ、設定フックがそれなしで応答していた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin test` が `$.session.append` を呼び出す mod で失敗していた問題を修正しました。新しい `mock.session` で追加された行をテストが読み取れるようになりました。",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin eval` が Docker Desktop を使用している Mac で Bash 権限付与の実行すべてを拒否していた問題を修正しました。拒否時にどのクレデンシャルストアの部分がリンクを保持していたかが表示されます。",
+          "description": ""
+        },
+        {
+          "title": "`desktop` ポリシーで Claude Desktop の組み込みブラウザキー（例：`builtinBrowserEnabled`）が設定されている場合に、Claude アプリゲートウェイが起動を拒否していた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "`claude agents` がバイパス権限を提示し、バックグラウンドセッションが `.claude/settings.local.json` または `--settings` ファイルにのみ同意が保存されている場合に無視していた問題を修正しました。現在はまず同意を求め、バイパスを無視したセッションは短い通知が残ります。",
+          "description": ""
+        },
+        {
+          "title": "`←` が、プロンプトに未送信テキストが残っている（または質問が回答待ち）状態で 10 秒後にセッションをバックグラウンドに移すのをキャンセルするように修正しました。",
+          "description": ""
+        },
+        {
+          "title": "権限プロンプトで Esc キーまたはフィードバックなしの No が、`←` でセッションをバックグラウンドに移した直後にターンを停止しない問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "セッションフォルダーが読み取れない（例：ファイルが開きすぎ）際に、エージェントビューがセッションリストを一時的にプレースホルダー行に置き換えていた問題を修正しました。",
+          "description": ""
+        },
+        {
+          "title": "Claude が Bash ツールで単一ファイルの cat、head、tail、sed -n、grep コマンドでファイルを表示した際に、パススコープのルールや入れ子の CLAUDE.md ファイルが読み込まれない問題を修正しました（Read ツールでは正しく読み込まれます）。",
+          "description": ""
+        },
+        {
+          "title": "先頭と末尾が同じ単",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-08T02:37:56.096Z"
+}
