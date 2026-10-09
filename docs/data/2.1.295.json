@@ -1,0 +1,220 @@
+{
+  "version": "2.1.295",
+  "tagName": "v2.1.295",
+  "publishedAt": "2026-10-08T19:48:38Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.295",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 15,
+    "改善": 11,
+    "その他": 32,
+    "バグ修正": 85
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`onFailure: \"block\"` をコマンドフックとHTTPフックに追加: 起動できない、タイムアウトする、または予期しないコードで終了するフックが、処理を通さずにブロックします",
+          "description": ""
+        },
+        {
+          "title": "Program Status Protocol (OSC 7501) のサポートを追加: これに対応したターミナルは Claude Code が実行中か、ユーザーの入力待ちか、完了かを表示できます",
+          "description": ""
+        },
+        {
+          "title": "`/copy` ピッカーに引用テキストを追加し、下書きメッセージを `>` マーカーなしでコピーできるようにしました",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin install`、`enable`、`disable`、`marketplace add` で、書き込む設定ファイルが読み込めない場合に警告を出すようにしました",
+          "description": ""
+        },
+        {
+          "title": "stderr がターミナルの場合、`claude -p` 実行が最終ターンの後も開いたままの場合に何を待っているかを示す行を追加しました",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイの Bedrock、Vertex、Foundry などのクラウド上流で `timeouts.upstream_ttfb_ms` をサポート。設定した値でストリームの開始待ち時間を制限し、超過するとフェイルオーバーまたは 502 エラーになります",
+          "description": ""
+        },
+        {
+          "title": "`←` が現在のツールの完了を待っている間にターンを停止した場合に「Backgrounding cancelled」メッセージを表示",
+          "description": ""
+        },
+        {
+          "title": "各 Claude apps ゲートウェイ上流にオプションの `models` リストを追加: 記載されたモデルだけが送信され、フェイルオーバー時も同様で、エントリ内の `*` はワイルドカードとして機能します",
+          "description": ""
+        },
+        {
+          "title": "管理設定がないマシンのユーザー設定で `forceLoginMethod: \"gateway\"` と `forceLoginGatewayUrl` をサポートし、`/login` がその Claude apps ゲートウェイで開くようにしました",
+          "description": ""
+        },
+        {
+          "title": "プラグインの README にインストール行がない場合、`claude plugin validate` が貼り付け用の行を表示し、`--strict` でも終了コードを変えないようにしました",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイの `inference` 監査イベントに `upstream_request_id` を追加: Amazon Bedrock、Anthropic API、その他上流からのリクエスト ID をサポートケース用に記録します",
+          "description": ""
+        },
+        {
+          "title": "mods 用に `$.ui.notify` を追加: ユーザーの通知設定を通じてネイティブ通知を発行し、どのチャンネルから送信されたかを示します",
+          "description": ""
+        },
+        {
+          "title": "mod の `Button` に子要素として文字列と `Text` を追加: リストの行全体がチップや薄い詳細を含む単一の押下可能要素になります",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_RETRY_WATCHDOG_MAX_WAIT_MS` を追加し、無人リトライモード (`CLAUDE_CODE_RETRY_WATCHDOG`) が 429 と 529 エラーを待機する最大時間を制限",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイクの成功した推論レスポンスに `request-id` ヘッダーを追加し、Claude Code のテレメトリの `request_id` がゲートウェイの監査ログと一致するようにしました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Amazon Bedrock 上の Claude apps ゲートウェイでトークン数の取得方法を改善: `/context` や大容量ファイル読み取りが使用するトークン数を、1 トークンモデルへのリクエストではなく AWS の CountTokens API から取得するようにしました。利用するには `bedrock:CountTokens` 権限を付与してください",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイが PostgreSQL データベースが読み取り専用の間、30 秒ごとに警告をログに出すようにし、失敗内容と復旧方法を示します",
+          "description": ""
+        },
+        {
+          "title": "Remote Control、claude.ai、デスクトップアプリで、MCP ツールの名前付け許可プロンプト待ちセッションのステータス表示を、`mcp__server__tool` 識別子ではなくサーバー名と読みやすい名前で示すように改善",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイ背後のバックグラウンドリクエストで、セッションのモデルではなく Haiku 4.5 を使用し、ゲートウェイが Haiku 4.5 を提供しない場合はセッションのモデルにフォールバックするように改善",
+          "description": ""
+        },
+        {
+          "title": "AWS の米国内以外の Amazon Bedrock リージョンで `models:` に未列挙のモデルがリクエストされた際の Claude apps ゲートウェイの処理を改善。従来は常に拒否されていましたが、ゲートウェイは自地域での利用を試み、拒否された場合は追加すべきモデル名を示します",
+          "description": ""
+        },
+        {
+          "title": "ヘッドレス環境の `rate_limit_event` 使用制限警告を、アカウントで追加使用が有効かどうかを示すように改善",
+          "description": ""
+        },
+        {
+          "title": "組み込み `plugin-authoring` スキルを改善: ターミナルが無いセッションに端末コマンド実行を指示しなくなり、モッドの共有は要求があったときだけ説明します",
+          "description": ""
+        },
+        {
+          "title": "Grep 入力処理を改善: `grep` の `-l`、`-c`、`-r` フラグ付き検索が呼び出し失敗せずに実行されます",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin validate` とプラグインロードを改善: フックモジュールがトップレベル `var` の再束縛で拒否された場合、エラーに再束縛行、原因、対策を示すようにしました",
+          "description": ""
+        },
+        {
+          "title": "Workflow ツールの `scriptPath` 拒否メッセージを改善: Read ツールが無いセッションでも動作する `script` でインラインスクリプトを渡すよう指示します",
+          "description": ""
+        },
+        {
+          "title": "Claude が送信した大容量ファイルのアップロードが理由不明で失敗した際の通知内容を改善し、ファイルを縮小せずに失敗を報告します",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "macOS: セッション開始時にファイル数をカウントする処理が、ホームフォルダ上位で開始されたときに他アプリのデータに達し「他のアプリのデータにアクセスしますか」プロンプトを表示する問題を修正",
+          "description": ""
+        },
+        {
+          "title": "ツール検索でモデルがロードする MCP ツールの説明を、2,048 文字から 16,384 文字にカットするよう変更",
+          "description": ""
+        },
+        {
+          "title": "サブエージェントが `skills` フィールドから最大 32 スキルを一度だけ事前読み込みするよう変更。Skill ツールを持つサブエージェントは残りを引き続き呼び出せます",
+          "description": ""
+        },
+        {
+          "title": "アタッチされたバックグラウンドセッションのアイドルプロンプトで Ctrl+C を押すと、保留中の `/loop` ウェイクアップをそのままにし、2 回押すとデタッチしてループは継続します。Esc で停止できます",
+          "description": ""
+        },
+        {
+          "title": "バックグラウンドサービスで停止した `claude agents`（macOS、またはサービス未インストールの Linux）で、実行中セッションは約1分で停止し、再実行しない限り停止します。その旨の通知を追加",
+          "description": ""
+        },
+        {
+          "title": "claude.ai コネクタがデフォルトで MCP プロトコルバージョン 2026-07-28 を交渉するように変更（フラグ未取得のインストール時）。`MCP_PROTOCOL_NEGOTIATION=legacy` でオプトアウト可能",
+          "description": ""
+        },
+        {
+          "title": "背景が設定されていない Artifact ページの表示色を、オフホワイトから純白に変更",
+          "description": ""
+        },
+        {
+          "title": "ツール呼び出し後にモッドが結果を拒否したとき、Claude とユーザーが読むメッセージを「ツールは実行されたが、プラグインが結果を保持した」と変更",
+          "description": ""
+        },
+        {
+          "title": "タブストップの計算基準を画面左端からではなくテキスト開始位置に変更。インデント 2 の回答は最初のタブストップが 8 文字目になる（旧は 6 文字目）",
+          "description": ""
+        },
+        {
+          "title": "テレメトリ無効時の Artifact ツールの権限プロンプトを、他インストールと同様の5つの質問に統一し、他者のアーティファクト読み取りやデータ編集毎に個別確認を求めないように変更",
+          "description": ""
+        },
+        {
+          "title": "テレメトリ無効インストールでも、スケジュールおよび Run now のルーチン実行が新しいプライベートアーティファクトを公開・自身のものを更新する際に、他インストールと同様に確認を省くよう変更",
+          "description": ""
+        },
+        {
+          "title": "組織のモッドからのトーストが他モッドのトーストの後ろで待たず、先に表示されるよう変更",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイが起動時に警告を出し、バンドルされた Claude Desktop スキーマに未定義の `desktop` ポリシーキーを提供するよう変更。これにより新しい Desktop 設定でゲートウェイのアップグレードが不要になります",
+          "description": ""
+        },
+        {
+          "title": "WebSocket（`ws`）MCP サーバーで、16 MiB 超のメッセージは解析されず接続が閉じられるように変更。他のトランスポートと同じ上限です",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Claude が送信したファイル用のチャット行を追加。ファイル名をクリックでエディタで開き、Claude のキャプションが下に表示され、Focus ビューでも行が残ります",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] バックグラウンドエージェントの活動やパネルのステータス行の後に、「Fork conversation from here」や Rewind の会話復元が「Message not found in session」で失敗する問題を修正",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] チャット入力で Ctrl+Shift+Tab、Cmd+Shift+Tab、Alt+Shift+Tab が権限モードを切り替えていた問題と、Ctrl+Tab が提案プロンプトを受け入れていた問題を修正",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 同時に表示されている 2 つの Claude ビュー間でキーボードフォーカスが跳び回り、テキストが別の会話に送信される問題を修正",
+          "description": ""
+        },
+        {
+          "title": "Self-hosted runner で、`CCR_AUTO_MODE_ALLOW`、`CCR_AUTO_MODE_ENVIRONMENT`、`CCR_AUTO_MODE_SOFT_DENY` をセッション環境に渡さないよう変更",
+          "description": ""
+        },
+        {
+          "title": "Self-hosted runner で、大規模リポジトリのプログレス報告中に git fetch が途中で切れる問題を修正。`CLAUDE_RUNNER_FETCH_SERVER_PROGRESS_CAP_MS` で待機時間を調整または無効化可能",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] クラウドセッション",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-09T02:52:28.504Z"
+}
