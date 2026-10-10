@@ -1,0 +1,59 @@
+{
+  "version": "2.1.296",
+  "tagName": "v2.1.296",
+  "publishedAt": "2026-10-09T19:28:59Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.296",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 6,
+    "改善": 10,
+    "その他": 23,
+    "バグ修正": 40
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude apps gateway の `managed.policies[]` に `code` キーを追加しました。`cli` と同じ設定で、Claude Desktop の Code タブにも適用されます。`desktop` に加えて、Claude Desktop のゲートウェイモードが有効になります。",
+          "description": ""
+        },
+        {
+          "title": "`autoCompactWindow` をサブエージェントの frontmatter と `--agents` 定義に追加しました。これにより、サブエージェントはメイン会話のウィンドウより早く自動でコンパクト化できます。",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` を追加し、すべてのワークフローエージェントを同一モデルで実行できるようにし、他のサブエージェントはそれぞれのモデルを保持します。",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS` 環境変数を追加し、オーバーロード (529) リクエストを再試行する際のバックオフの最大遅延時間を長く設定できるようにしました。",
+          "description": ""
+        },
+        {
+          "title": "同名の有効化された別プラグインがあるためフックが除外されたプラグインについて、`/plugin` に注記を追加しました。",
+          "description": ""
+        },
+        {
+          "title": "Read ツールに `allow_large` オプションを追加し、全文が必要でコンテキストに余裕がある場合に、通常のサイズ制限を超えるテキストファイルを 1 回の呼び出しで読み取れるようにしました。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "フルスクリーンモードを改善しました：マウスポインタ下のリンクが下線付きで表示され、開けることが示されます。",
+          "description": ""
+        },
+        {
+          "title": "コードが多い会話でのトランスクリプト切替 (ctrl+o) の応答性を向上させました。構文ハイライト済みコードブロックをキャッシュします。",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-10T02:12:58.383Z"
+}
