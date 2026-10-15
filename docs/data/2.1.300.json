@@ -1,0 +1,84 @@
+{
+  "version": "2.1.300",
+  "tagName": "v2.1.300",
+  "publishedAt": "2026-10-14T18:24:25Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.300",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 8,
+    "改善": 4,
+    "その他": 34,
+    "バグ修正": 41
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "`claude remote-control`から`--sandbox`および`--no-sandbox`フラグを削除しました。これらのフラグは効果がなく、使用するとエラーで終了します。サンドボックスセッションを有効にするには設定で`sandbox.enabled`を設定してください。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "モッドのプロンプト装飾に`virtualText`を追加しました。プロンプトボックスに描画されますが、ドラフトや送信されたプロンプトには入りません。",
+          "description": ""
+        },
+        {
+          "title": "OpenTelemetryの`api_request`イベントに`cache_creation_5m_tokens`と`cache_creation_1h_tokens`を追加し、キャッシュ書き込みを有効期間で分割しました。",
+          "description": ""
+        },
+        {
+          "title": "モッド用に`$.ui.view({ agentId })`を追加しました。これにより要求時にエージェントのトランスクリプトがメインビューに表示され、`$.ui.view({})`で元に戻ります。",
+          "description": ""
+        },
+        {
+          "title": "モッドの`Text`に右から左のテキスト用`dir`プロパティを追加しました。WindowsやVS Codeのターミナルでは行がその方向で表示され、右揃えになります。",
+          "description": ""
+        },
+        {
+          "title": "AWS上のClaude Platformに`/advisor`を追加しました。`/advisor`、`advisorModel`、または`--advisor`でアドバイザーを選択するまで実行されず、`CLAUDE_CODE_DISABLE_ADVISOR_TOOL=1`で無効化できます。",
+          "description": ""
+        },
+        {
+          "title": "トレーススパンにOpenTelemetry GenAIのセマンティックコンベンション属性（例: `gen_ai.provider.name`、`gen_ai.conversation.id`、`gen_ai.tool.name`、`error.type`）を追加しました。",
+          "description": ""
+        },
+        {
+          "title": "`agent.spawn`モッドフックでワークフローエージェントの`prompt`と`model`を書き換えるサポートを追加しました。これ以前はワークフローエージェントを拒否するだけでした。",
+          "description": ""
+        },
+        {
+          "title": "`prompt.change`モッドフックを追加しました。これはテキストが手入力以外で変化したとき（履歴からの呼び出し、クリア、元に戻す、プラグインの自動入力）に発火します。",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "CoworkクラウドセッションのWebFetchを改良し、ページが直前に失敗したことをClaudeに通知し、再取得を行わないようにしました。",
+          "description": ""
+        },
+        {
+          "title": "組み込みの`plugin-authoring`スキルにおけるモッド共有を改善しました。Claudeはモッドのファイルを開く前にキーをスキャンし、プロジェクト外のフォルダをスキャンする際には確認を求めます。",
+          "description": ""
+        },
+        {
+          "title": "@でメンションされたPDFに関するClaude 3モデルへの注記を改善し、読まずに回答するケースが減少しました。",
+          "description": ""
+        },
+        {
+          "title": "アーティファクトの更新を改善しました。Claudeは小さな変更を適用して1回の呼び出",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-15T01:19:34.053Z"
+}
