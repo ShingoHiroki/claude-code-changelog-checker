@@ -1,0 +1,241 @@
+{
+  "version": "2.1.301",
+  "tagName": "v2.1.301",
+  "publishedAt": "2026-10-15T19:22:06Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.301",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 6,
+    "改善": 4,
+    "その他": 13,
+    "バグ修正": 28
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS` の追加",
+          "description": "無人リトライモード (`CLAUDE_CODE_RETRY_WATCHDOG`) が、遠すぎる使用上限リセットを待つ代わりにリクエストを終了できるようにした。"
+        },
+        {
+          "title": "OpenTelemetry トレースガイダンスの追加",
+          "description": "`claude-api` スキルにトレース設定方法を追加し、`ant` CLI でトレース先を設定できるようにした。"
+        },
+        {
+          "title": "vim モードに `%` モーションを追加",
+          "description": "対応する括弧へジャンプでき、単独または d/c/y と組み合わせて使用できる。"
+        },
+        {
+          "title": "`rows` の `Input` への追加",
+          "description": "端末上で複数行テキストフィールドを作成でき、Enter で送信、Shift+Enter または Enter 前にバックスラッシュで改行できる。"
+        },
+        {
+          "title": "`classifier_verdict` と `permission_mode` の OpenTelemetry `tool_decision` への追加",
+          "description": "自動モードの分類器決定と権限ルールを区別できるようにした。"
+        },
+        {
+          "title": "`classifier_category` の OpenTelemetry `tool_decision` への追加",
+          "description": "`OTEL_LOG_TOOL_DETAILS=1` 設定時に、組み込みルールが分類器ブロックとしてマッチしたことを示す名前を付与する。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "小さいコンテキストウィンドウのモデルへの切替改善",
+          "description": "新モデルが会話を処理できない場合、先行モデルが先に要約してから切替えるようにした。"
+        },
+        {
+          "title": "長時間サブエージェント実行時の描画性能改善",
+          "description": "進捗トレイルが増分で更新され、毎回全体を再描画しないようにした。"
+        },
+        {
+          "title": "アーティファクト表示の改善",
+          "description": "Claude が書くページは固定ヘッダー上のバンドに描画され、モバイルアプリでスクロールテキストがそこに表示されなくなった。"
+        },
+        {
+          "title": "モッドの UI 改善",
+          "description": "質問ダイアログ上部のツリーが Markdown と最大 48 行を保持でき、端末は 12 行のプレーンテキストを保持するようになった。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "フルスクリーンモードの UI 凍結修正",
+          "description": "`/compact` と自動コンパクト時に、表示中トランスクリプト再構築で UI が一時的にフリーズする問題を修正した。"
+        },
+        {
+          "title": "Self-hosted runner の Slack セッション取得失敗修正",
+          "description": "MCP サーバー制限下でリポジトリが見つからない／添付できない問題を `deniedMcpServers` でツールをオフにできるようにした。"
+        },
+        {
+          "title": "Self-hosted runner の削除済みブランチ誤報告修正",
+          "description": "セットアップやセッション失敗で git の missing-ref メッセージが出たときに、削除されたブランチとして誤報告されリトライされない問題を修正した。"
+        },
+        {
+          "title": "Self-hosted runner のリトライログ修正",
+          "description": "終了中セッションで失敗または拒否されたリリース再試行を約束したログが誤っていた問題を修正し、繰り返し失敗時に回数が表示されるようにした。"
+        },
+        {
+          "title": "Windows のバックグラウンド PowerShell コマンド出力修正",
+          "description": "停止したバックグラウンド PowerShell コマンドの出力ファイルに欠落していた `[killed]` 行を追加した。"
+        },
+        {
+          "title": "mod フックの `.catch` ハンドラ挙動変更",
+          "description": "フックが例外またはタイムアウトした時のみ `.catch` が実行され、フック内部呼び出しで上がったイベントは `.catch` を呼び出さずにスキップするようにした。"
+        },
+        {
+          "title": "`$.env.set` の戻り値変更",
+          "description": "変数が設定/解除されたときは `{}` で解決し、設定できなかった場合は `{ deny }` で理由を返すようにした。"
+        },
+        {
+          "title": "[VSCode] LaTeX 数式レンダリング追加",
+          "description": "Claude の応答で `$$`、`\\[ … \\]`、インライン `$…$`、`\\(...\\)` の数式が描画できるようにした。"
+        },
+        {
+          "title": "[VSCode] 使用上限バナーに「Get more usage」リンク追加",
+          "description": "Pro と Max プラン向けに VS Code と JetBrains パネルの使用上限バナーに利用量増加リンクを追加した。"
+        },
+        {
+          "title": "[VSCode] パネル再読み込み時のクラッシュ／フリーズ問題修正",
+          "description": "リロードごとにパネルが再オープンしてクラッシュまたはフリーズする会話を修正した。"
+        },
+        {
+          "title": "[VSCode] 長時間思考時のチャットパネル遅延修正",
+          "description": "思考テキスト全体を毎回再解析せず、更新ごとに部分的に処理するようにした。"
+        },
+        {
+          "title": "[VSCode] 診断情報でオブジェクト表示の修正",
+          "description": "一部の言語サーバーでルールコード (例: MD013) が \"[object Object]\" と表示される問題を修正した。"
+        },
+        {
+          "title": "[VSCode] ネイティブ音声入力モジュールのロード条件修正",
+          "description": "マイク許可チェックのために音声入力モジュールがロードされ、Claude.ai 以外のサインインやリモート Windows で音声入力が提供されない場合に問題が起きないようにした。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`WorktreeCreate` フックで作成された worktree の削除時確認追加",
+          "description": "未プッシュのコミットが残っている可能性がある場合、確認せずに worktree が削除される問題を修正した。"
+        },
+        {
+          "title": "`fable`/`best` モデルエイリアスのエラー修正",
+          "description": "最新の Fable モデルが組織で利用不可の場合、Claude Code が前の Fable モデルで1回リトライするようにした。"
+        },
+        {
+          "title": "ディスク容量不足時の `/login` エラー文言修正",
+          "description": "ディスクがいっぱいでログイン更新できない場合、エラーがディスク名を示し、ファイル削除を促すようにした。"
+        },
+        {
+          "title": "Grep と Glob の検索失敗時エラーメッセージ修正",
+          "description": "検索プログラムが途中で失敗した場合、結果がなくてもエラーとして「検索に失敗しました」と返すようにした。"
+        },
+        {
+          "title": "ワークフローエージェントがステップをスキップする問題修正",
+          "description": "タスクテキストにユーザー権限がなくても、ステップがスキップされ成功と報告されるバグを修正した。"
+        },
+        {
+          "title": "PreToolUse フックでのアーティファクト更新拒否修正",
+          "description": "PreToolUse フックが Edit または Write をカバーしている場合、Claude がファイルを編集後に再公開するようにした。"
+        },
+        {
+          "title": "引数名が多数または長すぎるスキル/コマンドの遅延修正",
+          "description": "最初の64個、各最大64文字までの引数名のみを使用するように制限した。"
+        },
+        {
+          "title": "スキル/コマンド/フックのメモリ使用量過大修正",
+          "description": "引数が多数のプレースホルダーを埋める際のメモリ消費を抑制した。"
+        },
+        {
+          "title": "古い VTE 端末での文字化け修正",
+          "description": "`>0q` や `>4m` などの余分な文字がフォルダー信頼プロンプトやシェルプロンプトに表示される問題を修正した。"
+        },
+        {
+          "title": "iTerm2 起動時の `GOK` テキスト誤表示修正",
+          "description": "iTerm2 の一部バージョンでプロンプト先頭に `GOK` が出る問題を修正した。"
+        },
+        {
+          "title": "`application-inference-profile` モデル切替時の `awsAuthRefresh` 実行バグ修正",
+          "description": "Bedrock 以外のプロバイダーでモデル名に `application-inference-profile` が含まれると `awsAuthRefresh` が走り、モデル切替フックが遅れる問題を修正した。"
+        },
+        {
+          "title": "サインインリフレッシュタイムアウトと予期せぬサインアウト修正",
+          "description": "`claude auth status` や `claude plugin list` のような短コマンド実行中にトークンリフレッシュが途中で止まるとタイムアウトやサインアウトが起きる問題を修正した。"
+        },
+        {
+          "title": "ツール呼び出しの途中キャンセル時の権限チェック報告修正",
+          "description": "ターン途中でメッセージが送信され権限チェックが中断されたツール呼び出しが、ユーザーによる拒否としてモデルに報告されていた問題を修正した。"
+        },
+        {
+          "title": "小さいコンテキストウィンドウへの切替時のサマリ使用クレジット消費修正",
+          "description": "事前確認なしで前モデルがサマリを生成し、クレジットが消費されるケースを防止した。"
+        },
+        {
+          "title": "意図しないモデルでの会話コンパクションのループ修正",
+          "description": "LLM ゲートウェイが要求と異なるモデル名を返すと、選択していないモデルで会話が何度もコンパクト化される問題を修正した。"
+        },
+        {
+          "title": "vim モードで Escape 後も INSERT が残る問題修正",
+          "description": "遅い・負荷が高い環境で Escape 押下後に INSERT モードが抜けないバグを修正した。"
+        },
+        {
+          "title": "vim モードで Esc が回答を破棄する問題修正",
+          "description": "自由テキスト入力欄が vim NORMAL モードをサポートし、Esc は NORMAL 時のみキャンセルするようにした。"
+        },
+        {
+          "title": "Read ツールのバイナリファイル読み取り修正",
+          "description": ".xlsm、.parquet、.epub、.heic などのバイナリファイルをテキストとして誤読する問題を修正した。"
+        },
+        {
+          "title": "幅が広すぎる Markdown テーブルの描画修正",
+          "description": "ヘッダー行のみのテーブルが端末幅を超えると何も描画されない問題を修正し、プラン承認カードでも正しく表示されるようにした。"
+        },
+        {
+          "title": "/claude-api スキルの CMEK エンドポイントエラーメッセージ修正",
+          "description": "AWS 上の Claude Platform で CMEK 外部キーエンドポイントが利用不可と誤って示す表示を修正した。"
+        },
+        {
+          "title": "`/rewind` 後のスキルリスト表示不具合修正",
+          "description": "`/rewind` 実行後にモデルへスキルが一覧表示されなくなるバグを修正した。"
+        },
+        {
+          "title": "再開セッションのコンパクション行の履歴表示修正",
+          "description": "履歴がロードされていない場合に ctrl+o が提示されても、保存場所を示すメッセージに変更し、フルスクリーンでも表示するようにした。"
+        },
+        {
+          "title": "割り込み後に出る「new task? /clear」ヒントの誤表示修正",
+          "description": "応答を中断した直後にヒントが再表示される問題を修正した。"
+        },
+        {
+          "title": "プラグイン/スキルフックの `ask` 権限プロンプトで出典表示欠如修正",
+          "description": "どのプラグイン・スキルからフックが来たかが表示されない問題を修正した。"
+        },
+        {
+          "title": "`/diff` でのコンフリクト検出不具合修正",
+          "description": "reftable リポジトリで `git` チェックがタイムアウトまたは失敗した際、コンフリクトしたチェリーピックやリバートを `/diff` が認識しない問題を修正した。"
+        },
+        {
+          "title": "同一セッション内で `cd` 後のワークフロースクリプト権限問題修正",
+          "description": "Bash の `cd` 後に読み取り・編集・再実行されたスクリプトが権限を求める、または拒否される問題を修正した。"
+        },
+        {
+          "title": "暗い ANSI テーマと 16 色端末での文字色暗化修正",
+          "description": "塗りつぶしボックス内の淡いテキスト、選択や検索ハイライト下のテキスト、リストの説明文が適切に暗く表示されるようにした。"
+        },
+        {
+          "title": "mod の `$.model.fork` の早期呼び出し時エラー修正",
+          "description": "新しい Claude Code プロセスの最初の応答が完了する前に `$.model.fork` を呼び出すと `nothing-to-fork` が返っていた問題を修正した。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-16T01:04:55.207Z"
+}
