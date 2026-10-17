@@ -1,0 +1,164 @@
+{
+  "version": "2.1.302",
+  "tagName": "v2.1.302",
+  "publishedAt": "2026-10-16T20:53:06Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.302",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 3,
+    "改善": 3,
+    "その他": 36,
+    "バグ修正": 21
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_AUTO_MODE_MODEL` を追加し、クライアント側オートモード分類器が使用するモデルを選択できるようにしました；サーバー側オートモードのモデルは変更されません",
+          "description": ""
+        },
+        {
+          "title": "`/config` に `Idle compaction` 行を追加し、アイドルコンパクションをオフまたはオンに切り替えられるようにしました；アイドルコンパクション後に表示される通知には、オフにする方法が記載されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "`/design-sync` および `/design-login` に、スタンドアロンの Claude Design (claude.ai/design) が 2026年12月14日で終了する旨の通知を追加しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "多数のプラグインが有効な状態での起動時間を改善しました：プラグインコマンドとエージェントファイルの読み込みに必要なファイルシステム呼び出しが大幅に減り、特に Windows で顕著です",
+          "description": ""
+        },
+        {
+          "title": "サーバー側分類器によるオートモードを改善しました：安全チェックに時間がかかりすぎる会話は、すべてのツール呼び出しが拒否される代わりにコンパクト化されます",
+          "description": ""
+        },
+        {
+          "title": "別フォルダーから再開されたバックグラウンドセッションに LLM ゲートウェイがない場合のメッセージを改善しました：原因を示すようになり、以前の「Not logged in」ではなくなります",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Self-hosted runner：git の reftable 形式で保存されたチェックアウトを再利用するセッションで、\"bad object refs/heads\" エラーで git fetch が失敗する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Windows：exFAT や FAT32 ドライブ上のプロジェクトで、`--plugin-dir` で開始したセッションを含め、すべてのファイル書き込みが拒否されたり確認が求められる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`claude -p` と Agent SDK セッションでパーミッションモードが指定されていない場合、サードパーティプロバイダー上では `default` モードで開始し、テレメトリはオフ、または新規インストール時はオンになるよう変更しました；`--permission-mode auto` は自動モードのままです",
+          "description": ""
+        },
+        {
+          "title": "フォークサブエージェント (`subagent_type: \"fork\"`) を、ターミナルですでにデフォルトで有効になっているように、`claude -p`、Agent SDK、デスクトップアプリ、VS Code でもデフォルトで有効に変更しました；`CLAUDE_CODE_FORK_SUBAGENT=0` で無効にでき、`claude mcp serve` では提示されません",
+          "description": ""
+        },
+        {
+          "title": "デスクトップアプリと VS Code を、ターミナルと同様にメイン会話のサブエージェントを常にバックグラウンドで実行するよう変更し、Claude に選択させないようにしました；`claude -p`、Agent SDK、デスクトップアプリ、VS Code でサブエージェント自身の Agent 呼び出しは、デフォルトでフォアグラウンドで実行されます",
+          "description": ""
+        },
+        {
+          "title": "フッターの `← for agents` ヒントを、セッション開始後 10 秒で非表示に変更しました；エージェントの待機数は引き続き表示されます",
+          "description": ""
+        },
+        {
+          "title": "Claude in Chrome の手順がシステムプロンプト内の位置を変更し、新しい会話が共有プロンプトキャッシュからそれらを読めるようにしました",
+          "description": ""
+        },
+        {
+          "title": "プロンプトとエージェントフックを変更し、同時に実行できる同一イベントは最大 12 件に制限し、残りは順番待ちになるようにしました",
+          "description": ""
+        },
+        {
+          "title": "組織のポリシーで `/feedback` が無効化された際に表示されるメッセージを変更し、組織管理者ではなく GitHub Issues へのリンクを示すようにしました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] リスト内の未閉じコードブロックの後のテキストが、返信がストリーミング中はプレーンテキストとして表示され、後でコードに変わっていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] パネルからの MCP サーバーサインイン時に、サーバー URL にクエリ文字列が含まれると壊れた認証ページが開く問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] `@browser` バナーが、Claude 拡張がインストールされたブラウザに接続できない場合でも \"Browser connected\" と表示していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] ルーチンページにバナーを追加し、最後の実行が開始しなかった理由（例：組織が同時クラウドセッション上限に達した）を表示するようにしました",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] クラウドセッションで「Rewind to here」が最新以外のすべてのメッセージで失敗していた問題を修正しました；Self-hosted runner は Claude Code v2.1.246 以降が必要です",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] クラウドセッションのプルリクエストステータスバーが、マージコンフリクトがあるプルリクエストを GitHub が再チェック中に再び Ready に戻す問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] ルーチン実行が、クラウドセッションが予期せず停止した後に Completed と表示され、開始前にアーカイブされた場合に Cancelled と表示されていた問題を修正し、正しく Failed と表示されます",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] セッションの GitHub リポジトリがリネームまたは移動された後、クラウドセッションの diff 表示が変更を欠落したり読み込めない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] スケジュールされたルーチン実行が途中で失敗した後、1 時間以上後に最初から再実行され、同じレポートが二度投稿されるなどの重複作業が起きていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] 開いているクラウドセッションで、別デバイスから送信されたメッセージがページを再読み込みするか、別の場所をクリックして戻るまで表示されないことがある問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] クラウドセッション開始失敗時のエラーメッセージを改善し、以前の「Something went wrong」ではなく「Connection lost」または「Server error」と表示されるようにしました",
+          "description": ""
+        },
+        {
+          "title": "[Remote Control] コンピュータがオフラインになった後、Remote Control セッションでサブエージェントのペインが永久に回転し続ける問題を修正し、現在は \"Remote Control is disconnected\" と表示されます",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack のチャンネルや DM でメンションされた後、Claude が以前のメッセージを編集して回答した際に \"is thinking…\" が消えない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Claude の Slack 返信で、番号付きまたは箇条書きステップ下のコードブロック内の URL が角括弧で囲まれ、コピーしたコマンドが壊れる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack に添付された HEIC、SVG、TIFF、BMP 画像が Claude に届かない問題を修正し、他のファイルタイプと同様に作業ファイルとして受け取れるようになりました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] ロールで Claude Tag を制限している組織で、新しいチャンネルマネージャーが Slack で Claude へのアクセスを失う問題を修正し、マネージャーロールにも Claude Tag が付与されるようにしました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] 同一ホストを共有するカスタムコネクタの MCP サーバーが Claude Tag 管理設定で単一コネクタとして表示されていた問題を修正し、各サーバーが独立したコネクタとして表示されます",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack で Claude が DM に対し \"DMs are temporarily unavailable\" と返答し、単一の Slack ルックアップが停止した際にメッセージが失われる問題を修正し、まず",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-17T01:12:33.669Z"
+}
