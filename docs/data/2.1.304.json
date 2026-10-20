@@ -1,0 +1,165 @@
+{
+  "version": "2.1.304",
+  "tagName": "v2.1.304",
+  "publishedAt": "2026-10-19T21:34:39Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.304",
+  "counts": {
+    "破壊的変更": 2,
+    "新機能": 7,
+    "改善": 11,
+    "その他": 21,
+    "バグ修正": 35
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "`claude plugin validate` のフックが実行される場所を予測したノートを削除しました",
+          "description": ""
+        },
+        {
+          "title": "Opus 5.5 の `/fast` ダイアログタイトルから「(research preview)」ラベルを削除しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "最初に実行されるプラグインがあなたの mod のフックの1つをスキップしたとき、イベント名とプラグイン名を含むトランスクリプト行を追加しました",
+          "description": ""
+        },
+        {
+          "title": "`tool.check` の回答に `decider: \"person\"` を追加しました。許可ダイアログまたはホストのコールバックのみが要求を承認でき、誰にも問い合わせられない場合は mod の理由で拒否されます",
+          "description": ""
+        },
+        {
+          "title": "`tool.check` イベントに `e.isReadOnly` を追加し、ツール呼び出しが読み取り専用の場合に設定されます",
+          "description": ""
+        },
+        {
+          "title": "`/auto-mode-setup` を追加しました：プロジェクトと最近のセッションを読み取り、環境を自動モードに学習させるガイド付きセットアップです。Bedrock、Vertex、Foundry、Claude アプリゲートウェイ、テレメトリ無効セッションでも利用可能になりました",
+          "description": ""
+        },
+        {
+          "title": "`/claude-api managed-agents-secure` を追加しました。Managed Agents エージェントの設定を Anthropic 公開のセキュリティガイドと比較し、何も変更しません",
+          "description": ""
+        },
+        {
+          "title": "トランスクリプトビュー (Ctrl+O) の圧縮サマリーに、以前に呼び出されたツール名を追加しました",
+          "description": ""
+        },
+        {
+          "title": "Pro と Max プランで、非アクティブな会話を再開すると5時間の使用上限のかなりの割合を使用する可能性がある場合に警告を追加しました：そのまま再開するか、新しい会話を開始し、参照すれば Claude が前の会話を検索できます",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/usage` を改良し、使用データのレートリミットが終了する時間を表示するようにしました（「しばらくして再試行」ではなく）",
+          "description": ""
+        },
+        {
+          "title": "セッション内で書かれた mod がロード、リロード、またはロード失敗した際に表示される行を改良しました",
+          "description": ""
+        },
+        {
+          "title": "複数ビューを持つアーティファクトを改良しました：リンクを求めると、各ビューのリンクを書き出し、ビュー切替時もアドレスバーは同じままになることを説明します",
+          "description": ""
+        },
+        {
+          "title": "クラウドセッションを改良しました：新しい会話の最初のターンは、claude.ai から同期されたプラグインのローカル（stdio）MCP サーバーを待たなくなりました（ただしサーバーが `alwaysLoad: true` を設定した場合は除く）",
+          "description": ""
+        },
+        {
+          "title": "リモートセッションが、他のセッションデータを含むステータス更新をサーバーが拒否した際のステータス回復方法を改善しました",
+          "description": ""
+        },
+        {
+          "title": "自動モードのセッションファイルサイズを改善しました：安全分類器のコンテキストが各リクエストに保存されなくなりました",
+          "description": ""
+        },
+        {
+          "title": "`claude -p` の無効設定警告を改善しました：ロードできなかったファイルは阻害要因のみを列挙し、長いリストはファイルごとに上限が設けられます",
+          "description": ""
+        },
+        {
+          "title": "SDK とヘッドレスモードで大きな圧縮セッションを再開する際、再開後の最初のリクエストがより早く送信されるよう改善しました",
+          "description": ""
+        },
+        {
+          "title": "多数のサブエージェントが同時に動作する際の応答性とスループットを改善しました",
+          "description": ""
+        },
+        {
+          "title": "長時間または再開された会話でリクエストを送信する際のメモリ使用量を改善しました",
+          "description": ""
+        },
+        {
+          "title": "`/claude-api` スキルを更新し、SDK や curl にフォールバックせず、AWS 上の Claude Platform で `ant` CLI を使用するようにしました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Self-hosted runner: セッションのリポジトリに対し git ホストが「not found」と返したときのエラー表示を改善し、リポジトリ名と問い合わせ先を示すようにしました",
+          "description": ""
+        },
+        {
+          "title": "Windows: 標準 Git for Windows インストールの git.exe を直接実行することで、git コマンドの起動を改善し、cmd ランチャーを経由しません",
+          "description": ""
+        },
+        {
+          "title": "mod の `settings.read` フックを変更し、各設定レイヤーを受け取りマージ後の設定を書き換えられるようにしました。これにより、管理された mod が組織の設定を上限にでき、保持掃除が使う `cleanupPeriodDays` も含められます",
+          "description": ""
+        },
+        {
+          "title": "`/artifacts` の削除確認を番号付き選択肢に変更しました：1 または Enter で保持、2 で削除、y、n、Esc は従来通り動作します",
+          "description": ""
+        },
+        {
+          "title": "セッションで Claude が書き込む mod を有効化する質問を、リンクやセッション ID のないプレーンテキストに変更しました。新しいターンが始んでも表示され続け、Claude が有効化時にロードされたものを通知します",
+          "description": ""
+        },
+        {
+          "title": "ツール検索をデフォルトで有効にし、カスタム `ANTHROPIC_BASE_URL` の背後で動作させました。ゲートウェイからの 400 または 422 エラーは、その設定なしで再試行されます",
+          "description": ""
+        },
+        {
+          "title": "圧縮後に skill リストを再送するよう変更しました。`/reload-skills` は新規または変更されたスキルのみ送信します",
+          "description": ""
+        },
+        {
+          "title": "skill フックを変更し、1 つのソース（リポジトリ、ローカルフォルダ、プラグイン）のスキルはセッションあたり最大 1,024 個のフックと 16,384 文字のマッチャを登録できます",
+          "description": ""
+        },
+        {
+          "title": "プラグインからのフックのみを許可するポリシー下のスキルを変更し、メイン会話で使用され、フックが除外されたスキルは `allowed-tools` を取得しなくなります",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Amazon Bedrock、Google Vertex AI、Microsoft Foundry、LLM ゲートウェイ背後、またはテレメトリ無効時のセッションで、チャットパネルに mod 描画を追加しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] \"Subprocess initialization did not complete within 60000ms\" でセッション開始が失敗する原因の一つを修正：SessionStart コマンドフックの実行時間が制限時間にカウントされず、合計最大 10 分まで許容されます",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 起動中に閉じられた",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-20T01:40:29.515Z"
+}
