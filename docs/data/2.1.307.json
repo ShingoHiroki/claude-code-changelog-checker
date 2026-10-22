@@ -1,0 +1,209 @@
+{
+  "version": "2.1.307",
+  "tagName": "v2.1.307",
+  "publishedAt": "2026-10-21T22:17:02Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.307",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 6,
+    "その他": 16,
+    "バグ修正": 19
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/claude-api api-version` を追加",
+          "description": "Claude API のコードを API バージョン `2026-10-21` に移行できるようにしました。"
+        },
+        {
+          "title": "`claude_code.safety_event` OpenTelemetry イベントを追加",
+          "description": "ツール呼び出しごとに、権限ルール、オートモード、安全チェック、フック、またはサンドボックスが停止・プロンプト・返却された際に `claude_code.safety_event` が記録されます。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "解析できないツール呼び出しのリカバリ改善",
+          "description": "解析不能なツール呼び出しに対し、エラーでターンを終了する前に最大2回リトライするようになりました。"
+        },
+        {
+          "title": "フォークサブエージェントの起動改善",
+          "description": "同時に起動したフォークサブエージェントは自分の起動番号を認識し、他エージェントの作業を開始しようとすることが大幅に減少しました。"
+        },
+        {
+          "title": "ブラウザーサインインの改善",
+          "description": "サインイン完了直後に成功ページが表示され、アカウントプロファイルの読み込み待ちがなくなりました。"
+        },
+        {
+          "title": "クラウド・セルフホストランナーのウェブ検索エラー改善",
+          "description": "403 で拒否された検索が理由を示す場合、一般的な「Authentication error」ではなくその理由が表示されます。"
+        },
+        {
+          "title": "クラウドセッションでの最初の返信までの時間改善",
+          "description": "デスクトップアプリの MCP サーバーの接続に失敗した場合でも、クラウドセッションで最初の返信が早く返るようになりました。"
+        },
+        {
+          "title": "リモートコントロール接続時間の改善",
+          "description": "トランスクリプトに大きな貼り付け画像や PDF 読み取りが含まれるセッションで、リモートコントロールの接続が速くなります。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "セルフホストランナーでの `.claude/settings.local.json` コミット問題を修正",
+          "description": "`--use-anthropic-git-proxy` 指定時に、以前のセッションが残した `.claude/settings.local.json` がクローン内に残っていた問題を修正しました。"
+        },
+        {
+          "title": "チェックアウトフック中のアーカイブ/再キュー/ランナーストップでのプロセス残留を修正",
+          "description": "セッションのアーカイブ、再キュー、またはランナー停止がチェックアウトフック中に行われた際、フックのプロセスが残りランナーのスロットが占有される問題を修正しました。"
+        },
+        {
+          "title": "WebSearch 予算上限時の通知内容変更",
+          "description": "WebSearch 予算が尽きたときの Claude への通知に、ブラウザーやコンピューター使用で検索エンジンを問い合わせないよう指示するメッセージを追加しました。"
+        },
+        {
+          "title": "`axScreenReader` 設定の適用範囲変更",
+          "description": "`axScreenReader` と `CLAUDE_AX_SCREEN_READER` を設定の `env` ブロックで、ユーザー、マネージド、または `--settings` からのみ有効にするよう変更しました（2.1.305 以降）。"
+        },
+        {
+          "title": "セルフホストランナーのチェックアウトフックタイムアウト変更",
+          "description": "チェックアウトフックはデフォルトで 30 分後に停止し、セッションセットアップが失敗します。長く必要な場合は `--checkout-hook-timeout-min` を増やすか `0` に設定してください。"
+        },
+        {
+          "title": "Anthropic 管理 Git 用証明書ファイルのフィルタリング変更",
+          "description": "CLI と同様に信頼できる証明書だけを残すよう、Anthropic 管理 Git 用の証明書ファイルを変更しました。除外された数は `[runner:warn]` 行で示されます。"
+        },
+        {
+          "title": "[VSCode] 音声入力自動停止時のマイクロフォンボタン通知追加",
+          "description": "認識された音声が 15 秒ない、または 2 分上限に達した場合に音声入力が自動停止し、その理由と現在までのテキストが保持された旨をマイクロフォンボタンに表示します。"
+        },
+        {
+          "title": "[VSCode] 長いプロンプトの表示バグを修正",
+          "description": "「Show more」で展開された長いプロンプトがチャットパネル全体を覆う問題を修正し、固定されたプロンプトはパネルの 40% に制限されスクロール可能になりました。"
+        },
+        {
+          "title": "[VSCode] LaTeX 数式貼り付け時のリスト・テーブル変換バグ修正",
+          "description": "リッチテキストエディタで LaTeX 数式を含むリスト項目や表セルを貼り付けた際に、新しいリストやテーブルとして誤変換される問題を修正しました。"
+        },
+        {
+          "title": "[VSCode] TLS 検査プロキシ下での音声入力失敗を修正",
+          "description": "`NODE_EXTRA_CA_CERTS` が `~/.claude/settings.json` のみで設定されている場合に TLS 検査プロキシで音声入力が失敗する問題を修正し、`CLAUDE_CODE_CERT_STORE` も参照するようにしました。"
+        },
+        {
+          "title": "[VSCode] \"別で開いています\" 通知の対象拡張",
+          "description": "拡張機能再起動後に残る Claude プロセスも \"still open somewhere else\" 通知の対象に加え、約 10 分で自動終了するようになりました。"
+        },
+        {
+          "title": "[VSCode] 音声入力の証明書フィルタリング変更",
+          "description": "CLI と同様に、音声入力で使用される証明書を信頼できるものだけにフィルタリングするよう変更しました。"
+        },
+        {
+          "title": "[VSCode] 拡張機能リクエストの証明書フィルタリング変更",
+          "description": "拡張機能からのリクエストも CLI と同様に証明書をフィルタリングし、環境変数またはユーザー設定で指定された `NODE_EXTRA_CA_CERTS` ファイルを信頼するようにしました。"
+        },
+        {
+          "title": "[Cloud sessions] リポジトリピッカーの検索表示バグ修正",
+          "description": "検索中に \"No repositories match\" と表示されていた問題を修正し、結果が出るまで \"Searching…\" と表示するようにしました。"
+        },
+        {
+          "title": "[Cloud sessions] \"Waiting for a runner\" ステータス表示修正",
+          "description": "セルフホスト環境で \"Waiting for a runner\" が途中で切れる問題を修正し、オンデマンドランナーでは最終メッセージからカウントアップし、失敗試行回数も表示します。"
+        },
+        {
+          "title": "[Code Review] `@claude review stop` コマンド追加",
+          "description": "`@claude review stop`（`off`, `pause` も同様）を追加し、`@claude review always` のプルリクエスト購読を新しいレビューを開始せずに終了できるようにしました。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "モデル未検出エラーのリクエスト失敗を修正",
+          "description": "`CLAUDE_CODE_DISABLE_1M_CONTEXT` が設定され、モデルが `[1m]` サフィックス付きエイリアス（例: `opus[1m]`）の場合に発生していた model-not-found エラーを修正しました。"
+        },
+        {
+          "title": "`prompt-caching-scope` ヘッダー送信のバグ修正",
+          "description": "カスタム `ANTHROPIC_BASE_URL` ゲートウェイや Foundry 環境で `prompt-caching-scope` ベータヘッダーが送信されても効果がなかった問題を修正しました。"
+        },
+        {
+          "title": "macOS の MCP サーバー認証表示バグ修正",
+          "description": "ログインキーチェーンがロックされている状態で `claude -p` 実行時に MCP サーバーが \"needs authentication\" と表示していた問題を修正し、理由を示すようになり、アンロック後の次回実行では再サインイン不要で接続します。"
+        },
+        {
+          "title": "スリープ時の MCP サーバータイムアウト報告修正",
+          "description": "macOS または Linux のコンピュータが接続中にスリープした場合に、MCP サーバーがタイムアウトとして報告されヘッドレス実行で失敗状態が残る問題を修正しました。"
+        },
+        {
+          "title": "HTTP MCP ツール呼び出し二重送信バグ修正",
+          "description": "接続が途中で閉じた際に HTTP MCP ツール呼び出しが二回送信されていた問題を修正し、読み取り専用または冪等ツールのみリトライされるようにしました。"
+        },
+        {
+          "title": "SDK MCP サーバーのツール取得漏れ修正",
+          "description": "バックグラウンドタスク実行中に、ターンが SDK MCP サーバーの最新ツールを取得せずに開始することがある問題を修正しました。"
+        },
+        {
+          "title": "\"Autocompact is thrashing\" エラー修正",
+          "description": "多数の PDF ページや画像、その他大きなツール結果を読むターンで発生していた \"Autocompact is thrashing\" エラーを修正しました。"
+        },
+        {
+          "title": "クラウドセッションでの `/autocompact` ウィンドウ復帰バグ修正",
+          "description": "セッション再開後に `/autocompact` がデフォルトウィンドウに戻ってしまう問題を修正しました。"
+        },
+        {
+          "title": "`/clear` で削除した会話が再表示されるバグ修正",
+          "description": "クラウドまたはセルフホストランナーセッションが再起動した際に、`/clear` で消した会話が復元されてしまう問題を修正しました。"
+        },
+        {
+          "title": "`CLAUDE_STREAM_FIRST_BYTE_TIMEOUT_MS` が無視される問題修正",
+          "description": "Claude apps ゲートウェイセッションで `CLAUDE_STREAM_FIRST_BYTE_TIMEOUT_MS` が適用されていなかった問題を修正しました。"
+        },
+        {
+          "title": "Claude Desktop テレメトリのゲートウェイ拒否バグ修正",
+          "description": "`OTEL_EXPORTER_OTLP_HEADERS` が設定されている場合、Claude apps ゲートウェイ背後の Claude Desktop セッションからのテレメトリが拒否されていた問題を修正しました。"
+        },
+        {
+          "title": "`/permissions` 最近拒否項目の表示と分類器バグ修正",
+          "description": "`/permissions` の Recently denied に拒否されたシェルコマンドが表示されず、オートモードのローカル分類器が再試行コマンドチェック時に承認を無視していた問題を修正し、承認行はコマンド名を示すようになりました。"
+        },
+        {
+          "title": "`/help` とコマンドメニューの長文表示バグ修正",
+          "description": "`/help` と `/` コマンドメニューで、`/claude-api` などバンドルスキルの長いモデル向け説明が表示され、短い説明が出なかった問題を修正しました。"
+        },
+        {
+          "title": "サブエージェントのトランスクリプト記録バグ修正",
+          "description": "ストリーミング応答で、プレースホルダートークン使用と空の停止理由が記録されていた問題を修正しました。"
+        },
+        {
+          "title": "Agent SDK の `setModel()` 時間遅延のモデル切替拒否修正",
+          "description": "API がモデル確認に5秒超えると `setModel()` やそれを使用したアプリのモデル切替が拒否されていた問題を修正し、Claude Code は最大15秒待機するようになりました。"
+        },
+        {
+          "title": "バックグラウンドコマンド停止通知の誤報修正",
+          "description": "接続アプリ（例: デスクトップアプリがアイドルセッションをアーカイブ）で停止されたバックグラウンドコマンドがユーザーによる停止として Claude に報告される問題を修正し、通知に出力ファイル名が含まれます。"
+        },
+        {
+          "title": "Cowork クラウドセッションの WebFetch エラー報告修正",
+          "description": "サイトが 4xx ステータスや robots.txt の拒否で応答した際にツールエラーとして報告されていた WebFetch を、ローカルセッションと同様に正常結果として扱うよう修正しました。"
+        },
+        {
+          "title": "GitHub MCP サーバーの書き込みツール UI バグ修正",
+          "description": "直接設定した GitHub MCP サーバーで書き込みツールがフォームを表示するも、デスクトップアプリの Code タブに何も作成されずに閉じてしまう問題を修正しました。"
+        },
+        {
+          "title": "Artifact ツール読み取り時の接続リセットエラー修正",
+          "description": "サーバーが再利用された接続を閉じた際に、Artifact ツールの読み取りが接続リセットで失敗していた問題を修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-22T01:23:03.812Z"
+}
