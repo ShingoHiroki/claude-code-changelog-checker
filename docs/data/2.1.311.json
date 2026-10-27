@@ -1,0 +1,369 @@
+{
+  "version": "2.1.311",
+  "tagName": "v2.1.311",
+  "publishedAt": "2026-10-26T21:51:23Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.311",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 13,
+    "その他": 30,
+    "バグ修正": 47
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`--hold-idle-file` と `--max-hold-min` オプション追加",
+          "description": "Added `--hold-idle-file` and `--max-hold-min` to `self-hosted-runner`, to keep an idle session while your host reports processes it left running"
+        },
+        {
+          "title": "説明出力スタイルのヒント追加",
+          "description": "Added a tip for the Explanatory output style, shown when you ask Claude for explanations"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Pro/Max アカウントの起動時間短縮",
+          "description": "Improved startup time for Pro and Max accounts by skipping two network requests on launches within an hour of the last check"
+        },
+        {
+          "title": "`/teleport` 警告強化",
+          "description": "Improved `/teleport` and `claude --teleport` to warn when a compacted cloud session loads from its last compaction, so the messages it summarized aren't in the local copy"
+        },
+        {
+          "title": "バックグラウンドセッション終了メッセージ改善",
+          "description": "Improved the messages shown when a background session's process exits: they no longer promise a restart that isn't coming, and they say how to resume the session"
+        },
+        {
+          "title": "アーティファクトビューのルーティング改善",
+          "description": "Improved artifacts with several views: Claude now routes each view on the link's `#name` and no longer says the address bar stays the same as you switch views"
+        },
+        {
+          "title": "タイムアウトしたシェルコマンドの結果表示改善",
+          "description": "Improved shell commands that reach their timeout: the result now shows the output so far and says the command is still running in the background"
+        },
+        {
+          "title": "コンパクション時の要約再確認",
+          "description": "Improved compaction: when the model's reply has no summary in it, Claude Code now usually asks for the summary once more before it replaces the conversation"
+        },
+        {
+          "title": "Artifact ツールのページ/ドキュメント選択改善",
+          "description": "Improved the Artifact tool's choice between a page and a document: explainers and visual or interactive work become artifact pages; documents are for writing people keep editing or pass around"
+        },
+        {
+          "title": "オプションのみ起動時の起動時間短縮",
+          "description": "Improved startup time for launches whose only arguments are options and their values, such as `claude --model opus`"
+        },
+        {
+          "title": "`Connection dropped` エラー情報拡充",
+          "description": "Improved the \"Connection dropped\" API error: it now says where to look first (the proxy or gateway in use, else VPN or firewall; Anthropic API only, Bedrock, Vertex and Foundry are unchanged)"
+        },
+        {
+          "title": "スクリーンリーダーモードでのルール削除メッセージ改善",
+          "description": "Improved screen reader mode: deleting a rule in /permissions says \"Deleted allow rule …\" right away"
+        },
+        {
+          "title": "サインインコード貼り付け失敗メッセージ改善",
+          "description": "Improved the message shown when a pasted sign-in code is refused: it now says the code may have expired or been used, and to sign in again"
+        },
+        {
+          "title": "Slack コネクタ送信前のチャンネルトピックチェック",
+          "description": "Improved Slack connector sends: Claude now checks a channel's topic for posting rules before messaging a channel you didn't name"
+        },
+        {
+          "title": "スクリーンリーダーモードの質問リスト表示改善",
+          "description": "Improved screen reader mode: Claude's questions are listed as \"Questions: Color (answered), Pages\", without arrows or symbols"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Linux の Bash サンドボックスでの `bwrap` エラー修正",
+          "description": "Linux: Fixed sandboxed Bash commands failing with `bwrap: Can't create file` when a `--plugin-dir` folder was also an added directory and `permissions.blockReadsOutsideWorkingDirectories` was on"
+        },
+        {
+          "title": "Self‑hosted runner のリードオンリーレポジトリでの起動失敗修正",
+          "description": "Self-hosted runner: Fixed a session failing to start when a rate limit (HTTP 429, or a git wrapper that exits 75) blocks an added read-only repository; it now starts without that repository"
+        },
+        {
+          "title": "interactive terminal の `ultrathink` を xhigh effort で実行",
+          "description": "Changed `ultrathink` in the interactive terminal to run its turn at xhigh effort on Opus 5.5, Sonnet 5.5, Haiku 5.5 and Fable 5.1 through Anthropic's API; typed while Claude is working, it raises the rest of that turn"
+        },
+        {
+          "title": "`ultrathink` レインボー表示条件変更",
+          "description": "Changed the `ultrathink` rainbow to appear only where the keyword can raise effort, and not when the word is quoted or part of a file path"
+        },
+        {
+          "title": "Agent view の Ctrl+D 動作変更",
+          "description": "Changed Ctrl+D in agent view to match the prompt: on an empty input, pressing it twice exits"
+        },
+        {
+          "title": "JSON 出力のエスケープ処理変更",
+          "description": "Changed `--output-format json` and `stream-json` output to write DEL, C1 control and Unicode format characters inside strings as `\\uXXXX` escapes; parsed values are unchanged"
+        },
+        {
+          "title": "モデル名・ID の `[1m]` サフィックス削除",
+          "description": "Changed model names and IDs to drop the `[1m]` suffix and its label on models where the suffix has no effect; the suffix is still accepted"
+        },
+        {
+          "title": "設定ファイルの権限ルール警告表示回数変更",
+          "description": "Changed startup warnings about permission rules in settings files to show once per user until the rule changes"
+        },
+        {
+          "title": "`/code-review` の effort 表示順序変更",
+          "description": "Changed `/code-review` to tell Claude to put the effort level first and use max only when asked"
+        },
+        {
+          "title": "`DISABLE_COMPACT` 設定の動作変更",
+          "description": "Changed `DISABLE_COMPACT` in settings files and in a mod's `$.env.set` so they can only turn compaction off, not back on"
+        },
+        {
+          "title": "Bedrock・Mantle・Vertex・Foundry のモデル設定取得方法変更",
+          "description": "Changed Claude Code on Bedrock, Mantle, Vertex, and Foundry to load model settings from a signed file on downloads.claude.ai; set CLAUDE_CODE_MODEL_CATALOG=off to turn this off"
+        },
+        {
+          "title": "`CLAUDE_CODE_SYNC_SKILLS` のフェッチオフ時のスキルリスト再利用",
+          "description": "Changed sessions that set `CLAUDE_CODE_SYNC_SKILLS` with feature-flag fetching off to reuse a claude.ai skills list up to 10 minutes old that another session on the machine fetched"
+        },
+        {
+          "title": "フルスクリーンリストのスクロールバークリック動作変更",
+          "description": "Changed clicks on scrollbar arrows and bars in fullscreen lists to act when the mouse button is released, so moving off the scrollbar before letting go cancels the click"
+        },
+        {
+          "title": "`claude purge` の説明文変更",
+          "description": "Changed `claude purge` to say it deletes data only on this computer, not anything stored by Anthropic"
+        },
+        {
+          "title": "VSCode のコードブロックにシンタックスカラー付与",
+          "description": "[VSCode] Added syntax coloring to code blocks in Claude's replies, in light, dark and high contrast dark themes"
+        },
+        {
+          "title": "VSCode の UserPromptSubmit フックのスピナーと読み上げ",
+          "description": "[VSCode] Added a \"Running UserPromptSubmit hooks\" spinner status and screen reader announcement for slow UserPromptSubmit hooks"
+        },
+        {
+          "title": "VSCode のカスタムスキル/スラッシュコマンドでファイル情報欠落修正",
+          "description": "[VSCode] Fixed custom skills and custom slash commands sent from the VS Code or JetBrains panel leaving out the open file or selected lines that ordinary messages include (anthropics/claude-code#102799)"
+        },
+        {
+          "title": "VSCode の拡張ホストフリーズ修正",
+          "description": "[VSCode] Fixed the extension host freezing while the login shell ran its start-up files to read PATH on macOS and Linux"
+        },
+        {
+          "title": "VSCode のツール結果画像クリック時のプレビュー挙動修正",
+          "description": "[VSCode] Fixed clicking an image in a tool result, or closing its preview, also opening the result's text in an editor tab"
+        },
+        {
+          "title": "VSCode の音声入力送信後の録音継続バグ修正",
+          "description": "[VSCode] Fixed voice dictation continuing to record after a message was sent with the Send button; sending now stops dictation first, as pressing Enter already did"
+        },
+        {
+          "title": "VSCode のテレメトリ設定オフ時に `DISABLE_TELEMETRY` でセッション開始",
+          "description": "[VSCode] Changed the extension to start Claude Code sessions with `DISABLE_TELEMETRY` set while VS Code's telemetry setting is off, so they send no usage metrics or error reports and fetch no feature flags"
+        },
+        {
+          "title": "VSCode のセッションリストサイドバーで Web タブ初回オープン時にロード",
+          "description": "[VSCode] Changed the session list side bar to load Web sessions when the Web tab is first opened, not at startup"
+        },
+        {
+          "title": "Cloud sessions の所有者離脱後ロックされたルーチン復旧",
+          "description": "[Cloud sessions] Fixed routines in Anthropic-hosted environments staying locked after their owner left the organization and rejoined; the owner can now turn them back on"
+        },
+        {
+          "title": "Cloud sessions のルーチン API トークン削除/再生成エラー表示修正",
+          "description": "[Cloud sessions] Fixed a failed routine API token delete or regenerate showing nothing if the edit dialog had already closed; it now shows an error toast"
+        },
+        {
+          "title": "Cloud sessions の重複環境名受け入れバグ修正",
+          "description": "[Cloud sessions] Fixed cloud environment dialogs, including the admin dialog, accepting duplicate names; they now refuse a name another listed environment already has"
+        },
+        {
+          "title": "Claude Tag のスキル使用頻度ビュー追加",
+          "description": "[Claude Tag] Added a Skills view to Claude Tag analytics showing how often Claude runs each attached skill in Slack channels and which go unused, with Usage links in admin settings"
+        },
+        {
+          "title": "Claude Tag の空レポート実行時メッセージ抑制",
+          "description": "[Claude Tag] Improved Claude Tag routines that run in a new session: a run with nothing to report can now end without posting a throwaway message to the channel"
+        },
+        {
+          "title": "Claude Tag の管理設定でプライベート Slack チャンネル表示変更",
+          "description": "[Claude Tag] Changed Claude Tag admin settings to show a lock instead of # for private Slack channels that your own Slack account can see"
+        },
+        {
+          "title": "Code Review の自動リトライ時メッセージ追加",
+          "description": "[Code Review] Improved Code Review's check run to say no further automatic review will start when the model still can't analyze a change on the automatic retry"
+        },
+        {
+          "title": "Code Review のセッション失敗時自動リトライ改善",
+          "description": "[Code Review] Improved Code Review reliability: a review whose session fails to start because of a transient server fault is now retried once automatically, and its check run says so"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "CLAUDE.md の長いリスト項目でのフリーズ修正",
+          "description": "Fixed long freezes at startup and after reading or editing files when a CLAUDE.md file holds a very long list item"
+        },
+        {
+          "title": "MCP サーバー未応答時の割り込みが効かない問題修正",
+          "description": "Fixed interrupting Claude not taking effect until a timeout while an MCP server had not answered a resource read or a skill was still downloading"
+        },
+        {
+          "title": "200K トークン超過時のクレジットエラー修正",
+          "description": "Fixed standard-context sessions stopping with \"Usage credits required for 1M context\" when a request ran over 200K tokens; Claude Code now compacts the conversation and continues"
+        },
+        {
+          "title": "Write/Edit が数千行変更後に最大5秒停止し0行と報告するバグ修正",
+          "description": "Fixed Write and Edit stalling for up to 5 seconds after they ran, and reporting 0 lines changed, when changing thousands of lines in a file"
+        },
+        {
+          "title": "サブエージェントの MCP ツール利用不能バグ修正",
+          "description": "Fixed subagents being unable to use MCP tools from servers that finish connecting after the subagent starts"
+        },
+        {
+          "title": "自動コンパクト直後の MEMORY.md/CLAUDE.md の古い内容表示修正",
+          "description": "Fixed Claude seeing stale MEMORY.md and CLAUDE.md content right after automatic compaction when those files were edited earlier in the session"
+        },
+        {
+          "title": "`claude -p` と SDK のトランスクリプト順序バグ修正",
+          "description": "Fixed `claude -p` and SDK sessions saving transcript messages out of order or keeping messages that were taken back"
+        },
+        {
+          "title": "`SubagentStop` フックの過剰実行修正",
+          "description": "Fixed `SubagentStop` hooks running about twice a minute for each running subagent instead of once when it finishes"
+        },
+        {
+          "title": "@ ファイルピッカーの `.ignore` 除外取消しルール無視バグ修正",
+          "description": "Fixed the @ file picker ignoring `.ignore`/`.rgignore` negation rules that re‑include git-ignored files"
+        },
+        {
+          "title": "バックグラウンドサブエージェント作業中に worktree が削除されるバグ修正",
+          "description": "Fixed a subagent's isolated worktree being removed while a background subagent it started was still working in it"
+        },
+        {
+          "title": "auto モードのバックグラウンドエージェントが毎回新ターン開始するバグ修正",
+          "description": "Fixed background agents in auto mode that wait on their own shells starting a new main conversation turn on every wake"
+        },
+        {
+          "title": "Bash ツールの作業ディレクトリ永続表記バグ修正",
+          "description": "Fixed the Bash tool description claiming the working directory always persists between calls"
+        },
+        {
+          "title": "環境ブロックがシェルコマンド実行ディレクトリ名を誤認するバグ修正",
+          "description": "Fixed the environment block naming a shell commands don't run in, such as fish when the Bash tool uses zsh"
+        },
+        {
+          "title": "`claude mcp` コマンドがカレントフォルダを誤参照するバグ修正",
+          "description": "Fixed `claude mcp add`, `claude mcp remove` and `/mcp` naming the current folder instead of the project entry in `~/.claude.json` that holds a local‑scope server when run below a repository root"
+        },
+        {
+          "title": "`claude mcp list/get` のエラーコード二重表示バグ修正",
+          "description": "Fixed `claude mcp list` and `claude mcp get` showing the error code twice on failed‑connection lines (for example `ENOENT: ENOENT: …`)"
+        },
+        {
+          "title": "プロキシブロック時の Remote Control セッション接続待ちバグ修正",
+          "description": "Fixed Remote Control sessions staying on \"Connecting\" for about two minutes when a network proxy blocks a startup request"
+        },
+        {
+          "title": "クラウド／Remote Control セッションメッセージがモバイルで自分のメッセージになるバグ修正",
+          "description": "Fixed messages that Claude sends to a cloud or Remote Control session appearing as your own message in the Claude mobile apps"
+        },
+        {
+          "title": "ディスク容量不足時のファイル添付失敗原因未通知バグ修正",
+          "description": "Fixed Claude not being told the cause when a file attached to a message sent over Remote Control or to a cloud session could not be saved because the disk was full, or that a message's attachments past the first 20 were left out"
+        },
+        {
+          "title": "WebFetch と WebSearch のタイムアウトハングアップ修正",
+          "description": "Fixed WebFetch and WebSearch hanging on a stalled response in Cowork cloud sessions; an unfinished request now fails after 300 seconds"
+        },
+        {
+          "title": "クラッシュ後のバックグラウンドセッション再起動バグ修正",
+          "description": "Fixed a background session that crashed between turns not being restarted while it was attached, pinned, or had a scheduled task or wake‑up set"
+        },
+        {
+          "title": "\"background service did not respond\" エラー提案文言修正",
+          "description": "Fixed the \"background service did not respond\" error suggesting the disabled `claude daemon restart`; it now suggests `claude daemon stop --any` and says it ends background sessions"
+        },
+        {
+          "title": "`claude respawn <id>` の起動順序バグ修正",
+          "description": "Fixed `claude respawn <id>` starting the background service before reporting that no background session matches the id"
+        },
+        {
+          "title": "`/effort` のプランモードでのキャッシュミス警告バグ修正",
+          "description": "Fixed `/effort` not warning about a prompt cache miss in plan mode when the plan model differs from the session model"
+        },
+        {
+          "title": "`/ide` の VS Code 拡張インストール状態誤表示バグ修正",
+          "description": "Fixed `/ide` saying the VS Code extension was installed before the install finished or when it failed"
+        },
+        {
+          "title": "Write ツールのプレビュー行スキップと隠し行カウントバグ修正",
+          "description": "Fixed the Write tool's file preview skipping rows and miscounting hidden lines when a line is wider than the terminal"
+        },
+        {
+          "title": "エージェントチャットタブでの ↑ 再送バグ修正",
+          "description": "Fixed ↑ in an agent's chat tab recalling a message that was still waiting to be delivered, so resending it sent a second copy"
+        },
+        {
+          "title": "Cowork クラウドセッションでのコネクタ・ツール喪失バグ修正",
+          "description": "Fixed Cowork cloud sessions losing their connectors and most tools after a restart when a plugin or your settings named an `agent`; Cowork cloud sessions now ignore that setting"
+        },
+        {
+          "title": "エージェントチームセッションのタスクリスト空表示バグ修正",
+          "description": "Fixed agent teams sessions showing an empty task list when coming back with `--resume`, `--continue`, `/resume` or `--session-id`, including after `/clear` or a crash, and `/branch` writing to the original session's list"
+        },
+        {
+          "title": "画像ファイル言及テキスト貼り付け時の添付・パス除去バグ修正",
+          "description": "Fixed pasting text that mentions an image file, such as `! open /tmp/shot.png` or `/review look at /tmp/shot.png`, attaching the image and dropping its path from the prompt"
+        },
+        {
+          "title": "フィードバックドラフトカードのショートカット表示バグ修正",
+          "description": "Fixed the feedback draft card showing its 1/2/0 and Esc shortcuts while the prompt has text, when those keys act on the prompt instead of the card"
+        },
+        {
+          "title": "単独バックスラッシュの消失バグ修正",
+          "description": "Fixed a lone backslash in quotes or brackets, like \"\\\"\" or \"(\\)\", disappearing from Claude's responses"
+        },
+        {
+          "title": "`DISABLE_COMPACT` 時のエージェント履歴コンパクトバグ修正",
+          "description": "Fixed agent teammates compacting their history when `DISABLE_COMPACT` is set"
+        },
+        {
+          "title": "`DISABLE_COMPACT` 時のリワインドメニュー項目バグ修正",
+          "description": "Fixed the rewind menu offering \"Summarize from here\" and \"Summarize up to here\" when `DISABLE_COMPACT` is set"
+        },
+        {
+          "title": "再起動時の `/code-review` 二重実行バグ修正",
+          "description": "Fixed a finished `/code-review`, or another skill that runs in a sub‑agent, running a second time when a cloud or background session restarts"
+        },
+        {
+          "title": "長時間思考がアイドル切れになるバグ修正",
+          "description": "Fixed long hidden thinking being cut off as idle on Google Vertex AI, Microsoft Foundry and Claude Platform on AWS, where the endpoint sends thinking progress updates"
+        },
+        {
+          "title": "`/ide` の JetBrains プラグイン未インストール誤表示バグ修正",
+          "description": "Fixed `/ide` saying it had installed the JetBrains plugin when nothing was installed"
+        },
+        {
+          "title": "Pro/Max ユーザーのサブスクライバーエラーメッセージ改善",
+          "description": "Fixed Claude Pro and Max subscribers being told to ask their admin when their subscription can't be used; the message now points to billing settings"
+        },
+        {
+          "title": "diff pane が自動で開くバグ修正",
+          "description": "Fixed the diff pane opening by itself af"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-27T01:55:12.182Z"
+}
