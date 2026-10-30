@@ -1,0 +1,99 @@
+{
+  "version": "2.1.314",
+  "tagName": "v2.1.314",
+  "publishedAt": "2026-10-30T01:06:26Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.314",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 4,
+    "改善": 15,
+    "その他": 37,
+    "バグ修正": 63
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`permissions.blockWritesOutsideWorkingDirectories` を追加しました: Write、Edit、NotebookEdit が作業ディレクトリ外のパスをすべての権限モードで拒否します",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイのアップストリームにオプションの `groups` リストを追加しました: 列挙された IdP グループの開発者だけがそのアップストリームに送られ、フェイルオーバー時も同様です",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイの Bedrock アップストリームに `guardrail_trace` を追加し、リクエストでどの Amazon Bedrock ガードレールフィルタが発火したか（マッチしたテキストは含まれません）をログに記録します",
+          "description": ""
+        },
+        {
+          "title": "VS Code と Claude Desktop の Code タブにアイドルコンパクションを追加しました: 200K トークン以上の会話がアイドル状態になると要約され、プロンプトキャッシュが期限切れの場合、次のメッセージで要約が使用されます",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "長時間のヘッドレスおよび SDK ターンで多数のサブエージェントを実行する際のメモリ使用量を改善しました: 親セッションはターンが終了するまで各サブエージェントのツール結果を保持しなくなりました",
+          "description": ""
+        },
+        {
+          "title": "プロンプト履歴を改善しました: Ctrl+R が折りたたまれた `[Pasted text]` ピル内のテキストにもマッチするようになりました",
+          "description": ""
+        },
+        {
+          "title": "`/design-sync` アップロードプロンプトを改善し、フォルダー、プロジェクト、アップロードまたは削除されるファイルを表示します",
+          "description": ""
+        },
+        {
+          "title": "`/permissions` レビュータブを改善し、名前を Recently blocked に変更しました: フッターに Esc キーでマークされた行に対して何が行われるかが表示されます",
+          "description": ""
+        },
+        {
+          "title": "オートモードのブロックされた呼び出しを改善しました: メッセージにコマンド名が表示され、Claude が再試行しオートモードが再チェックする旨と、`/permissions` で確認できることを示します",
+          "description": ""
+        },
+        {
+          "title": "権限プロンプトを改善しました: 長い理由文が少ない行数で表示されるため、承認対象のコマンドが画面外に出るのが端末数が減ります",
+          "description": ""
+        },
+        {
+          "title": "claude.ai ログインが拒否されたリクエストが再試行中に表示されるクラウドセッションエラーを改善し、`claude auth login` を提案するようになりました",
+          "description": ""
+        },
+        {
+          "title": "MDM とリモート設定で base URL または `apiKeyHelper` が異なる場合の、保存された claude.ai、Team、Enterprise ログインの動作を改善しました",
+          "description": ""
+        },
+        {
+          "title": "エージェントビューの `/config` を改善し、デフォルトでエージェントビューが開かないようにする方法を表示します",
+          "description": ""
+        },
+        {
+          "title": "セッションの自動タイトルを改善しました: `/security-review` のようなスキルやプロンプトベースのコマンドで開始されたセッションは、無題のままではなくそれに基づくタイトルが付与されます",
+          "description": ""
+        },
+        {
+          "title": "破損したトランスクリプトに対する `--resume` の速度とメモリ使用量を改善しました",
+          "description": ""
+        },
+        {
+          "title": "MCP ツールが1万個以上あるセッションで `/context` の速度を改善しました",
+          "description": ""
+        },
+        {
+          "title": "`/claude-api` スキルを更新しました: API トレース用の Datadog 設定がコンソールと同様に `dd-llmobs-enabled: true` ヘッダーを送信し、`ant` のインストール手順から古い macOS の `xattr` 手順を削除しました",
+          "description": ""
+        },
+        {
+          "title": "バンドルされた dataviz",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-30T02:29:14.687Z"
+}
