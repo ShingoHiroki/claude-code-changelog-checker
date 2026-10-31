@@ -1,0 +1,262 @@
+{
+  "version": "2.1.316",
+  "tagName": "v2.1.316",
+  "publishedAt": "2026-10-31T01:01:35Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.316",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 6,
+    "改善": 4,
+    "その他": 20,
+    "バグ修正": 24
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "2026年10月30日以降、Opus 4.8 の fast mode は非推奨となり、2026年11月30日に削除されます。削除後、Opus 4.8 の fast mode リクエストはエラーを返し、標準の Opus 4.8 にフォールバックしません。速度向上を維持するには Opus 5.5 に移行してください",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`CLAUDE_CODE_DISABLE_ULTRATHINK` を追加しました。これにより `ultrathink` キーワードがオフになります",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイにプールドグループ予算を追加しました。各メンバーの個別上限に加えて、グループ全体で共有する月次予算を設定できます。設定は spend limits admin API の `pooled_budget` で行います",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP` を追加しました。プライベート CA が必要とする、相互認証ループを構成するシステムクロス証明書を保持します",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_SUBAGENT_EFFORT` を追加しました。サブエージェントが明示的に指定されていない場合に、セッションから継承せずこの設定で実行レベルを決定します",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイに `managed.policy_mode: layered` を追加しました。開発者にマッチするすべてのポリシーが適用され、下位のポリシーの上にマージされます。最初のポリシーだけが適用されるのではありません",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイの Bedrock アップストリームに `guardrail.input_tagging` を追加しました。これにより、プロンプトが Amazon Bedrock ガードレールのプロンプト攻撃フィルタが必要とする input タグでラップされます。`all_messages_and_system` はシステムプロンプトにもタグを付与します",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Claude Desktop の Code タブやウェブから開始した `/code-review` を改良しました。クラウドおよび `claude remote-control` セッションでは、プレーンテキストリストではなく findings カードが表示されます",
+          "description": ""
+        },
+        {
+          "title": "大規模リポジトリでの `/diff` を改善しました。リフレッシュ時にフルリポジトリ git コマンドを1回減らし、git が遅い場合はリフレッシュ間隔を広げます",
+          "description": ""
+        },
+        {
+          "title": "`/ultrareview`（クラウドセッションまたはクラウドエージェント）が GitHub リモートを検出しない場合のメッセージを改善しました。https://github.com/new でリポジトリを作成するよう案内し、`gh` が拒否する `gh` コマンドの提案は行いません",
+          "description": ""
+        },
+        {
+          "title": "SSL 証明書エラーの表示を改善し、考えられる原因（例：中間証明書が欠落しているサーバ）とそれぞれの修正方法を明示します",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Self-hosted runner: Claude が作業中に送信されたメッセージが、セッションのプロセスが置き換えられた後に Stop で応答される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Self-hosted runner: セッションが新しいマシンに移動した際に、MCP サーバのオン/オフスイッチが失われることがある問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Windows: rc ファイルで errexit と pipefail を設定し、winpty エイリアスだけ、またはエイリアスが定義されていない場合に、Git Bash で Bash ツールがエイリアスや関数を失う問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`autoMode.allow` リストに `\"$defaults\"` が含まれない場合でも、スケジュールタスクプロンプトに対する組み込みルールが削除されないように auto mode を変更しました",
+          "description": ""
+        },
+        {
+          "title": "Team および Enterprise ログインのサーバ管理設定を変更しました。Anthropic の API から取得した設定は承認プロンプトなしで適用され、検証に失敗した保存コピーは拒否されます",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] チャットパネルから Claude apps ゲートウェイへサインインできるように追加しました。ターミナルは不要です",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] `ultrathink` が `xhigh` 努力レベルで実行され、ターミナルと同様にチャットボックスでレインボー表示されるよう変更しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] `opus[1m]` のようにモデル設定に `[1m]` タグが付いている場合に、Effort スライダー、Ultracode スイッチ、モデル名が欠落していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 設定ファイルにエラーがある間に保存された `/btw` のサイドクエリ履歴が早すぎるタイミングで削除されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] リロードまたは再起動後に、プランが「Yes, and manually approve edits」で承認された会話が Auto mode に戻る問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] クラウドセッションにフォームカードを追加しました。MCP サーバが要求するフォームに入力または拒否でき、リクエストが見えずにキャンセルされることがなくなります",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] 切り替えたクラウドまたは Remote Control セッションがメッセージの同期中であることを示す「Catching up…」行を追加しました",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] ネットワークシークレットの扱いを変更し、Enterprise メンバーが自分のクラウド環境で追加・削除できるようにしました。閲覧のみからの変更です",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] クラウドセッション用の Changes ペインを改善しました。リストが除外する内容のメモが、diff 上部の行ではなくブランチ名横のバッジとして表示されます",
+          "description": ""
+        },
+        {
+          "title": "[Cloud sessions] クラウドセッションの Files ペインで、Claude がディレクトリ変更後にフォルダーが ../.. パスで表示されていたファイル検索を修正しました。結果はプロジェクトルートからのパスで表示されます",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Claude が作成したキャンバスを同じ Slack チャンネルから編集・追記しようとした際、キャンバスが別チャンネルまたは DM に共有されていると拒否していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] 両組織が Claude をインストールし、Slack が返信を相手組織のアプリに配信した場合に、Slack Connect スレッドでタグなし返信が未回答になる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack 上のクラウドスケジュールドタスクのライブステータスチェックリストが途中で止まっていた問題を修正しました。実行中に上位メッセージを編集できるようになりました",
+          "description": ""
+        },
+        {
+          "title": "[Claude Tag] Slack チャンネルの「Respond automatically」スイッチを、チャンネル設定ページおよび Claude Tag 管理設定で「How Claude participates」オプションに変更しました",
+          "description": ""
+        },
+        {
+          "title": "[Code Review] Code Review 分析ページに severity 別 findings カードを追加しました。期間中の総 findings、severity 別に積み上げた日次チャート、各 severity の件数が表示されます",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "Claude Code が自動終了した際（例：認証が拒否された、クラウドセッションがアーカイブされた）に、macOS と Linux でシェルコマンドが残ってしまう問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Bash ツールのシェルで、値に改行を含むエイリアス（Git Bash 除く）や、名前がハイフンで始まる関数が文字化けまたは消失する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`SHELLOPTS` がエクスポートされている状態で Bash ツールから開始した bash スクリプトが最初のコマンドで停止していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "PowerShell フックが、型キャスト、`param`、`using`、属性で始まるコマンドの終了コード 2 でブロックしない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "圧縮レスポンスが途中で切れる、または破損した場合にネットワークリクエストがハングする問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Vertex AI と Amazon Bedrock 上の `sonnet`、`opus`、`haiku` が、最新モデルがアカウントまたはリージョンで利用できないときに、セッション中にエラーを表示して古いモデルに切り替わらない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Claude apps ゲートウェイが、リクエストで指定されたモデルを `availableModels`、`deniedModels`、`models` 全てでチェックしない問題を修正しました。ブロックされたモデルが指定された場合、フィールド名を示す 400 エラーが返ります",
+          "description": ""
+        },
+        {
+          "title": "`claude auth login` が、管理設定で Claude apps ゲートウェイが必要な場合に実行を拒否していた問題を修正しました。ターミナル上でゲートウェイのサインインが表示されます",
+          "description": ""
+        },
+        {
+          "title": "`--restricted` セッションで、Read 許可ルールがカバーしている場合に作業ディレクトリ外のファイルがアップロードされていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "見えない文字を含むプロンプトが送信に2回 Enter が必要だった問題を修正しました。通常のプロンプトは1回の Enter でクリーニングされ送信され、コマンドは引き続きレビュー待ちになります",
+          "description": ""
+        },
+        {
+          "title": "親サブエージェントのモデルを継承したサブエージェントが、バックグラウンドジョブやメッセージでウェイクされた際にメインモデルに切り替わっていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`autoMode.allow` リストに `\"$defaults\"` が無い場合に、ホストアプリの `--settings`、`/permissions` で追加された最初のルール、または `/auto-mode-setup` から組み込み例外が復元されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "自動モードがサーバから安全性判定が無いことによりターンを停止したとき、クラウドセッションとクラウドスケジュールドタスクが失敗としてマークされなかった問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`claude -p` のテキスト出力で、バックグラウンドエージェントが実行中でも自動モードがターンを停止した理由が表示されないことがあった問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "プロキシや実験ベータが無効な LLM ゲートウェイ背後で、ホストアプリ（例：Claude Desktop）から開始されたセッションで `CLAUDE_CODE_AUTO_MODE_SERVER=1` が無視されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "credential 名の環境変数が `1` などのスイッチ値に設定された際、プラグイン MCP の `headersHelper` スクリプトが破損した `CLAUDE_PLUGIN_ROOT` とサーバ URL を受け取っていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "SDK の `register_repo_root` 制御リクエストが作業ディレクトリ外のディレクトリの CLAUDE.md をロードしなかった問題を、`CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` で修正しました",
+          "description": ""
+        },
+        {
+          "title": "Artifact ツールが `self` レベルのアーティファクトデータベースアクセスルールで `?` を表示し、削除される再公開を拒否した際にそのルールを引用しない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/model <id>` が、このバージョンで認識されていないモデルでも警告を出さず、auto-compact が 200K コンテキストウィンドウと仮定していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "\"\\\"hold space to speak\\\" ヒントが 1 セッションで 3 回表示された後に使い切れ、push-to-talk が未割り当ての場合に空キーが表示される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "検索プロセスがタイムアウトで kill されても終了せず、Grep と Glob が返らない問題（Windows で確認）を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/clear` または `/resume` が実行中に会話の一部が保存中だった場合に、会話を再開してもプランが復元されない稀なケースを修正しました",
+          "description": ""
+        },
+        {
+          "title": "初回セットアップ時に、狭い端末でセキュリティノートと terminal-setup の説明文が欠落していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Enterprise アンケートカードが、",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-10-31T02:09:44.739Z"
+}
