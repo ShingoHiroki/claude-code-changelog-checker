@@ -109,6 +109,8 @@ DRY_RUN=true npm run check
 
 ## しくみ
 
+構成図（Mermaid / SVG）は [ARCHITECTURE.md](ARCHITECTURE.md) を参照。
+
 ```
 GitHub Releases API
        ↓ 最新バージョン取得
@@ -132,6 +134,8 @@ state/last-version.txt・docs/data/ を更新・コミット → GitHub Pages �
 ## ファイル構成
 
 ```
+ARCHITECTURE.md                        - 構成図（Mermaid 概要図・詳細図）
+assets/                                - 構成図の SVG 画像・HTML 版
 scripts/check-and-notify.mjs           - メイン処理スクリプト（検知・翻訳・通知・サイトデータ書き出し）
 scripts/lib/changelog-core.mjs         - 共通ロジック（取得・分類・翻訳・サイトデータ生成）
 scripts/backfill-site-data.mjs         - 過去リリースの一括翻訳（初回のみ・再実行可能）
