@@ -1,0 +1,451 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Changelog Checker 構成図</title>
+<style>
+  :root {
+    --bg: #f5f5f7;
+    --bg-grad: radial-gradient(1200px 600px at 80% -10%, rgba(224, 81, 143, 0.07), transparent 60%);
+    --ink: #1d1d1f;
+    --muted: #6e6e73;
+    --card: #ffffff;
+    --group: #fafafc;
+    --pill: #f0f0f3;
+    --line: #e2e2e7;
+    --line2: #d8d8de;
+    --arrow: #86868b;
+    --accent: #e0518f;
+    --slack: #4a154b;
+    --num-text: #ffffff;
+    --chip-bg: rgba(255, 255, 255, 0.72);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101014;
+      --bg-grad: radial-gradient(1200px 600px at 80% -10%, rgba(242, 127, 178, 0.06), transparent 60%);
+      --ink: #f5f5f7;
+      --muted: #98989f;
+      --card: #1c1c21;
+      --group: #17171c;
+      --pill: #26262c;
+      --line: #2e2e35;
+      --line2: #3a3a42;
+      --arrow: #8e8e95;
+      --accent: #f27fb2;
+      --slack: #d29ddb;
+      --num-text: #101014;
+      --chip-bg: rgba(28, 28, 33, 0.72);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101014;
+    --bg-grad: radial-gradient(1200px 600px at 80% -10%, rgba(242, 127, 178, 0.06), transparent 60%);
+    --ink: #f5f5f7;
+    --muted: #98989f;
+    --card: #1c1c21;
+    --group: #17171c;
+    --pill: #26262c;
+    --line: #2e2e35;
+    --line2: #3a3a42;
+    --arrow: #8e8e95;
+    --accent: #f27fb2;
+    --slack: #d29ddb;
+    --num-text: #101014;
+    --chip-bg: rgba(28, 28, 33, 0.72);
+  }
+
+  body {
+    background: var(--bg-grad), var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Segoe UI", sans-serif;
+    line-height: 1.7;
+    margin: 0;
+  }
+  main { max-width: 1020px; margin: 0 auto; padding: 56px 28px 88px; }
+
+  .eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+    color: var(--accent); margin: 0 0 10px;
+  }
+  h1 {
+    font-size: clamp(28px, 4.5vw, 40px); font-weight: 700; letter-spacing: -0.02em;
+    margin: 0 0 14px; text-wrap: balance;
+  }
+  .lede { color: var(--muted); font-size: 15.5px; max-width: 40em; margin: 0 0 22px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; padding: 0; list-style: none; }
+  .chips li {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--chip-bg); border: 1px solid var(--line);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-radius: 999px; padding: 5px 14px; font-size: 12.5px; font-weight: 500;
+  }
+  .chips .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+
+  section { margin-top: 64px; }
+  h2 {
+    font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 6px;
+  }
+  .section-sub { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
+
+  figure {
+    margin: 0;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 24px;
+    overflow-x: auto;
+  }
+  figure svg { display: block; min-width: 760px; max-width: 100%; height: auto; margin: 0 auto; }
+  figcaption { font-size: 12.5px; color: var(--muted); margin-top: 14px; }
+
+  ol.steps { margin: 26px 0 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 10px; }
+  ol.steps li { counter-increment: step; display: flex; gap: 14px; align-items: baseline; font-size: 14.5px; }
+  ol.steps li::before {
+    content: counter(step);
+    flex: none; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--ink); color: var(--num-text);
+    font-size: 12.5px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    transform: translateY(4px);
+  }
+  ol.steps b { font-weight: 600; }
+  ol.steps .who { color: var(--muted); }
+
+  .notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 26px; }
+  .note-card {
+    background: var(--chip-bg); border: 1px solid var(--line); border-radius: 16px;
+    padding: 18px 20px;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .note-card h3 { margin: 0 0 8px; font-size: 14.5px; font-weight: 600; }
+  .note-card p { margin: 0; font-size: 13px; color: var(--muted); }
+
+  table { border-collapse: collapse; width: 100%; margin-top: 20px; font-size: 13.5px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  th { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; color: var(--muted); }
+  td:first-child { font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace; font-size: 12.5px; white-space: nowrap; }
+  td:last-child { color: var(--muted); }
+  .table-wrap { overflow-x: auto; }
+
+  code { font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace; font-size: 0.92em; background: var(--pill); border-radius: 6px; padding: 1px 6px; }
+
+  footer { margin-top: 72px; font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+
+  /* ---- diagram (inline SVG) ---- */
+  .d-card { fill: var(--card); stroke: var(--line2); stroke-width: 1.2; }
+  .d-group { fill: var(--group); stroke: var(--line2); stroke-width: 1.4; }
+  .d-pill { fill: var(--pill); stroke: var(--line); stroke-width: 1; }
+  .d-note { fill: var(--card); stroke: var(--arrow); stroke-width: 1.2; stroke-dasharray: 5 4; }
+  .d-cap { font-size: 12px; font-weight: 600; fill: var(--muted); letter-spacing: 1px; }
+  .d-title { font-size: 15.5px; font-weight: 600; fill: var(--ink); }
+  .d-sub { font-size: 12px; fill: var(--muted); }
+  .d-small { font-size: 12px; fill: var(--ink); }
+  .d-lbl { font-size: 12px; fill: var(--muted); }
+  .d-arrow { stroke: var(--arrow); stroke-width: 2; fill: none; }
+  .d-dash { stroke: var(--arrow); stroke-width: 2; fill: none; stroke-dasharray: 6 5; }
+  .d-mk { fill: var(--arrow); }
+  .d-numc { fill: var(--ink); }
+  .d-numt { font-size: 12px; font-weight: 700; fill: var(--num-text); text-anchor: middle; }
+  .dot-gh { fill: var(--ink); }
+  .dot-slack { fill: var(--slack); }
+</style>
+
+<main>
+  <header>
+    <p class="eyebrow">GITHUB ACTIONS PIPELINE</p>
+    <h1>Changelog Checker 構成図</h1>
+    <p class="lede">Claude Code（<code>@anthropic-ai/claude-code</code>）の新バージョンを検知し、リリースノートを「さくらのAI Engine」で日本語翻訳して Discord / Slack に通知、GitHub Pages で公開するまでの全体構成。</p>
+    <ul class="chips">
+      <li><span class="dot" style="background:#1f6feb"></span>GitHub Actions</li>
+      <li><span class="dot" style="background:#e0518f"></span>さくらのAI Engine（gpt-oss-120b）</li>
+      <li><span class="dot" style="background:#5865f2"></span>Discord Webhook</li>
+      <li><span class="dot" style="background:var(--slack)"></span>Slack Webhook</li>
+      <li><span class="dot" style="background:#2da44e"></span>GitHub Pages</li>
+    </ul>
+  </header>
+
+  <section>
+    <h2>概要</h2>
+    <p class="section-sub">スケジュール実行を起点に、外部サービスとどう連携するかの全体像。</p>
+    <figure>
+      <svg viewBox="0 90 1160 630" role="img" aria-label="概要構成図: cron または手動実行で GitHub Actions が起動し、GitHub Releases API から新バージョンを取得、さくらのAI Engine で翻訳し、Discord と Slack に通知、docs/data に書き出して GitHub Pages に公開する">
+        <defs>
+          <marker id="arrow-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" class="d-mk"/>
+          </marker>
+        </defs>
+        <rect x="330" y="110" width="500" height="100" rx="16" class="d-card"/>
+        <text x="350" y="138" class="d-cap">トリガー</text>
+        <rect x="350" y="150" width="225" height="44" rx="22" class="d-pill"/>
+        <text x="462" y="177" class="d-small" text-anchor="middle">cron · JST 8:00 / 12:00 / 18:00</text>
+        <rect x="590" y="150" width="225" height="44" rx="22" class="d-pill"/>
+        <text x="702" y="177" class="d-small" text-anchor="middle">workflow_dispatch（手動）</text>
+
+        <path class="d-arrow" marker-end="url(#arrow-a)" d="M580,210 L580,246"/>
+
+        <rect x="330" y="250" width="500" height="110" rx="16" class="d-card"/>
+        <circle cx="358" cy="284" r="6" fill="#1f6feb"/>
+        <text x="374" y="290" class="d-title">GitHub Actions — check-and-notify.mjs</text>
+        <text x="374" y="320" class="d-sub">check-changelog.yml が実行 · 検知・翻訳・通知・サイトデータ書き出し</text>
+
+        <rect x="40" y="255" width="240" height="90" rx="16" class="d-card"/>
+        <circle cx="68" cy="289" r="6" class="dot-gh"/>
+        <text x="84" y="295" class="d-title">GitHub Releases API</text>
+        <text x="84" y="320" class="d-sub">@anthropic-ai/claude-code</text>
+        <path class="d-arrow" marker-end="url(#arrow-a)" d="M330,295 L286,295"/>
+        <circle cx="308" cy="295" r="12" class="d-numc"/>
+        <text x="308" y="299.5" class="d-numt">1</text>
+
+        <rect x="880" y="255" width="240" height="90" rx="16" class="d-card"/>
+        <circle cx="908" cy="289" r="6" fill="#e0518f"/>
+        <text x="924" y="295" class="d-title">さくらのAI Engine</text>
+        <text x="924" y="320" class="d-sub">gpt-oss-120b · OpenAI 互換 API</text>
+        <path class="d-arrow" marker-end="url(#arrow-a)" d="M830,295 L874,295"/>
+        <circle cx="852" cy="295" r="12" class="d-numc"/>
+        <text x="852" y="299.5" class="d-numt">3</text>
+
+        <rect x="40" y="400" width="240" height="80" rx="16" class="d-card"/>
+        <circle cx="68" cy="430" r="6" fill="#8e8e93"/>
+        <text x="84" y="436" class="d-title">state/last-version.txt</text>
+        <text x="84" y="460" class="d-sub">前回検知バージョンを記録</text>
+        <path class="d-arrow" marker-end="url(#arrow-a)" d="M400,360 L400,420 L286,420"/>
+        <circle cx="400" cy="392" r="12" class="d-numc"/>
+        <text x="400" y="396.5" class="d-numt">2</text>
+
+        <rect x="330" y="440" width="235" height="90" rx="16" class="d-card"/>
+        <circle cx="358" cy="474" r="6" fill="#5865f2"/>
+        <text x="374" y="480" class="d-title">Discord</text>
+        <text x="374" y="505" class="d-sub">Embed で全件通知</text>
+        <path class="d-arrow" marker-end="url(#arrow-a)" d="M470,360 L470,434"/>
+        <circle cx="470" cy="397" r="12" class="d-numc"/>
+        <text x="470" y="401.5" class="d-numt">4</text>
+
+        <rect x="595" y="440" width="235" height="90" rx="16" class="d-card"/>
+        <circle cx="623" cy="474" r="6" class="dot-slack"/>
+        <text x="639" y="480" class="d-title">Slack（任意）</text>
+        <text x="639" y="505" class="d-sub">Block Kit でコンパクト通知</text>
+        <path class="d-arrow" marker-end="url(#arrow-a)" d="M700,360 L700,434"/>
+        <circle cx="700" cy="397" r="12" class="d-numc"/>
+        <text x="700" y="401.5" class="d-numt">4</text>
+
+        <rect x="880" y="400" width="240" height="80" rx="16" class="d-card"/>
+        <circle cx="908" cy="430" r="6" fill="#8e8e93"/>
+        <text x="924" y="436" class="d-title">docs/data/*.json</text>
+        <text x="924" y="460" class="d-sub">翻訳済みリリースデータ</text>
+        <path class="d-arrow" marker-end="url(#arrow-a)" d="M830,352 L1000,352 L1000,394"/>
+        <circle cx="1000" cy="373" r="12" class="d-numc"/>
+        <text x="1000" y="377.5" class="d-numt">5</text>
+
+        <rect x="440" y="590" width="500" height="110" rx="16" class="d-card"/>
+        <circle cx="468" cy="624" r="6" fill="#2da44e"/>
+        <text x="484" y="630" class="d-title">GitHub Pages（公開サイト）</text>
+        <text x="484" y="655" class="d-sub">main ブランチの /docs を配信 · 翻訳済みリリースノートをバージョン別に閲覧</text>
+        <text x="484" y="676" class="d-sub">通知メッセージから該当バージョンページへリンク</text>
+        <path class="d-arrow" marker-end="url(#arrow-a)" d="M1000,480 L1000,645 L946,645"/>
+        <circle cx="1000" cy="560" r="12" class="d-numc"/>
+        <text x="1000" y="564.5" class="d-numt">6</text>
+
+        <path class="d-dash" marker-end="url(#arrow-a)" d="M447,530 L447,584"/>
+        <path class="d-dash" marker-end="url(#arrow-a)" d="M712,530 L712,584"/>
+      </svg>
+      <figcaption>点線 = 通知メッセージ内の公開サイトへのリンク。番号は下の処理順に対応。</figcaption>
+    </figure>
+
+    <ol class="steps">
+      <li><div><b>最新バージョン取得</b> <span class="who">— GitHub Releases API から最新・未取得リリースを取得する</span></div></li>
+      <li><div><b>前回バージョンと比較</b> <span class="who">— <code>state/last-version.txt</code> と比較し、差分がなければ終了する</span></div></li>
+      <li><div><b>日本語翻訳</b> <span class="who">— さくらのAI Engine（gpt-oss-120b）でカテゴリ別本文を翻訳する</span></div></li>
+      <li><div><b>Webhook 通知</b> <span class="who">— Discord は Embed で全件、Slack は Block Kit でサマリーのみ。失敗時はプレーンテキストにフォールバックする</span></div></li>
+      <li><div><b>サイトデータ書き出し</b> <span class="who">— 構造化翻訳を <code>docs/data/&lt;version&gt;.json</code> に出力する</span></div></li>
+      <li><div><b>commit / push</b> <span class="who">— state と <code>docs/data/</code> をコミットバックし、GitHub Pages に自動反映される</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>詳細</h2>
+    <p class="section-sub">分類・翻訳の2系統、フォールバック、DRY_RUN / force_notify、バックフィルまで含めた処理フロー。</p>
+    <figure>
+      <svg viewBox="0 95 1160 1385" role="img" aria-label="詳細構成図: GitHub Actions ジョブ内でリリース取得、差分チェック、分類、通知用翻訳、Discord と Slack への通知、サイト用構造化翻訳、サイトデータ書き出し、コミットの順に処理し、GitHub Pages で公開する。DRY_RUN とバックフィルの補助フローを含む">
+        <defs>
+          <marker id="arrow-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" class="d-mk"/>
+          </marker>
+        </defs>
+
+        <rect x="40" y="110" width="250" height="80" rx="16" class="d-card"/>
+        <circle cx="66" cy="140" r="6" fill="#8e8e93"/>
+        <text x="82" y="146" class="d-title">cron スケジュール</text>
+        <text x="82" y="170" class="d-sub">JST 8:00 / 12:00 / 18:00</text>
+
+        <rect x="320" y="110" width="310" height="80" rx="16" class="d-card"/>
+        <circle cx="346" cy="140" r="6" fill="#8e8e93"/>
+        <text x="362" y="146" class="d-title">workflow_dispatch（手動）</text>
+        <text x="362" y="170" class="d-sub">force_notify: true → last-version を 0.0.0 に</text>
+
+        <rect x="850" y="110" width="270" height="120" rx="16" class="d-card"/>
+        <text x="876" y="140" class="d-cap">GITHUB SECRETS</text>
+        <text x="876" y="163" class="d-sub">SAKURA_AI_TOKEN（必須・翻訳用）</text>
+        <text x="876" y="184" class="d-sub">DISCORD_WEBHOOK_URL（必須）</text>
+        <text x="876" y="205" class="d-sub">SLACK_WEBHOOK_URL（任意）</text>
+        <text x="876" y="220" class="d-sub" font-size="11">GITHUB_TOKEN は Actions が自動発行</text>
+
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M165,190 L165,264"/>
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M475,190 L475,264"/>
+        <path class="d-dash" marker-end="url(#arrow-b)" d="M850,170 L770,170 L770,264"/>
+
+        <rect x="40" y="270" width="780" height="1020" rx="20" class="d-group"/>
+        <text x="70" y="302" class="d-cap">GITHUB ACTIONS ジョブ — CHECK-CHANGELOG.YML</text>
+        <text x="70" y="324" class="d-sub">scripts/check-and-notify.mjs（共通ロジック: scripts/lib/changelog-core.mjs）</text>
+
+        <rect x="90" y="350" width="520" height="72" rx="14" class="d-card"/>
+        <circle cx="116" cy="378" r="6" fill="#1f6feb"/>
+        <text x="132" y="384" class="d-title">リリース取得</text>
+        <text x="132" y="407" class="d-sub">最新・未取得リリースを取得（GITHUB_TOKEN でレート制限緩和）</text>
+
+        <rect x="850" y="350" width="270" height="80" rx="16" class="d-card"/>
+        <circle cx="876" cy="380" r="6" class="dot-gh"/>
+        <text x="892" y="386" class="d-title">GitHub Releases API</text>
+        <text x="892" y="410" class="d-sub">@anthropic-ai/claude-code</text>
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M610,386 L844,386"/>
+
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M350,422 L350,448"/>
+
+        <rect x="90" y="452" width="400" height="72" rx="14" class="d-card"/>
+        <circle cx="116" cy="480" r="6" fill="#1f6feb"/>
+        <text x="132" y="486" class="d-title">差分チェック</text>
+        <text x="132" y="509" class="d-sub">state/last-version.txt と比較</text>
+        <rect x="560" y="468" width="180" height="40" rx="20" class="d-pill"/>
+        <text x="650" y="493" class="d-small" text-anchor="middle">差分なし → 終了</text>
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M490,488 L554,488"/>
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M290,524 L290,550"/>
+        <text x="304" y="543" class="d-lbl">差分あり（古い順に処理）</text>
+
+        <rect x="90" y="554" width="520" height="84" rx="14" class="d-card"/>
+        <circle cx="116" cy="582" r="6" fill="#1f6feb"/>
+        <text x="132" y="588" class="d-title">categorizeAndGroup() — 分類</text>
+        <text x="132" y="610" class="d-sub">破壊的変更 / 新機能 / 改善 / その他 / バグ修正 の5カテゴリ</text>
+        <text x="132" y="628" class="d-sub">件数サマリーは英語分類から算出（翻訳に依存しない）</text>
+
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M350,638 L350,664"/>
+
+        <rect x="90" y="668" width="520" height="72" rx="14" class="d-card"/>
+        <circle cx="116" cy="696" r="6" fill="#e0518f"/>
+        <text x="132" y="702" class="d-title">translateToJapanese() — 通知用翻訳</text>
+        <text x="132" y="725" class="d-sub">カテゴリ別本文を日本語へ翻訳</text>
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M610,704 L985,704 L985,784"/>
+
+        <rect x="850" y="790" width="270" height="100" rx="16" class="d-card"/>
+        <circle cx="876" cy="820" r="6" fill="#e0518f"/>
+        <text x="892" y="826" class="d-title">さくらのAI Engine</text>
+        <text x="892" y="850" class="d-sub">gpt-oss-120b · OpenAI 互換 API</text>
+        <text x="892" y="871" class="d-sub">無料枠: Chat Completions 月3,000回</text>
+
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M217,740 L217,764"/>
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M487,740 L487,764"/>
+
+        <rect x="90" y="770" width="255" height="110" rx="14" class="d-card"/>
+        <circle cx="116" cy="800" r="6" fill="#5865f2"/>
+        <text x="132" y="806" class="d-title">Discord Webhook</text>
+        <text x="132" y="829" class="d-sub">Embed: 件数サマリー + 全件掲載</text>
+        <text x="132" y="849" class="d-sub">上限超過時は field / Embed 分割</text>
+
+        <rect x="365" y="770" width="245" height="110" rx="14" class="d-card"/>
+        <circle cx="391" cy="800" r="6" class="dot-slack"/>
+        <text x="407" y="806" class="d-title">Slack Webhook（任意）</text>
+        <text x="407" y="829" class="d-sub">Block Kit: サマリー + サイトリンク</text>
+        <text x="407" y="849" class="d-sub">未設定時はスキップ</text>
+
+        <rect x="90" y="896" width="520" height="40" rx="12" class="d-note"/>
+        <text x="350" y="921" class="d-sub" text-anchor="middle">送信失敗時はプレーンテキストにフォールバック</text>
+
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M350,936 L350,962"/>
+        <text x="364" y="956" class="d-lbl">通知成功後</text>
+
+        <rect x="90" y="966" width="520" height="84" rx="14" class="d-card"/>
+        <circle cx="116" cy="994" r="6" fill="#e0518f"/>
+        <text x="132" y="1000" class="d-title">translateToStructuredJapanese() — サイト用翻訳</text>
+        <text x="132" y="1022" class="d-sub">各項目を title / description に分けた構造化 JSON（+1 リクエスト）</text>
+        <text x="132" y="1040" class="d-sub">通知用の行翻訳とは別系統</text>
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M610,1008 L985,1008 L985,896"/>
+
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M350,1050 L350,1076"/>
+
+        <rect x="90" y="1080" width="520" height="84" rx="14" class="d-card"/>
+        <circle cx="116" cy="1108" r="6" fill="#1f6feb"/>
+        <text x="132" y="1114" class="d-title">サイトデータ書き出し</text>
+        <text x="132" y="1136" class="d-sub">docs/data/&lt;version&gt;.json を出力</text>
+        <text x="132" y="1154" class="d-sub">rebuildVersionsIndex() で versions.json をフルスキャン再生成</text>
+
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M350,1164 L350,1190"/>
+
+        <rect x="90" y="1194" width="520" height="72" rx="14" class="d-card"/>
+        <circle cx="116" cy="1222" r="6" class="dot-gh"/>
+        <text x="132" y="1228" class="d-title">commit / push（github-actions[bot]）</text>
+        <text x="132" y="1251" class="d-sub">state/last-version.txt と docs/data/ をコミットバック</text>
+
+        <rect x="850" y="1080" width="270" height="120" rx="16" class="d-note"/>
+        <text x="876" y="1110" class="d-cap">DRY_RUN=true のとき</text>
+        <text x="876" y="1134" class="d-sub">Webhook 送信・state 更新・書き出しなし</text>
+        <text x="876" y="1155" class="d-sub">Discord / Slack 用 JSON ペイロードを</text>
+        <text x="876" y="1173" class="d-sub">stdout に出力（動作確認用）</text>
+        <path class="d-dash" marker-end="url(#arrow-b)" d="M820,1140 L844,1140"/>
+
+        <rect x="40" y="1340" width="780" height="130" rx="20" class="d-group"/>
+        <text x="70" y="1372" class="d-cap">公開サイト — GITHUB PAGES（MAIN ブランチ /DOCS 配信）</text>
+        <circle cx="78" cy="1404" r="6" fill="#2da44e"/>
+        <text x="94" y="1410" class="d-title">docs/ 静的 SPA — ハッシュルーティング #/&lt;version&gt;</text>
+        <text x="94" y="1436" class="d-sub">data/versions.json（左メニュー一覧）+ data/&lt;version&gt;.json（詳細）を fetch して描画 · 依存ゼロ / ビルド不要</text>
+        <path class="d-arrow" marker-end="url(#arrow-b)" d="M350,1266 L350,1334"/>
+        <text x="366" y="1308" class="d-lbl">push → Pages 自動反映（CDN 反映まで数分）</text>
+
+        <rect x="850" y="1340" width="270" height="130" rx="16" class="d-card"/>
+        <circle cx="876" cy="1370" r="6" fill="#8e8e93"/>
+        <text x="892" y="1376" class="d-title">backfill-site-data.mjs</text>
+        <text x="876" y="1401" class="d-sub">過去リリースの一括翻訳</text>
+        <text x="876" y="1421" class="d-sub">初回のみ・ローカル実行 / 再実行可能</text>
+        <text x="876" y="1441" class="d-sub">--limit / --force / --dry-run</text>
+        <path class="d-dash" marker-end="url(#arrow-b)" d="M850,1405 L826,1405"/>
+        <path class="d-dash" marker-end="url(#arrow-b)" d="M1120,1380 L1142,1380 L1142,840 L1126,840"/>
+      </svg>
+      <figcaption>実線 = メインフロー / 点線 = 補足・任意・初回のみの流れ。翻訳（ピンク）はさくらのAI Engine への API リクエスト。</figcaption>
+    </figure>
+
+    <div class="notes">
+      <div class="note-card">
+        <h3>翻訳は2系統</h3>
+        <p>通知用の行翻訳（<code>translateToJapanese()</code>）とサイト用の構造化翻訳（<code>translateToStructuredJapanese()</code>）は別リクエスト。件数サマリーは翻訳前の英語分類から算出する。</p>
+      </div>
+      <div class="note-card">
+        <h3>通知の順序と整合性</h3>
+        <p>複数バージョンを検知した場合は古い順にバージョンごと個別通知。全リリースの通知成功後に state 更新とサイトデータのコミットを行う。</p>
+      </div>
+      <div class="note-card">
+        <h3>サイトリンクの導出</h3>
+        <p>通知に載せる公開サイト URL は <code>SITE_URL</code> → <code>GITHUB_REPOSITORY</code> の順で導出。導出できない場合はリンクを省略する。</p>
+      </div>
+      <div class="note-card">
+        <h3>初回バックフィル</h3>
+        <p><code>npm run backfill</code> で過去リリースの <code>docs/data/*.json</code> を一括生成。生成済みはスキップされるため中断・再実行に強い。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>主要ファイル</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>パス</th><th>役割</th></tr></thead>
+        <tbody>
+          <tr><td>scripts/check-and-notify.mjs</td><td>メイン処理（検知・翻訳・通知・サイトデータ書き出し）</td></tr>
+          <tr><td>scripts/lib/changelog-core.mjs</td><td>共通ロジック（副作用のない関数のみ）</td></tr>
+          <tr><td>scripts/backfill-site-data.mjs</td><td>過去リリースの一括翻訳（初回のみ）</td></tr>
+          <tr><td>state/last-version.txt</td><td>最後に検知したバージョンの記録</td></tr>
+          <tr><td>docs/ + docs/data/</td><td>GitHub Pages 用静的 SPA と翻訳済みデータ</td></tr>
+          <tr><td>.github/workflows/check-changelog.yml</td><td>毎日 JST 8:00 / 12:00 / 18:00 に自動実行</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>claude-code-changelog-checker — Anthropic API キー不要。翻訳はさくらのAI Engine（無料枠: Chat Completions 月3,000リクエスト）で動作する。</footer>
+</main>
