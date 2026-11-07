@@ -1,0 +1,261 @@
+{
+  "version": "2.1.319",
+  "tagName": "v2.1.319",
+  "publishedAt": "2026-11-06T17:04:01Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.319",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 15,
+    "改善": 13,
+    "その他": 41,
+    "バグ修正": 76
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "Removed `shortcuts_list` and `shortcuts_execute`, which listed and started shortcuts saved in the extension, from Claude Code's built-in Claude in Chrome tools",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Added support for MCP tasks in the terminal: when an MCP server runs a tool call as a task, Claude Code moves it to the background right away and tells Claude the result when it finishes",
+          "description": ""
+        },
+        {
+          "title": "Added the `CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND` environment variable to make Claude Code wait for an MCP task inside its tool call instead of moving it to the background right away",
+          "description": ""
+        },
+        {
+          "title": "Added `permissions.denyInsteadOfPrompting` setting: a tool call that would wait on a permission prompt is denied and the turn continues, in terminal sessions, subagents and teammates",
+          "description": ""
+        },
+        {
+          "title": "Added `/claude-api latency-optimize` to find where your Claude API code makes people wait and try faster settings against your eval",
+          "description": ""
+        },
+        {
+          "title": "Added the `CLAUDE_CODE_DISABLE_FEATURE_FLAGS` environment variable, which stops feature-flag fetching without turning off telemetry; every flag then uses its built-in default",
+          "description": ""
+        },
+        {
+          "title": "Added spend for today, this week and this month to `/usage` for developers behind a Claude apps gateway who have no spend limit, when the gateway runs this version or later",
+          "description": ""
+        },
+        {
+          "title": "Added `admin.pooled_conflict_rule` and `admin.pooled_priority_order` to the Claude apps gateway, to set which pooled group budget pays first for a developer in several groups",
+          "description": ""
+        },
+        {
+          "title": "Added an optional `login_notice` setting to the Claude apps gateway that shows an operator-defined message on the gateway's browser verification page and on Claude Code's sign-in screen",
+          "description": ""
+        },
+        {
+          "title": "Added `CLAUDE_GATEWAY_LOG_FORMAT=json` to the Claude apps gateway: operational log lines become JSON with `severity`, `time` and `message`, for log collectors that read the level from a field",
+          "description": ""
+        },
+        {
+          "title": "Added a Claude apps gateway boot warning for a case where another policy's `availableModels` also allows a custom model id that one policy lists by name",
+          "description": ""
+        },
+        {
+          "title": "Added start-up warnings to the Claude apps gateway for policies with no `desktopHome` that rely on `coworkTabEnabled: false` or `chatSessionRetentionDays`, ahead of Claude Desktop's November 10 change",
+          "description": ""
+        },
+        {
+          "title": "Added a warning when your claude.ai login ends and Claude Code continues on the sign-in from `ant auth login`, which bills usage to your Claude Console organization",
+          "description": ""
+        },
+        {
+          "title": "Added a line at startup naming the Claude Console organization that is billed in a case where Claude Code uses the sign-in from `ant auth login`",
+          "description": ""
+        },
+        {
+          "title": "Added an \"Earlier in this session\" row to `/tasks` that lists finished subagents, so you can reopen one and message it even after it leaves the list or you restart",
+          "description": ""
+        },
+        {
+          "title": "Added a note to `/loop` confirmations in cloud sessions that a timer stops with its container, with an offer of a loop that survives",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Improved config saves on Windows: Claude Code waits longer for a file another program has open, so a kill during a save is less likely to leave `~/.claude.json` empty",
+          "description": ""
+        },
+        {
+          "title": "Improved Claude in Chrome after a brief disconnect: it waits up to 6 seconds for the session's own browser to return before picking another",
+          "description": ""
+        },
+        {
+          "title": "Improved Claude in Chrome: `javascript_tool` results of up to 60,000 characters now stay in the conversation instead of being saved to a file",
+          "description": ""
+        },
+        {
+          "title": "Improved `claude purge` and the clean-up of old sessions to retry a folder that could not be fully deleted, and to report it as an error if it remains",
+          "description": ""
+        },
+        {
+          "title": "Improved the refusal for a path outside the working directories on macOS and Windows: when only its letter case differs from a path inside them, the message names that spelling",
+          "description": ""
+        },
+        {
+          "title": "Improved the contrast of faint gray secondary text, such as hints, details in `/stats`, `/model` and `/sandbox`, and rejected-action messages",
+          "description": ""
+        },
+        {
+          "title": "Improved the artifact database error when an update targets a document that does not exist, and when the service pauses repeated refused writes",
+          "description": ""
+        },
+        {
+          "title": "Improved the Claude apps gateway's warnings about a failed upstream call: each now names the upstream, not only its provider",
+          "description": ""
+        },
+        {
+          "title": "Improved the Claude apps gateway's spend limit error: it reads \"spend limit reached · resets Dec 1\", then `admin.blocked_message` if one is set",
+          "description": ""
+        },
+        {
+          "title": "Improved the `/model` picker: older models are now grouped under a \"More models\" row instead of being listed after the current ones",
+          "description": ""
+        },
+        {
+          "title": "Improved `/context` at the terminal so the table Claude reads stays short: each list keeps its 10 largest rows, and MCP tools that load on demand share one row per server until they're called",
+          "description": ""
+        },
+        {
+          "title": "Improved `/usage` in cloud sessions: it now links to Settings → Usage on claude.ai in a case where plan limits can't be shown",
+          "description": ""
+        },
+        {
+          "title": "Updated `/claude-api managed-agents-onboard` templates to match the Claude Console: removed Performance tuner, renamed two, and turned off web search and fetch in five whose prompts don't use them",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Changed auto mode with telemetry or feature flags off, including behind LLM gateways: calls the server can't check are asked about or denied, with no fallback to the built-in classifier; set `CLAUDE_CODE_AUTO_MODE_SERVER=0` to keep using it (Bedrock, Vertex and Foundry are unchanged)",
+          "description": ""
+        },
+        {
+          "title": "Changed auto mode behind an LLM gateway: `CLAUDE_CODE_AUTO_MODE_SERVER=1` turns on the server-side check even with `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` set; if managed settings set the latter, they must set the `1` too",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Improved the confirmation for removing a plugin marketplace: it now checks which of its plugins are installed at that moment",
+          "description": ""
+        },
+        {
+          "title": "Changed MCP tasks to work in the terminal without feature-flag fetching (Bedrock, Vertex, Foundry, LLM gateways, `DISABLE_TELEMETRY`); set `CLAUDE_CODE_DISABLE_MCP_TASKS=1` to turn them off",
+          "description": ""
+        },
+        {
+          "title": "Changed auto mode so that a project's settings files or a plugin can no longer switch its server-side check back on once you have switched it off outside the project",
+          "description": ""
+        },
+        {
+          "title": "Changed Monitor's WebSocket watch to follow a rule on every Bash command: a deny refuses it, and under an ask rule an allow on Monitor, bypass mode or auto mode no longer skips the prompt",
+          "description": ""
+        },
+        {
+          "title": "Changed `CLAUDE_CODE_PROXY_RESOLVES_HOSTS` so that settings files can no longer set it where the host manages the network; set it in the process environment",
+          "description": ""
+        },
+        {
+          "title": "Changed a session's exact Bash or PowerShell ask rule to be refused, not asked about, when a broader deny rule covers the command",
+          "description": ""
+        },
+        {
+          "title": "Changed the Bash tool to ask for permission before running `which` with flags outside a lookup/display set",
+          "description": ""
+        },
+        {
+          "title": "Changed `--add-dir` directories to register plugin marketplaces only once that directory's own trust dialog has been accepted",
+          "description": ""
+        },
+        {
+          "title": "Changed nested skill loading: with the Bash sandbox on, skills in `.claude/skills` folders below the starting folder load only if you start Claude Code there or `/cd` there",
+          "description": ""
+        },
+        {
+          "title": "Changed self-paced `/loop` to end when a turn finishes without rescheduling, instead of scheduling a fallback wakeup; set `CLAUDE_CODE_LOOP_KEEPALIVE=1` to keep the old behavior",
+          "description": ""
+        },
+        {
+          "title": "Changed PostToolUse hooks to run, with up to 10 seconds to finish, on tool calls that finish after a new message interrupts the turn",
+          "description": ""
+        },
+        {
+          "title": "Changed what Claude is told after safeguards stop a subagent: retry with a narrower prompt or tell you, instead of doing the work itself",
+          "description": ""
+        },
+        {
+          "title": "Changed cloud sessions to drop session-scoped allow rules at a move to a new worker when their deny and ask rules can't all be kept, so you may be asked again",
+          "description": ""
+        },
+        {
+          "title": "Changed the automatic certificate repair behind a TLS-inspecting proxy: it no longer runs when `ALL_PROXY` is the only proxy variable set. Set `HTTPS_PROXY` to the proxy's http:// URL instead",
+          "description": ""
+        },
+        {
+          "title": "Changed artifact database saves of rows others may have written: each file gets a hidden marker file, and existing files without one, earlier versions' exports among them, are left alone and reported",
+          "description": ""
+        },
+        {
+          "title": "Gateway: Added startup warnings for upstreams that mix AWS GovCloud with other upstreams, and for base URL variables in the gateway's environment",
+          "description": ""
+        },
+        {
+          "title": "Gateway: Added a start-up log warning when managed settings name an Amazon Bedrock guardrail in a header, which the gateway doesn't forward, and no `bedrock` upstream sets a `guardrail`",
+          "description": ""
+        },
+        {
+          "title": "Gateway: Fixed Claude Desktop offering a web search tool that always failed when every upstream is Amazon Bedrock",
+          "description": ""
+        },
+        {
+          "title": "Self-hosted runner: Fixed a runner started with `--use-anthropic-git-proxy` or `--configure-git` registering before a failed startup check made it exit; it now exits first",
+          "description": ""
+        },
+        {
+          "title": "Self-hosted runner: Changed `CLAUDE_RUNNER_CHECKOUT_PATH` so that each repository in a session gets its own folder: a folder name already taken in the session gets `-2`, `-3`, … at the end",
+          "description": ""
+        },
+        {
+          "title": "Self-hosted runner: Removed the end-of-session upload of a session's debug log; a failed session's log stays on the runner host unless `--remove-session-state` is set",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Fixed prompts over 50,000 characters being cut off silently: the prompt now stays in the chat box with a notice, and a paste over the limit is refused with a notice",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Fixed a click on the survey or \"Report a problem\" buttons sending the unfinished prompt",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Fixed cloud sessions opened from the extension's Web tab bringing back turns that `/clear`, or Retry or Edit of a typed prompt, had removed",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Fixed a deleted session's file coming back when that session was renamed in the extension",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-11-07T02:39:23.190Z"
+}
