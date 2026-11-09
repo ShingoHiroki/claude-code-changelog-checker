@@ -1,0 +1,373 @@
+{
+  "version": "2.1.321",
+  "tagName": "v2.1.321",
+  "publishedAt": "2026-11-09T19:22:30Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.321",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 2,
+    "改善": 15,
+    "その他": 30,
+    "バグ修正": 71
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Claude Fable 5.2 を追加",
+          "description": "Claude Fable 5.2 (`claude-fable-5-2`) を追加し、デフォルトの Fable モデルとしました。コンテキストは 1M、使用料金は $8/$40 per Mtok、キャッシュ読み取りは $0.20/Mtok です。"
+        },
+        {
+          "title": "`--settings <file>` オプションを追加",
+          "description": "`claude remote-control` に `--settings <file>` を追加しました。このオプションは開始するすべてのセッションに設定ファイルを適用し、ファイルが変更されても `claude remote-control` を再起動しない限り新しいセッションは開始されません。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/model` ピッカーの表示改善",
+          "description": "「More models」が他の行の下に番号なしで表示され、古いモデルはその下に開くようになり、他の行の番号が変わらなくなりました。"
+        },
+        {
+          "title": "サインイン制限メッセージの改善",
+          "description": "Claude Code と `/device` ページでの Claude apps gateway のサインイン制限メッセージから、ゲートウェイ設定名が除外されました（ゲートウェイ側のログには依然として表示されます）。"
+        },
+        {
+          "title": "`claude install` の高速化",
+          "description": "`claude install` とインストールスクリプトの完了が 2〜4 秒早くなりました。"
+        },
+        {
+          "title": "クラッシュ後の Remote Control セッション復帰時間の改善",
+          "description": "プロセスがクラッシュした Remote Control セッションが新しいメッセージを取得できるまでの時間が短縮されました。"
+        },
+        {
+          "title": "Auto モードのバックグラウンドサブエージェント統合",
+          "description": "ヘッドレスセッション、デスクトップアプリ、VS Code の auto モードで、バックグラウンドサブエージェントのレポートがまとめて 1 回のモデル呼び出しで回答されるようになり、ターミナルと同様の動作になります。"
+        },
+        {
+          "title": "`claude --bg --worktree` セッションのエラーログ表示改善",
+          "description": "作業ツリーを設定できなかった `claude --bg --worktree` セッションの行が、内部タグや最後の 200 文字ではなく、開始時のエラーを直接表示するようになりました。"
+        },
+        {
+          "title": "他組織のアーティファクト表示改善",
+          "description": "別組織にあるアーティファクトに対しては、該当が自組織の場合のみ `/login` が提示され、アカウント移行後のコピー先についても Claude が説明します。"
+        },
+        {
+          "title": "画像が多いリクエストの処理改善",
+          "description": "1 リクエストに収まらない画像がある場合、Claude はドロップされた画像を既に見たかどうかを認識し、変更のない画像の再読取り回数を制限します。"
+        },
+        {
+          "title": "Remote Control の初回質問メッセージ改善",
+          "description": "未回答の初回質問に対するメッセージが、次に何をすべきかを明示するようになりました。"
+        },
+        {
+          "title": "TLS 証明書読み込みの高速化",
+          "description": "信頼された TLS 証明書のロードが速くなり、起動時間が短縮されました。"
+        },
+        {
+          "title": "ゲートウェイエラーメッセージの改善",
+          "description": "Claude apps gateway のエラーメッセージに、ユーザー名やパスワードを除いたゲートウェイのアドレスが表示されるようになりました。"
+        },
+        {
+          "title": "支出上限エラーメッセージのローカル時間表示",
+          "description": "支出上限エラーでリセット時間がローカルタイムで表示されます（例: \"resets 4pm (America/Los_Angeles)\"）。"
+        },
+        {
+          "title": "`allowedProviders` と `forceLoginMethod` の説明更新",
+          "description": "session-feedback メッセージと `allowedProviders` 設定の説明に Ultra が Pro と Max に加えて記載され、`forceLoginMethod` の説明がすべての有料 Claude プランを対象に更新されました。"
+        },
+        {
+          "title": "データ可視化スキルの出力形式更新",
+          "description": "バンドルされた dataviz スキルが、各比率ごとに別々の行でメーターのリストを提案するようになりました。"
+        },
+        {
+          "title": "\"Upgrade to Max\" オプション文言変更",
+          "description": "\"Upgrade to Max\" オプションが \"Upgrade to Max or Ultra\" と表記されるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Windows の `FileChanged` フックの修正",
+          "description": "`watchPaths` で設定されたパスが最初のシェルコマンド後に停止する問題を、セッションの作業ディレクトリが小文字ドライブ文字だった場合に修正しました。"
+        },
+        {
+          "title": "macOS の MDM プロファイル読み取りエラー修正",
+          "description": "有効な MDM プロファイルの読み取りが遅い際に起きる \"Unable to read managed policy settings\" エラーを、1 回リトライし、タイムアウトはタイムアウトとして報告するように修正しました。"
+        },
+        {
+          "title": "Gateway の支出上限チェック改善",
+          "description": "忙しいレプリカでの支出上限チェックが減少し、支出がより早く記録されるようになりました。"
+        },
+        {
+          "title": "Windows のプログラム探索高速化",
+          "description": "PATH 上のプログラムをヘルパープロセスを起動せずに検索し、起動時間と最初のコマンド時間を改善しました。"
+        },
+        {
+          "title": "Git for Windows の起動時間改善",
+          "description": "標準的な Git for Windows インストール時に、毎回 git.exe の実行を確認しないようにして起動時間を短縮しました。"
+        },
+        {
+          "title": "auto と bypass モードでの mod 起動挙動変更",
+          "description": "管理された `allowUnsandboxedCommands: false` や `allowManagedDomainsOnly` が設定されていても、auto と bypass モードでは mod が自動的にオンになり、`dontAsk` モードではロードされません。"
+        },
+        {
+          "title": "mod のツール呼び出し許可変更",
+          "description": "`$.tool.call` と `$.mcp.call` は、ユーザー独自の ask ルールや `dontAsk`、`-p` 実行中でも権限プロンプトを出さずに実行され、拒否ルールと組織ポリシーは引き続き適用されます。"
+        },
+        {
+          "title": "Fable 5.1 のモデル選択変更",
+          "description": "保存された Fable 5.1 のモデル選択が `fable` に移行し、Pro と Max プランでは一括で、Team と Enterprise プランでは組織が許可した時点で切り替え可能です。切り戻すには `/model claude-fable-5-1` を使用します。"
+        },
+        {
+          "title": "`/fast`、`/config`、`/model` の高速モードラベル変更",
+          "description": "現在のモデルが高速モードをサポートしている場合はその名前が表示され、VS Code 行の \"(Opus only)\" が削除されました。"
+        },
+        {
+          "title": "ネストしたスキルロードの除外",
+          "description": "`~/.claude/plugins` 内の `.claude/skills` フォルダは、Claude がそのファイル上で作業している場合はロードされません。"
+        },
+        {
+          "title": "オンデマンドランナーの終了コード変更",
+          "description": "サーバーが不要と判断したオンデマンドランナー（セッション終了・一時停止・作業指示が上書きされた場合）は、終了コード 1 の代わりに 0 で終了します。"
+        },
+        {
+          "title": "Windows のプログラム探索ロジック変更",
+          "description": "Claude Code が自ら起動するプログラム（例: git）を探す際に、相対パスや UNC PATH、ネットワーク共有へのリンクをスキップし、設定変更による PATH 変更も反映します。"
+        },
+        {
+          "title": "非対話セッションの OpenTelemetry フック調整",
+          "description": "Bash と PowerShell 呼び出し後、`num_hooks` と `num_success` から 2 つの組み込みフックを除外するように変更しました。"
+        },
+        {
+          "title": "Desktop Code タブのメッセージ送信上限変更",
+          "description": "Desktop Code タブセッションが他のセッションへ送信できるメッセージ数を 10 から 20 に増やしました。"
+        },
+        {
+          "title": "`AskUserQuestion` の afkTimeoutMs 入力拒否",
+          "description": "`claude -p` と SDK セッションで `AskUserQuestion` が undocumented な `afkTimeoutMs` フィールドを設定しようとするホストの許可回答を拒否します。"
+        },
+        {
+          "title": "`extraKnownMarketplaces` の管理変更",
+          "description": "宣言された名前は別ソースから追加できず、他所からのエントリは非表示になり、宣言されたマーケットプレイスにリストされたプラグインはそこから再インストールされます。"
+        },
+        {
+          "title": "Chrome ツールでの Claude アプリポリシー遵守",
+          "description": "Claude Code が提供する Chrome ツール（例: Claude Desktop の Code タブ）は、組織の Claude in Chrome ポリシーに従うようになりました。"
+        },
+        {
+          "title": "gateway の `policy_mode: layered` 動作変更",
+          "description": "管理された MCP サーバーがマッチするすべてのポリシーを累積し、`match: {}` が含まれるため、アップグレード後に既存ゲートウェイはより多くのリクエストを処理できます。"
+        },
+        {
+          "title": "上流サーバーの環境変数無視設定変更",
+          "description": "Bedrock、Vertex、Foundry の上流は、gateway 環境の `ANTHROPIC_*_BASE_URL` 変数を無視します。別エンドポイントを使用する場合は上流側で `base_url` を設定してください。"
+        },
+        {
+          "title": "ヘッドレスセッションの mod リロード設定",
+          "description": "`.claude/skills` 内の mod がファイル変更時にリロードされるようになり、無効にするには `CLAUDE_CODE_PLUGIN_DIR_WATCH=0` を設定します。"
+        },
+        {
+          "title": "サイバー検証プログラム文言統一",
+          "description": "サイバー保護ブロックで表示される文言が claude.ai と同一になるよう変更しました。"
+        },
+        {
+          "title": "Cowork クラウドセッションのフック挙動変更",
+          "description": "PostToolUse フックが AskUserQuestion の回答や ExitPlanMode の結果を上書きできなくなり、Claude は元の回答を使用します。"
+        },
+        {
+          "title": "`cp` と `mv` のパスチェック統一",
+          "description": "`/bin/cp` や `/bin/mv` のようにパスで指定された場合も、`cp` と `mv` と同様のパスチェックが適用されます。"
+        },
+        {
+          "title": "長コマンド通知の要約表示",
+          "description": "1,000 文字を超えるコマンドのバックグラウンド通知と TaskStop 結果は、開始と終了だけを Claude に渡すようになり、コンテキスト使用量が削減されます。"
+        },
+        {
+          "title": "アーティファクトデザインガイダンス更新",
+          "description": "Inter と Space Grotesk をデフォルトのフォントとして推奨するようデザイン指針が変更されました。"
+        },
+        {
+          "title": "アカウントメールチェックの緩和",
+          "description": "メールアドレスと User-Agent を含むシェルコマンドだけが拒否され、他のコマンドやスケジュール実行はプロンプトで止まらなくなります。"
+        },
+        {
+          "title": "Remote Control の作業フォルダー保持",
+          "description": "Remote Control セッションは開始フォルダーを保持し、クライアントから別フォルダーへ移動できなくなりました。"
+        },
+        {
+          "title": "`extraKnownMarketplaces` の未宣言取得処理変更",
+          "description": "未宣言ソースからの取得は `cleanupPeriodDays` 後にデータが保留され、`claude plugin restore-set-aside` でオプションとシークレットを復元できます。"
+        },
+        {
+          "title": "VS Code の認証警告追加",
+          "description": "認証トークンと API キーが同時に設定されている場合、ターミナルと同様の警告がプロンプト上部に表示されます。"
+        },
+        {
+          "title": "VS Code プラグイン名表示バグ修正",
+          "description": "プラグインの権限リクエストで隠し文字が含まれる名前が表示される問題を修正し、正しく \"a plugin\" と表示されます。"
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "MCP OAuth リダイレクト時のシークレット漏洩修正",
+          "description": "サーバーがリダイレクトした場合に、MCP OAuth リクエストがリフレッシュトークン等のシークレットを別ホストへ送信しないように修正しました。"
+        },
+        {
+          "title": "読み取り専用 Bash コマンドのサンドボックス外実行修正",
+          "description": "読み取り専用 Bash コマンドがパーミッションプロンプトなしでサンドボックス外で実行されるケースを修正しました。"
+        },
+        {
+          "title": "Bash のフォルダ判定バグ修正",
+          "description": "Bash のパーミッションチェックが誤ったフォルダのファイル書き込みと判断し、プロンプトが表示されなかった問題を修正しました。"
+        },
+        {
+          "title": "`cp`/`mv` の保護ファイルプロンプト適用漏れ修正",
+          "description": "`cp` や `mv` がディレクトリへ書き込む際に、deny ルールや保護ファイルプロンプトが適用されない問題を修正しました。"
+        },
+        {
+          "title": "Enterprise Fable 切替時のクレジット表記バグ修正",
+          "description": "Enterprise プランで Fable に切替えても、\"Draws from usage credits\" のメモが表示され続けていた問題を修正しました。"
+        },
+        {
+          "title": "フォールバックモデルの応答拒否バグ修正",
+          "description": "最初のモデルがブロックされた後、フォールバックモデルがリクエストを拒否したり、停止した応答を示すことがあった問題を修正しました。"
+        },
+        {
+          "title": "`claude mcp login` の警告重複表示修正",
+          "description": "Claude Code が登録したサーバーに再サインインするたびに SEP-2352 発行者警告が出力される問題を修正しました。"
+        },
+        {
+          "title": "`NotebookEdit` の先頭セル削除バグ修正",
+          "description": "ネットワークパス（UNC 共有、WSL フォルダ、`/net` マウント）で `NotebookEdit` を呼び出しセル名が指定されていない場合、ノートブックの最初のセルが削除または上書きされる問題を修正しました。"
+        },
+        {
+          "title": "Edit コマンドのマッチングバグ修正",
+          "description": "ネットワークパス上で複数マッチの最初だけが変更される、空の `old_string` でファイル全体が置換される、またはノートブックがテキストとして編集される問題を修正しました。"
+        },
+        {
+          "title": "`/config` のデフォルト権限モード表示バグ修正",
+          "description": "新規セッションが auto モードで開始したときに `/config` が Manual をデフォルトとして表示していた問題を修正し、\"Auto (default)\" に Space を押すと Don't Ask が保存されます。"
+        },
+        {
+          "title": "プラグインディレクトリ指定時のファイル出力バグ修正",
+          "description": "`--plugin-dir .` と `--plugin-dir ./builtin` が Claude Code の組み込みプラグイン用の生成型ファイルを `builtin` フォルダーに書き出す問題を修正しました。"
+        },
+        {
+          "title": "ツール定義のトークン数推定過大計算修正",
+          "description": "正確なトークン数が取得できない場合に、ツール定義がコンテキスト使用量推定で過大にカウントされる問題を修正しました。"
+        },
+        {
+          "title": "Remote Control の `/compact` 重複表示修正",
+          "description": "Web とモバイルの Remote Control で `/compact` が二度表示される問題を修正しました。"
+        },
+        {
+          "title": "プラグイン自動更新の重複ダウンロード修正",
+          "description": "リポジトリの各作業ツリーやフォルダーごとにプラグインが再ダウンロードされる問題を修正しました。"
+        },
+        {
+          "title": "Auto モードでのサブエージェント報告ロス修正",
+          "description": "会話が compact され Claude が回答する前にバックグラウンドサブエージェントの報告が失われる問題を修正しました。"
+        },
+        {
+          "title": "プロジェクトスキル等の消失バグ修正",
+          "description": "`git stash` などでフォルダーが削除・復元された際、作業ツリーに入ってもスキル・コマンド・エージェントが欠落し続ける問題を修正しました。"
+        },
+        {
+          "title": "`claude -p` の時間設定バグ修正",
+          "description": "バックグラウンドコマンドが 10 分で停止されたにも関わらず、`claude -p` が 30 分と報告していた問題を修正しました。"
+        },
+        {
+          "title": "クラウドセッションのプロセスマッチングバグ修正",
+          "description": "`pkill`、`pgrep`、`pidwait` がクラウドセッション内で自身の親プロセスにマッチしていた問題を修正しました。"
+        },
+        {
+          "title": "Chrome とコンピュータ使用サーバープロセスの残存修正",
+          "description": "プロキシが接続を停止させる状況で、Chrome とコンピュータ使用サーバープロセスが親プロセス終了後も残存していた問題を修正しました。"
+        },
+        {
+          "title": "大きなフック出力のファイル参照バグ修正",
+          "description": "同一ツール呼び出しの別フック出力が格納されたファイルを指す大きなフック出力が Claude に渡っていた問題を修正しました。"
+        },
+        {
+          "title": "埋め込み Claude Code の PreToolUse フック表示バグ修正",
+          "description": "Claude Code を埋め込んだアプリが、両方のフックが ask された場合に自分の PreToolUse フックの `ask` 理由を取得していた問題を修正しました。"
+        },
+        {
+          "title": "PreToolUse フックの `ask` 消失バグ修正",
+          "description": "別フックの `defer` が先に完了した際に、PreToolUse フックの `ask` が失われていた問題を修正しました。"
+        },
+        {
+          "title": "権限プロンプトとバックグラウンドタスクの稀なクラッシュ修正",
+          "description": "権限プロンプトやバックグラウンドタスクでまれに発生していたクラッシュを修正しました。"
+        },
+        {
+          "title": "ワークツリー入後のスキル・コマンド消失バグ修正",
+          "description": "SDK とデスクトップセッションで、Claude が作業ツリーに入った後にメニューからスキル・コマンド・エージェントが消える問題を修正しました。"
+        },
+        {
+          "title": "macOS の `/desktop` インストール検出バグ修正",
+          "description": "`~/Applications` に Claude Desktop がインストールされていても、macOS の `/desktop` が \"Claude Desktop is not installed\" と表示していた問題を修正しました。"
+        },
+        {
+          "title": "OpenTelemetry リポジトリ属性欠損バグ修正",
+          "description": "事前に起動したプロセスから開始した Claude Desktop セッションで、OpenTelemetry のリポジトリ属性（`vcs.*`）が欠損していた問題を修正しました。"
+        },
+        {
+          "title": "WebFetch の空ページ応答処理修正",
+          "description": "モデルがページからテキストを取得できず \"No response from model\" がページ内容として渡されていた問題を修正し、明確なエラーで失敗するようにしました。"
+        },
+        {
+          "title": "スクリーンリーダーモードのプロンプト遅延修正",
+          "description": "Claude Code 起動中にシステム時計が戻った場合、スクリーンリーダーモードでプロンプトが遅延する問題を修正しました。"
+        },
+        {
+          "title": "ダイアログ閉鎖後のパネル復帰バグ修正",
+          "description": "ダイアログが閉じた後にコマンドパネルが復帰せず、次の再描画までパネルやプロンプトが表示されない問題を修正しました。"
+        },
+        {
+          "title": "Claude Desktop Code タブの MCP 切断バグ修正",
+          "description": "デスクトップアプリが同名の MCP サーバーや拡張機能を持つ場合、Claude Desktop Code タブセッションで最初のメッセージ後に MCP サーバーが切断されていた問題を修正しました。"
+        },
+        {
+          "title": "TLS ハンドシェイク失敗時のリトライ修正",
+          "description": "返信途中で接続が切れた際に \"API Error: EPROTO: The TLS handshake failed\" でターンが終了した場合、部分的な返信を保持またはリクエストを再試行するように修正しました（2.1.302 以前と同様）。"
+        },
+        {
+          "title": "長セッションでのメモリ使用過多修正",
+          "description": "大容量ファイルから単一行を繰り返し読み込む長時間セッションでのメモリ使用量が過大になる問題を修正しました。"
+        },
+        {
+          "title": "Fast モードの応答ロスとリトライ制御修正",
+          "description": "Fast モードがレートリミット・過負荷・失敗で数分間返信を失ったりモデル切替やリトライを繰り返す問題を修正し、同モデルの標準速度でまず試行するようにしました。"
+        },
+        {
+          "title": "バックグラウンドエージェント報告の過剰送信バグ修正",
+          "description": "Claude が停止された間に複数のエージェント報告が待機していた際、1 リクエストに想定以上の報告が含まれる問題を修正しました。"
+        },
+        {
+          "title": "Desktop Code タブからのメッセージ待機バグ修正",
+          "description": "Claude がまだ作業中でも、Desktop Code タブセッションから他セッションへのメッセージが入力後も一時停止したままになる問題を修正しました。"
+        },
+        {
+          "title": "`claude agents` のフラグ無視バグ修正",
+          "description": "`claude agents` が `--permission-mode`、`--dangerously-skip-permissions`、`--model`、`--effort`、`--agent` などのフラグを、同時に `--verbose` が付いている場合に無視していた問題を修正しました。"
+        },
+        {
+          "title": "Remote Control の不完全ケース修正",
+          "description": "Remote Control に関する最後の不完全なケースを修正しました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-11-09T19:38:28.433Z"
+}
