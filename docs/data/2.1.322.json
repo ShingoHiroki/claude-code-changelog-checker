@@ -1,0 +1,26 @@
+{
+  "version": "2.1.322",
+  "tagName": "v2.1.322",
+  "publishedAt": "2026-11-10T02:29:43Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.322",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 1,
+    "改善": 0,
+    "その他": 0,
+    "バグ修正": 0
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "グローバル、us、eu リージョンの Vertex に fast mode を追加し、Vertex が拒否した場合は標準速度にフォールバックします。",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-11-10T04:31:22.558Z"
+}
