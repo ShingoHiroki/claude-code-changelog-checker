@@ -1,0 +1,117 @@
+<svg viewBox="0 0 1160 810" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#86868b"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <style>
+    .h1 { font-size: 22px; font-weight: 700; fill: #1d1d1f; }
+    .h2 { font-size: 14px; fill: #6e6e73; }
+    .card { fill: #ffffff; stroke: #e5e5ea; stroke-width: 1; }
+    .pill { fill: #f5f5f7; stroke: #e5e5ea; stroke-width: 1; }
+    .cap  { font-size: 12px; font-weight: 600; fill: #86868b; letter-spacing: 1px; }
+    .title { font-size: 16px; font-weight: 600; fill: #1d1d1f; }
+    .sub { font-size: 12.5px; fill: #6e6e73; }
+    .small { font-size: 12px; fill: #1d1d1f; }
+    .arrow { stroke: #86868b; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    .dash { stroke: #b0b0b5; stroke-width: 2; fill: none; marker-end: url(#arrow); stroke-dasharray: 6 5; }
+    .numc { fill: #1d1d1f; }
+    .numt { font-size: 12px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+    .legend { font-size: 13px; fill: #3a3a3c; }
+  </style>
+
+  <rect x="0" y="0" width="1160" height="810" fill="#f5f5f7"/>
+
+  <text x="40" y="48" class="h1">claude-code-changelog-checker — 構成図（概要）</text>
+  <text x="40" y="74" class="h2">Claude Code の新バージョン検知 → 日本語翻訳 → Discord / Slack 通知 → GitHub Pages 公開</text>
+
+  <!-- トリガー -->
+  <rect x="330" y="110" width="500" height="100" rx="16" class="card" filter="url(#shadow)"/>
+  <text x="350" y="138" class="cap">トリガー</text>
+  <rect x="350" y="150" width="225" height="44" rx="22" class="pill"/>
+  <text x="462" y="177" class="small" text-anchor="middle">cron · JST 8:00 / 12:00 / 18:00</text>
+  <rect x="590" y="150" width="225" height="44" rx="22" class="pill"/>
+  <text x="702" y="177" class="small" text-anchor="middle">workflow_dispatch（手動）</text>
+
+  <path class="arrow" d="M580,210 L580,246"/>
+
+  <!-- GitHub Actions -->
+  <rect x="330" y="250" width="500" height="110" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="358" cy="284" r="6" fill="#1f6feb"/>
+  <text x="374" y="290" class="title">GitHub Actions — check-and-notify.mjs</text>
+  <text x="374" y="315" class="sub">check-changelog.yml が実行 · 検知・翻訳・通知・サイトデータ書き出し</text>
+
+  <!-- GitHub Releases API -->
+  <rect x="40" y="255" width="240" height="90" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="68" cy="289" r="6" fill="#24292f"/>
+  <text x="84" y="295" class="title">GitHub Releases API</text>
+  <text x="84" y="320" class="sub">@anthropic-ai/claude-code</text>
+  <path class="arrow" d="M330,295 L286,295"/>
+  <circle cx="308" cy="295" r="12" class="numc"/>
+  <text x="308" y="299.5" class="numt">1</text>
+
+  <!-- さくらのAI Engine -->
+  <rect x="880" y="255" width="240" height="90" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="908" cy="289" r="6" fill="#ec5fa0"/>
+  <text x="924" y="295" class="title">さくらのAI Engine</text>
+  <text x="924" y="320" class="sub">gpt-oss-120b · OpenAI 互換 API</text>
+  <path class="arrow" d="M830,295 L874,295"/>
+  <circle cx="852" cy="295" r="12" class="numc"/>
+  <text x="852" y="299.5" class="numt">3</text>
+
+  <!-- state/last-version.txt -->
+  <rect x="40" y="400" width="240" height="80" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="68" cy="430" r="6" fill="#8e8e93"/>
+  <text x="84" y="436" class="title">state/last-version.txt</text>
+  <text x="84" y="460" class="sub">前回検知バージョンを記録</text>
+  <path class="arrow" d="M400,360 L400,420 L286,420"/>
+  <circle cx="400" cy="392" r="12" class="numc"/>
+  <text x="400" y="396.5" class="numt">2</text>
+
+  <!-- Discord -->
+  <rect x="330" y="440" width="235" height="90" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="358" cy="474" r="6" fill="#5865f2"/>
+  <text x="374" y="480" class="title">Discord</text>
+  <text x="374" y="505" class="sub">Embed で全件通知</text>
+  <path class="arrow" d="M470,360 L470,434"/>
+  <circle cx="470" cy="397" r="12" class="numc"/>
+  <text x="470" y="401.5" class="numt">4</text>
+
+  <!-- Slack -->
+  <rect x="595" y="440" width="235" height="90" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="623" cy="474" r="6" fill="#4a154b"/>
+  <text x="639" y="480" class="title">Slack（任意）</text>
+  <text x="639" y="505" class="sub">Block Kit でコンパクト通知</text>
+  <path class="arrow" d="M700,360 L700,434"/>
+  <circle cx="700" cy="397" r="12" class="numc"/>
+  <text x="700" y="401.5" class="numt">4</text>
+
+  <!-- docs/data -->
+  <rect x="880" y="400" width="240" height="80" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="908" cy="430" r="6" fill="#8e8e93"/>
+  <text x="924" y="436" class="title">docs/data/*.json</text>
+  <text x="924" y="460" class="sub">翻訳済みリリースデータ</text>
+  <path class="arrow" d="M830,352 L1000,352 L1000,394"/>
+  <circle cx="1000" cy="373" r="12" class="numc"/>
+  <text x="1000" y="377.5" class="numt">5</text>
+
+  <!-- GitHub Pages -->
+  <rect x="440" y="590" width="500" height="110" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="468" cy="624" r="6" fill="#2da44e"/>
+  <text x="484" y="630" class="title">GitHub Pages（公開サイト）</text>
+  <text x="484" y="655" class="sub">main ブランチの /docs を配信 · 翻訳済みリリースノートをバージョン別に閲覧</text>
+  <text x="484" y="676" class="sub">通知メッセージから該当バージョンページへリンク</text>
+  <path class="arrow" d="M1000,480 L1000,645 L946,645"/>
+  <circle cx="1000" cy="560" r="12" class="numc"/>
+  <text x="1000" y="564.5" class="numt">6</text>
+
+  <path class="dash" d="M447,530 L447,584"/>
+  <path class="dash" d="M712,530 L712,584"/>
+
+  <!-- 凡例 -->
+  <text x="40" y="740" class="legend">1 最新バージョン取得　　2 前回バージョンと比較　　3 リリースノートを日本語翻訳　　4 Webhook 通知（失敗時はプレーンテキスト）</text>
+  <text x="40" y="768" class="legend">5 サイトデータ書き出し　　6 state と docs/data/ を commit / push → Pages に自動反映　　点線 = 通知内のサイトリンク</text>
+</svg>
