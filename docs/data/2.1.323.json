@@ -1,0 +1,361 @@
+{
+  "version": "2.1.323",
+  "tagName": "v2.1.323",
+  "publishedAt": "2026-11-12T22:12:13Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.323",
+  "counts": {
+    "破壊的変更": 2,
+    "新機能": 16,
+    "改善": 15,
+    "その他": 107,
+    "バグ修正": 154
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "`subagentStatusLine` 設定の削除",
+          "description": "subagent 行は常にデフォルト外観を使用し、設定ファイルにこのキーが残っていても以前と同様に読み込まれます。"
+        },
+        {
+          "title": "プラグインの `agent` 設定の非推奨化",
+          "description": "`agent` 設定は引き続き適用されますが、起動時、`claude plugin list` と `claude plugin validate` で警告が表示されます。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Code Mode の追加（実験的オプトイン）",
+          "description": "Claude がツール呼び出し用 JavaScript を生成する Code Mode を追加しました。オン/オフは https://code.claude.com/docs/en/code-mode で設定できます。"
+        },
+        {
+          "title": "`engines[\"claude-code\"]` の追加",
+          "description": "`plugin.json` に `engines[\"claude-code\"]` を追加。指定された Claude Code バージョン範囲外のプラグインはインストール・更新・ロードされず、インストール・更新時は範囲に合う最新バージョンが選択されます。"
+        },
+        {
+          "title": "プラグイン TypeScript フックの型チェック追加",
+          "description": "`claude plugin validate` がプラグインの TypeScript フックモジュールを型チェックし、各検出は警告として報告され、`--strict` オプションでエラー扱いになります。"
+        },
+        {
+          "title": "`engine.create` フックが追加/保持/置換する `$` 名詞の表示",
+          "description": "`claude plugin validate` がモジュールの `engine.create` フックで追加・保持・置換する `$` 名詞を出力します。"
+        },
+        {
+          "title": "`CLAUDE_CODE_AUTO_MODE_MODEL` のサポート",
+          "description": "サードパーティプロバイダー上の Claude Desktop セッションの管理設定で `CLAUDE_CODE_AUTO_MODE_MODEL` を使用可能にしました（Claude Desktop がこのバージョンを含むと有効）。"
+        },
+        {
+          "title": "使用クレジット不足時のオプションメニュー追加",
+          "description": "モデルが使用クレジットがオフまたは使い切りの場合、停止・クレジット使用へ切替・アップグレードのメニューが表示されます。"
+        },
+        {
+          "title": "長時間フック実行時のプログレスハートビート追加",
+          "description": "`claude -p` と SDK セッションでフックが長時間実行されると、30 秒ごとにプログレスハートビートが送信され、Claude Desktop などのホストがターンをハングと判断して終了しないようにします（このバージョンが含まれると有効）。"
+        },
+        {
+          "title": "Artifact ツールで `.docx` アップロードをサポート",
+          "description": "Artifact ツールのアセットアップロードで `.docx` ファイルが使用できるようになりました。"
+        },
+        {
+          "title": "Diff パネルに `/diff to close` ヒントを追加",
+          "description": "Diff パネルに `/diff to close` ヒントを追加し、`?` ショートカットガイドにパネルをフォーカス・閉じるキーを掲載しました。"
+        },
+        {
+          "title": "Bash 変数値に `*` を含む許可ルールの起動警告",
+          "description": "`Bash(PORT=* npm run dev)` のように変数の値に `*` が含まれる Bash 許可ルールがある場合、起動時に警告を表示します。"
+        },
+        {
+          "title": "プラグイン言語サーバ開始失敗時の警告追加",
+          "description": "プラグインの言語サーバが起動できない場合、サーバ名と確認すべき項目を示す警告が表示されます。"
+        },
+        {
+          "title": "Perforce 設定検出時の一回限りのスタートアップ通知",
+          "description": "Perforce 設定が見つかりモードがオフの場合、`CLAUDE_CODE_PERFORCE_MODE` 名で一回限りのスタートアップ通知が表示されます。"
+        },
+        {
+          "title": "`CLAUDE_CODE_DISABLE_AGENT_PROGRESS_SUMMARIES` の追加",
+          "description": "`CLAUDE_CODE_DISABLE_AGENT_PROGRESS_SUMMARIES`（2.1.318 以降利用可）を `1` に設定すると、サブエージェントの進捗サマリーとそれを書き込むリクエストが無効化されます（anthropics/claude-code#86879）。"
+        },
+        {
+          "title": "`CLAUDE_CODE_RESUME_HINT_COMMAND` の追加",
+          "description": "Claude Code を起動するプログラムが終了ヒント名として自身の再開コマンドを設定できるよう、`CLAUDE_CODE_RESUME_HINT_COMMAND` を追加しました。"
+        },
+        {
+          "title": "`unsetOptionCount` のインストール結果への追加",
+          "description": "`claude plugin install --json` の結果に `unsetOptionCount` が含まれ、設定されていない `userConfig` オプション数を示します。"
+        },
+        {
+          "title": "`isPromptCovered` プロパティの追加",
+          "description": "モッドのパネル描画時に `isPromptCovered` が渡され、ダイアログや上部フィールドがプロンプトを覆っているかを示します。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "`/login` と `claude setup-token` のサインインエラー詳細化",
+          "description": "リクエストが拒否・到達不能・タイムアウトした場合、何が起きたかと確認すべき点がエラーメッセージに含まれるよう改善しました。"
+        },
+        {
+          "title": "Bash 権限チェックの信頼性向上",
+          "description": "遅い・負荷が高いマシンでも同じコマンドが同一の回答を得られるよう、Bash 権限チェックを改善しました。"
+        },
+        {
+          "title": "Bash 権限チェックでの追加確認",
+          "description": "チェック結果が実行結果と異なる可能性があるコマンドについては、実行前に権限確認を要求するようにしました。"
+        },
+        {
+          "title": "`/mcp` のツール除外情報表示強化",
+          "description": "API が入力スキーマを拒否したツールがサーバの何個なのか、理由とともに表示されるようになりました。"
+        },
+        {
+          "title": "モッド自動オン時の「Not now」文言改善",
+          "description": "Claude Code がセッションで書くモッドをオンにするか尋ねる際、「Not now」選択肢に、ロードされるタイミングが表示されるよう改善しました。"
+        },
+        {
+          "title": "MCP ツール呼び出しの ID タイプミスエラー詳細化",
+          "description": "コネクタ ID が数文字間違っている場合、対象サーバー名と呼び出すツール名がエラーメッセージに含まれます。"
+        },
+        {
+          "title": "2,000 以上プラグイン有効時の Claude Desktop/Cloud 起動改善",
+          "description": "起動待ち時間が短縮され、欠落プラグインの原因が表示されるようになりました。"
+        },
+        {
+          "title": "多数サブエージェント時のメモリ使用最適化",
+          "description": "完了したサブエージェントのトランスクリプトが早期に解放され、後続サブエージェント実行中にメモリに残り続けることがなくなりました。"
+        },
+        {
+          "title": "インストールスクリプトの二重ダウンロード防止",
+          "description": "最新版が二度ダウンロードされる問題を解消しました。"
+        },
+        {
+          "title": "WebFetch の速度とメモリ使用の改善",
+          "description": "深くネストしたページでも高速化とメモリ使用量削減が行われました。"
+        },
+        {
+          "title": "`cleanupPeriodDays` が読めないフォルダをエラーとしてカウント",
+          "description": "クリーンアップ時に読み取れないフォルダがエラーとして数えられるようになりました。"
+        },
+        {
+          "title": "Claude アプリゲートウェイ `/v1/models` に `max_input_tokens` を明示",
+          "description": "コンテキストウィンドウが確定しているモデルについて、`max_input_tokens` が返されます。"
+        },
+        {
+          "title": "`ToolSearch` の短縮名一致時メッセージ改善",
+          "description": "短縮名で検索したツールが既に利用可能な場合、マッチなしではなく「既に利用可能」と表示されます。"
+        },
+        {
+          "title": "Linux の `/home` が autofs マップの場合の起動改善",
+          "description": "Claude Code が `/home` 以下のファイルを直接参照しなくなり、`CLAUDE_CODE_AUTOMOUNT_ROOTS` でマップルートを指定できるようになりました。"
+        },
+        {
+          "title": "`-p`、SDK、IDE、クラウドセッションの Fable 制限メッセージ改善",
+          "description": "制限リセット時刻と続行方法がメッセージに含まれるようになりました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "macOS のログイン直後エラー修正",
+          "description": "キーチェーンの応答が遅い場合でも、成功した `/login` またはトークンリフレッシュ直後に \"Not logged in · Please run /login\" が表示される問題を修正しました。"
+        },
+        {
+          "title": "Remote Control のネットワーク切替後セッション切断時間短縮",
+          "description": "Wi‑Fi 切替や VPN 再接続後、セッションが 1 分以上切断状態になる問題を修正しました。"
+        },
+        {
+          "title": "Remote Control の再起動時 ID 継続化修正",
+          "description": "同一フォルダで 4 時間以上停止後に再起動しても、30 日間同じコンピュータ ID を保持するよう修正しました。"
+        },
+        {
+          "title": "Remote Control のシャットダウン時セッション残存修正",
+          "description": "ディスクが応答しなくなった際に、シャットダウン時に残っているセッションや、終了済みセッションがスロットを占有し続ける問題を修正しました。"
+        },
+        {
+          "title": "Remote Control の通知非表示設定修正",
+          "description": "`DISABLE_TELEMETRY` または `DO_NOT_TRACK` が設定されているとき、他デバイスや電話の通知で Claude が求める許可内容が表示されない問題を修正しました。"
+        },
+        {
+          "title": "Remote Control のツールコマンド数値/真偽値/オブジェクト時のホスト停止修正",
+          "description": "`command` が数値・ブール・オブジェクトの場合、verbose または debug モードでホストが終了したり出力取得を停止したりする問題を修正しました。"
+        },
+        {
+          "title": "Remote Control のファイルシステム停止時スタール防止",
+          "description": "応答しなくなったファイルシステム上のフォルダでセッション開始に失敗した場合に、ホストがスタールする問題を修正しました。"
+        },
+        {
+          "title": "Desktop アプリからのセッションが電話でアイドル表示される問題修正",
+          "description": "バックグラウンドでサブエージェントが走っている間、デスクトップアプリのセッションが電話上でアイドル状態と表示される問題を修正しました。"
+        },
+        {
+          "title": "Windows のワイルドカード Bash コマンド権限プロンプト修正",
+          "description": "ワイルドカードやファイルリストが含まれる Bash コマンドが権限プロンプトなしで実行される問題を修正しました。"
+        },
+        {
+          "title": "Windows の `.cmd`/`.bat` ラッパー実行順序修正",
+          "description": "同一 PATH フォルダに `.exe` と併存する `.cmd`/`.bat` が見つかった場合、従来はラッパーが実行されていたが、今は `.exe` が実行されるようになり、`git.cmd` と `git.exe` のようなケースでも `.exe` が起動します。"
+        },
+        {
+          "title": "Windows の作業ディレクトリ削除エラー修正",
+          "description": "ドライブ上で実際のパスが解決できないフォルダでシェルコマンドが \"Working directory was deleted\" と失敗する問題を修正しました。"
+        },
+        {
+          "title": "Cloud セッションの長対話再起動時回答消失修正",
+          "description": "長時間の会話中に再起動すると、Claude の質問への回答が失われる問題を修正しました。"
+        },
+        {
+          "title": "Cloud セッションの画像欠損表示修正",
+          "description": "メッセージでファイル名が示されているにもかかわらず、添付画像が欠損していると表示される問題を修正しました。"
+        },
+        {
+          "title": "オンデマンドランナーの終了コード変更を元に戻し",
+          "description": "2.1.321・2.1.322 で変更された、上書きされた作業指示のランナーの終了コードを 0 から 1 に戻しました。"
+        },
+        {
+          "title": "`/security-review` 実行前の確認プロンプト追加",
+          "description": "Claude が `/security-review` を実行する前に確認を求め、スキルのインライン git コマンドはベアリポジトリや同様のフォルダで自動モード・バイパス外では停止します。"
+        },
+        {
+          "title": "同一マシン上のセッション間メッセージ上限拡大",
+          "description": "同一マシン上の各セッションが相手に送信できる自動メッセージ数を約 20 件から 100,000 件に変更しました。"
+        },
+        {
+          "title": "Claude Desktop Code タブのメッセージ上限拡大",
+          "description": "Claude Desktop Code タブのセッションが他セッションへ送信できる自動メッセージ数を 20 件から 100,000 件に変更しました。"
+        },
+        {
+          "title": "`ALL_PROXY` のみで設定されていたプロキシの使用停止",
+          "description": "組織設定・ポリシーリクエストは `ALL_PROXY` のみで設定されたプロキシを使用しなくなり、必要な場合は `HTTPS_PROXY` を設定してください。"
+        },
+        {
+          "title": "認識できないモデル ID のデフォルトコンテキストウィンドウ拡大",
+          "description": "Claude Code が認識しないモデル ID の推定コンテキストウィンドウを 200K から 1M に変更。`/autocompact` で早めに圧縮するか、`CLAUDE_CODE_DISABLE_1M_CONTEXT=1` で 200K に戻せます。"
+        },
+        {
+          "title": "他ベンダーモデルの小ウィンドウ時の動作変更",
+          "description": "コンテキストが満杯になると毎ターン失敗し続けるため、事前に `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` を設定しておく必要があります。"
+        },
+        {
+          "title": "内部 git コマンドのトークン除外",
+          "description": "Claude Code の ripgrep とほとんどの内部 git コマンドはサインイントークンや API キーを使用せずに実行され、credential helper やフックがそれらを取得できなくなります。"
+        },
+        {
+          "title": "`MCP_SDK_GENERATION=v1` の互換モード化",
+          "description": "`MCP_SDK_GENERATION=v1` が v2 MCP クライアントを互換モードで実行し、ハンドシェイクを早め、OAuth サインインチェックを緩めます。v1 クライアントは削除されました。"
+        },
+        {
+          "title": "MCP サーバーサインイン確認プロンプトの強化",
+          "description": "MCP サーバーサインイン時に使用するツールが、バイパス・自動モードでも確認を求めるようになり、`dontAsk` モードなどで質問できない場合は `/mcp` を使用してください。"
+        },
+        {
+          "title": "自己ホストランナーのツール実行中停止挙動変更",
+          "description": "コネクタ承認プロンプトやサインインが実行中ツール内で行われたセッションは、アイドルまたはライフタイム上限で一時停止として解放され、遅延応答は新しいクローンから再開します。"
+        },
+        {
+          "title": "アーティファクト更新時の許可ルール確認強化",
+          "description": "組織外のユーザーがアーティファクトを見ることができる、または Claude が確認できない場合、許可ルールがあっても更新前に確認を求めます。"
+        },
+        {
+          "title": "`glab config set` の書き込み制限",
+          "description": "`--global` または `--host` がない `glab config set`、および `glab config edit --local` は Bash サンドボックス内で読み取り専用となり、外部で実行する必要があります。"
+        },
+        {
+          "title": "macOS・Linux・WSL のシンボリックリンク書き込み無視",
+          "description": "書き込み権限がシンボリックリンク経由で付与されても無視され、実際のパスに権限を付与してください。"
+        },
+        {
+          "title": "「再度聞かない」ルールのセッション限定化",
+          "description": "秘密情報を保持するよう見える許可ルールや、`settings.local.json` に保存される可能性があるルールはセッションのみ有効となり、保存されません。"
+        },
+        {
+          "title": "macOS・Linux のサンドボックスでの git 操作制限",
+          "description": "`git worktree add`、`move`、`remove` および worktree 内のコミットは読み取り専用となり、セッション開始時に提供されていないリポジトリでの操作は失敗します。"
+        },
+        {
+          "title": "無効 JSON `--settings` ファイルでの起動停止",
+          "description": "`--settings` ファイルが有効な JSON でなく `sandbox` キーを含む場合、サンドボックスがオフであっても起動が停止します。"
+        },
+        {
+          "title": "`PreToolUse` フック後の権限チェック失敗時の挙動変更",
+          "description": "`PreToolUse` フックが \"allow\" を返した後に権限チェックがエラーになると、フックが無回答だったかのように呼び出しが決定されます。"
+        },
+        {
+          "title": "`PermissionRequest` フックが書き換えた入力での権限チェック失敗時の挙動変更",
+          "description": "書き換え後の入力で権限チェックが失敗すると、Claude Code は再度尋ねるか、回答できない場合は呼び出しを拒否します。"
+        },
+        {
+          "title": "GitLab マージリクエストバッジ表示範囲限定",
+          "description": "サンドボックス化セッションが開いたリポジトリに対してのみ GitLab マージリクエストバッジが表示されます。"
+        },
+        {
+          "title": "`claude mcp add --help` の例示変更",
+          "description": "ヘルプ例がローカルコマンドに更新されました。"
+        },
+        {
+          "title": "mods の `engine.create` フック観測仕様変更",
+          "description": "`*`、名前空間、否定フックは観測のみとなり、`$` 名詞の追加・保持・除去はフック名で指定してください。"
+        },
+        {
+          "title": "`claude plugin validate` の mod フック形式チェック強化",
+          "description": "`engine.create` フックが受け入れられる形で書かれていない mod はバリデーションで失敗しますが、インストール済み mod は引き続き読み込まれます。"
+        },
+        {
+          "title": "Marketplace とプラグインインストール時のサブモジュール検証追加",
+          "description": "git サブモジュールがリポジトリが記録したコミットと一致しない場合、インストールが失敗します。"
+        },
+        {
+          "title": "プロジェクト (`.mcp.json`) MCP サーバー承認名一致化",
+          "description": "サーバー名が完全一致しないと再度承認を求めるようになり、別表記のエントリは再確認されます。"
+        },
+        {
+          "title": "`--trust-workspace false` 下の自己ホストランナーと VS Code セッションの保護強化",
+          "description": "リポジトリ設定でフック無効化やプラグインオンオフができなくなり、信頼されていないフォルダでの実行が制限されます。"
+        },
+        {
+          "title": "`tool.list` プラグインフックの適用範囲拡大",
+          "description": "追加・削除されるツールがモデルと全エージェントに適用されます。"
+        },
+        {
+          "title": "`claude plugin install` と `/plugin` の警告表示変更",
+          "description": "プラグインのインストールコマンドが stderr に出力した場合、成功ではなく警告が表示されます。"
+        },
+        {
+          "title": "claude.ai チャットと Cowork タスクのシークレットキー検査追加",
+          "description": "プラグインファイルにシークレットキーが含まれるかチェックし、含む可能性がある場合は送信前に確認を求めます。"
+        },
+        {
+          "title": "`claude rm` とエージェントビューの表記変更",
+          "description": "セッションはリストから削除されるが削除はされず、`claude rm` のヘルプに会話は保持される旨が記載され、`claude --resume` で一覧表示できます。"
+        },
+        {
+          "title": "`/stickers` のステッカーパック表示変更",
+          "description": "ステッカーパックがすべて取得済みである旨が表示され、ブラウザでページが開かれなくなります。"
+        },
+        {
+          "title": "管理設定 `policyHelper` の環境変数取得範囲変更",
+          "description": "`policyHelper` はユーザーや `--settings` ファイルから環境変数を取得しなくなり、必要な変数は管理 `env` または起動シェルで設定してください。"
+        },
+        {
+          "title": "`/skill` または `@file` の二重ファイル指定無効化",
+          "description": "claude.ai や Desktop アプリで二つのファイル間、またはファイルとリンク間に入力した `/skill` や `@file` が効果を持たなくなります。"
+        },
+        {
+          "title": "分割ペインエージェントのリード担当チェック強化",
+          "description": "リードが存在しないエージェントへのリクエストは拒否され、プラン承認は `/clear` または `/resume` 後に再送が必要です。"
+        },
+        {
+          "title": "作業ツリーフォルダのリンク制限強化",
+          "description": "`.git` フォルダがリンクまたはリンク先が欠損している作業ツリーのチェックアウトが拒否されます。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-11-13T03:18:42.698Z"
+}
