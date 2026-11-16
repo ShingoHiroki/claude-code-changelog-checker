@@ -24,6 +24,7 @@ npm run check        # ローカルでの動作確認（環境変数が必要）
 ## アーキテクチャ
 
 ```
+ARCHITECTURE.md               - 構成図（Mermaid 概要図・詳細図。SVG / HTML 版は assets/）
 scripts/check-and-notify.mjs  - メイン処理スクリプト（ESM。検知・翻訳・通知・サイトデータ書き出し）
 scripts/lib/changelog-core.mjs - 共通ロジック（副作用のない関数のみ。通知/バックフィル両方から import）
 scripts/backfill-site-data.mjs - 過去リリースの一括翻訳スクリプト（初回のみ・再実行可能）

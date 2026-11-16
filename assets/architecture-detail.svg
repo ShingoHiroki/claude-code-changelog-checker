@@ -1,0 +1,183 @@
+<svg viewBox="0 0 1160 1530" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#86868b"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <style>
+    .h1 { font-size: 22px; font-weight: 700; fill: #1d1d1f; }
+    .h2 { font-size: 14px; fill: #6e6e73; }
+    .card { fill: #ffffff; stroke: #e5e5ea; stroke-width: 1; }
+    .group { fill: #fbfbfd; stroke: #d9d9de; stroke-width: 1.5; }
+    .pill { fill: #f5f5f7; stroke: #e5e5ea; stroke-width: 1; }
+    .note { fill: #ffffff; stroke: #b0b0b5; stroke-width: 1.2; stroke-dasharray: 5 4; }
+    .cap  { font-size: 12px; font-weight: 600; fill: #86868b; letter-spacing: 1px; }
+    .title { font-size: 15px; font-weight: 600; fill: #1d1d1f; }
+    .sub { font-size: 12px; fill: #6e6e73; }
+    .small { font-size: 12px; fill: #1d1d1f; }
+    .lbl { font-size: 12px; fill: #6e6e73; }
+    .arrow { stroke: #86868b; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    .dash { stroke: #b0b0b5; stroke-width: 2; fill: none; marker-end: url(#arrow); stroke-dasharray: 6 5; }
+  </style>
+
+  <rect x="0" y="0" width="1160" height="1530" fill="#f5f5f7"/>
+
+  <text x="40" y="48" class="h1">claude-code-changelog-checker — 構成図（詳細）</text>
+  <text x="40" y="74" class="h2">分類・翻訳の2系統 / フォールバック / DRY_RUN / force_notify / バックフィルまで含めた処理フロー</text>
+
+  <!-- トリガー -->
+  <rect x="40" y="110" width="250" height="80" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="66" cy="140" r="6" fill="#8e8e93"/>
+  <text x="82" y="146" class="title">cron スケジュール</text>
+  <text x="82" y="170" class="sub">JST 8:00 / 12:00 / 18:00</text>
+
+  <rect x="320" y="110" width="310" height="80" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="346" cy="140" r="6" fill="#8e8e93"/>
+  <text x="362" y="146" class="title">workflow_dispatch（手動）</text>
+  <text x="362" y="170" class="sub">force_notify: true → last-version を 0.0.0 に</text>
+
+  <!-- Secrets -->
+  <rect x="850" y="110" width="270" height="120" rx="16" class="card" filter="url(#shadow)"/>
+  <text x="876" y="140" class="cap">GITHUB SECRETS</text>
+  <text x="876" y="163" class="sub">SAKURA_AI_TOKEN（必須・翻訳用）</text>
+  <text x="876" y="184" class="sub">DISCORD_WEBHOOK_URL（必須）</text>
+  <text x="876" y="205" class="sub">SLACK_WEBHOOK_URL（任意）</text>
+  <text x="876" y="220" class="sub" font-size="11">GITHUB_TOKEN は Actions が自動発行</text>
+
+  <path class="arrow" d="M165,190 L165,264"/>
+  <path class="arrow" d="M475,190 L475,264"/>
+  <path class="dash" d="M850,170 L770,170 L770,264"/>
+
+  <!-- GitHub Actions ジョブ -->
+  <rect x="40" y="270" width="780" height="1020" rx="20" class="group"/>
+  <text x="70" y="302" class="cap">GITHUB ACTIONS ジョブ — CHECK-CHANGELOG.YML</text>
+  <text x="70" y="324" class="sub">scripts/check-and-notify.mjs（共通ロジック: scripts/lib/changelog-core.mjs）</text>
+
+  <!-- 1. リリース取得 -->
+  <rect x="90" y="350" width="520" height="72" rx="14" class="card" filter="url(#shadow)"/>
+  <circle cx="116" cy="378" r="6" fill="#1f6feb"/>
+  <text x="132" y="384" class="title">リリース取得</text>
+  <text x="132" y="407" class="sub">最新・未取得リリースを取得（GITHUB_TOKEN でレート制限緩和）</text>
+
+  <rect x="850" y="350" width="270" height="80" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="876" cy="380" r="6" fill="#24292f"/>
+  <text x="892" y="386" class="title">GitHub Releases API</text>
+  <text x="892" y="410" class="sub">@anthropic-ai/claude-code</text>
+  <path class="arrow" d="M610,386 L844,386"/>
+
+  <path class="arrow" d="M350,422 L350,448"/>
+
+  <!-- 2. 差分チェック -->
+  <rect x="90" y="452" width="400" height="72" rx="14" class="card" filter="url(#shadow)"/>
+  <circle cx="116" cy="480" r="6" fill="#1f6feb"/>
+  <text x="132" y="486" class="title">差分チェック</text>
+  <text x="132" y="509" class="sub">state/last-version.txt と比較</text>
+  <rect x="560" y="468" width="180" height="40" rx="20" class="pill"/>
+  <text x="650" y="493" class="small" text-anchor="middle">差分なし → 終了</text>
+  <path class="arrow" d="M490,488 L554,488"/>
+  <path class="arrow" d="M290,524 L290,550"/>
+  <text x="304" y="543" class="lbl">差分あり（古い順に処理）</text>
+
+  <!-- 3. 分類 -->
+  <rect x="90" y="554" width="520" height="84" rx="14" class="card" filter="url(#shadow)"/>
+  <circle cx="116" cy="582" r="6" fill="#1f6feb"/>
+  <text x="132" y="588" class="title">categorizeAndGroup() — 分類</text>
+  <text x="132" y="610" class="sub">破壊的変更 / 新機能 / 改善 / その他 / バグ修正 の5カテゴリ</text>
+  <text x="132" y="628" class="sub">件数サマリーは英語分類から算出（翻訳に依存しない）</text>
+
+  <path class="arrow" d="M350,638 L350,664"/>
+
+  <!-- 4. 通知用翻訳 -->
+  <rect x="90" y="668" width="520" height="72" rx="14" class="card" filter="url(#shadow)"/>
+  <circle cx="116" cy="696" r="6" fill="#ec5fa0"/>
+  <text x="132" y="702" class="title">translateToJapanese() — 通知用翻訳</text>
+  <text x="132" y="725" class="sub">カテゴリ別本文を日本語へ翻訳</text>
+  <path class="arrow" d="M610,704 L985,704 L985,784"/>
+
+  <!-- さくらのAI Engine -->
+  <rect x="850" y="790" width="270" height="100" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="876" cy="820" r="6" fill="#ec5fa0"/>
+  <text x="892" y="826" class="title">さくらのAI Engine</text>
+  <text x="892" y="850" class="sub">gpt-oss-120b · OpenAI 互換 API</text>
+  <text x="892" y="871" class="sub">無料枠: Chat Completions 月3,000回</text>
+
+  <path class="arrow" d="M217,740 L217,764"/>
+  <path class="arrow" d="M487,740 L487,764"/>
+
+  <!-- 5. 通知 -->
+  <rect x="90" y="770" width="255" height="110" rx="14" class="card" filter="url(#shadow)"/>
+  <circle cx="116" cy="800" r="6" fill="#5865f2"/>
+  <text x="132" y="806" class="title">Discord Webhook</text>
+  <text x="132" y="829" class="sub">Embed: 件数サマリー + 全件掲載</text>
+  <text x="132" y="849" class="sub">上限超過時は field / Embed 分割</text>
+
+  <rect x="365" y="770" width="245" height="110" rx="14" class="card" filter="url(#shadow)"/>
+  <circle cx="391" cy="800" r="6" fill="#4a154b"/>
+  <text x="407" y="806" class="title">Slack Webhook（任意）</text>
+  <text x="407" y="829" class="sub">Block Kit: サマリー + サイトリンク</text>
+  <text x="407" y="849" class="sub">未設定時はスキップ</text>
+
+  <rect x="90" y="896" width="520" height="40" rx="12" class="note"/>
+  <text x="350" y="921" class="sub" text-anchor="middle">送信失敗時はプレーンテキストにフォールバック</text>
+
+  <path class="arrow" d="M350,936 L350,962"/>
+  <text x="364" y="956" class="lbl">通知成功後</text>
+
+  <!-- 6. サイト用翻訳 -->
+  <rect x="90" y="966" width="520" height="84" rx="14" class="card" filter="url(#shadow)"/>
+  <circle cx="116" cy="994" r="6" fill="#ec5fa0"/>
+  <text x="132" y="1000" class="title">translateToStructuredJapanese() — サイト用翻訳</text>
+  <text x="132" y="1022" class="sub">各項目を title / description に分けた構造化 JSON（+1 リクエスト）</text>
+  <text x="132" y="1040" class="sub">通知用の行翻訳とは別系統</text>
+  <path class="arrow" d="M610,1008 L985,1008 L985,896"/>
+
+  <path class="arrow" d="M350,1050 L350,1076"/>
+
+  <!-- 7. 書き出し -->
+  <rect x="90" y="1080" width="520" height="84" rx="14" class="card" filter="url(#shadow)"/>
+  <circle cx="116" cy="1108" r="6" fill="#1f6feb"/>
+  <text x="132" y="1114" class="title">サイトデータ書き出し</text>
+  <text x="132" y="1136" class="sub">docs/data/&lt;version&gt;.json を出力</text>
+  <text x="132" y="1154" class="sub">rebuildVersionsIndex() で versions.json をフルスキャン再生成</text>
+
+  <path class="arrow" d="M350,1164 L350,1190"/>
+
+  <!-- 8. コミット -->
+  <rect x="90" y="1194" width="520" height="72" rx="14" class="card" filter="url(#shadow)"/>
+  <circle cx="116" cy="1222" r="6" fill="#24292f"/>
+  <text x="132" y="1228" class="title">commit / push（github-actions[bot]）</text>
+  <text x="132" y="1251" class="sub">state/last-version.txt と docs/data/ をコミットバック</text>
+
+  <!-- DRY_RUN -->
+  <rect x="850" y="1080" width="270" height="120" rx="16" class="note"/>
+  <text x="876" y="1110" class="cap">DRY_RUN=true のとき</text>
+  <text x="876" y="1134" class="sub">Webhook 送信・state 更新・書き出しなし</text>
+  <text x="876" y="1155" class="sub">Discord / Slack 用 JSON ペイロードを</text>
+  <text x="876" y="1173" class="sub">stdout に出力（動作確認用）</text>
+  <path class="dash" d="M820,1140 L844,1140"/>
+
+  <!-- 公開サイト -->
+  <rect x="40" y="1340" width="780" height="130" rx="20" class="group"/>
+  <text x="70" y="1372" class="cap">公開サイト — GITHUB PAGES（MAIN ブランチ /DOCS 配信）</text>
+  <circle cx="78" cy="1404" r="6" fill="#2da44e"/>
+  <text x="94" y="1410" class="title">docs/ 静的 SPA — ハッシュルーティング #/&lt;version&gt;</text>
+  <text x="94" y="1436" class="sub">data/versions.json（左メニュー一覧）+ data/&lt;version&gt;.json（詳細）を fetch して描画 · 依存ゼロ / ビルド不要</text>
+  <path class="arrow" d="M350,1266 L350,1334"/>
+  <text x="366" y="1308" class="lbl">push → Pages 自動反映（CDN 反映まで数分）</text>
+
+  <!-- バックフィル -->
+  <rect x="850" y="1340" width="270" height="130" rx="16" class="card" filter="url(#shadow)"/>
+  <circle cx="876" cy="1370" r="6" fill="#8e8e93"/>
+  <text x="892" y="1376" class="title">backfill-site-data.mjs</text>
+  <text x="876" y="1401" class="sub">過去リリースの一括翻訳</text>
+  <text x="876" y="1421" class="sub">初回のみ・ローカル実行 / 再実行可能</text>
+  <text x="876" y="1441" class="sub">--limit / --force / --dry-run</text>
+  <path class="dash" d="M850,1405 L826,1405"/>
+  <path class="dash" d="M1120,1380 L1142,1380 L1142,840 L1126,840"/>
+
+  <!-- 凡例 -->
+  <text x="40" y="1510" class="lbl">実線 = メインフロー　　点線 = 補足・任意・初回のみの流れ</text>
+</svg>
