@@ -1,0 +1,405 @@
+{
+  "version": "2.1.326",
+  "tagName": "v2.1.326",
+  "publishedAt": "2026-11-16T22:11:05Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.326",
+  "counts": {
+    "破壊的変更": 2,
+    "新機能": 10,
+    "改善": 57,
+    "その他": 81,
+    "バグ修正": 217
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "tmux のマウスホイール通知の削除",
+          "description": "フルスクリーンで `set -g mouse on` が不要になり、ホイールスクロールがそのまま機能するようにしました。"
+        },
+        {
+          "title": "スピナーチップの削除",
+          "description": "`/clear` を 30 分後に提案していたスピナーチップを削除しました。"
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Code Mode とエージェントチームの同時利用",
+          "description": "エージェントチームが有効な状態で Code Mode をオンにできるようにしました。既にオンにしていた場合、チーム有効時のセッションは自動的に Code Mode で開始されます。"
+        },
+        {
+          "title": "ツール設定の警告",
+          "description": "`--allowedTools`、`--disallowedTools`、`--tools` のいずれかに不完全なルールらしき項目が含まれると、起動時に警告を表示します。"
+        },
+        {
+          "title": "MCP サーバー停止の説明追加",
+          "description": "管理者がセッション中に `managed-mcp.json` を追加した際に、MCP サーバーのロードが停止する理由を説明するメッセージを追加しました。"
+        },
+        {
+          "title": "/status にプロバイダー／環境変数情報行追加",
+          "description": "`DISABLE_TELEMETRY` などの環境変数やプロバイダーが機能をオフにしたとき、その時点を `/status` の行で示すようにしました。"
+        },
+        {
+          "title": "plugin.json の不正フィールド通知",
+          "description": "`/plugin` と `claude plugin list` で、`author` や `homepage` など不正な `plugin.json` フィールドが無視された旨の注記を表示します。"
+        },
+        {
+          "title": "Ctrl+O で起動通知を表示",
+          "description": "隠れた起動通知を表示するためのショートカット `Ctrl+O` を追加しました。"
+        },
+        {
+          "title": "リクエスト失敗時のプロンプトヒント",
+          "description": "空プロンプトに、リクエストが失敗した後に取るべき操作を示すヒントを追加しました。"
+        },
+        {
+          "title": "サブエージェントの停止ヒント",
+          "description": "サブエージェントビューに `Esc to stop` のフッターヒントを追加し、Esc キーでエージェントを停止できることを示します。"
+        },
+        {
+          "title": "OpenTelemetry リソース属性拡張",
+          "description": "`OTEL_RESOURCE_INCLUDE_HOST` を追加し、`host.name` と `host.id` を OpenTelemetry のリソース属性に含められるようにしました（デフォルトはオフ）。"
+        },
+        {
+          "title": "モジュール UI のスタイル調整",
+          "description": "モッドの `Box` に `overflowX=\"scroll\"` を設定し、`Text` に `maxLines` と `wrap=\"clip\"` を追加しました。"
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "Bash の権限チェック強化",
+          "description": "一部コマンドが事前に確認を求めるようになり、回答できない場合は拒否されます。"
+        },
+        {
+          "title": "Code Mode の権限チェック改善",
+          "description": "サンドボックス化されたコマンドがさらに多く確認を求められるか、拒否されるようになりました。"
+        },
+        {
+          "title": "Code Mode 起動失敗時のメッセージ改善",
+          "description": "起動できない場合に、実行可能な対処法を示すメッセージに改良しました。"
+        },
+        {
+          "title": "macOS・Linux・WSL の Bash サンドボックス保護強化",
+          "description": "Bash のサンドボックス保護を強化しました。"
+        },
+        {
+          "title": "Linux のサンドボックス指示改善",
+          "description": "Linux でのサンドボックス指示に、サーバーが起動コマンドからしか到達できないことを明示しました。"
+        },
+        {
+          "title": "プッシュ通知のシークレットマスキング改善",
+          "description": "Remote Control とクラウドセッションからのプッシュ通知でシークレットがより安全にマスクされるようになりました。"
+        },
+        {
+          "title": "/logout と claude auth logout のリトライ強化",
+          "description": "端末でのログアウト時に、取り消しが失敗した場合は再試行し、サーバーが確認できないときは手動で取り消す方法を案内します。"
+        },
+        {
+          "title": "Remote Control のストリーミング改善",
+          "description": "`claude remote-control`、Claude Desktop、VS Code セッションからの返信が、書き込みと同時に電話やブラウザへストリームされるようになりました。"
+        },
+        {
+          "title": "入力・ストリーミング・リサイズ応答性向上",
+          "description": "長時間セッションでのタイピング、ストリーミング、ウィンドウリサイズの応答性が改善されました。"
+        },
+        {
+          "title": "ファイル読み取り/編集後の応答速度向上（Windows）",
+          "description": "Windows でファイルを読む・編集した後の応答時間が顕著に改善されました。"
+        },
+        {
+          "title": "アイドル時の CPU 使用削減",
+          "description": "アイドルセッションがマシンを覚醒させる頻度が減少しました。"
+        },
+        {
+          "title": "20 以上のサブエージェント時の CPU 使用改善",
+          "description": "バックグラウンドエージェントのトランスクリプトが開かれていない場合、トークン数の更新間隔が 5 秒に短縮されました。"
+        },
+        {
+          "title": "/compact 後の最初メッセージ応答時間改善",
+          "description": "Git リポジトリで `/compact` 実行後の最初メッセージの応答時間が改善されました。"
+        },
+        {
+          "title": "Claude Desktop のキュー待ちメッセージ応答時間改善",
+          "description": "Claude が返信を完了する間にキューイングされたメッセージの応答が速くなります。"
+        },
+        {
+          "title": "新規セッションの初回応答時間短縮",
+          "description": "Claude Desktop の新規セッションで、ローカル MCP サーバーがツールをオンデマンドでロードする際の最大 500 ms 待機が削除されました。"
+        },
+        {
+          "title": "PreToolUse フックの updatedInput 維持改善",
+          "description": "複数フックがツール呼び出しに答える場合でも、`updatedInput` が保持されるようにロジックを拡張しました。"
+        },
+        {
+          "title": "PreToolUse フックが 127 で終了した際のエラー改善",
+          "description": "フックが 127 で終了したときに、チェックが実行されなかった可能性がある旨を示すエラーメッセージに変更しました。"
+        },
+        {
+          "title": "トランスクリプト上のフック失敗表示改善",
+          "description": "失敗したフックは灰色から赤に、Claude を停止させるフックは黄色に、理由が下部に表示されます。"
+        },
+        {
+          "title": "フォルダ信頼プロンプトの情報量増加",
+          "description": "起動時と `/cd` 時に、Claude Code が読み込むプロジェクト設定ファイルを列挙し、起動時にはコマンド実行ファイルもマークします。"
+        },
+        {
+          "title": "フォルダ信頼プロンプトの終了理由表示",
+          "description": "Claude Code が終了した理由をプロンプトに示すようにしました。"
+        },
+        {
+          "title": "権限チェック失敗時のエラーメッセージ改善",
+          "description": "非対話実行やバックグラウンドエージェントで権限チェックが失敗した場合、原因が明示されます。"
+        },
+        {
+          "title": "Chrome リモート制御での許可リクエスト改善",
+          "description": "`claude.ai` 上で Chrome の許可リクエスト時に、対象サイト名が表示され、既に許可済みでも名前が示されます。"
+        },
+        {
+          "title": "クラウドセッションの MCP ツールエラー改善",
+          "description": "セッションのプロキシ経由での呼び出しが途中で切断された場合、結果が不明である旨を通知します。"
+        },
+        {
+          "title": "/update-config のトークン使用量削減",
+          "description": "端末での `/update-config` が使用するコンテキストトークン数を約 93 000 から 13 000 に削減し、変更点のみを引用するようにしました。"
+        },
+        {
+          "title": "OSC 7501 レポートの改善",
+          "description": "バックグラウンドコマンド、モニター、MCP タスクが一覧表示され、待機中のセッションは「作業中」と表示されます。"
+        },
+        {
+          "title": "Monitor のウォッチ期限切れ時出力情報改善",
+          "description": "イベントが無く期限切れとなったウォッチで、標準エラーに出力があった場合、その旨と出力ファイルを通知します。"
+        },
+        {
+          "title": "browser_batch 呼び出しのタイムアウト延長",
+          "description": "長い `browser_batch` 呼び出しの応答期限が 90 秒から 150 秒に延長され、結果が失われにくくなりました。"
+        },
+        {
+          "title": "/doctor の進行状況共有",
+          "description": "`/doctor` が全レポートを待つのではなく、作業中に見つかった結果を随時共有します。"
+        },
+        {
+          "title": "JSON エラー時の行列情報提供",
+          "description": "設定ファイルや `.mcp.json` の JSON が壊れている場合、エラーで行番号と列番号が示されます。"
+        },
+        {
+          "title": "プロバイダー・環境変数で無効コマンドの説明追加",
+          "description": "プロバイダーや `DISABLE_TELEMETRY` などでコマンドがオフの場合、理由が「不明なコマンド」ではなく説明されます。"
+        },
+        {
+          "title": "CERT_SIGNATURE_FAILURE エラーの原因提示",
+          "description": "CA 更新後に起き得る原因と、IT が変更できる点をエラーメッセージに付加しました。"
+        },
+        {
+          "title": "チーム予算上限時のリセット情報表示",
+          "description": "チームのプールされた予算が使い切れた際に、次のリセット時期を通知します。"
+        },
+        {
+          "title": "API が Console サインインを拒否した際の案内改善",
+          "description": "`/login` を実行するよう指示し、管理者設定へのリンクは示さないように変更しました。"
+        },
+        {
+          "title": "サインインプロンプトの貼り付け案内改善",
+          "description": "検証コードやウェブアドレスを貼り付ける際の指示が明確になり、プロンプトが残って正しいコードを貼り付けられるようになりました（anthropics/claude-code#97）。"
+        },
+        {
+          "title": "/login 画面の入力改善",
+          "description": "コード入力欄がテキストフィールド化され、拒否されたコードの理由が下部に表示され、短いウィンドウでも入力欄がスクロールして見えるようになりました。"
+        },
+        {
+          "title": "/design-login と /install-github-app の入力マスク化",
+          "description": "`/login` と同様に、コード貼り付け時にマスクが適用されます。"
+        },
+        {
+          "title": "Claude Apps ゲートウェイのサインイン画面改善",
+          "description": "サインインアドレスがリンク化され、`c` キーでコピーできるようになりました。"
+        },
+        {
+          "title": "/plugin の Discover とマーケットリスト表示改善",
+          "description": "短いウィンドウでもカーソルとキーのヒントが表示され、Home/End/PgUp/PgDn、マウスホイール、クリックが機能します。"
+        },
+        {
+          "title": "/plugin Marketplace と Add marketplace の UI 改善",
+          "description": "コンパクトなリスト、削除確認の明確化、テキストフィールドのクリア、エラー表示を短縮しました。"
+        },
+        {
+          "title": "/plugin Installed タブの操作性向上",
+          "description": "Home/End/PgUp/PgDn とクリックが利用可能になり、非表示行もカウントされます。"
+        },
+        {
+          "title": "/plugin Errors と Stats タブの表示改善",
+          "description": "長大エラーが画面を埋め尽くさず、エラーからのアンインストールは事前確認、長いスキル名がテーブルを壊さなくなりました。"
+        },
+        {
+          "title": "端末出力の統一表示改善",
+          "description": "`claude plugin`、`mcp`、`update`、`doctor`、`auth logout` の出力が成功・失敗・警告を同様にマークし、パイプ出力は従来形を保持します。"
+        },
+        {
+          "title": "端末全体の文言統一改善",
+          "description": "`/plugin`、`/mcp`、サインイン、セットアップ、設定、エージェントビュー、`/teleport`、Remote Control、アップデートメッセージ、スピナーティップ、`/powerup`、`claude --help` の文言を見直しました。"
+        },
+        {
+          "title": "ダイアログと ? リストのキー表示統一",
+          "description": "多くのダイアログで利用可能キーを一覧表示し、順序と文言を統一、狭いウィンドウに収まります。`/hooks` と `/permissions` の深層画面では Esc が戻ることを示します。"
+        },
+        {
+          "title": "テキストフィールドのレイアウト改善",
+          "description": "`/add-dir`、`/export`、`/permissions`、`/feedback`、`/install-github-app`、Bedrock と Vertex のセットアップで、外観を統一し、長文は折り返し、拒否値はその場で修正可能です。"
+        },
+        {
+          "title": "ダイアログ・パネル・トランスクリプトの表示統一",
+          "description": "多くのダイアログでエラー・警告・確認がそれぞれ ✘、⚠、✔ で始まり、ロード行・ステータス行・カウント・時間表示が統一されました。"
+        },
+        {
+          "title": "長いメニューのスクロール情報表示改善",
+          "description": "`/permissions`、`/resume`、`/model` などの長メニューで、上下にある行数を表示し、`/` と `@` メニューはフルスクリーン外やスクリーンリーダーモードの隠し行数をカウントします。"
+        },
+        {
+          "title": "リストナビゲーションのラッピング拡充",
+          "description": "多くのリストが両端でラップし、スラッシュコマンドのチェックボックスリストは Home と End を受け付け、`/permissions` では検索結果が無いときに通知します。"
+        },
+        {
+          "title": "エージェントビューのピッカー操作改善",
+          "description": "Home、End、ページングキーでピッカーを操作できるようにしました。"
+        },
+        {
+          "title": "エージェントビューの選択行表示統一",
+          "description": "プロンプト下のエージェント行は、他リストと同様のポインタと色で選択行を示します。"
+        },
+        {
+          "title": "Ctrl+C 後のフッターヒント改善",
+          "description": "バックグラウンドエージェント停止後のフッターに、停止したサブエージェントを再開するための `↓ to resume subagent` を表示します。"
+        },
+        {
+          "title": "フルスクリーンモードのプロンプト境界表示改善",
+          "description": "長いプロンプトで、プロンプト枠が画面外にある行数を示すようになりました。"
+        },
+        {
+          "title": "/autocompact と /scroll-speed のスライダー改善",
+          "description": "全ての値を示すスライダーに Home、End、フルスクリーン時のクリックが対応し、狭い端末でも使用可能です。"
+        },
+        {
+          "title": "on/off 設定の表示統一",
+          "description": "`/config`、`/memory`、自動モード設定で `on` / `off` が明示的に表示されます。"
+        },
+        {
+          "title": "キュー中メッセージの送信ヒント改善",
+          "description": "キュー中メッセージの下に表示されるヒントが \"Queued\" と明示し、メッセージ本文と混同しなくなりました。"
+        },
+        {
+          "title": "端末セットアップの変更確認表示",
+          "description": "端末設定変更前に、すべての変更項目を一覧表示します。"
+        },
+        {
+          "title": "/btw、/help、/scroll-speed などのレイアウト改善",
+          "description": "`/btw`、`/help`、`/scroll-speed`、設定エラーダイアログ、プラグインや設定提案ダイアログの配置と余白を調整しました。"
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Remote Control のセッション切断バグ修正",
+          "description": "サーバーが一時的に利用不可になった際に、返信途中でセッションが切断される問題を修正しました。"
+        },
+        {
+          "title": "Remote Control の QR コード表示改善",
+          "description": "`/remote-control` の QR コードが端末幅 80×24 など狭いウィンドウでも切れずに表示されるようにしました。"
+        },
+        {
+          "title": "Remote Control のアイドル表示修正",
+          "description": "電話上で端末セッションがアイドル表示されても、バックグラウンドのサブエージェントが動作中の場合は、電話やウェブで「Stop」を選択すると同時にターンが終了するようにしました。"
+        },
+        {
+          "title": "mods フォルダ編集時の確認頻度増加",
+          "description": "セッションの mods フォルダへの編集はより頻繁に確認を求め、サンドボックス化コマンドが書き込むフォルダを減らしました。全ての編集が確認される場合は、読めないリンクやネットワークパスを削除してください。"
+        },
+        {
+          "title": "Windows の最初 Bash コマンド速度改善",
+          "description": "Windows セッションで最初の Bash コマンドが約 1 秒速くなりました。"
+        },
+        {
+          "title": "HIPAA 構成での自動モード既定化変更",
+          "description": "Claude Code + Cowork HIPAA 設定の組織では、端末と VS Code のセッションがデフォルトで自動モードで開始され、`disableAutoMode` でオフにできます。"
+        },
+        {
+          "title": "組織ポリシー未ロード時の自動モード開始変更",
+          "description": "モード未設定の端末・VS Code セッションは、組織ポリシーがロードされていない場合手動モードではなく自動モードで開始されます。"
+        },
+        {
+          "title": "mid‑session の managed‑mcp.json の適用タイミング変更",
+          "description": "セッション中に追加された `managed-mcp.json` は次回のチェックで適用されるようになり、完全に適用させるにはセッションを再起動してください。"
+        },
+        {
+          "title": "Code Mode の `$` ヘルパーエラーハンドリング",
+          "description": "`$` シェルヘルパーが一部値を受け付けずエラーを返すように変更し、何も実行されません。"
+        },
+        {
+          "title": "自動モードでの事前シェルコマンド停止",
+          "description": "自動モード開始前に実行されていた一部シェルコマンドを停止するように変更しました。"
+        },
+        {
+          "title": "macOS の Bash コマンド確認・拒否変更",
+          "description": "macOS で以前実行されていた一部 Bash コマンドが、確認を求めるか拒否されるようになりました。"
+        },
+        {
+          "title": "フックの block decision 拡張",
+          "description": "`\"decision\": \"block\"` を持つフックがより多くのケースで保持され、常に出力するフックが呼び出しをブロックし始めます。"
+        },
+        {
+          "title": "自動モード開始時のデフォルトモード取得ロジック変更",
+          "description": "自動開始セッションは、設定ロード後にサーバー管理の `defaultMode` を使用し、設定取得失敗やポリシー不在・必須時は Manual にフォールバックします。"
+        },
+        {
+          "title": "HIPAA 組織の直接 Anthropic API 接続時の自動モード分類器変更",
+          "description": "Claude Code + Cowork HIPAA 設定で、直接 Anthropic API に接続する場合、サーバー側分類器が他組織と同様にアクションをチェックします。"
+        },
+        {
+          "title": "Bash サンドボックス状態保持の変更",
+          "description": "セッション中、Bash サンドボックスは一部ケースで状態を保持し、`/sandbox` や `/cd` を実行するまで保持され、必要に応じて最初に確認を求めます。"
+        },
+        {
+          "title": "macOS・Linux・WSL のサンドボックス書き込み制限変更",
+          "description": "デフォルトで macOS、Linux、WSL のサンドボックスが一部敏感なホームフォルダへの書き込みを行わないようにし、`sandbox.filesystem.allowWrite` 設定で許可可能です。"
+        },
+        {
+          "title": "Bash サンドボックスの .git フォルダエントリ処理変更",
+          "description": "リポジトリの `.git` フォルダ内で予期しないエントリが出た場合、サンドボックスはそれらを除外します。"
+        },
+        {
+          "title": "Linux/WSL の --add-dir フォルダ事前作成変更",
+          "description": "Linux と WSL のサンドボックスは、各コマンド実行前に欠落している `--add-dir` フォルダを作成し、コマンドが失敗・スキップ・フォルダ内で動作できるようにします。"
+        },
+        {
+          "title": "権限フックや SDK ホストのコマンド書き換え保持変更",
+          "description": "承認時に権限フックや SDK ホストが書き換えたコマンドが、元がサンドボックス対象だった場合はサンドボックス内に留まります。`dangerouslyDisableSandbox: true` で無効化可能です。"
+        },
+        {
+          "title": "claude mcp serve の sandbox.excludedCommands 無視",
+          "description": "`claude mcp serve` が `sandbox.excludedCommands` を無視するように変更しました。"
+        },
+        {
+          "title": "/rewind のファイル保持変更",
+          "description": "macOS、Linux、WSL で `/rewind` 実行時、サンドボックスが有効な場合に一部ファイルはそのまま残り、スキップとして報告されます。"
+        },
+        {
+          "title": "Bash サンドボックスの環境変数設定確認変更",
+          "description": "自動許可がオフのとき、環境変数設定行の一部は事前に確認を求め、無人実行では拒否されます。"
+        },
+        {
+          "title": "Claude のファイルツール書き込み制限変更",
+          "description": "Claude のファイルツールが `Cl` への書き込みを拒否するようになりました。"
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-11-17T05:00:23.661Z"
+}
