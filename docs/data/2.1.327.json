@@ -1,0 +1,336 @@
+{
+  "version": "2.1.327",
+  "tagName": "v2.1.327",
+  "publishedAt": "2026-11-17T23:17:45Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.327",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 8,
+    "改善": 21,
+    "その他": 50,
+    "バグ修正": 94
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "`/install-github-app` がリポジトリを変更する前に確認を追加",
+          "description": ""
+        },
+        {
+          "title": "`claude mcp add-json <name> -` を追加し、サーバーの JSON を stdin から読み取れるようにしました。これによりトークンをコマンドラインに残す必要がなくなります；Claude Code セッション内では利用できません",
+          "description": ""
+        },
+        {
+          "title": "再開されたセッションで以前のメッセージを読み込めない場合に、1 行を追加",
+          "description": ""
+        },
+        {
+          "title": "`/status` に、壊れたエージェント、スキル、コマンド、出力スタイルファイル、キー設定エラー、利用できないサンドボックス、無視された権限設定、およびマッチしないフックマッチャーの一覧を追加",
+          "description": ""
+        },
+        {
+          "title": "`/config` に、他の設定が行を上書きしている場合の注記を追加",
+          "description": ""
+        },
+        {
+          "title": "ゲートウェイヒントヘッダーに `x-claude-code-managed-settings-checksum` を追加；`CLAUDE_CODE_GATEWAY_HINT_HEADERS=1` が設定された管理設定がある場所（既に設定されている場所も含む）で送信されます",
+          "description": ""
+        },
+        {
+          "title": "`attributionProject` 設定でセッションの課金グループに名前を付けるサポートを追加。`admin.billing_group_tag` を設定する Claude アプリゲートウェイ向けです",
+          "description": ""
+        },
+        {
+          "title": "非全画面レンダラーの名前として `/tui classic` を追加。`/tui default` も引き続き動作します",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "セッションの最初の Bash コマンドの速度を改善：シェルの起動ファイルは承認前に実行できるようになり、拒否された場合でも実行されます。無効にするには `CLAUDE_CODE_DISABLE_SHELL_HEAD_START=1` を設定してください",
+          "description": ""
+        },
+        {
+          "title": "新しいモデルおよび PowerShell でのコミットを改善：Claude に機密情報が含まれる可能性が高いファイルをコミットしないよう指示します",
+          "description": ""
+        },
+        {
+          "title": "サンドボックス化されたシェルコマンドを改善：Claude は、サンドボックスから除外されたコマンドがサンドボックスの権限チェックに依存していたために残っていたことを認識できるようになりました",
+          "description": ""
+        },
+        {
+          "title": "`rm` を含まないシェルコマンドで危険な `rm` チェックが解析できない場合の拒否を改善し、Claude が無害なコマンドをプレーン構文で再送できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "非常に長いセッションの再開を改善：途中で終了したトランスクリプトの読み取りを 1 回リトライするようにし、メッセージの喪失が減少しました",
+          "description": ""
+        },
+        {
+          "title": "出力トークン上限に二回達したサブエージェントの回答を改善：回答が全体で返ってくるか、部分的である旨を事前に通知する頻度が増えました",
+          "description": ""
+        },
+        {
+          "title": "未認識モデルでの長い返信を改善：32,000 出力トークンで切れた返信は、上限 128,000 トークンで続くようになりました",
+          "description": ""
+        },
+        {
+          "title": "圧縮後の完了したサブエージェントに関するリマインダーを改善：Claude がエージェントの出力ファイルを読めない場合、`SendMessage` でエージェントに問い合わせるよう指示されます",
+          "description": ""
+        },
+        {
+          "title": "API キーと Anthropic プロファイルが同時に設定されている場合に表示される警告を改善：使用中のものとプロファイルへの切り替え方法が示されます",
+          "description": ""
+        },
+        {
+          "title": "`/plugin` を改善：マーケットプレイスを削除する前の質問で、プラグインの設定と保存データが削除される旨が表示され、あるマーケットプレイスのページに別のマーケットプレイスのエラーが表示されなくなりました",
+          "description": ""
+        },
+        {
+          "title": "PATH が Git for Windows の bin フォルダーを指す場合の Windows の起動時間を改善：ランチャー経由ではなく git.exe を直接起動します",
+          "description": ""
+        },
+        {
+          "title": "自動モードとバイパス権限モードで、Bash ツールの変更ファイルの diff が利用可能になるまでの時間を改善",
+          "description": ""
+        },
+        {
+          "title": "macOS と Linux における非常に深い階層の欠落パスに対する Bash 権限チェックの速度、及び URL を含む長文の機密マスク処理の速度を改善",
+          "description": ""
+        },
+        {
+          "title": "トランスクリプト検索を改善し、編集や書き込み済みファイル内のテキストも検索できるようにしました",
+          "description": ""
+        },
+        {
+          "title": "大きな PNG 画像の読み取り速度を改善し、代替で送信される JPEG の品質を向上させました",
+          "description": ""
+        },
+        {
+          "title": "Artifact ツールを改善し、アーティファクトページに表示されたアドレスでアップロードされたファイルを読み取れるようにしました。他の形式は依然として失敗し、ほとんどは「ID で 1 回の呼び出しごとにアップロードを読む」旨のメッセージが表示されます",
+          "description": ""
+        },
+        {
+          "title": "Artifact ツールを改善し、使用しない一部の呼び出しで `prompt`、`limit`、`label` を無視して失敗しないようにしました",
+          "description": ""
+        },
+        {
+          "title": "`/mcp` の MCP サーバーページを改善：ローカル、リモート、エージェントサーバーが同一レイアウトを共有し、メニューは Back で終了、スクリーンリーダーモード外ではアクションに番号が付かなくなりました。矢印キーと Enter を使用してください",
+          "description": ""
+        },
+        {
+          "title": "狭い端末を改善：`/status`、フォーム、詳細画面のレイアウトが向上し、`/model` と `/effort` が約 40 列に収まり、`←/→ to adjust` などのキー提示が保持されます",
+          "description": ""
+        },
+        {
+          "title": "`/install-github-app` を改善：リポジトリ、シークレット、API キーの手順が標準リストとキーを使用し、メッセージが短くなり、スピナーとエラー表示が明確になりました",
+          "description": ""
+        },
+        {
+          "title": "`/desktop` を改善：ダウンロードの質問が y/n ではなく標準リストになりました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Remote Control: ワークツリーモードでサーバーを停止した際に、実行中セッションの `.env` など git で無視されるファイルが削除されていた問題を修正",
+          "description": ""
+        },
+        {
+          "title": "アカウント変更後に、一部の事前起動バックグラウンドセッションを破棄するよう変更",
+          "description": ""
+        },
+        {
+          "title": "端末で使用制限に達して一時停止したワークフローが、ログイン後も一時停止状態を維持し、以前のログインが復帰するかプロンプト入力まで待機するよう変更",
+          "description": ""
+        },
+        {
+          "title": "Self-hosted runner: セッションのスクリプトやフックで起動した `claude -p` がレートリミット待ちになる問題を修正（セッションのリトライ設定を継承していたため）",
+          "description": ""
+        },
+        {
+          "title": "バグ修正と信頼性向上",
+          "description": ""
+        },
+        {
+          "title": "Windows: Git Bash と `pwsh` が PATH に無くても、PowerShell の標準インストール場所を一括チェックすることで起動時間を改善。System32 の `powershell.exe` が PATH 上の以前のものより優先されます",
+          "description": ""
+        },
+        {
+          "title": "Windows: PowerShell ツールの速度をコマンドあたり最大約 0.5 秒向上",
+          "description": ""
+        },
+        {
+          "title": "`ExitWorktree` を変更し、未保存作業がある可能性のあるワークツリー削除前に確認を行うように。不要確認モードや回答者がいない場合は拒否、ただし許可ルール、auto または bypass 権限モードで許可されていれば実行",
+          "description": ""
+        },
+        {
+          "title": "`.mcp.json` がトップレベルでサーバー一覧を `mcpServers` キーなしで持つ場合、`claude mcp add --scope project` がファイルを上書きせず中止するよう変更",
+          "description": ""
+        },
+        {
+          "title": "多くの権限プロンプトで矢印キーの動作を「No」で止めるよう変更。最後の選択肢を超える番号は「No」へ移動",
+          "description": ""
+        },
+        {
+          "title": "パスチェックを変更し、一部のシンボリックリンクを拒否",
+          "description": ""
+        },
+        {
+          "title": "作業ディレクトリ内部とみなす基準を変更し、いくつかのパスで権限確認が求められるように",
+          "description": ""
+        },
+        {
+          "title": "`permissions.blockReadsOutsideWorkingDirectories` を変更し、bypass と auto モードでより多くの Bash コマンドについて確認し、auto モードでは一部を拒否",
+          "description": ""
+        },
+        {
+          "title": "同上設定で、Read または Edit の拒否ルール下にあるパスを指定する Bash コマンドを、以前は確認していたものを拒否に変更",
+          "description": ""
+        },
+        {
+          "title": "auto モードの「有料分類器リクエストにフォールバックする」通知を変更し、次のリリースでフォールバックが削除される旨を表示。チェック対象だった各アクションは質問されるか拒否されます",
+          "description": ""
+        },
+        {
+          "title": "auto モードで、`Bash(pnpm dlx *)` のように任意パッケージを実行する許可ルールや、既に無視しているパス/バージョン形式（例 `/usr/bin/npm run:*`）をさらに無視するよう変更。安全チェックがそれらを判断",
+          "description": ""
+        },
+        {
+          "title": "`/sandbox` と多くの `/config` の値リストを、スクリーンリーダーモード外で番号なしに変更。矢印キーと Enter を使用してください",
+          "description": ""
+        },
+        {
+          "title": "変数展開が非常に長いテキストになる Bash コマンドを拒否し、短い値またはファイル使用を促すメッセージを表示",
+          "description": ""
+        },
+        {
+          "title": "PowerShell ツールを変更し、名前が付いていてもさらに 1 コマンド前に確認を行うように。何も答えなければ、全ツール許可ルール、auto または bypass 権限モードで許可されていない限り拒否",
+          "description": ""
+        },
+        {
+          "title": "兄弟メッセージで再開されたサブエージェントがセッションの権限設定に従うよう変更。質問が出るか、回答者がいない場合は拒否されます",
+          "description": ""
+        },
+        {
+          "title": "`--worktree` に相対 `--add-dir` を起動フォルダー横に指定した場合、Bash サンドボックスにそのフォルダーを与え、ワークツリー横ではなくします",
+          "description": ""
+        },
+        {
+          "title": "起動フォルダー上位（例 `..`）に相対 `--add-dir` を伴う一部の `--worktree` 起動を変更し、Bash サンドボックスにそのフォルダーを与え、`--bg` セッションではワークツリーのみを与えるように",
+          "description": ""
+        },
+        {
+          "title": "Chrome の Claude が一部の認証情報ファイルのアップロードを拒否するよう変更；ファイルは自分でページに添付してください",
+          "description": ""
+        },
+        {
+          "title": "組織で新規アーティファクトごとに承認が必要な場合、プラグインが作成または許可したアーティファクトだけが拒否されるよう変更",
+          "description": ""
+        },
+        {
+          "title": "「回答者がいない」セッションで、組織が各アーティファクトの承認を要求する場合、許可プロンプトなしで新規アーティファクトを即座に拒否するよう変更",
+          "description": ""
+        },
+        {
+          "title": "設定で Artifacts がオフになると、実行中セッションでも Artifact ツールが呼び出しを拒否するよう変更",
+          "description": ""
+        },
+        {
+          "title": "Artifact 公開プロンプトで、サブエージェントやバックグラウンドタスク結果、他者のメッセージ、圧縮後に「再度聞かない」オプションを出さないよう変更",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin eval` がプラグインの権限フック上の deny ルールを保持し、フックで通過した呼び出しをフラグ付けするよう変更",
+          "description": ""
+        },
+        {
+          "title": "MCP サーバーログが、エリシテーションリクエストとフック応答のモード・アクション・フィールド名だけを記録し、全文は記録しないよう変更",
+          "description": ""
+        },
+        {
+          "title": "`fg` で再開した直後、ほとんどのプロンプトが Esc 以外の回答を一時的に無視するよう変更",
+          "description": ""
+        },
+        {
+          "title": "Code Mode が、インストール済みモッドがツール呼び出しをフックしたときに起動を拒否しなくなるよう変更。管理設定で管理者は引き続きオフにできる",
+          "description": ""
+        },
+        {
+          "title": "モデルなしで起動したサブエージェントが再開時に開始時のモデルを保持するよう変更。`/model` 後でも適用",
+          "description": ""
+        },
+        {
+          "title": "モデル上の最初のサブエージェントが、Anthropic からそのモデル設定を取得するまで最大 1.5 秒（`claude -p` では 10 秒）待機するよう変更。設定なしで開始しない",
+          "description": ""
+        },
+        {
+          "title": "再起動したバックグラウンドサブエージェントと自動開始ターンが、プラグイン読み込み完了を待つよう変更",
+          "description": ""
+        },
+        {
+          "title": "プロンプト履歴から、Claude が起動した別セッション（例 `claude --bg`）のほとんどの起動プロンプトを除外するよう変更",
+          "description": ""
+        },
+        {
+          "title": "Amazon Bedrock、Google Vertex AI、Microsoft Foundry の端末セッションでのサブエージェント進捗サマリを、会話全文ではなく短いメモから作成し、トークン消費を大幅に削減するよう変更",
+          "description": ""
+        },
+        {
+          "title": "非対話モード（`-p`）で、最初のリクエスト前に実行する git コマンド数を削減",
+          "description": ""
+        },
+        {
+          "title": "初回セットアップで、リモート VS Code、Cursor、Devin Desktop セッションの端末設定をスキップ（設定変更不可のため）",
+          "description": ""
+        },
+        {
+          "title": "フルスクリーンテキスト選択で、システム・思考・受信メッセージ行の字形を除外",
+          "description": ""
+        },
+        {
+          "title": "Anthropic ホストのクラウドセッションで、リポジトリのフラグやプラグイン配信設定をより多く無視するよう変更。`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` は最大で `DISABLE_TELEMETRY` と同等に動作",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] エクスプローラー右クリックメニューに「Claude Code: Add to Chat」を追加。選択したファイル・フォルダーをチャットで @-mention します",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 権限プロンプトで PreToolUse フックが確認理由を表示しなかった問題を修正（anthropics/claude-code#85950）",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 権限プロンプトのタイトルで、長いツール名・ファイル名が切り取られる問題を修正",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 端末セッションの diff が、入力後に前回提案された編集を再表示し、Claude が同じファイルを再度編集した際に起きる問題を修正",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Escape キーでフィードバックや「Build a custom style」ダイアログ、@-mention メニュー、モデル・モード・「+」メニュー、その他ポップアップを閉じたときに Claude の応答が止まる問題を修正",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Claude が連続で複数の編集を行う際の速度を改善：キューに入った編集は新たな問題待ちを共有し、後続の編集で問題が報告されることがある",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 大規模ワークスペースで `rg` が PATH にある場合の @-mention ファイル検索速度を改善。結果の順位付けが端末と同様になり、タイプミス",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-11-18T04:05:56.259Z"
+}
