@@ -1,0 +1,30 @@
+{
+  "version": "2.1.328",
+  "tagName": "v2.1.328",
+  "publishedAt": "2026-11-19T01:14:04Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.328",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 7,
+    "改善": 18,
+    "その他": 41,
+    "バグ修正": 78
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Added auto mode for Claude Opus 4.6 and Sonnet 4.6 on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry and Claude apps gateway; interactive sessions with no permission mode start in it",
+          "description": ""
+        },
+        {
+          "title": "Added `\"onFailure\": \"block\"` for `mcp_tool` hooks, as for command and HTTP",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-11-19T04:02:57.836Z"
+}
