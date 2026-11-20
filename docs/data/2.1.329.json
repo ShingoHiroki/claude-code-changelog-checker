@@ -1,0 +1,366 @@
+{
+  "version": "2.1.329",
+  "tagName": "v2.1.329",
+  "publishedAt": "2026-11-19T22:14:41Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.329",
+  "counts": {
+    "破壊的変更": 1,
+    "新機能": 6,
+    "改善": 10,
+    "その他": 39,
+    "バグ修正": 74
+  },
+  "hasBreakingChanges": true,
+  "sections": [
+    {
+      "category": "破壊的変更",
+      "items": [
+        {
+          "title": "2.1.326 の `max_tokens` エラーで名前付けされた上限での自動リトライを削除しました。出力トークンが少ないゲートウェイの背後では、`CLAUDE_CODE_MAX_OUTPUT_TOKENS` をその上限に設定してください",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "フォルダーのフックが宣言されている場所を示す信頼ダイアログ警告を追加しました",
+          "description": ""
+        },
+        {
+          "title": "管理設定のフックの読み込みに失敗したとき、Claude Desktop およびその他の非対話型ホストの会話内で警告を表示するようにしました",
+          "description": ""
+        },
+        {
+          "title": "このセッションのスケジュールタスク、`/loop` のウェイクアップ、目標、そしてこの会話のフォークを `/tasks` に追加しました；`x` は質問の後に 1 つ停止します",
+          "description": ""
+        },
+        {
+          "title": "`/mcp` のサーバーページに「Server message」行を追加し、接続を拒否したリモート HTTP MCP サーバーの JSON‑RPC エラーメッセージを表示します",
+          "description": ""
+        },
+        {
+          "title": "`/status` に「Marketplace auto-update」行を追加し、自動更新が行われない管理対象マーケットプレイスとその理由を示します",
+          "description": ""
+        },
+        {
+          "title": "OpenTelemetry のイベントとメトリクスが有効な状態で Code Mode をオンにできるようにサポートを追加しました；コードが行う各ツール呼び出しはイベントを送信します。トレースは引き続きオフのままです",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "管理設定があるコンピュータで古いセッションの自動クリーンアップを改善しました",
+          "description": ""
+        },
+        {
+          "title": "`/tui` およびその他のインプレイス再起動で、ログインリフレッシュを短時間待つようにし、サインアウトされにくくしました",
+          "description": ""
+        },
+        {
+          "title": "多くのファイルを編集する長時間セッション、ならびに macOS と Linux の Claude Desktop セッションで大量の大きな MCP ツール結果がある場合のメモリ使用量を改善しました",
+          "description": ""
+        },
+        {
+          "title": "テレメトリがオフ、Anthropic API へのゲートウェイ背後、または Microsoft Foundry 上で、Claude の質問に対する短い返信（例:「yes」）の自動モード処理を改善しました",
+          "description": ""
+        },
+        {
+          "title": "長いターンの後やスクリーンショットや大きなツール結果を保持したセッションで `--resume` または `--continue` を実行した後の、アイドル状態の Claude Desktop と SDK セッションのメモリ使用量を改善しました",
+          "description": ""
+        },
+        {
+          "title": "Remote Control がオンの Claude Desktop Code セッションで、回答後の次メッセージ準備がより高速になるように改善しました",
+          "description": ""
+        },
+        {
+          "title": "クラウドセッションで起動時にダウンロードに失敗したプラグインのリトライを改善しました",
+          "description": ""
+        },
+        {
+          "title": "Code Mode: スクリプトが何千ものツール呼び出しを行った後のターミナルのフリーズ時間を大幅に短縮しました",
+          "description": ""
+        },
+        {
+          "title": "Code Mode: サブエージェントを起動した後、Claude が Code Mode 外と同様の「待機」ガイダンスを受け取るようにしました",
+          "description": ""
+        },
+        {
+          "title": "macOS のコンピュータ使用を新しい安全ルールへ更新し、いくつかのアクションを拒否し、いくつかのアプリのアクセス権を減らしました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "Self‑hosted runner: `--push-outcome-on-release` が時々 git ホスト上のセッションブランチを削除していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Remote Control: 再起動後にセッションが最初の努力レベルに戻り、アプリが選択したレベルを表示し続けていた問題を修正しました（Ultracode で開始するセッションはまだ対象外）",
+          "description": ""
+        },
+        {
+          "title": "Self‑hosted runner: Anthropic 管理の git でクローンした Git LFS リポジトリでセットアップが失敗していた問題を修正し、セッションはポインターファイル上で開始され、`git lfs pull` がコンテンツを取得します",
+          "description": ""
+        },
+        {
+          "title": "Windows: Claude Code の検索プログラムの起動が遅い PC で、起動と最初の検索を改善しました",
+          "description": ""
+        },
+        {
+          "title": "保存されたスケジュールタスクを変更: 新しいサインインセッションでは、以前のバージョンで保存されたほとんどが再度スケジュールが必要です。ただし自セッションの `--resume` は依然として実行されます",
+          "description": ""
+        },
+        {
+          "title": "`/code-review` を対象なしで実行したとき、ほとんどのモデルでデフォルトブランチに対するブランチ全体のレビューになるように変更し、マルチコミットブランチで差分が失われる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Auto mode が `git status` を実行する頻度を減らし、大規模リポジトリでの待ち時間を短縮しました。変更を破棄する git コマンドは作業ツリーがチェックされるまでブロックされる可能性があります",
+          "description": ""
+        },
+        {
+          "title": "`/code-review <pr number> --fix` と、プルリクエスト URL を渡した `/code-review` が、`gh pr diff` が拒否または失敗したときにレビューを中止するように変更しました",
+          "description": ""
+        },
+        {
+          "title": "「Exit and stop tasks」を変更し、セッションを再開したときにスケジュールタスクが再度実行されないようにしました（Claude が応答中に終了した場合は除く）",
+          "description": ""
+        },
+        {
+          "title": "一部の teammate ペインを `/bin/sh` で開始するように変更したため、シェルの開始ファイルを読み込まない可能性があります",
+          "description": ""
+        },
+        {
+          "title": "macOS のコンピュータ使用で、30 秒以内に完了しないアプリ起動を諦めるように変更しました",
+          "description": ""
+        },
+        {
+          "title": "Gateway: `access_control.allow_cidrs` が空のときに表示される起動警告を、テキストログで箱囲みされた毎回の開始通知に変更しました：ゲートウェイをパブリックインターネットに公開しないでください",
+          "description": ""
+        },
+        {
+          "title": "Self‑hosted runner: 同一オーナー/名前の 2 番目のホスト名クローンをベースフォルダーの `_repos/clones/<host>/` 以下に配置するよう変更しました。クローンの移動は行いません",
+          "description": ""
+        },
+        {
+          "title": "Self‑hosted runner: アドレスパスに特殊文字を含むリポジトリを新しいフォルダーに再クローンするよう変更しました。古いフォルダーのルールとボリュームは適用されず、古いクローンはそのまま残ります",
+          "description": ""
+        },
+        {
+          "title": "Self‑hosted runner: `--repository-folder` がベースフォルダー内のほとんどのフォルダーを `--capacity 1` で受け取るよう変更しました（1 を超えると起動が停止）。別リポジトリのセッションが重複すると拒否されます",
+          "description": ""
+        },
+        {
+          "title": "Code Mode を変更し、エラーになる PreToolUse フックがスクリプトのツール呼び出しを拒否しないようにしました（Code Mode 外と同様）。`\"onFailure\": \"block\"` を設定すれば、コマンド、HTTP、MCP ツールフックが拒否すべきときにブロックできます",
+          "description": ""
+        },
+        {
+          "title": "Code Mode を変更し、256 MiB を超える行範囲の読み取りを拒否するようにしました。これによりギガバイト単位のメモリ使用を防ぎ、非常に長い行の読み取りタイムアウトも修正しました",
+          "description": ""
+        },
+        {
+          "title": "Code Mode を変更し、テレメトリ、非必須トラフィック、機能フラグがオフでも開始できるようにしました。管理設定で管理者がオフに保つことが可能です",
+          "description": ""
+        },
+        {
+          "title": "Code Mode を変更し、`log`、`preview`、`sleep` を宣言したスクリプトを実行できるようにしました（以前は拒否されていました）",
+          "description": ""
+        },
+        {
+          "title": "macOS のログイン更新を、`Claude Code-write-check` アイテムでキーチェーンをテストするよう変更しました",
+          "description": ""
+        },
+        {
+          "title": "`/tasks` ヘッダーとフッターの背景カウントを、シェル、モニター、MCP 呼び出し、エージェント、ワークフロー、スケジュールタスクをすべて含む 1 つの数値に統一しました",
+          "description": ""
+        },
+        {
+          "title": "Stop と SubagentStop フックで、`background_tasks` における Monitor のスクリプトを `monitor` としてリストし、`shell` ではなくしました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 信頼プロンプトを拒否した後、メッセージボックス上に「Review trust」行を追加し、ウィンドウを再読み込みせずにプロンプトを呼び戻せるようにしました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] サインインサーバーの応答が 10〜30 秒かかった際に、拡張機能のトークンリフレッシュが遅延し、すべてのウィンドウとターミナルでサインアウトされる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 入力メソッド（IME）入力中にキーを押すとフォーカスが移動したり、権限プロンプトが拒否されたり、メニュー行が実行されたり、ダイアログが閉じる問題を修正しました（anthropics/claude-code#106358）",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Bash、Edit、Write などの組み込みツールの権限プロンプトで、安全チェックが求める理由が表示されない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 半分書かれたプランコメントが失われたり別のパッセージに移動したり、IME の Enter がコメントを送信してセッション名変更や @ メンションされたファイル選択を終了させる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 使用クレジットが有効なときにバナーメッセージにそれが表示されない、またセッションサーベイがそのバナーと使用クレジットカードをカバーしている問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] アカウント＆使用ダイアログが開いたままの間に到着した権限要求が画面リーダーに通知されず、ダイアログを閉じるまで読み上げられなかった問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 提案された編集差分タブが開いたままで、Accept ボタンが機能しない状態で Claude Code セッションが切断された後に残る問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] パネル端でツールの入力・出力が切れ、読む手段がなくなっていた問題を修正しました（現在はエディタタブで開き、テキスト選択のドラッグでもエディタタブが開きます）",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] IME がメッセージボックスで入力中に Up キーを押すと、以前のメッセージが上書きされる問題を修正しました（anthropics/claude-code#101294）",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] VS Code 1.103〜1.139 またはフローティングチャットウィンドウでエクスプローラフォルダーをチャットにドロップしても何も挿入されず、ハイライトが誤って「Shift を押す」ヒントを出す問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 権限プロンプトがボタン切替時に詳細をスクロール中のフォーカスを奪う問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] `claudeCode.lockEditorGroups` がオフの場合、Claude タブのファイルリンクが別エディタグループで開く問題を修正しました（anthropics/claude-code#108884）",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] 単一チルダ (`3~5 … 7~10`) で書かれた範囲がチルダを失い取り消し線テキストになる問題を修正しました。現在は `~~text~~` のみが取り消し線になります",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] ディクテーションエラーが狭い列に折り返される、質問カード待ち中にスピナーが回る、UTF‑16 コマンド失敗時に出力文字の後に NUL 記号が付く問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] Down キーが Yes にラップされず、権限プロンプトの最後の項目で止まるように変更しました",
+          "description": ""
+        },
+        {
+          "title": "[VSCode] コマンド出力で、単なる色以外の隠れ文字や制御シーケンスをシンボルとして表示するよう変更し、ペルシャ語、クメール語、ラオ語、シンハラ語、マラヤーラム語のテキストが壊れたり順序が乱れたりするのを防ぎました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "バグ修正",
+      "items": [
+        {
+          "title": "`~/.claude.json` がネットワーク停止やファイルロックで読めなくなり保存時にクリアされたときにデフォルトにリセットされることがあった問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "macOS で Claude Code がキーチェーンは読めるが書き込めない場合に繰り返しサインアウトされていた問題を修正しました。該当セッションは有効期限で停止し理由を表示し、他のセッションはサインイン状態を維持します",
+          "description": ""
+        },
+        {
+          "title": "`/terminal-setup` が VS Code の settings または keybindings ファイルをブロックコメント周辺で破損させ、成功を報告しながら Shift+Enter バインディングが失われる問題を修正しました（keybindings.json に閉じていない文字列がある場合）",
+          "description": ""
+        },
+        {
+          "title": "IDE diff で受け入れたファイルが最後の改行なしで保存され、BOM が失われる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/teleport` でクラウドセッションを選択した際、開いていた会話が置き換えられていた問題を修正しました。選択は `/clear` と同様に新規セッションを開始し、`/resume` で元のセッションに戻ります",
+          "description": ""
+        },
+        {
+          "title": "`/usage-credits` が Pro と Max ユーザーに対し、ブラウザを開いた後に再度ログインを要求し、ブラウザが開かない場合はリンクが 8 秒で消えてタスクが停止する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/usage` が使用クレジットが切れたまたは月間上限に達したときに「オフ」と表示し、`/model` がその上限でブロックされるモデルについて Pro と Max ユーザーに通知しなかった問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "支出上限メニューが支出額を月間上限として表示し、狭いウィンドウで行がポインタの下で折り返される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "終端で `\\n` がなくても終了しないステータスラインスクリプトがプロンプトを凍結させ、ギガバイト単位のメモリを消費する問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "管理設定の承認後、`--resume` ピッカー、信頼ダイアログ、または別のセットアップ画面が待機している場合に空白で凍結した画面が出る問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/model` で Default を選択した際、組織のデフォルトが既に保存モデルと同じであっても保存モデルが上書きされていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "MCP サーバーがトークンリフレッシュ中に認証がクリアされても再サインインしていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "スローレコンネクト後にバックグラウンド MCP タスクが停止していた問題を修正しました。Claude Code は古いプロトコルバージョンのサーバーでも自動的に再接続します",
+          "description": ""
+        },
+        {
+          "title": "MCP サーバーやウェブサイトが `application/octet-stream` として送信した PDF、画像、`.docx`、`.xlsx`、`.pptx` ファイルが `.bin` として保存され、Claude がそれらを読めなかった問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`/code-review <pr number>` が時々チェックアウトされたブランチをレビューし、プルリクエストを読まなかった問題を修正しました。現在は `gh pr diff` でプルリクエストを取得し、取得できない場合はその旨を通知します",
+          "description": ""
+        },
+        {
+          "title": "`/code-review` がほとんどのモデルで `~/.claude/CLAUDE.md` が存在しないため権限プロンプトで停止していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Code Mode でスクリプトの編集完了や Esc 後に停止したコマンドが隠れ、終了時に失われていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Code Mode でメモリを使い果たすランアウトループを修正し、上限で停止するようにしました",
+          "description": ""
+        },
+        {
+          "title": "停止されたバックグラウンドエージェントが再開時に動き続けていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "バックグラウンドシェルコマンドが会話が終了するまで前の会話のメモリを保持していた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Remote Control が Claude Desktop、IDE、SDK でのコンパクション或いは `/clear` 後に前の会話のメモリを使用し続けていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Bedrock 上の Claude Desktop セッションで、ハングした AWS `credential_process` やサインイン呼び出しを待機中に Stop がリクエストを終了しない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Opus 4.8 と Opus 5 で Claude が最初の試行でファイル送信に失敗することがある問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "ツール検索セッションで、接続された MCP サーバーのツールがロードできない旨が伝えられず、ツールなしサーバーと誤認されていた問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "`claude mcp login` と `/mcp` が、サービスのクライアント登録が廃止された際に「Claude Code からのサインインを受け付けません」と表示していた問題を修正しました",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-11-20T03:55:47.204Z"
+}
