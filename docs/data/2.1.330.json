@@ -1,0 +1,152 @@
+{
+  "version": "2.1.330",
+  "tagName": "v2.1.330",
+  "publishedAt": "2026-11-20T22:32:56Z",
+  "releaseUrl": "https://github.com/anthropics/claude-code/releases/tag/v2.1.330",
+  "counts": {
+    "破壊的変更": 0,
+    "新機能": 7,
+    "改善": 12,
+    "その他": 55,
+    "バグ修正": 68
+  },
+  "hasBreakingChanges": false,
+  "sections": [
+    {
+      "category": "新機能",
+      "items": [
+        {
+          "title": "Anthropic の Enterprise Admin Console で管理されている組織へのサインインを追加しました: `claude auth login` 後、Claude Code は組織の設定を適用し、組織のクラウドプロバイダーまたはゲートウェイを使用します",
+          "description": ""
+        },
+        {
+          "title": "easel を追加しました。これは組み込みの mod で、要求があったときにチャートを描画し、MCP メトリクス結果の下で macOS と Linux の Pro、Max、利用可能な場合は Team と Enterprise で使用できます。自動チャートは `/config` でオフにできます",
+          "description": ""
+        },
+        {
+          "title": "`CLAUDE_CODE_FULL_SIGN_IN_LINK=1` を追加し、短縮リンクがエラーになるかスクリプトが値を取得できない場合にフルサインインリンクを出力します",
+          "description": ""
+        },
+        {
+          "title": "クラウドおよびセルフホストランナーセッションで、プラグインマーケットプレイスのリポジトリがそのセッションのものに含まれていないため取得できない場合の通知を追加しました",
+          "description": ""
+        },
+        {
+          "title": "`claude plugin install --json` の結果に `commandPrinted` を追加しました。プラグインのインストールコマンドが stderr に書き込んだ場合に true となり、エラーで終了した、殺された、またはタイムアウトした場合は `commandFailed` が true になります",
+          "description": ""
+        },
+        {
+          "title": "セルフホストランナーの `/metrics` に `claude_code_self_hosted_runner_order_to_registered_seconds` を追加しました。オーケストレータが生成したランナーで、作業指示が発行されてから登録が受理されるまでの秒数を計測します",
+          "description": ""
+        },
+        {
+          "title": "セルフホストランナーの `/metrics` に `claude_code_self_hosted_runner_order_to_first_session_seconds` を追加しました。作業指示が発行されてから最初のセッションが引き渡されるまでの秒数を計測します",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "改善",
+      "items": [
+        {
+          "title": "/login、`claude auth login`、`claude setup-token` が表示する claude.ai のサインインリンクを改善し、はるかに短くなりました",
+          "description": ""
+        },
+        {
+          "title": "ファイル差分の速度を改善しました",
+          "description": ""
+        },
+        {
+          "title": "`/config` の検索を改善しました。入力した文字列で始まる設定が最初に表示され、「effort」で Model が見つかり、「dark」や「light」で Theme が見つかります",
+          "description": ""
+        },
+        {
+          "title": "`/resume` を改善しました。`/model` など画面だけを開いて放置したセッションは一覧に表示されなくなります",
+          "description": ""
+        },
+        {
+          "title": "`/mcp` と `/plugin` の Reconnect を改善し、サーバーが失敗またはサインインが必要な場合でも、原因が表示されたままページが開いた状態になります",
+          "description": ""
+        },
+        {
+          "title": "macOS でサンドボックスの deny リストが長すぎるときのエラーメッセージを改善し、長いリスト名と短縮方法を示すようにしました",
+          "description": ""
+        },
+        {
+          "title": "フルスクリーンモードの `/plugin` を改善し、エラーがあるプラグインのページがそのエラーから開始されるようにしました",
+          "description": ""
+        },
+        {
+          "title": "Team と Enterprise プランでの `/ultrareview` の費用確認を改善し、レビュー費用が月間利用上限を下回る場合、残りの上限額を表示します",
+          "description": ""
+        },
+        {
+          "title": "Amazon Bedrock または Google Cloud の Agent Platform 上のセルフホストランナーセッションで、デフォルトモデルが利用できない場合に別のモデルで開始したことを通知するようにしました",
+          "description": ""
+        },
+        {
+          "title": "Code Mode を改善し、Claude が画像や PDF の参照方法を指示されるようになりました",
+          "description": ""
+        },
+        {
+          "title": "Code Mode で Esc 後、停止したコマンドの下に赤いエラーの代わりに「Interrupted」が表示されます",
+          "description": ""
+        },
+        {
+          "title": "Code Mode で、サブエージェントのスクリプトが何千ものツール呼び出しを行った後のターミナルのフリーズ時間を大幅に短縮しました",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "category": "その他",
+      "items": [
+        {
+          "title": "セルフホストランナーに `--start-dir` / `SELF_HOSTED_RUNNER_START_DIR` を追加し、リポジトリ内のフォルダーで作業を開始できるようにしました。設定やフックは従来通りロードされます",
+          "description": ""
+        },
+        {
+          "title": "Anthropic 管理の git がプラグイン固有のリポジトリを拒否したとき、プラグイン名と対処法を示す通知を追加しました",
+          "description": ""
+        },
+        {
+          "title": "Linux で、`node_modules` など大きな無視フォルダーを含むリポジトリで Bash コマンドが数秒待機し、以降のセッションでファイル差分が表示されない問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Windows で、カスタム開始ファイルが無い環境で Git Bash の起動に 10〜60 秒かかった後、セッション中に Bash コマンドが遅くなる問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Remote Control で、電話やウェブからの Stop によって終了したバックグラウンドエージェントのノートが、端末に入力したかのように表示される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "Remote Control のモバイルアプリで、会話途中で有効化した際に Diff とプルリクエストボタンが隠れたり、停止したセッションが動作中と表示される問題を修正しました",
+          "description": ""
+        },
+        {
+          "title": "セルフホストランナーで、権限プロンプトの背後にあるツール呼び出しが新しいランナーに引き継がれたときに結果が無くなる問題を、テレメトリ無効セッションで修正しました",
+          "description": ""
+        },
+        {
+          "title": "`spawn-runner` フックの遅延によりオーケストレータが空きスロットを取得できなかった問題を修正し、スロットが空いている間は 4〜6 秒ごとにポーリングするようにしました",
+          "description": ""
+        },
+        {
+          "title": "IP 許可リストなどによる 403 エラーが「bad secret or token」と記録されていた問題を修正し、ほとんどの行でサーバー側の理由が先頭に記載されるようにしました",
+          "description": ""
+        },
+        {
+          "title": "ディスク容量が不足した状態で開始したランナーがセッションを取得し失敗する問題を修正し、容量が確保できるまで待機し、1 分以内にセッションが取得できなければ exit 1 します（作業指示から起動した場合は除く）",
+          "description": ""
+        },
+        {
+          "title": "ランナーのマシンに git 資格情報がなく起動失敗したときに「リトライ」を提案していた問題を修正し、エラーメッセージに問い合わせ先",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "translatedAt": "2026-11-21T03:52:40.503Z"
+}
